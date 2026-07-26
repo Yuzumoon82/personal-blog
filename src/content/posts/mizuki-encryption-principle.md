@@ -4,6 +4,7 @@ published: 2025-07-26
 description: "从构建时 AES-256-GCM 加密到浏览器端 Web Crypto API 解密，逐行拆解 Mizuki 博客的密码保护机制"
 tags: [Mizuki, 加密, AES, Web Crypto API, 原理]
 category: 技术文章
+author: Yuzumoon82
 draft: false
 ---
 
