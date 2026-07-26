@@ -1,4 +1,4 @@
-# 🌸 Mizuki
+# 🌸 Mizuki 博客模版
 
 <img align='right' src='logo.png' width='200px' alt="Mizuki logo">
 
