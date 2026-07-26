@@ -84,7 +84,7 @@ export default defineConfig({
 	],
 
 	site: siteConfig.siteURL,
-	base: "/personal-blog/",
+	base: process.env.NODE_ENV === "production" ? "/personal-blog/" : "/",
 	trailingSlash: "always",
 	compressHTML: true,
 
