@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from "../../config";
+import { url } from "../../utils/url-utils";
 import type { FullscreenWallpaperConfig } from "../../types/config";
 
 interface Props {
@@ -78,6 +79,9 @@ const positionClass = (() => {
 	}
 })();
 
+	const prefixedDesktop = imageSources.desktop.map((p) => url(p));
+	const prefixedMobile = imageSources.mobile.map((p) => url(p));
+
 const renderGroups = [
 	{
 		key: "desktop",
@@ -137,7 +141,7 @@ const renderGroups = [
 				<div class={`${group.containerClass} w-full h-full relative`} style="transform: translateZ(0);">
 					{group.images.map((src, index) => (
 						<img
-							src={src}
+							src={url(src)}
 							alt={`${group.key} wallpaper ${index + 1}`}
 							class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${positionClass}`}
 							data-carousel-item={index}
@@ -154,7 +158,7 @@ const renderGroups = [
 	)}
 </div>
 
-<script is:inline define:vars={{ desktopImages: imageSources.desktop, mobileImages: imageSources.mobile, positionClass }}>
+<script is:inline define:vars={{ desktopImages: prefixedDesktop, mobileImages: prefixedMobile, positionClass }}>
 	(function() {
 		const container = document.getElementById('wallpaper-single-container');
 		if (!container) return;

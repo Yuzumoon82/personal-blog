@@ -169,6 +169,7 @@ const bannerFormats = getImageFormats();
 					desktopImages: bannerImages.desktop,
 					mobileImages: bannerImages.mobile,
 					position: siteConfig.banner.position,
+						BASE_URL: import.meta.env.BASE_URL,
 				}}
 			>
 				(function () {
@@ -205,7 +206,7 @@ const bannerFormats = getImageFormats();
 						mobileImg.alt = "Mobile banner image of the blog";
 						mobileImg.className =
 							"block md:hidden object-cover h-full w-full transition duration-700 opacity-100";
-						mobileImg.src = mobileSrc;
+						mobileImg.src = BASE_URL + mobileSrc.replace(/^\//, "");
 						mobileImg.loading = "eager";
 						mobileImg.fetchPriority = "high";
 						mobileImg.dataset.position = position;
@@ -218,7 +219,7 @@ const bannerFormats = getImageFormats();
 						desktopImg.alt = "Desktop banner image of the blog";
 						desktopImg.className =
 							"hidden md:block object-cover h-full w-full transition duration-700 opacity-100";
-						desktopImg.src = desktopSrc;
+						desktopImg.src = BASE_URL + desktopSrc.replace(/^\//, "");
 						desktopImg.loading = "eager";
 						desktopImg.fetchPriority = "high";
 						desktopImg.dataset.position = position;
