@@ -84,7 +84,7 @@ export default defineConfig({
 	],
 
 	site: siteConfig.siteURL,
-	base: "/",
+	base: "/personal-blog/",
 	trailingSlash: "always",
 	compressHTML: true,
 
