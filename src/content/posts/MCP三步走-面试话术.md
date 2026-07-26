@@ -4,6 +4,9 @@ published: 2025-07-23
 description: "Transport → McpSyncClient → ToolCallback，从架构到代码，讲透 MCP 三步走"
 tags: [MCP, 面试, 架构, AI]
 category: 面试准备
+encrypted: true
+password: "20031204"
+passwordHint: "软件工程之神的出生日期"
 draft: false
 ---
 
