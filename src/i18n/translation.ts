@@ -7,7 +7,7 @@ import { zh_TW } from "./languages/zh_TW";
 
 export type Translation = Record<I18nKey, string>;
 
-const defaultTranslation = en;
+const defaultTranslation = zh_CN;
 
 const map: Record<string, Translation> = {
 	en: en,
