@@ -644,6 +644,207 @@ ___
 &amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;表格内容&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;
 &amp;lt;/table&amp;gt;&lt;/p&gt;
 &lt;p&gt;这是另一个段落。&lt;/p&gt;
+</content:encoded></item><item><title>Mizuki 文章加密原理详解</title><link>https://yuzumoon82.github.io/personal-blog/posts/mizuki-encryption-principle/</link><guid isPermaLink="true">https://yuzumoon82.github.io/personal-blog/posts/mizuki-encryption-principle/</guid><description>从构建时 AES-256-GCM 加密到浏览器端 Web Crypto API 解密，逐行拆解 Mizuki 博客的密码保护机制</description><pubDate>Sat, 26 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Mizuki 文章加密原理详解&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;从构建时到运行时，逐层拆解 Mizuki 博客的文章密码保护机制。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;整体架构&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;┌──────────────────────────────────────────────────────────┐
+│                     构建时 (Node.js)                      │
+│                                                          │
+│   Markdown  ──►  Astro 渲染  ──►  HTML 字符串             │
+│                                       │                  │
+│                                       ▼                  │
+│                              encryptContent()            │
+│                              AES-256-GCM 加密             │
+│                                       │                  │
+│                                       ▼                  │
+│                               base64 密文嵌入页面          │
+└──────────────────────────────────────────────────────────┘
+                         │
+                         ▼
+┌──────────────────────────────────────────────────────────┐
+│                    运行时 (浏览器)                         │
+│                                                          │
+│   用户输入密码 ──►  Web Crypto API (PBKDF2 + AES-GCM)     │
+│                              │                           │
+│                              ▼                           │
+│                    验证前缀 &quot;MIZUKI-VERIFY:&quot;              │
+│                        │          │                      │
+│                    正确 ✅     错误 ❌                     │
+│                        │          │                      │
+│                        ▼          ▼                      │
+│                  注入 HTML    提示重试                     │
+└──────────────────────────────────────────────────────────┘
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;一、文章配置&lt;/h2&gt;
+&lt;p&gt;在 Markdown frontmatter 中只需三行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;encrypted: true
+password: &quot;你的密码&quot;
+passwordHint: &quot;密码提示（可选）&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;encrypted: true&lt;/code&gt; + &lt;code&gt;password&lt;/code&gt; 非空 → 自动启用加密。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;二、构建时加密（Node.js 端）&lt;/h2&gt;
+&lt;p&gt;核心代码在 &lt;code&gt;src/utils/crypto-utils.ts&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;export function encryptContent(html: string, password: string, slug: string): string {
+  // 1. 验证前缀：解密后用于快速校验密码正确性
+  const plaintext = &quot;MIZUKI-VERIFY:&quot; + html;
+
+  // 2. 用 HMAC-SHA256 从密码派生 salt 和 IV（确定性，同一密码+slug 永远得到相同值）
+  const salt = deriveBytes(password, `salt:${slug}`, 16);
+  const iv   = deriveBytes(password, `iv:${slug}`,   12);
+
+  // 3. PBKDF2 迭代 10 万次派生 AES 密钥
+  const key = pbkdf2Sync(password, salt, 100000, 32, &quot;sha256&quot;);
+
+  // 4. AES-256-GCM 加密
+  const cipher = createCipheriv(&quot;aes-256-gcm&quot;, key, iv);
+  const encrypted = Buffer.concat([cipher.update(plaintext, &quot;utf8&quot;), cipher.final()]);
+  const authTag = cipher.getAuthTag();
+
+  // 5. 拼接 salt + iv + authTag + ciphertext，base64 编码
+  return Buffer.concat([salt, iv, authTag, encrypted]).toString(&quot;base64&quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;关键设计点&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;设计&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;确定性派生&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;salt 和 IV 由 HMAC(password, slug) 派生，不随机。好处：同一篇文章多次构建结果相同，方便缓存&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;PBKDF2 10万次&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;暴力破解成本极高&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;AES-256-GCM&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;认证加密，同时保证机密性和完整性&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;验证前缀&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;解密后的前 14 字节是 &lt;code&gt;MIZUKI-VERIFY:&lt;/code&gt;，客户端可快速判断密码对错，无需等完整解密失败&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;输出格式&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;base64( salt[16字节] + iv[12字节] + authTag[16字节] + ciphertext )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;三、运行时解密（浏览器端）&lt;/h2&gt;
+&lt;p&gt;核心代码在 &lt;code&gt;src/components/features/auth/PasswordProtection.astro&lt;/code&gt; 的内联 &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; 中。&lt;/p&gt;
+&lt;h3&gt;3.1 解密函数&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;async function decryptContent(encData, password) {
+  // 1. base64 解码
+  const raw = Uint8Array.from(atob(encData), c =&amp;gt; c.charCodeAt(0));
+
+  // 2. 拆分各段
+  const salt = raw.slice(0, 16);      // 前 16 字节
+  const iv = raw.slice(16, 28);       // 接下来 12 字节
+  const authTag = raw.slice(28, 44);  // 接下来 16 字节
+  const ciphertext = raw.slice(44);   // 剩余即密文
+
+  // 3. PBKDF2 派生密钥（与服务端完全相同的参数）
+  const keyMaterial = await crypto.subtle.importKey(
+    &quot;raw&quot;, new TextEncoder().encode(password), &quot;PBKDF2&quot;, false, [&quot;deriveKey&quot;]
+  );
+  const key = await crypto.subtle.deriveKey(
+    { name: &quot;PBKDF2&quot;, salt, iterations: 100000, hash: &quot;SHA-256&quot; },
+    keyMaterial,
+    { name: &quot;AES-GCM&quot;, length: 256 },
+    false,
+    [&quot;decrypt&quot;]
+  );
+
+  // 4. AES-GCM 解密
+  const plaintext = await crypto.subtle.decrypt(
+    { name: &quot;AES-GCM&quot;, iv, additionalData: new Uint8Array(0), tagLength: 128 },
+    key,
+    ciphertext
+  );
+
+  return new TextDecoder().decode(plaintext);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;3.2 密码验证流程&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;async function attemptUnlock(inputPassword) {
+  const realContent = await decryptContent(encryptedContent, inputPassword);
+
+  // 验证前缀：解密后的内容必须以 &quot;MIZUKI-VERIFY:&quot; 开头
+  if (!realContent.startsWith(&quot;MIZUKI-VERIFY:&quot;)) {
+    // 密码错误 → 显示错误提示
+    return;
+  }
+
+  // 密码正确 → 去除前缀，注入真实 HTML
+  const html = realContent.slice(&quot;MIZUKI-VERIFY:&quot;.length);
+  document.getElementById(&quot;article-content&quot;).innerHTML = html;
+
+  // 缓存到 sessionStorage，刷新页面无需重新输入
+  sessionStorage.setItem(&quot;page-password-&quot; + window.location.pathname, inputPassword);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;3.3 页面加载时的自动恢复&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;window.addEventListener(&quot;load&quot;, async () =&amp;gt; {
+  const cachedPassword = sessionStorage.getItem(&quot;page-password-&quot; + window.location.pathname);
+  if (cachedPassword) {
+    await attemptUnlock(cachedPassword); // 有缓存 → 自动解密
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;四、安全分析&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;方面&lt;/th&gt;
+&lt;th&gt;评价&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;算法强度&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;✅ AES-256-GCM + PBKDF2 10万次，业界标准&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;密码传输&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;✅ 密码仅在前端使用，不发送到服务器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;密钥派生&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;✅ 确定性 salt 避免了随机性问题，但同一密码+slug 的密文相同&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;暴力破解&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;⚠️ 密文在 HTML 中明文传输，可被离线暴力破解。PBKDF2 10万次能有效拖慢破解速度，但密码太短仍不安全&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;XSS&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;⚠️ 解密后直接 &lt;code&gt;innerHTML&lt;/code&gt;，若原文含恶意脚本会有 XSS 风险（但文章是作者自己写的，风险可控）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;五、总结&lt;/h2&gt;
+&lt;p&gt;Mizuki 的加密方案是一个轻量级的静态博客密码保护实现：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;无需后端&lt;/strong&gt;：加解密全在浏览器完成&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;安全适中&lt;/strong&gt;：AES-256-GCM 算法可靠，适合个人博客的敏感内容保护&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;用户体验好&lt;/strong&gt;：密码正确后缓存到 sessionStorage，刷新不重复输入&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;非高安全场景适用&lt;/strong&gt;：不适合银行级安全，但保护博客中的私密文章绰绰有余&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 这篇加密机制的分析文章本身没有加密，你可以随时查阅。只有那篇 MCP 面试话术设置了密码保护。&lt;/p&gt;
+&lt;/blockquote&gt;
 </content:encoded></item><item><title>Mizuki Music Player 实现详解</title><link>https://yuzumoon82.github.io/personal-blog/posts/mizuki-musicplayer%E5%AE%9E%E7%8E%B0%E8%AF%A6%E8%A7%A3/</link><guid isPermaLink="true">https://yuzumoon82.github.io/personal-blog/posts/mizuki-musicplayer%E5%AE%9E%E7%8E%B0%E8%AF%A6%E8%A7%A3/</guid><description>从零拆解音乐播放器组件——Svelte 与 Vue 对照，面向新手</description><pubDate>Fri, 25 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Mizuki Music Player 实现详解&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;从零拆解一个完整的前端组件——音乐播放器。面向 Vue 新手，每一步都标注 Svelte 和 Vue 的对应写法。&lt;/p&gt;
