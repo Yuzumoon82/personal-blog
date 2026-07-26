@@ -5,313 +5,540 @@
   <link href="https://yuzumoon82.github.io/personal-blog/" rel="alternate" type="text/html"/>
   <link href="https://yuzumoon82.github.io/personal-blog/atom.xml" rel="self" type="application/atom+xml"/>
   <id>https://yuzumoon82.github.io/personal-blog/</id>
-  <updated>2026-07-26T04:20:02.645Z</updated>
+  <updated>2026-07-26T04:24:24.934Z</updated>
   <language>zh_CN</language>
   <entry>
-    <title>Markdown Tutorial</title>
+    <title>Mizuki 项目学习计划</title>
+    <link href="https://yuzumoon82.github.io/personal-blog/posts/mizuki%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" rel="alternate" type="text/html"/>
+    <id>https://yuzumoon82.github.io/personal-blog/posts/mizuki%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/</id>
+    <published>2025-07-26T00:00:00.000Z</published>
+    <updated>2025-07-26T00:00:00.000Z</updated>
+    <summary>从零到上线自己的博客——Mizuki 开源 Astro 静态博客模板学习路径</summary>
+    <content type="html"><![CDATA[<h1>Mizuki 项目学习计划 —— 从零到上线自己的博客</h1>
+<blockquote>
+<p>Mizuki 是一个开源的 Astro 静态博客模板。你的目标：看懂它 → 改它 → 把它变成你自己的博客。</p>
+</blockquote>
+<hr />
+<h2>〇、先认识这个项目</h2>
+<h3>Mizuki 是什么</h3>
+<p>一个<strong>静态博客网站</strong>。写 Markdown 文章 → 自动生成 HTML 页面 → 部署到网上就能访问。</p>
+<h3>技术栈一览</h3>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>干什么的</th>
+<th>你需要学到什么程度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Astro</strong></td>
+<td>框架，把 Markdown + 组件 → HTML 页面</td>
+<td>会用 .astro 文件，理解 frontmatter 和 template</td>
+</tr>
+<tr>
+<td><strong>Tailwind CSS</strong></td>
+<td>写样式的，用 class 名控制外观</td>
+<td>会查文档，找到你想要的 class 名</td>
+</tr>
+<tr>
+<td><strong>Svelte</strong></td>
+<td>做交互组件（音乐播放器、搜索等）</td>
+<td>先跳过，只看不改</td>
+</tr>
+<tr>
+<td><strong>TypeScript</strong></td>
+<td>带类型的 JavaScript</td>
+<td>能读懂就行，不需要写</td>
+</tr>
+<tr>
+<td><strong>Markdown/MDX</strong></td>
+<td>写文章的格式</td>
+<td>会用 # 标题、列表、链接</td>
+</tr>
+</tbody>
+</table>
+<h3>目录结构速览</h3>
+<pre><code>Mizuki/
+├── astro.config.mjs          ← 网站配置（插件、域名、SEO）
+├── src/
+│   ├── pages/                ← ★ 页面：首页、关于、文章列表...
+│   ├── components/           ← ★ 组件：按钮、卡片、导航栏...
+│   │   ├── atoms/            ←   最小组件（Button, Icon, Badge）
+│   │   ├── widgets/          ←   大组件（音乐播放器、评论）
+│   │   └── layout/           ←   页面骨架（header, footer, sidebar）
+│   ├── layouts/Layout.astro  ← ★ 全局布局（所有页面都套这个壳）
+│   ├── config/               ← ★ 配置文件（改这个就能改网站内容）
+│   ├── content/posts/        ← ★ 博客文章（Markdown 文件）
+│   ├── styles/               ← 样式文件
+│   └── data/                 ← 数据文件（项目列表、朋友列表等）
+├── public/                   ← 静态资源（图片、字体）
+└── package.json              ← 项目依赖和脚本命令
+</code></pre>
+<hr />
+<h2>第一阶段：跑起来（Day 1）</h2>
+<h3>目标：能在本地浏览器看到这个网站</h3>
+<p><strong>Step 1：安装依赖</strong></p>
+<pre><code>cd /Users/dduo/WebstormProjects/Mizuki
+
+# 如果没有 pnpm，先装它
+npm install -g pnpm
+
+# 装项目依赖
+pnpm install
+</code></pre>
+<p><strong>Step 2：启动开发服务器</strong></p>
+<pre><code>pnpm dev
+</code></pre>
+<p>浏览器打开 <code>http://localhost:4321</code> —— 你应该能看到一个完整的博客网站。</p>
+<p><strong>Step 3：改一行字，验证热更新</strong></p>
+<p>打开 <code>src/config/site.ts</code>（或 <code>src/config/</code> 下的配置文件），找到网站标题，改一个字，保存。浏览器自动刷新——这说明<strong>热更新</strong>在工作。</p>
+<p><strong>今天学到什么</strong>：</p>
+<ul>
+<li>pnpm 是包管理器，<code>pnpm install</code> = 下载项目需要的所有代码</li>
+<li><code>pnpm dev</code> = 启动开发服务器，"dev" = development</li>
+<li>Astro 的热更新：改代码 → 保存 → 浏览器自动刷新，不用手动 F5</li>
+</ul>
+<hr />
+<h2>第二阶段：改内容，不动代码（Day 2-3）</h2>
+<h3>Day 2：改配置 —— 把网站变成你的</h3>
+<p><strong>目标</strong>：不用写一行 HTML/CSS，只改配置文件，让这个网站变成"你的"。</p>
+<p><strong>任务 1：改网站基本信息</strong></p>
+<p>打开 <code>src/config/</code> 目录，找到这些配置文件，逐行看，改掉能看懂的：</p>
+<ul>
+<li>网站标题、描述</li>
+<li>你的名字、头像链接</li>
+<li>导航栏菜单项</li>
+<li>社交链接（GitHub、邮箱）</li>
+</ul>
+<p>每改一处保存，看浏览器变化。这是最快建立信心的方式。</p>
+<p><strong>任务 2：改首页 Hero 区</strong></p>
+<p>找首页的配置（通常在 config 文件或 <code>src/pages/index.astro</code> 的 frontmatter），改：</p>
+<ul>
+<li>大标题</li>
+<li>副标题</li>
+<li>按钮文字</li>
+</ul>
+<p><strong>任务 3：理解 Tailwind CSS 的 class</strong></p>
+<p>打开 <code>src/pages/index.astro</code>，你会看到很多像 <code>class="text-2xl font-bold text-center"</code> 这样的代码。不用背，记住两个网站：</p>
+<ul>
+<li><a href="https://tailwindcss.com/docs">Tailwind CSS 文档</a> —— 查任何 class 的含义</li>
+<li>改一个 class，保存，看效果。比如把 <code>text-2xl</code> 改成 <code>text-4xl</code>，字体会变大</li>
+</ul>
+<p><strong>今天学到什么</strong>：</p>
+<ul>
+<li>配置驱动：这个项目的很多内容不用改代码，改配置就行</li>
+<li>Tailwind CSS：用 class 控制样式，不用写 CSS 文件</li>
+</ul>
+<hr />
+<h3>Day 3：写第一篇文章</h3>
+<p><strong>目标</strong>：在博客上发布一篇你自己的文章。</p>
+<p><strong>任务 1：找到文章目录</strong></p>
+<pre><code>ls src/content/posts/
+</code></pre>
+<p>你会看到一些 <code>.md</code> 或 <code>.mdx</code> 文件。这些就是博客文章。</p>
+<p><strong>任务 2：新建一篇文章</strong></p>
+<pre><code>pnpm new-post
+</code></pre>
+<p>按提示输入标题。会在 <code>src/content/posts/</code> 下生成一个新文件。</p>
+<p><strong>任务 3：写 Markdown</strong></p>
+<p>打开你新建的文件，顶部是 frontmatter（用 <code>---</code> 包起来的部分）：</p>
+<pre><code>---
+title: 我的第一篇文章
+date: 2026-07-25
+description: 这是我用 Mizuki 写的第一篇博客
+tags: [前端, 学习]
+---
+
+## 今天学到了什么
+
+今天我开始学习 Astro...
+
+## 代码示例
+
+​```javascript
+console.log('hello world');
+​```
+</code></pre>
+<p>保存 → 浏览器自动刷新 → 首页应该能看到你的新文章。</p>
+<p><strong>今天学到什么</strong>：</p>
+<ul>
+<li>Markdown frontmatter：文章标题、日期、标签在 <code>---</code> 之间</li>
+<li>Markdown 语法：<code>#</code> = 标题，<code>##</code> = 二级标题，``` 包起来 = 代码块</li>
+<li>Astro 的内容集合：<code>src/content/posts/</code> 下的 .md 文件自动变成博客文章</li>
+</ul>
+<hr />
+<h2>第三阶段：改样式，理解组件（Day 4-6）</h2>
+<h3>Day 4：理解 Astro 组件</h3>
+<p><strong>目标</strong>：能看懂 <code>.astro</code> 文件的结构。</p>
+<p><strong>.astro 文件的两段式结构</strong>：</p>
+<pre><code>---
+// ↑↑↑ 上面这段叫 frontmatter（脚本区）
+// 在这里写 JavaScript/TypeScript
+// 可以 import 其他组件、定义变量、获取数据
+import Layout from '../layouts/Layout.astro';
+const title = '我的页面';
+---
+
+&lt;!-- ↓↓↓ 下面这段叫 template（模板区） --&gt;
+&lt;!-- 在这里写 HTML --&gt;
+&lt;Layout&gt;
+  &lt;h1&gt;{title}&lt;/h1&gt;
+  &lt;p&gt;这是一个 Astro 组件&lt;/p&gt;
+&lt;/Layout&gt;
+
+&lt;style&gt;
+  /* 样式只影响当前组件，不会泄露到其他组件 */
+  h1 { color: red; }
+&lt;/style&gt;
+</code></pre>
+<p><strong>练习</strong>：打开 <code>src/pages/about.astro</code>，对照上面的结构看懂它。改一下 <code>&lt;h1&gt;</code> 里的文字，保存看效果。</p>
+<p><strong>任务</strong>：找一个 atom 组件（如 <code>src/components/atoms/Button/Button.astro</code>），逐行读完。原子组件通常很短（20-50 行），是最容易看懂的入口。</p>
+<hr />
+<h3>Day 5：理解布局和插槽</h3>
+<p><strong>目标</strong>：理解"所有页面套同一个壳"是怎么实现的。</p>
+<p><strong>核心概念</strong>：<code>Layout.astro</code>（<code>src/layouts/Layout.astro</code>）。</p>
+<p>打开它，你会看到类似这样的结构：</p>
+<pre><code>&lt;html&gt;
+  &lt;head&gt;...&lt;/head&gt;
+  &lt;body&gt;
+    &lt;Header /&gt;         ← 导航栏，每个页面都一样
+    &lt;main&gt;
+      &lt;slot /&gt;         ← ★ 插槽：每个页面的不同内容放在这里
+    &lt;/main&gt;
+    &lt;Footer /&gt;         ← 底部，每个页面都一样
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><code>&lt;slot /&gt;</code> 是关键——它是一个占位符。当你在 <code>about.astro</code> 里写：</p>
+<pre><code>&lt;Layout title="关于我"&gt;
+  &lt;h1&gt;这是关于页面&lt;/h1&gt;     ← 这段内容替换 &lt;slot /&gt;
+&lt;/Layout&gt;
+</code></pre>
+<p><strong>练习</strong>：打开 <code>src/layouts/Layout.astro</code>，找到 <code>&lt;slot /&gt;</code> 的位置。然后打开 <code>src/pages/about.astro</code>，看看它怎么用 <code>&lt;Layout&gt;</code> 包裹自己的内容。</p>
+<hr />
+<h3>Day 6：改一个组件 —— 把导航栏改成你自己的</h3>
+<p><strong>目标</strong>：找到导航栏组件，改菜单项。</p>
+<p><strong>定位导航栏</strong>：</p>
+<p>导航栏通常在 <code>src/components/layout/</code> 或 <code>src/components/organisms/</code> 下，找文件名含 <code>Header</code>、<code>Nav</code>、<code>Navbar</code> 的文件。</p>
+<p><strong>练习</strong>：</p>
+<ol>
+<li>打开导航栏组件</li>
+<li>找到菜单项（通常是 <code>&lt;a&gt;</code> 标签列表）</li>
+<li>改一个菜单名（比如 "关于" 改成 "关于我"）</li>
+<li>给"关于我"加一个高亮样式（加 <code>class="text-blue-500"</code> 或 <code>class="font-bold"</code>）</li>
+</ol>
+<p><strong>今天学到什么</strong>：</p>
+<ul>
+<li>组件的复用：导航栏写在 Header 组件里一次，所有页面都自动有</li>
+<li>Tailwind 的 class 命名规律：<code>text-</code> = 文字颜色，<code>font-</code> = 字体粗细，<code>bg-</code> = 背景色</li>
+</ul>
+<hr />
+<h2>第四阶段：加功能，真正动手（Day 7-8）</h2>
+<h3>Day 7：加一个新页面</h3>
+<p><strong>目标</strong>：从零新建一个页面，加到导航栏里。</p>
+<p><strong>Step 1：创建页面文件</strong></p>
+<p>在 <code>src/pages/</code> 下新建 <code>learning.astro</code>：</p>
+<pre><code>---
+import Layout from '../layouts/Layout.astro';
+---
+
+&lt;Layout title="我的学习记录"&gt;
+  &lt;main class="max-w-2xl mx-auto py-20"&gt;
+    &lt;h1 class="text-3xl font-bold"&gt;📚 我的前端学习记录&lt;/h1&gt;
+    &lt;p class="mt-4 text-gray-600"&gt;这里记录我每天学到的东西。&lt;/p&gt;
+  &lt;/main&gt;
+&lt;/Layout&gt;
+</code></pre>
+<p>保存，访问 <code>http://localhost:4321/learning</code> —— 你的新页面在。</p>
+<p><strong>Step 2：加到导航栏</strong></p>
+<p>找到导航栏组件，在菜单列表里加一个 <code>&lt;a href="/learning"&gt;学习记录&lt;/a&gt;</code>。</p>
+<p><strong>今天学到什么</strong>：</p>
+<ul>
+<li>Astro 的文件路由：<code>src/pages/xxx.astro</code> → 自动映射到 <code>/xxx</code> 这个 URL</li>
+<li>加页面只需要两步：建文件 + 加导航链接</li>
+</ul>
+<hr />
+<h3>Day 8：读懂一个 Svelte 交互组件（只读不改）</h3>
+<p><strong>目标</strong>：理解项目中 <code>.svelte</code> 文件是干什么的。</p>
+<p>Svelte 和 Astro 的区别：</p>
+<ul>
+<li><code>.astro</code> 文件：在<strong>服务器端</strong>运行，生成静态 HTML，没有交互</li>
+<li><code>.svelte</code> 文件：在<strong>浏览器端</strong>运行，可以做交互（点击、输入、动画）</li>
+</ul>
+<p><strong>练习</strong>：打开 <code>src/components/widgets/music-player/MusicPlayer.svelte</code>，不用全看懂，找到这三样东西：</p>
+<ol>
+<li><code>&lt;script&gt;</code> 标签里的 <code>let</code> 变量 —— 这就是组件的"状态"（比如 <code>let isPlaying = false</code>）</li>
+<li>模板里的 <code>{#if ...}</code> 和 <code>{变量}</code> —— Svelte 的模板语法</li>
+<li><code>on:click={...}</code> —— 事件监听</li>
+</ol>
+<p><strong>今天学到什么</strong>：</p>
+<ul>
+<li>.astro = 静态内容，构建时生成 HTML</li>
+<li>.svelte = 交互内容，用户在浏览器里点按钮时响应</li>
+<li>不需要现在就学会写 Svelte，知道它们在项目里的角色就够了</li>
+</ul>
+<hr />
+<h2>第五阶段：部署上线（Day 9-10）</h2>
+<h3>Day 9：构建 + 部署到 GitHub Pages</h3>
+<p><strong>目标</strong>：你的博客有一个人人可以访问的网址。</p>
+<p><strong>Step 1：构建</strong></p>
+<pre><code>pnpm build
+</code></pre>
+<p>构建产物在 <code>dist/</code> 目录下——这就是你的整个网站，纯 HTML+CSS+JS，可以部署到任何静态托管服务。</p>
+<p><strong>Step 2：推到自己新建的 GitHub 仓库</strong></p>
+<pre><code># 在 GitHub 上新建一个仓库，比如 mizuki-blog
+git remote add myblog https://github.com/你的用户名/mizuki-blog.git
+git push myblog main
+</code></pre>
+<p><strong>Step 3：用 Vercel 部署（比 GitHub Pages 更简单）</strong></p>
+<ol>
+<li>访问 <a href="https://vercel.com">vercel.com</a>，用 GitHub 登录</li>
+<li>点 "New Project" → 选择你的仓库</li>
+<li>不用改任何配置，点 Deploy</li>
+<li>等 2 分钟，拿到一个 <code>xxx.vercel.app</code> 的网址</li>
+</ol>
+<p><strong>今天学到什么</strong>：</p>
+<ul>
+<li><code>pnpm build</code> = 生产构建，把所有代码编译成浏览器能直接读的 HTML/CSS/JS</li>
+<li>Vercel 自动检测到 Astro 项目，零配置部署</li>
+</ul>
+<hr />
+<h3>Day 10：写 3 篇文章 + 完善博客</h3>
+<p><strong>目标</strong>：你的博客有内容可以给人看了。</p>
+<p><strong>写 3 篇文章</strong>：</p>
+<ol>
+<li>"我是怎么开始学前端的" —— 自我介绍</li>
+<li>"前端学习第一周总结" —— 记录你的学习过程</li>
+<li>"Mizuki 博客搭建记录" —— 记录你是怎么做这个博客的</li>
+</ol>
+<p><strong>完善细节</strong>：</p>
+<ul>
+<li>把默认的头像换成你自己的</li>
+<li>把默认的项目卡片换成你自己的项目链接</li>
+<li>把 README.md 改成你自己的项目介绍</li>
+</ul>
+<hr />
+<h2>学习方法</h2>
+<table>
+<thead>
+<tr>
+<th>原则</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>先改配置文件，再动组件代码</strong></td>
+<td>配置文件是最安全的修改入口，改不坏</td>
+</tr>
+<tr>
+<td><strong>改一个 class → 保存 → 看效果</strong></td>
+<td>Tailwind 的 class 不用背，试出来的记得最牢</td>
+</tr>
+<tr>
+<td><strong>遇到看不懂的代码，先跳过</strong></td>
+<td>这个项目有几百个文件，不需要全看懂</td>
+</tr>
+<tr>
+<td><strong>每天只吃透一个文件</strong></td>
+<td>比如今天就看懂 Button.astro，明天看 Header.astro</td>
+</tr>
+<tr>
+<td><strong>不要怕改坏</strong></td>
+<td>改坏了 <code>git checkout -- .</code> 一键恢复</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>按照前端学习计划，这个项目对应什么水平</h2>
+<table>
+<thead>
+<tr>
+<th>前端学习计划的阶段</th>
+<th>Mizuki 中的对应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Day 1-2（CSS 实战）</td>
+<td>改 Tailwind class，观察效果</td>
+</tr>
+<tr>
+<td>Day 3-4（JS 原生）</td>
+<td>看懂 .astro 的 frontmatter 脚本区</td>
+</tr>
+<tr>
+<td>Day 5-6（第一个项目）</td>
+<td><strong>Mizuki 就是你的第一个项目</strong></td>
+</tr>
+<tr>
+<td>Day 9-10（Vue 入门）</td>
+<td>Svelte 和 Vue 概念相通：组件、响应式、插槽</td>
+</tr>
+<tr>
+<td>Week 3（组件库）</td>
+<td>Mizuki 的 atoms/ 就是一套组件库</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<blockquote>
+<p>10 天后，你应该有一个自己的博客、3 篇文章、一个可访问的网址。重要的是——你知道改哪里能改什么。</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>Yuzumoon82</name>
+    </author>
+    <category term="学习笔记"></category>
+  </entry>
+  <entry>
+    <title>Markdown 入门教程</title>
     <link href="https://yuzumoon82.github.io/personal-blog/posts/markdown-tutorial/" rel="alternate" type="text/html"/>
     <id>https://yuzumoon82.github.io/personal-blog/posts/markdown-tutorial/</id>
     <published>2025-01-20T00:00:00.000Z</published>
     <updated>2025-01-20T00:00:00.000Z</updated>
-    <summary>A simple example of a Markdown blog post.</summary>
-    <content type="html"><![CDATA[<h1>Markdown Tutorial</h1>
-<p>A markdown example shows how to write a markdown file. This document integrates core syntax and extensions (GMF).</p>
+    <summary>Markdown 语法完整示例，涵盖块级元素、行内元素及扩展语法。</summary>
+    <content type="html"><![CDATA[<h1>Markdown 入门教程</h1>
+<p>本文演示如何使用 Markdown 编写文章，涵盖核心语法和 GFM 扩展。</p>
 <ul>
-<li><a href="#block-elements">Block Elements</a>
+<li><a href="#%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0">块级元素</a>
 <ul>
-<li><a href="#paragraphs-and-line-breaks">Paragraphs and Line Breaks</a></li>
-<li><a href="#headers">Headers</a></li>
-<li><a href="#blockquotes">Blockquotes</a></li>
-<li><a href="#lists">Lists</a></li>
-<li><a href="#code-blocks">Code Blocks</a></li>
-<li><a href="#horizontal-rules">Horizontal Rules</a></li>
-<li><a href="#table">Table</a></li>
+<li><a href="#%E6%AE%B5%E8%90%BD%E4%B8%8E%E6%8D%A2%E8%A1%8C">段落与换行</a></li>
+<li><a href="#%E6%A0%87%E9%A2%98">标题</a></li>
+<li><a href="#%E5%BC%95%E7%94%A8">引用</a></li>
+<li><a href="#%E5%88%97%E8%A1%A8">列表</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%9D%97">代码块</a></li>
+<li><a href="#%E5%88%86%E9%9A%94%E7%BA%BF">分隔线</a></li>
+<li><a href="#%E8%A1%A8%E6%A0%BC">表格</a></li>
 </ul>
 </li>
-<li><a href="#span-elements">Span Elements</a>
+<li><a href="#%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0">行内元素</a>
 <ul>
-<li><a href="#links">Links</a></li>
-<li><a href="#emphasis">Emphasis</a></li>
-<li><a href="#code">Code</a></li>
-<li><a href="#images">Images</a></li>
-<li><a href="#strikethrough">Strikethrough</a></li>
+<li><a href="#%E9%93%BE%E6%8E%A5">链接</a></li>
+<li><a href="#%E5%BC%BA%E8%B0%83">强调</a></li>
+<li><a href="#%E8%A1%8C%E5%86%85%E4%BB%A3%E7%A0%81">行内代码</a></li>
+<li><a href="#%E5%9B%BE%E7%89%87">图片</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E7%BA%BF">删除线</a></li>
 </ul>
 </li>
-<li><a href="#miscellaneous">Miscellaneous</a>
+<li><a href="#%E5%85%B6%E4%BB%96">其他</a>
 <ul>
-<li><a href="#automatic-links">Automatic Links</a></li>
-<li><a href="#backslash-escapes">Backslash Escapes</a></li>
+<li><a href="#%E8%87%AA%E5%8A%A8%E9%93%BE%E6%8E%A5">自动链接</a></li>
+<li><a href="#%E5%8F%8D%E6%96%9C%E6%9D%A0%E8%BD%AC%E4%B9%89">反斜杠转义</a></li>
 </ul>
 </li>
-<li><a href="#inline-html">Inline HTML</a></li>
+<li><a href="#%E5%86%85%E8%81%94-html">内联 HTML</a></li>
 </ul>
-<h2>Block Elements</h2>
-<h3>Paragraphs and Line Breaks</h3>
-<h4>Paragraphs</h4>
-<p>HTML Tag: <code>&lt;p&gt;</code></p>
-<p>One or more blank lines. (A blank line is a line containing nothing but <strong>spaces</strong> or <strong>tabs</strong> is considered blank.)</p>
-<p>Code:</p>
-<pre><code>This will be
-inline.
+<h2>块级元素</h2>
+<h3>段落与换行</h3>
+<h4>段落</h4>
+<p>HTML 标签：<code>&lt;p&gt;</code></p>
+<p>一个或多个空行分隔段落。</p>
+<p>代码：</p>
+<pre><code>这是第一段。
 
-This is second paragraph.
+这是第二段。
 </code></pre>
-<p>Preview:</p>
-<hr />
-<p>This will be
-inline.</p>
-<p>This is second paragraph.</p>
-<hr />
-<h4>Line Breaks</h4>
-<p>HTML Tag: <code>&lt;br /&gt;</code></p>
-<p>End a line with <strong>two or more spaces</strong>.</p>
-<p>Code:</p>
-<pre><code>This will be not
-inline.
+<p>效果：</p>
+<p>这是第一段。</p>
+<p>这是第二段。</p>
+<h4>换行</h4>
+<p>HTML 标签：<code>&lt;br /&gt;</code></p>
+<p>在行尾加<strong>两个或更多空格</strong>实现换行。</p>
+<p>代码：</p>
+<pre><code>这一行不会  
+换行。
 </code></pre>
-<p>Preview:</p>
-<hr />
-<p>This will be not<br />
-inline.</p>
-<hr />
-<h3>Headers</h3>
-<p>Markdown supports two styles of headers, Setext and atx.</p>
-<h4>Setext</h4>
-<p>HTML Tags: <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code></p>
-<p>"Underlined" using <strong>equal signs (=)</strong> as <code>&lt;h1&gt;</code> and <strong>dashes (-)</strong> as <code>&lt;h2&gt;</code> in any number.</p>
-<p>Code:</p>
-<pre><code>This is an H1
+<p>效果：</p>
+<p>这一行不会<br />
+换行。</p>
+<h3>标题</h3>
+<h4>Setext 风格</h4>
+<p>HTML 标签：<code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code></p>
+<p>用等号 <code>=</code> 表示一级标题，短横线 <code>-</code> 表示二级标题。</p>
+<p>代码：</p>
+<pre><code>这是一级标题
 =============
-This is an H2
+这是二级标题
 -------------
 </code></pre>
-<p>Preview:</p>
-<hr />
-<h1>This is an H1</h1>
-<h2>This is an H2</h2>
-<hr />
-<h4>atx</h4>
-<p>HTML Tags: <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;h4&gt;</code>, <code>&lt;h5&gt;</code>, <code>&lt;h6&gt;</code></p>
-<p>Uses 1-6 <strong>hash characters (#)</strong> at the start of the line, corresponding to <code>&lt;h1&gt;</code> - <code>&lt;h6&gt;</code>.</p>
-<p>Code:</p>
-<pre><code># This is an H1
-## This is an H2
-###### This is an H6
+<h4>atx 风格</h4>
+<p>HTML 标签：<code>&lt;h1&gt;</code> ~ <code>&lt;h6&gt;</code></p>
+<p>行首使用 1-6 个 <code>#</code>。</p>
+<p>代码：</p>
+<pre><code># 一级标题
+## 二级标题
+###### 六级标题
 </code></pre>
-<p>Preview:</p>
-<hr />
-<h1>This is an H1</h1>
-<h2>This is an H2</h2>
-<h6>This is an H6</h6>
-<hr />
-<p>Optionally, you may "close" atx-style headers. The closing hashes <strong>don't need to match</strong> the number of hashes used to open the header.</p>
-<p>Code:</p>
-<pre><code># This is an H1 #
-## This is an H2 ##
-### This is an H3 ######
+<p>效果：</p>
+<h1>一级标题</h1>
+<h2>二级标题</h2>
+<h6>六级标题</h6>
+<h3>引用</h3>
+<p>HTML 标签：<code>&lt;blockquote&gt;</code></p>
+<p>使用 <code>&gt;</code> 符号。</p>
+<p>代码：</p>
+<pre><code>&gt; 这是一段引用。
+&gt; 
+&gt; 这是第二段引用。
 </code></pre>
-<p>Preview:</p>
-<hr />
-<h1>This is an H1</h1>
-<h2>This is an H2</h2>
-<h3>This is an H3</h3>
-<hr />
-<h3>Blockquotes</h3>
-<p>HTML Tag: <code>&lt;blockquote&gt;</code></p>
-<p>Markdown uses email-style <strong>&gt;</strong> characters for blockquoting. It looks best if you hard wrap the text and put a &gt; before every line.</p>
-<p>Code:</p>
-<pre><code>&gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
-&gt; consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
-&gt; Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
-&gt;
-&gt; Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
-&gt; id sem consectetuer libero luctus adipiscing.
-</code></pre>
-<p>Preview:</p>
-<hr />
+<p>效果：</p>
 <blockquote>
-<p>This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
-consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
-Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</p>
-<p>Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
-id sem consectetuer libero luctus adipiscing.</p>
+<p>这是一段引用。</p>
+<p>这是第二段引用。</p>
 </blockquote>
-<hr />
-<p>Markdown allows you to be lazy and only put the &gt; before the first line of a hard-wrapped paragraph.</p>
-<p>Code:</p>
-<pre><code>&gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
-consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
-Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
-
-&gt; Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
-id sem consectetuer libero luctus adipiscing.
+<p>嵌套引用：</p>
+<pre><code>&gt; 第一层引用
+&gt; &gt; 嵌套引用
+&gt; 回到第一层
 </code></pre>
-<p>Preview:</p>
-<hr />
+<p>效果：</p>
 <blockquote>
-<p>This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
-consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
-Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</p>
-</blockquote>
+<p>第一层引用</p>
 <blockquote>
-<p>Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
-id sem consectetuer libero luctus adipiscing.</p>
+<p>嵌套引用
+回到第一层</p>
 </blockquote>
-<hr />
-<p>Blockquotes can be nested (i.e. a blockquote-in-a-blockquote) by adding additional levels of &gt;.</p>
-<p>Code:</p>
-<pre><code>&gt; This is the first level of quoting.
-&gt;
-&gt; &gt; This is nested blockquote.
-&gt;
-&gt; Back to the first level.
+</blockquote>
+<h3>列表</h3>
+<h4>无序列表</h4>
+<p>HTML 标签：<code>&lt;ul&gt;</code></p>
+<p>使用 <code>*</code>、<code>+</code> 或 <code>-</code>。</p>
+<p>代码：</p>
+<pre><code>* 红色
+* 绿色
+* 蓝色
 </code></pre>
-<p>Preview:</p>
-<hr />
-<blockquote>
-<p>This is the first level of quoting.</p>
-<blockquote>
-<p>This is nested blockquote.</p>
-</blockquote>
-<p>Back to the first level.</p>
-</blockquote>
-<hr />
-<p>Blockquotes can contain other Markdown elements, including headers, lists, and code blocks.</p>
-<p>Code:</p>
-<pre><code>&gt; ## This is a header.
-&gt;
-&gt; 1.   This is the first list item.
-&gt; 2.   This is the second list item.
-&gt;
-&gt; Here's some example code:
-&gt;
-&gt;     return shell_exec("echo $input | $markdown_script");
-</code></pre>
-<p>Preview:</p>
-<hr />
-<blockquote>
-<h2>This is a header.</h2>
-<ol>
-<li>This is the first list item.</li>
-<li>This is the second list item.</li>
-</ol>
-<p>Here's some example code:</p>
-<pre><code>return shell_exec("echo $input | $markdown_script");
-</code></pre>
-</blockquote>
-<hr />
-<h3>Lists</h3>
-<p>Markdown supports ordered (numbered) and unordered (bulleted) lists.</p>
-<h4>Unordered</h4>
-<p>HTML Tag: <code>&lt;ul&gt;</code></p>
-<p>Unordered lists use <strong>asterisks (*)</strong>, <strong>pluses (+)</strong>, and <strong>hyphens (-)</strong>.</p>
-<p>Code:</p>
-<pre><code>*   Red
-*   Green
-*   Blue
-</code></pre>
-<p>Preview:</p>
-<hr />
+<p>效果：</p>
 <ul>
-<li>Red</li>
-<li>Green</li>
-<li>Blue</li>
+<li>红色</li>
+<li>绿色</li>
+<li>蓝色</li>
 </ul>
-<hr />
-<p>is equivalent to:</p>
-<p>Code:</p>
-<pre><code>+   Red
-+   Green
-+   Blue
+<h4>有序列表</h4>
+<p>HTML 标签：<code>&lt;ol&gt;</code></p>
+<p>使用数字加点。</p>
+<p>代码：</p>
+<pre><code>1. 第一项
+2. 第二项
+3. 第三项
 </code></pre>
-<p>and:</p>
-<p>Code:</p>
-<pre><code>-   Red
--   Green
--   Blue
-</code></pre>
-<h4>Ordered</h4>
-<p>HTML Tag: <code>&lt;ol&gt;</code></p>
-<p>Ordered lists use numbers followed by periods:</p>
-<p>Code:</p>
-<pre><code>1.  Bird
-2.  McHale
-3.  Parish
-</code></pre>
-<p>Preview:</p>
-<hr />
+<p>效果：</p>
 <ol>
-<li>Bird</li>
-<li>McHale</li>
-<li>Parish</li>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
 </ol>
-<hr />
-<p>It's possible to trigger an ordered list by accident, by writing something like this:</p>
-<p>Code:</p>
-<pre><code>1986. What a great season.
-</code></pre>
-<p>Preview:</p>
-<hr />
-<ol>
-<li>What a great season.</li>
-</ol>
-<hr />
-<p>You can <strong>backslash-escape (\)</strong> the period:</p>
-<p>Code:</p>
-<pre><code>1986\. What a great season.
-</code></pre>
-<p>Preview:</p>
-<hr />
-<p>1986. What a great season.</p>
-<hr />
-<h4>Indented</h4>
-<h5>Blockquote</h5>
-<p>To put a blockquote within a list item, the blockquote's &gt; delimiters need to be indented:</p>
-<p>Code:</p>
-<pre><code>*   A list item with a blockquote:
-
-    &gt; This is a blockquote
-    &gt; inside a list item.
-</code></pre>
-<p>Preview:</p>
-<hr />
-<ul>
-<li>
-<p>A list item with a blockquote:</p>
-<blockquote>
-<p>This is a blockquote
-inside a list item.</p>
-</blockquote>
-</li>
-</ul>
-<hr />
-<h5>Code Block</h5>
-<p>To put a code block within a list item, the code block needs to be indented twice — <strong>8 spaces</strong> or <strong>two tabs</strong>:</p>
-<p>Code:</p>
-<pre><code>*   A list item with a code block:
-
-        &lt;code goes here&gt;
-</code></pre>
-<p>Preview:</p>
-<hr />
-<ul>
-<li>
-<p>A list item with a code block:</p>
-<pre><code>&lt;code goes here&gt;
-</code></pre>
-</li>
-</ul>
-<hr />
-<h5>Nested List</h5>
-<p>Code:</p>
+<h4>嵌套列表</h4>
+<p>代码：</p>
 <pre><code>* A
   * A1
   * A2
 * B
-* C
 </code></pre>
-<p>Preview:</p>
-<hr />
+<p>效果：</p>
 <ul>
 <li>A
 <ul>
@@ -320,121 +547,48 @@ inside a list item.</p>
 </ul>
 </li>
 <li>B</li>
-<li>C</li>
 </ul>
-<hr />
-<h3>Code Blocks</h3>
-<p>HTML Tag: <code>&lt;pre&gt;</code></p>
-<p>Indent every line of the block by at least <strong>4 spaces</strong> or <strong>1 tab</strong>.</p>
-<p>Code:</p>
-<pre><code>This is a normal paragraph:
-
-    This is a code block.
-</code></pre>
-<p>Preview:</p>
-<hr />
-<p>This is a normal paragraph:</p>
-<pre><code>This is a code block.
-</code></pre>
-<hr />
-<p>A code block continues until it reaches a line that is not indented (or the end of the article).</p>
-<p>Within a code block, <strong><em>ampersands (&amp;)</em></strong> and angle <strong>brackets (&lt; and &gt;)</strong> are automatically converted into HTML entities.</p>
-<p>Code:</p>
-<pre><code>    &lt;div class="footer"&gt;
-        &amp;copy; 2004 Foo Corporation
-    &lt;/div&gt;
-</code></pre>
-<p>Preview:</p>
-<hr />
-<pre><code>&lt;div class="footer"&gt;
-    &amp;copy; 2004 Foo Corporation
-&lt;/div&gt;
-</code></pre>
-<hr />
-<p>Following sections Fenced Code Blocks and Syntax Highlighting are extensions, you can use the other way to write the code block.</p>
-<h4>Fenced Code Blocks</h4>
-<p>Just wrap your code in <code>```</code> (as shown below) and you won't need to indent it by four spaces.</p>
-<p>Code:</p>
-<pre><code>Here's an example:
-
-```
-function test() {
-  console.log("notice the blank line before this function?");
+<h3>代码块</h3>
+<p>HTML 标签：<code>&lt;pre&gt;</code></p>
+<p>用三个反引号包裹，可选语言标识启用语法高亮。</p>
+<p>代码：</p>
+<pre><code>```javascript
+function hello() {
+  console.log("Hello World!");
 }
 ```
 </code></pre>
-<p>Preview:</p>
-<hr />
-<p>Here's an example:</p>
-<pre><code>function test() {
-  console.log("notice the blank line before this function?");
+<p>效果：</p>
+<pre><code>function hello() {
+  console.log("Hello World!");
 }
 </code></pre>
-<hr />
-<h4>Syntax Highlighting</h4>
-<p>In your fenced block, add an optional language identifier and we'll run it through syntax highlighting (<a href="https://github.com/github/linguist/blob/master/lib/linguist/languages.yml">Support Languages</a>).</p>
-<p>Code:</p>
-<pre><code>```ruby
-require 'redcarpet'
-markdown = Redcarpet.new("Hello World!")
-puts markdown.to_html
-```
-</code></pre>
-<p>Preview:</p>
-<hr />
-<pre><code>require 'redcarpet'
-markdown = Redcarpet.new("Hello World!")
-puts markdown.to_html
-</code></pre>
-<hr />
-<h3>Horizontal Rules</h3>
-<p>HTML Tag: <code>&lt;hr /&gt;</code>
-Places <strong>three or more hyphens (-), asterisks (*), or underscores (_)</strong> on a line by themselves. You may use spaces between the hyphens or asterisks.</p>
-<p>Code:</p>
-<pre><code>* * *
+<h3>分隔线</h3>
+<p>HTML 标签：<code>&lt;hr /&gt;</code></p>
+<p>三个或更多 <code>*</code>、<code>-</code> 或 <code>_</code>。</p>
+<p>代码：</p>
+<pre><code>---
 ***
-*****
-- - -
----------------------------------------
 ___
 </code></pre>
-<p>Preview:</p>
+<p>效果：</p>
 <hr />
-<hr />
-<hr />
-<hr />
-<hr />
-<hr />
-<hr />
-<hr />
-<h3>Table</h3>
-<p>HTML Tag: <code>&lt;table&gt;</code></p>
-<p>It's an extension.</p>
-<p>Separates column by <strong>pipe (|)</strong> and header by <strong>dashes (-)</strong>, and uses <strong>colon (:)</strong> for alignment.</p>
-<p>The outer <strong>pipes (|)</strong> and alignment are optional. There are <strong>3 delimiters</strong> each cell at least for separating header.</p>
-<p>Code:</p>
-<pre><code>| Left | Center | Right |
-|:-----|:------:|------:|
-|aaa   |bbb     |ccc    |
-|ddd   |eee     |fff    |
-
- A | B
----|---
-123|456
-
-
-A |B
---|--
-12|45
+<h3>表格</h3>
+<p>HTML 标签：<code>&lt;table&gt;</code></p>
+<p>用 <code>|</code> 分隔列，<code>-</code> 分隔表头，<code>:</code> 控制对齐。</p>
+<p>代码：</p>
+<pre><code>| 左对齐 | 居中 | 右对齐 |
+|:-------|:----:|-------:|
+| aaa    | bbb  | ccc    |
+| ddd    | eee  | fff    |
 </code></pre>
-<p>Preview:</p>
-<hr />
+<p>效果：</p>
 <table>
 <thead>
 <tr>
-<th>Left</th>
-<th>Center</th>
-<th>Right</th>
+<th>左对齐</th>
+<th>居中</th>
+<th>右对齐</th>
 </tr>
 </thead>
 <tbody>
@@ -450,284 +604,1198 @@ A |B
 </tr>
 </tbody>
 </table>
-<table>
-<thead>
-<tr>
-<th>A</th>
-<th>B</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>123</td>
-<td>456</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>A</th>
-<th>B</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>12</td>
-<td>45</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2>Span Elements</h2>
-<h3>Links</h3>
-<p>HTML Tag: <code>&lt;a&gt;</code></p>
-<p>Markdown supports two style of links: inline and reference.</p>
-<h4>Inline</h4>
-<p>Inline link format like this: <code>[Link Text](URL "Title")</code></p>
-<p>Title is optional.</p>
-<p>Code:</p>
-<pre><code>This is [an example](http://example.com/ "Title") inline link.
-
-[This link](http://example.net/) has no title attribute.
+<h2>行内元素</h2>
+<h3>链接</h3>
+<p>HTML 标签：<code>&lt;a&gt;</code></p>
+<p>格式：<code>[链接文字](URL "标题")</code></p>
+<p>代码：</p>
+<pre><code>[示例链接](https://example.com "可选标题")
 </code></pre>
-<p>Preview:</p>
-<hr />
-<p>This is <a href="http://example.com/">an example</a> inline link.</p>
-<p><a href="http://example.net/">This link</a> has no title attribute.</p>
-<hr />
-<p>If you're referring to a local resource on the same server, you can use relative paths:</p>
-<p>Code:</p>
-<pre><code>See my [About](/about/) page for details.
+<p>效果：<a href="https://example.com">示例链接</a></p>
+<h3>强调</h3>
+<p>HTML 标签：<code>&lt;em&gt;</code>, <code>&lt;strong&gt;</code></p>
+<p>代码：</p>
+<pre><code>*斜体*
+**粗体**
+***粗斜体***
 </code></pre>
-<p>Preview:</p>
-<hr />
-<p>See my <a href="/about/">About</a> page for details.</p>
-<hr />
-<h4>Reference</h4>
-<p>You could predefine link references. Format like this: <code>[id]: URL "Title"</code></p>
-<p>Title is also optional. And the you refer the link, format like this: <code>[Link Text][id]</code></p>
-<p>Code:</p>
-<pre><code>[id]: http://example.com/  "Optional Title Here"
-This is [an example][id] reference-style link.
+<p>效果：<em>斜体</em> <strong>粗体</strong> <em><strong>粗斜体</strong></em></p>
+<h3>行内代码</h3>
+<p>HTML 标签：<code>&lt;code&gt;</code></p>
+<p>使用反引号包裹。</p>
+<p>代码：</p>
+<pre><code>使用 `console.log()` 函数。
 </code></pre>
-<p>Preview:</p>
-<hr />
-<p>This is <a href="http://example.com/">an example</a> reference-style link.</p>
-<hr />
-<p>That is:</p>
-<ul>
-<li>Square brackets containing the link identifier (<strong>not case sensitive</strong>, optionally indented from the left margin using up to three spaces);</li>
-<li>followed by a colon;</li>
-<li>followed by one or more spaces (or tabs);</li>
-<li>followed by the URL for the link;</li>
-<li>The link URL may, optionally, be surrounded by angle brackets.</li>
-<li>optionally followed by a title attribute for the link, enclosed in double or single quotes, or enclosed in parentheses.</li>
-</ul>
-<p>The following three link definitions are equivalent:</p>
-<p>Code:</p>
-<pre><code>[foo]: http://example.com/  "Optional Title Here"
-[foo]: http://example.com/  'Optional Title Here'
-[foo]: http://example.com/  (Optional Title Here)
-[foo]: &lt;http://example.com/&gt;  "Optional Title Here"
+<p>效果：使用 <code>console.log()</code> 函数。</p>
+<h3>图片</h3>
+<p>HTML 标签：<code>&lt;img /&gt;</code></p>
+<p>格式：<code>![替代文字](图片URL "可选标题")</code></p>
+<p>代码：</p>
+<pre><code>![风景](https://s2.loli.net/2024/08/20/5fszgXeOxmL3Wdv.webp)
 </code></pre>
-<p>Uses an empty set of square brackets, the link text itself is used as the name.</p>
-<p>Code:</p>
-<pre><code>[Google]: http://google.com/
-[Google][]
+<p>效果：</p>
+<p><img src="https://s2.loli.net/2024/08/20/5fszgXeOxmL3Wdv.webp" alt="风景" /></p>
+<h3>删除线</h3>
+<p>HTML 标签：<code>&lt;del&gt;</code></p>
+<p>代码：</p>
+<pre><code>~~这是错误的内容~~
 </code></pre>
-<p>Preview:</p>
-<hr />
-<p><a href="http://google.com/">Google</a></p>
-<hr />
-<h3>Emphasis</h3>
-<p>HTML Tags: <code>&lt;em&gt;</code>, <code>&lt;strong&gt;</code></p>
-<p>Markdown treats <strong>asterisks (*)</strong> and <strong>underscores (_)</strong> as indicators of emphasis. <strong>One delimiter</strong> will be <code>&lt;em&gt;</code>; *<em>double delimiters</em> will be <code>&lt;strong&gt;</code>.</p>
-<p>Code:</p>
-<pre><code>*single asterisks*
-
-_single underscores_
-
-**double asterisks**
-
-__double underscores__
+<p>效果：<s>这是错误的内容</s></p>
+<h2>其他</h2>
+<h3>自动链接</h3>
+<p>用尖括号包裹 URL 或邮箱。</p>
+<p>代码：</p>
+<pre><code>&lt;https://example.com&gt;
+&lt;email@example.com&gt;
 </code></pre>
-<p>Preview:</p>
-<hr />
-<p><em>single asterisks</em></p>
-<p><em>single underscores</em></p>
-<p><strong>double asterisks</strong></p>
-<p><strong>double underscores</strong></p>
-<hr />
-<p>But if you surround an * or _ with spaces, it'll be treated as a literal asterisk or underscore.</p>
-<p>You can backslash escape it:</p>
-<p>Code:</p>
-<pre><code>\*this text is surrounded by literal asterisks\*
+<p>效果：<a href="https://example.com">https://example.com</a></p>
+<h3>反斜杠转义</h3>
+<p>用 <code>\</code> 转义特殊字符。</p>
+<p>代码：</p>
+<pre><code>\*不是斜体\*
 </code></pre>
-<p>Preview:</p>
-<hr />
-<p>*this text is surrounded by literal asterisks*</p>
-<hr />
-<h3>Code</h3>
-<p>HTML Tag: <code>&lt;code&gt;</code></p>
-<p>Wraps it with <strong>backtick quotes (`)</strong>.</p>
-<p>Code:</p>
-<pre><code>Use the `printf()` function.
-</code></pre>
-<p>Preview:</p>
-<hr />
-<p>Use the <code>printf()</code> function.</p>
-<hr />
-<p>To include a literal backtick character within a code span, you can use <strong>multiple backticks</strong> as the opening and closing delimiters:</p>
-<p>Code:</p>
-<pre><code>``There is a literal backtick (`) here.``
-</code></pre>
-<p>Preview:</p>
-<hr />
-<p><code>There is a literal backtick (`) here.</code></p>
-<hr />
-<p>The backtick delimiters surrounding a code span may include spaces — one after the opening, one before the closing. This allows you to place literal backtick characters at the beginning or end of a code span:</p>
-<p>Code:</p>
-<pre><code>A single backtick in a code span: `` ` ``
-
-A backtick-delimited string in a code span: `` `foo` ``
-</code></pre>
-<p>Preview:</p>
-<hr />
-<p>A single backtick in a code span: <code>`</code></p>
-<p>A backtick-delimited string in a code span: <code>`foo`</code></p>
-<hr />
-<h3>Images</h3>
-<p>HTML Tag: <code>&lt;img /&gt;</code></p>
-<p>Markdown uses an image syntax that is intended to resemble the syntax for links, allowing for two styles: inline and reference.</p>
-<h4>Inline</h4>
-<p>Inline image syntax looks like this: <code>![Alt text](URL "Title")</code></p>
-<p>Title is optional.</p>
-<p>Code:</p>
-<pre><code>![Alt text](/path/to/img.jpg)
-
-![Alt text](/path/to/img.jpg "Optional title")
-</code></pre>
-<p>Preview:</p>
-<hr />
-<p><img src="https://s2.loli.net/2024/08/20/5fszgXeOxmL3Wdv.webp" alt="Alt text" /></p>
-<p><img src="https://s2.loli.net/2024/08/20/5fszgXeOxmL3Wdv.webp" alt="Alt text" title="Optional title" /></p>
-<hr />
-<p>That is:</p>
-<ul>
-<li>An exclamation mark: !;</li>
-<li>followed by a set of square brackets, containing the alt attribute text for the image;</li>
-<li>followed by a set of parentheses, containing the URL or path to the image, and an optional title attribute enclosed in double or single quotes.</li>
-</ul>
-<h4>Reference</h4>
-<p>Reference-style image syntax looks like this: <code>![Alt text][id]</code></p>
-<p>Code:</p>
-<pre><code>[img id]: https://s2.loli.net/2024/08/20/5fszgXeOxmL3Wdv.webp  "Optional title attribute"
-![Alt text][img id]
-</code></pre>
-<p>Preview:</p>
-<hr />
-<p><img src="https://s2.loli.net/2024/08/20/5fszgXeOxmL3Wdv.webp" alt="Alt text" title="Optional title attribute" /></p>
-<hr />
-<h3>Strikethrough</h3>
-<p>HTML Tag: <code>&lt;del&gt;</code></p>
-<p>It's an extension.</p>
-<p>GFM adds syntax to strikethrough text.</p>
-<p>Code:</p>
-<pre><code>~~Mistaken text.~~
-</code></pre>
-<p>Preview:</p>
-<hr />
-<p><s>Mistaken text.</s></p>
-<hr />
-<h2>Miscellaneous</h2>
-<h3>Automatic Links</h3>
-<p>Markdown supports a shortcut style for creating "automatic" links for URLs and email addresses: simply surround the URL or email address with angle brackets.</p>
-<p>Code:</p>
-<pre><code>&lt;http://example.com/&gt;
-
-&lt;address@example.com&gt;
-</code></pre>
-<p>Preview:</p>
-<hr />
-<p><a href="http://example.com/">http://example.com/</a></p>
-<p><a href="mailto:address@example.com">address@example.com</a></p>
-<hr />
-<p>GFM will autolink standard URLs.</p>
-<p>Code:</p>
-<pre><code>https://github.com/emn178/markdown
-</code></pre>
-<p>Preview:</p>
-<hr />
-<p>https://github.com/emn178/markdown</p>
-<hr />
-<h3>Backslash Escapes</h3>
-<p>Markdown allows you to use backslash escapes to generate literal characters which would otherwise have special meaning in Markdown's formatting syntax.</p>
-<p>Code:</p>
-<pre><code>\*literal asterisks\*
-</code></pre>
-<p>Preview:</p>
-<hr />
-<p>*literal asterisks*</p>
-<hr />
-<p>Markdown provides backslash escapes for the following characters:</p>
-<p>Code:</p>
-<pre><code>\   backslash
-`   backtick
-*   asterisk
-_   underscore
-{}  curly braces
-[]  square brackets
-()  parentheses
-#   hash mark
-+   plus sign
--   minus sign (hyphen)
-.   dot
-!   exclamation mark
-</code></pre>
-<h2>Inline HTML</h2>
-<p>For any markup that is not covered by Markdown's syntax, you simply use HTML itself. There's no need to preface it or delimit it to indicate that you're switching from Markdown to HTML; you just use the tags.</p>
-<p>Code:</p>
-<pre><code>This is a regular paragraph.
+<p>效果：*不是斜体*</p>
+<p>可转义字符：<code>\</code> <code>*</code> <code>_</code> <code>{}</code> <code>[]</code> <code>()</code> <code>#</code> <code>+</code> <code>-</code> <code>.</code> <code>!</code></p>
+<h2>内联 HTML</h2>
+<p>Markdown 不支持的标记，可以直接写 HTML。</p>
+<p>代码：</p>
+<pre><code>这是普通段落。
 
 &lt;table&gt;
-    &lt;tr&gt;
-        &lt;td&gt;Foo&lt;/td&gt;
-    &lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;表格内容&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 
-This is another regular paragraph.
+这是另一个段落。
 </code></pre>
-<p>Preview:</p>
-<hr />
-<p>This is a regular paragraph.</p>
+<p>效果：</p>
+<p>这是普通段落。</p>
 <p>&lt;table&gt;
-&lt;tr&gt;
-&lt;td&gt;Foo&lt;/td&gt;
-&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;表格内容&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;</p>
-<p>This is another regular paragraph.</p>
-<hr />
-<p>Note that Markdown formatting syntax is <strong>not processed within block-level HTML tags</strong>.</p>
-<p>Unlike block-level HTML tags, Markdown syntax is <strong>processed within span-level tags</strong>.</p>
-<p>Code:</p>
-<pre><code>&lt;span&gt;**Work**&lt;/span&gt;
-
-&lt;div&gt;
-    **No Work**
-&lt;/div&gt;
-</code></pre>
-<p>Preview:</p>
-<hr />
-<p>&lt;span&gt;<strong>Work</strong>&lt;/span&gt;</p>
-<p>&lt;div&gt;
-<strong>No Work</strong>
-&lt;/div&gt;</p>
-<hr />
+<p>这是另一个段落。</p>
 ]]></content>
     <author>
       <name>Yuzumoon82</name>
     </author>
-    <category term="Examples"></category>
+    <category term="教程"></category>
+  </entry>
+  <entry>
+    <title>Mizuki Music Player 实现详解</title>
+    <link href="https://yuzumoon82.github.io/personal-blog/posts/mizuki-musicplayer%E5%AE%9E%E7%8E%B0%E8%AF%A6%E8%A7%A3/" rel="alternate" type="text/html"/>
+    <id>https://yuzumoon82.github.io/personal-blog/posts/mizuki-musicplayer%E5%AE%9E%E7%8E%B0%E8%AF%A6%E8%A7%A3/</id>
+    <published>2025-07-25T00:00:00.000Z</published>
+    <updated>2025-07-25T00:00:00.000Z</updated>
+    <summary>从零拆解音乐播放器组件——Svelte 与 Vue 对照，面向新手</summary>
+    <content type="html"><![CDATA[<h1>Mizuki Music Player 实现详解</h1>
+<blockquote>
+<p>从零拆解一个完整的前端组件——音乐播放器。面向 Vue 新手，每一步都标注 Svelte 和 Vue 的对应写法。</p>
+</blockquote>
+<hr />
+<h2>〇、先理解三个基础概念（Svelte ↔ Vue 对照表）</h2>
+<p>你看代码时会遇到 Svelte 语法，它们和 Vue 的对应关系如下：</p>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>Svelte 写法</th>
+<th>Vue 3 写法</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>组件状态</td>
+<td><code>let state = ...</code></td>
+<td><code>const state = ref(...)</code></td>
+<td>存数据，数据变了自动更新DOM</td>
+</tr>
+<tr>
+<td>父传子</td>
+<td><code>&lt;Child prop={value} /&gt;</code></td>
+<td><code>&lt;Child :prop="value" /&gt;</code></td>
+<td>把数据传给子组件</td>
+</tr>
+<tr>
+<td>子传父</td>
+<td><code>&lt;Child onclick={fn} /&gt;</code></td>
+<td><code>&lt;Child @click="fn" /&gt;</code></td>
+<td>子组件通知父组件"发生了某件事"</td>
+</tr>
+<tr>
+<td>组件挂载</td>
+<td><code>onMount(() =&gt; {...})</code></td>
+<td><code>onMounted(() =&gt; {...})</code></td>
+<td>组件出现在页面上时执行</td>
+</tr>
+<tr>
+<td>组件销毁</td>
+<td><code>onDestroy(() =&gt; {...})</code></td>
+<td><code>onUnmounted(() =&gt; {...})</code></td>
+<td>组件从页面移除时执行（清理定时器、取消订阅）</td>
+</tr>
+<tr>
+<td>模板条件</td>
+<td><code>{#if condition}...{/if}</code></td>
+<td><code>&lt;div v-if="condition"&gt;...&lt;/div&gt;</code></td>
+<td>条件渲染</td>
+</tr>
+<tr>
+<td>模板列表</td>
+<td><code>{#each list as item}...{/each}</code></td>
+<td><code>&lt;div v-for="item in list"&gt;...&lt;/div&gt;</code></td>
+<td>列表渲染</td>
+</tr>
+<tr>
+<td>动态class</td>
+<td><code>class:active={isActive}</code></td>
+<td><code>:class="{ active: isActive }"</code></td>
+<td>条件class</td>
+</tr>
+<tr>
+<td>插槽</td>
+<td><code>&lt;slot /&gt;</code></td>
+<td><code>&lt;slot /&gt;</code></td>
+<td>父组件往子组件里插内容</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>一、项目文件地图（你只需要看这 12 个文件）</h2>
+<pre><code>src/
+├── config/musicConfig.ts                    ← ① 配置文件：歌单ID、音乐源
+├── stores/musicPlayerStore.ts               ← ② ★ 核心大脑：所有状态+所有操作
+│
+├── components/widgets/music-player/
+│   ├── MusicPlayer.svelte                   ← ③ ★ 主组件：组装一切，连接Store
+│   ├── constants.ts                         ← ④ 常量：默认歌曲、本地歌单
+│   ├── types.ts                             ← ⑤ 类型定义：Song对象长什么样
+│   │
+│   ├── organisms/                           ← ⑥ 有机体：由多个分子组成的大块
+│   │   ├── PlayerBar.svelte                 ←    展开状态面板（全功能）
+│   │   ├── MiniPlayer.svelte                ←    收起状态面板（迷你）
+│   │   └── Playlist.svelte                  ←    歌单列表弹窗
+│   │
+│   ├── molecules/                           ← ⑦ 分子：由原子组成的中间块
+│   │   ├── TrackDisplay.svelte              ←    歌曲封面+歌名+歌手
+│   │   ├── PlayerControls.svelte            ←    播放/上一首/下一首按钮组
+│   │   ├── ProgressControl.svelte           ←    进度条
+│   │   └── VolumeControl.svelte             ←    音量滑块+静音按钮
+│   │
+│   └── atoms/                               ← ⑧ 原子：最小的独立UI单元
+│       ├── CoverImage.svelte                ←    封面图（可旋转、可点击）
+│       ├── TrackInfo.svelte                 ←    歌名+歌手文字
+│       ├── PlayButton.svelte                ←    播放/暂停按钮
+│       ├── PrevButton.svelte                ←    上一首按钮
+│       ├── NextButton.svelte                ←    下一首按钮
+│       ├── ModeButton.svelte                ←    随机/循环模式按钮
+│       ├── ProgressBar.svelte               ←    进度条滑块
+│       ├── VolumeButton.svelte              ←    音量图标按钮
+│       └── VolumeSlider.svelte              ←    音量滑动条
+│
+└── components/control/
+    └── MusicFabButton.svelte                ← ⑨ 悬浮按钮：点击展开/收起播放器
+</code></pre>
+<p><strong>组件层级</strong>：MusicPlayer → PlayerBar/MiniPlayer → TrackDisplay/PlayerControls → CoverImage/PlayButton...</p>
+<hr />
+<h2>二、从最简单的文件开始看</h2>
+<h3>2.1 配置文件 <code>musicConfig.ts</code>（你唯一需要改的文件）</h3>
+<pre><code>// src/config/musicConfig.ts
+export const musicPlayerConfig = {
+    enable: true,                    // 总开关，false=整个播放器不加载
+    mode: "local",                   // "local"=用本地写死的歌单 / "meting"=连API获取
+    // 下面这些只在 mode="meting" 时生效
+    id: "14164869977",              // 网易云歌单ID（去网易云网页版URL里找）
+    server: "netease",              // 音乐源：netease / tencent / kugou
+    type: "playlist",               // "playlist"=歌单 / "song"=单曲 / "album"=专辑
+    showFloatingPlayer: true,       // 显示右下角悬浮播放器
+    floatingEntryMode: "fab",       // "fab"=集成到悬浮按钮 / "default"=独立悬浮
+};
+</code></pre>
+<p><strong>你需要知道的事</strong>：整个音乐播放器的行为由这个文件控制。换歌单只改 <code>id</code>，关播放器只改 <code>enable: false</code>。</p>
+<h3>2.2 类型定义 <code>types.ts</code>（Song 对象长什么样）</h3>
+<pre><code>// 这是我们自己定义的数据结构，一首歌就是一个Song对象
+export interface Song {
+    id: number;        // 歌曲ID
+    title: string;     // 歌名，如"晴天"
+    artist: string;    // 歌手，如"周杰伦"
+    cover: string;     // 封面图URL
+    url: string;       // ★ 最关键：音乐文件的URL，浏览器要能直接播放
+    duration: number;  // 时长（秒）
+}
+</code></pre>
+<h3>2.3 常量 <code>constants.ts</code>（默认值和本地歌单）</h3>
+<pre><code>// 默认歌曲（歌单还没加载时先显示这个）
+export const DEFAULT_SONG: Song = {
+    id: 0,
+    title: "未知歌曲",
+    artist: "未知歌手",
+    cover: "",
+    url: "",
+    duration: 0,
+};
+
+// 本地模式用的歌单（mode="local"时直接用这个）
+export const LOCAL_PLAYLIST: Song[] = [
+    // 你可以把mp3文件放public目录下，然后在这里写路径
+    { id: 1, title: "示例歌曲", artist: "示例歌手",
+      cover: "/assets/music/cover.jpg",
+      url: "/assets/music/song.mp3",
+      duration: 0 },
+];
+
+// 歌曲加载失败后等5秒自动跳下一首
+export const SKIP_ERROR_DELAY = 5000;
+
+// 音量存localStorage的key名
+export const STORAGE_KEY_VOLUME = "mizuki-music-volume";
+</code></pre>
+<hr />
+<h2>三、核心大脑 <code>musicPlayerStore.ts</code>（591行，最重要）</h2>
+<p>这是整个播放器的灵魂。你先理解下面这张图，再逐段看代码。</p>
+<h3>3.1 整体结构（Vue 等价物：Pinia Store）</h3>
+<pre><code>┌─────────────────────────────────────────────────────┐
+│                  musicPlayerStore                    │
+│                                                     │
+│  state = {                    ← 唯一的数据源         │
+│    currentSong: Song,         当前播哪首             │
+│    playlist: Song[],          整个歌单               │
+│    currentIndex: number,      播到第几首             │
+│    isPlaying: boolean,        正在播放？             │
+│    currentTime: number,       当前秒数               │
+│    duration: number,          总时长                 │
+│    volume: number,            音量 0-1               │
+│    isShuffled: boolean,       随机？                 │
+│    isRepeating: 0|1|2,        0=不循环 1=单曲 2=列表 │
+│    isExpanded: boolean,       面板展开？             │
+│    isHidden: boolean,         面板隐藏？             │
+│  }                                                  │
+│                                                     │
+│  audio = new Audio()          浏览器原生播放器        │
+│                                                     │
+│  listeners = Set&lt;fn&gt;          订阅者列表              │
+│                                                     │
+│  方法（你调这些来控制播放器）：                        │
+│  toggle() / play() / pause() / next() / prev()       │
+│  setVolume(n) / toggleMute() / seek(秒)              │
+│  toggleShuffle() / toggleRepeat()                    │
+│  toggleExpanded() / toggleHidden()                   │
+│                                                     │
+│  subscribe(fn) → 返回 unsubscribe 函数               │
+│  broadcastState() → 通知所有订阅者                    │
+└─────────────────────────────────────────────────────┘
+</code></pre>
+<h3>3.2 初始化：<code>initialize()</code> —— 启动时做了什么</h3>
+<pre><code>// musicPlayerStore.ts L105-120
+async initialize(): Promise&lt;void&gt; {
+    // ① 防止重复初始化（服务器端不初始化，因为没有window）
+    if (typeof window === "undefined" || this.isInitialized) return;
+    this.isInitialized = true;
+
+    // ② 如果配置里关了播放器，直接返回
+    if (!musicPlayerConfig.enable) return;
+
+    // ③ ★ 创建浏览器原生 Audio 对象
+    //    Audio 是浏览器内置的，不需要安装任何库
+    //    new Audio() 就等于你在HTML里写 &lt;audio&gt;&lt;/audio&gt;
+    this.audio = new Audio();
+
+    // ④ 给 Audio 绑定事件监听（play、pause、ended、error...）
+    this.setupAudioListeners();
+
+    // ⑤ 从 localStorage 恢复上次的音量
+    this.loadVolumeFromStorage();
+
+    // ⑥ 注册用户交互处理（浏览器禁止自动播放，需等用户点一下页面）
+    this.registerInteractionHandler();
+
+    // ⑦ ★ 加载歌单（要么调API，要么用本地歌单）
+    await this.loadPlaylist();
+}
+</code></pre>
+<p><strong>这一步做完后</strong>：<code>audio</code> 对象创建好了，歌单加载了，第一首歌的 URL 设好了（但还没开始播——浏览器禁止自动播放）。</p>
+<h3>3.3 绑定 Audio 事件：<code>setupAudioListeners()</code></h3>
+<pre><code>// musicPlayerStore.ts L122-163
+private setupAudioListeners(): void {
+    // ★ Audio 对象会自己触发这些事件，我们只需要"听"它们
+
+    // 事件1：开始播放了 → 更新 isPlaying = true → 通知所有组件
+    this.audio.addEventListener("play", () =&gt; {
+        this.state.isPlaying = true;
+        this.broadcastState();  // ★ 每次状态变化都通知订阅者
+    });
+
+    // 事件2：暂停了 → 更新 isPlaying = false → 通知
+    this.audio.addEventListener("pause", () =&gt; {
+        this.state.isPlaying = false;
+        this.broadcastState();
+    });
+
+    // 事件3：播放进度更新（浏览器每250ms触发一次）→ 更新进度条
+    this.audio.addEventListener("timeupdate", () =&gt; {
+        this.state.currentTime = this.audio.currentTime;
+        this.broadcastState();
+    });
+
+    // 事件4：播完了 → 自动下一首（或单曲循环）
+    this.audio.addEventListener("ended", () =&gt; this.handleAudioEnded());
+
+    // 事件5：加载出错了 → 显示错误，5秒后跳下一首
+    this.audio.addEventListener("error", () =&gt; this.handleAudioError());
+
+    // 事件6：数据加载完成 → 拿到歌曲总时长（duration）
+    this.audio.addEventListener("loadeddata", () =&gt; this.handleAudioLoaded());
+
+    // 事件7：开始加载 → 显示loading状态
+    this.audio.addEventListener("loadstart", () =&gt; {
+        this.state.isLoading = true;
+        this.broadcastState();
+    });
+}
+</code></pre>
+<p><strong>你需要知道的事</strong>：<code>audio</code> 是浏览器原生对象，它会自动触发 <code>play</code>、<code>pause</code>、<code>ended</code> 这些事件。我们要做的只是在事件处理函数里<strong>更新 state 然后 <code>broadcastState()</code></strong>。所有组件都会自动收到新状态。</p>
+<h3>3.4 加载歌单：<code>loadPlaylist()</code></h3>
+<pre><code>// musicPlayerStore.ts L249-268
+private async loadPlaylist(): Promise&lt;void&gt; {
+    const mode = musicPlayerConfig.mode;  // "local" 或 "meting"
+
+    if (mode === "meting") {
+        // ★ 在线模式：调Meting API获取歌单
+        //   把配置里的 server/type/id 拼到API URL里
+        //   例如：https://api.example.com/api?server=netease&amp;type=playlist&amp;id=14164869977
+        await this.fetchMetingPlaylist(api, server, type, id);
+    } else {
+        // ★ 本地模式：直接用 constants.ts 里写死的 LOCAL_PLAYLIST
+        this.loadLocalPlaylist();
+    }
+}
+</code></pre>
+<p><strong>Meting API 是什么</strong>：一个开源的音乐API，能根据网易云/QQ音乐的歌单ID返回歌曲列表（歌名、歌手、封面、mp3地址）。Mizuki 项目自己部署了一个 Meting API 服务，URL 配置在 <code>musicConfig.meting_api</code> 里。</p>
+<h3>3.5 加载一首歌：<code>loadSong()</code></h3>
+<pre><code>// musicPlayerStore.ts L350-371
+private loadSong(song: Song, autoPlay = true): void {
+    if (!song?.url) return;  // 没有URL就跳过
+
+    // ★ 把歌曲URL设给 Audio 对象
+    //   这就等于 &lt;audio src="https://music.xxx.com/song.mp3"&gt;&lt;/audio&gt;
+    this.audio.src = getAssetPath(song.url);
+
+    // ★ 调 load() 让浏览器开始加载音频数据
+    //   加载完成后 Audio 会自动触发 "loadeddata" 事件
+    this.audio.load();
+
+    // 更新当前歌曲信息
+    this.state.currentSong = { ...song };
+    this.state.willAutoPlay = autoPlay;  // 加载完是否自动播放
+
+    this.broadcastState();
+}
+</code></pre>
+<h3>3.6 通知所有组件：<code>broadcastState()</code> —— 最关键的方法</h3>
+<pre><code>// musicPlayerStore.ts L560-575
+private broadcastState(): void {
+    // ★ 深拷贝一份 state，防止组件意外修改原始数据
+    const snapshot = this.createSnapshot();
+
+    // ★ 方式1：通知所有 Svelte 组件（通过 subscribe 注册的回调）
+    for (const listener of this.listeners) {
+        listener(snapshot);
+    }
+
+    // ★ 方式2：同时用浏览器原生 CustomEvent 通知非Svelte代码
+    //   这样任何JS代码都可以通过 addEventListener("music-sidebar:state") 收到通知
+    window.dispatchEvent(
+        new CustomEvent("music-sidebar:state", { detail: snapshot })
+    );
+}
+</code></pre>
+<p><strong><code>broadcastState()</code> 就是整个播放器的核心机制</strong>。任何操作（播放、暂停、切歌、调音量）最后都会走到这个方法——它保证了所有组件看到的数据永远一致。</p>
+<h3>3.7 核心操作实现</h3>
+<p><strong>播放/暂停</strong>：</p>
+<pre><code>// L388-397
+toggle(): void {
+    if (this.state.isPlaying) {
+        this.audio.pause();  // ★ 调浏览器原生方法 → 触发 "pause" 事件
+    } else {
+        this.audio.play();   // ★ 调浏览器原生方法 → 触发 "play" 事件
+    }
+}
+</code></pre>
+<p><strong>下一首（随机模式支持）</strong>：</p>
+<pre><code>// L413-435
+next(autoPlay = true): void {
+    let newIndex: number;
+    if (this.state.isShuffled) {
+        // ★ 随机模式：在0到歌单长度之间随机选一个，但排除当前这首
+        do {
+            newIndex = Math.floor(Math.random() * this.state.playlist.length);
+        } while (newIndex === this.state.currentIndex &amp;&amp; this.state.playlist.length &gt; 1);
+    } else {
+        // ★ 顺序模式：下一首，到底了回到第一首
+        newIndex = this.state.currentIndex &lt; this.state.playlist.length - 1
+            ? this.state.currentIndex + 1 : 0;
+    }
+    this.state.currentIndex = newIndex;
+    this.loadSong(this.state.playlist[newIndex], autoPlay);
+}
+</code></pre>
+<p><strong>歌曲播完自动处理</strong>：</p>
+<pre><code>// L165-175
+private handleAudioEnded(): void {
+    if (this.state.isRepeating === 1) {
+        // 单曲循环 → 回到开头重新播放
+        this.audio.currentTime = 0;
+        this.audio.play();
+    } else {
+        // 否则 → 自动下一首（列表循环到底会回第一首，因为 next() 里处理的）
+        this.next(true);
+    }
+}
+</code></pre>
+<p><strong>歌曲加载失败</strong>：</p>
+<pre><code>// L177-187
+private handleAudioError(): void {
+    this.state.isLoading = false;
+    this.showError("无法播放");  // 弹出红色错误提示，3秒后自动消失
+    if (this.state.playlist.length &gt; 1) {
+        setTimeout(() =&gt; this.next(true), 5000);  // 5秒后自动跳过
+    }
+}
+</code></pre>
+<hr />
+<h2>四、组件层 —— 从外到内看</h2>
+<h3>4.1 MusicPlayer.svelte（主组件，相当于 Vue 的页面级组件）</h3>
+<p>这是整个播放器的<strong>唯一入口组件</strong>，放在 <code>Layout.astro</code> 里，所有页面都加载。</p>
+<p><strong>它的三件事</strong>：</p>
+<p><strong>① 挂载时订阅 Store</strong>（Vue 等价：onMounted 里 watch store）：</p>
+<pre><code>&lt;script&gt;
+  // 拿到当前状态的快照
+  let state = musicPlayerStore.getState();
+
+  onMount(() =&gt; {
+    // ★ 订阅：Store 每次 broadcastState() 都会调这个回调
+    //   Vue 等价写法：watch(() =&gt; store.state, (newVal) =&gt; { state = newVal })
+    unsubscribe = musicPlayerStore.subscribe((nextState) =&gt; {
+      state = nextState;  // Svelte 检测到赋值会自动更新所有用到 state 的 DOM
+    });
+
+    // ★ 启动：连API拿歌单、创建Audio对象
+    musicPlayerStore.initialize();
+  });
+
+  onDestroy(() =&gt; {
+    unsubscribe?.();           // 取消订阅 → 避免内存泄漏
+    musicPlayerStore.destroy(); // 清理 Audio 对象 → 释放浏览器资源
+  });
+&lt;/script&gt;
+</code></pre>
+<p><strong>② 事件处理 —— 自己不做逻辑，只调 Store 方法</strong>：</p>
+<pre><code>&lt;script&gt;
+  // ★ 组件里只做一件事：调用 Store 的方法。不自己改状态。
+  function togglePlay()   { musicPlayerStore.toggle(); }
+  function prev()         { musicPlayerStore.prev(); }
+  function next()         { musicPlayerStore.next(); }
+  function toggleShuffle(){ musicPlayerStore.toggleShuffle(); }
+  function toggleRepeat() { musicPlayerStore.toggleRepeat(); }
+
+  // ★ 进度条拖拽稍微复杂一点：需要根据鼠标位置计算百分比
+  function setProgress(event: MouseEvent) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const percent = (event.clientX - rect.left) / rect.width;
+    musicPlayerStore.setProgress(percent);  // 最后也是调Store方法
+  }
+
+  // ★ 音量拖拽类似：监听 pointermove 事件，实时计算位置
+  function startVolumeDrag(event: PointerEvent) {
+    const updateVolume = (clientX) =&gt; {
+      const rect = slider.getBoundingClientRect();
+      const percent = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      musicPlayerStore.setVolume(percent);
+    };
+    updateVolume(event.clientX);
+    // 监听拖动和释放事件，拖完清理监听器
+  }
+&lt;/script&gt;
+</code></pre>
+<p><strong>③ 模板 —— 条件渲染不同的UI状态</strong>：</p>
+<pre><code>&lt;!-- 错误提示：state.showError 为 true 时显示红色提示框 --&gt;
+{#if state.showError}
+  &lt;div class="fixed bottom-20 right-4 bg-red-500 text-white ..."&gt;
+    {state.errorMessage}
+    &lt;button onclick={hideError}&gt;×&lt;/button&gt;
+  &lt;/div&gt;
+{/if}
+
+&lt;!-- fab模式：点击悬浮按钮 → 展开面板，Svelte 的 fly 过渡动画 --&gt;
+{#if useFabEntry}
+  {#if state.isExpanded}
+    &lt;div transition:fly={{ y: 16, duration: 280 }}&gt;
+      &lt;FabMusicPanel /&gt;
+    &lt;/div&gt;
+  {/if}
+{/if}
+
+&lt;!-- 展开面板：全部功能 --&gt;
+&lt;PlayerBar
+  song={state.currentSong}      ← 父传子：把当前歌曲传给子组件
+  isPlaying={state.isPlaying}   ← 父传子：播放状态
+  onPlayClick={togglePlay}      ← 子传父：子组件点击播放 → 调父组件的togglePlay
+  onNextClick={() =&gt; next()}    ← 子传父：下一首
+  onProgressClick={setProgress} ← 子传父：点击进度条
+/&gt;
+
+&lt;!-- 收起面板：迷你模式 --&gt;
+&lt;MiniPlayer
+  song={state.currentSong}
+  isPlaying={state.isPlaying}
+  onCoverClick={togglePlay}     ← 点击封面=播放/暂停
+  onInfoClick={toggleExpanded}  ← 点击歌名区域=展开
+/&gt;
+</code></pre>
+<h3>4.2 PlayerBar.svelte（展开面板）</h3>
+<p><strong>这和 Vue 的纯展示组件完全一样</strong>——只接收 props，不访问 Store：</p>
+<pre><code>&lt;script&gt;
+  // ★ 定义 Props 接口（Vue: defineProps&lt;{...}&gt;()）
+  interface Props {
+    song: Song;                 // 数据：歌曲信息
+    isPlaying: boolean;         // 数据：播放状态
+    onPlayClick: () =&gt; void;    // 事件：点击播放按钮时通知父组件
+    onNextClick: () =&gt; void;    // 事件：点击下一首时通知父组件
+    onProgressClick: (e: MouseEvent) =&gt; void;  // 事件：点击进度条
+    // ...
+  }
+  const { song, isPlaying, onPlayClick, onNextClick, ... } = $props();
+&lt;/script&gt;
+
+&lt;div class="expanded-player ..."&gt;
+  &lt;!-- 歌曲展示区：封面+歌名+歌手 --&gt;
+  &lt;TrackDisplay {song} {isPlaying} /&gt;
+
+  &lt;!-- 进度条 --&gt;
+  &lt;ProgressControl {currentTime} {duration} onclick={onProgressClick} /&gt;
+
+  &lt;!-- 控制按钮组：随机、上一首、播放/暂停、下一首、循环 --&gt;
+  &lt;PlayerControls {isPlaying} onPlayClick={onPlayClick} onNextClick={onNextClick} /&gt;
+
+  &lt;!-- 音量控制：音量图标+滑块 --&gt;
+  &lt;VolumeControl {volume} {isMuted} onclick={onVolumeButtonClick} /&gt;
+&lt;/div&gt;
+</code></pre>
+<p><strong>关键模式</strong>：</p>
+<ul>
+<li>数据通过 <code>{变量名}</code>（即 Vue 的 <code>:prop="变量"</code>）传入</li>
+<li>事件通过 <code>onClick={回调函数}</code>（即 Vue 的 <code>@click="回调"</code>）传出</li>
+<li>PlayerBar 不知道 Store 的存在——它只是一个数据的搬运工</li>
+</ul>
+<h3>4.3 组件树逐层展开</h3>
+<pre><code>MusicPlayer.svelte  ← 唯一连Store的组件，有subscribe+事件处理+模板
+│
+├── MiniPlayer.svelte  ← 纯展示，收props传事件。data down, events up
+│   └── TrackDisplay.svelte
+│       ├── CoverImage.svelte    ← 封面图（播放时旋转，加载时闪动）
+│       └── TrackInfo.svelte     ← 歌名+歌手文字
+│
+├── PlayerBar.svelte  ← 纯展示
+│   ├── TrackDisplay.svelte      ← 同上但 expanded 尺寸
+│   ├── ProgressControl.svelte   ← 进度条容器
+│   │   └── ProgressBar.svelte   ← 实际的进度条div（点击=跳转，拖拽=seek）
+│   ├── PlayerControls.svelte    ← 按钮组容器
+│   │   ├── ModeButton.svelte    ← 随机/循环模式切换
+│   │   ├── PrevButton.svelte    ← 上一首
+│   │   ├── PlayButton.svelte    ← 播放/暂停（loading时显示转圈）
+│   │   └── NextButton.svelte    ← 下一首
+│   └── VolumeControl.svelte     ← 音量控制容器
+│       ├── VolumeButton.svelte  ← 音量图标（点一下静音/取消静音）
+│       └── VolumeSlider.svelte  ← 音量滑块（拖拽调音量）
+│
+└── Playlist.svelte  ← 歌单列表
+    └── 每个歌单项：封面+歌名+歌手，点击切歌
+</code></pre>
+<hr />
+<h2>五、完整数据流（用户点"播放"按钮 → 音乐响起）</h2>
+<pre><code>1. 用户点击播放按钮
+        │
+        ▼
+2. PlayButton.svelte 触发 onclick 事件
+        │
+        ▼
+3. PlayerControls.svelte 转发 onPlayClick 事件
+        │
+        ▼
+4. PlayerBar.svelte 转发 onPlayClick 事件
+        │
+        ▼
+5. MusicPlayer.svelte 的 togglePlay() 执行
+        │   function togglePlay() { musicPlayerStore.toggle(); }
+        ▼
+6. musicPlayerStore.toggle() 执行
+        │   if (isPlaying) audio.pause(); else audio.play();
+        ▼
+7. audio.play() 成功 → 浏览器触发 "play" 事件
+        │
+        ▼
+8. setupAudioListeners 中的 "play" 回调执行
+        │   this.state.isPlaying = true;
+        │   this.broadcastState();
+        ▼
+9. broadcastState() → 通知所有订阅者
+        │
+   ┌────┴──────────────┐
+   ▼                   ▼
+10a. MusicPlayer      10b. MusicFabButton
+   state.isPlaying       playerState.isPlaying
+   = true                = true
+   │                     │
+   ▼                     ▼
+11a. Svelte自动更新    11b. 按钮图标从 ▶ 变成 ⏸
+   PlayButton图标          按钮开始脉冲动画
+   进度条开始走动
+   封面开始旋转
+</code></pre>
+<p><strong>每一步都是单向的</strong>：用户操作 → 事件上抛 → Store 方法 → Audio API → 浏览器事件 → Store 状态变化 → 广播 → 组件自动刷新。没有任何一步是"组件A直接改了组件B的数据"。</p>
+<hr />
+<h2>六、如果你是 Vue 开发者，这个 Store 用 Pinia 怎么写</h2>
+<pre><code>// stores/musicPlayer.ts —— Vue 3 + Pinia 等价实现
+import { defineStore } from 'pinia';
+import { ref, computed } from 'vue';
+
+export const useMusicPlayerStore = defineStore('musicPlayer', () =&gt; {
+  // ★ state：用 ref 替代
+  const audio = ref&lt;HTMLAudioElement | null&gt;(null);
+  const currentSong = ref&lt;Song&gt;({ ...DEFAULT_SONG });
+  const playlist = ref&lt;Song[]&gt;([]);
+  const currentIndex = ref(0);
+  const isPlaying = ref(false);
+  const currentTime = ref(0);
+  const duration = ref(0);
+  const volume = ref(0.7);
+
+  // ★ 初始化：相当于 initialize()
+  async function init() {
+    audio.value = new Audio();
+    setupListeners();
+    await loadPlaylist();
+  }
+
+  // ★ 监听 Audio 事件
+  function setupListeners() {
+    audio.value!.addEventListener('play', () =&gt; {
+      isPlaying.value = true;  // Vue: ref 自动触发响应式更新
+    });
+    audio.value!.addEventListener('timeupdate', () =&gt; {
+      currentTime.value = audio.value!.currentTime;
+    });
+    // ...其他事件同理
+  }
+
+  // ★ 操作：直接改 ref
+  function toggle() {
+    if (isPlaying.value) {
+      audio.value!.pause();
+    } else {
+      audio.value!.play();
+    }
+  }
+
+  function next() {
+    currentIndex.value = (currentIndex.value + 1) % playlist.value.length;
+    loadSong(playlist.value[currentIndex.value]);
+  }
+
+  return { currentSong, playlist, isPlaying, currentTime, duration,
+           volume, init, toggle, next };
+});
+</code></pre>
+<p><strong>Vue 组件中用</strong>：</p>
+<pre><code>&lt;script setup&gt;
+import { useMusicPlayerStore } from '@/stores/musicPlayer';
+import { onMounted, onUnmounted } from 'vue';
+
+const store = useMusicPlayerStore();
+
+onMounted(() =&gt; store.init());
+onUnmounted(() =&gt; store.$dispose());
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;!-- 直接读 store 的 ref，不用 subscribe --&gt;
+  &lt;PlayButton :playing="store.isPlaying" @click="store.toggle()" /&gt;
+  &lt;ProgressBar :current="store.currentTime" :total="store.duration" /&gt;
+&lt;/template&gt;
+</code></pre>
+<p>Vue 的 Pinia 比 Svelte 的 Store 更简单——<code>ref</code> 自带响应式，组件直接用 <code>store.xxx</code> 就能自动追踪变化，不需要手动 <code>subscribe/unsubscribe</code>。</p>
+<hr />
+<h2>七、总结：这个播放器设计的四个核心原则</h2>
+<table>
+<thead>
+<tr>
+<th>原则</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>单一数据源</strong></td>
+<td>所有状态存在 <code>musicPlayerStore.state</code> 里，组件不自己存状态</td>
+</tr>
+<tr>
+<td><strong>单向数据流</strong></td>
+<td>事件向上走（组件→回调→Store方法），数据向下走（Store→broadcastState→组件）</td>
+</tr>
+<tr>
+<td><strong>组件不碰 Store（除顶层外）</strong></td>
+<td>PlayerBar/MiniPlayer 及以下所有子组件只收 props 和发事件，完全不知道 Store 存在</td>
+</tr>
+<tr>
+<td><strong>原生 Audio API 在 Store 内部封装</strong></td>
+<td>所有 <code>audio.play()</code>、<code>audio.pause()</code> 都在 Store 方法里，组件不直接操作 DOM 的 Audio</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<blockquote>
+<p>读完这篇，你应该能回答：①播放器是怎么拿到歌单的 ②点播放按钮后数据是怎么流动的 ③如果要把这个播放器用 Vue 重写，Store 怎么写。</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>Yuzumoon82</name>
+    </author>
+    <category term="技术文章"></category>
+  </entry>
+  <entry>
+    <title>前端学习计划——零基础到实战</title>
+    <link href="https://yuzumoon82.github.io/personal-blog/posts/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92-%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%88%B0%E5%AE%9E%E6%88%98/" rel="alternate" type="text/html"/>
+    <id>https://yuzumoon82.github.io/personal-blog/posts/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92-%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%88%B0%E5%AE%9E%E6%88%98/</id>
+    <published>2025-07-24T00:00:00.000Z</published>
+    <updated>2025-07-24T00:00:00.000Z</updated>
+    <summary>从 HTML/CSS/JS 基础语法到独立完成完整前端项目</summary>
+    <content type="html"><![CDATA[<h1>前端学习计划 —— 零基础到实战项目</h1>
+<blockquote>
+<p>已有 10 天基础（HTML/CSS/JS 语法），目标：能独立完成一个完整的前端项目。</p>
+</blockquote>
+<hr />
+<h2>你的起点</h2>
+<ul>
+<li>✅ HTML：标签结构、表单、语义化</li>
+<li>✅ CSS：选择器、盒模型、Flex、定位</li>
+<li>✅ JavaScript：变量、函数、数组、对象、DOM 操作、事件</li>
+<li>❌ 还没做过完整项目</li>
+<li>❌ 还没用过任何框架和工具</li>
+</ul>
+<h2>你的终点（4 周后）</h2>
+<p>能独立完成一个 <strong>个人作品集网站</strong>，包含：页面布局、交互效果、数据展示、响应式适配，部署到线上可访问。</p>
+<hr />
+<h2>第一周：巩固基础 + 第一个静态项目</h2>
+<h3>Day 1：CSS 实战强化 —— 还原一个导航栏</h3>
+<p><strong>学</strong>：CSS 变量、过渡动画（transition）、伪类（:hover, :active）、box-shadow</p>
+<p><strong>练</strong>：手写一个企业官网导航栏</p>
+<ul>
+<li>Logo + 5 个菜单项 + 右侧按钮</li>
+<li>鼠标悬停下拉子菜单</li>
+<li>滚动后导航栏吸顶 + 背景变色</li>
+<li><strong>不查代码，自己写</strong></li>
+</ul>
+<hr />
+<h3>Day 2：CSS 布局强化 —— 还原一个卡片列表</h3>
+<p><strong>学</strong>：Grid 布局、object-fit、文本截断（text-overflow: ellipsis）</p>
+<p><strong>练</strong>：手写一个商品/文章卡片列表</p>
+<ul>
+<li>3 列自适应网格布局（PC 3 列 → 平板 2 列 → 手机 1 列）</li>
+<li>卡片含图片、标题、描述（2 行截断）、标签、日期</li>
+<li>卡片悬停上浮 + 阴影效果</li>
+</ul>
+<hr />
+<h3>Day 3：JavaScript DOM 实战 —— 待办事项 Todo List</h3>
+<p><strong>学</strong>：localStorage 本地存储、事件委托、数组 CRUD</p>
+<p><strong>练</strong>：手写一个完整的 Todo List</p>
+<ul>
+<li>添加、删除、标记完成、编辑</li>
+<li>全部/进行中/已完成 三个筛选 tab</li>
+<li>数据存 localStorage，刷新不丢失</li>
+<li><strong>这是你的第一个 JS 完整应用，全部手写，不参考</strong></li>
+</ul>
+<hr />
+<h3>Day 4：JavaScript 异步 —— 天气预报查询页</h3>
+<p><strong>学</strong>：fetch API、async/await、JSON、try/catch</p>
+<p><strong>练</strong>：手写一个天气查询页</p>
+<ul>
+<li>输入城市名 → 调免费天气 API → 展示温度/天气/湿度/风速</li>
+<li>Loading 加载动画</li>
+<li>错误处理（城市不存在、网络错误）</li>
+<li>推荐 API：wttr.in（免费、无需注册，返回 JSON）</li>
+</ul>
+<pre><code>// 示例：用 fetch 调天气 API
+const city = 'beijing';
+const response = await fetch(`https://wttr.in/${city}?format=j1`);
+const data = await response.json();
+console.log(data.current_condition[0].temp_C); // 当前温度
+</code></pre>
+<hr />
+<h3>Day 5-6：第一个完整项目 —— 个人作品集网站</h3>
+<p><strong>Day 5</strong>：完成页面结构 + 样式</p>
+<ul>
+<li>头部 Hero 区（头像、姓名、一句话介绍、GitHub 链接）</li>
+<li>关于我（技能标签云）</li>
+<li>项目展示区（3-4 个项目卡片，含截图、描述、技术栈标签、链接）</li>
+<li>时间线（学习/工作经历）</li>
+<li>底部联系方式</li>
+</ul>
+<p><strong>Day 6</strong>：添加交互 + 部署上线</p>
+<ul>
+<li>导航平滑滚动</li>
+<li>滚动到项目区域时卡片渐入动画</li>
+<li>回到顶部按钮</li>
+<li>用 <strong>GitHub Pages</strong> 免费部署，生成一个可访问的网址</li>
+</ul>
+<p><strong>这 6 天做完，你就有了第一个能给别人看的线上作品。不要追求完美，先跑通。</strong></p>
+<hr />
+<h2>第二周：工程化入门 + 框架起步</h2>
+<h3>Day 7：认识 Git + Node.js</h3>
+<p><strong>学</strong>：</p>
+<ul>
+<li>Git：init、add、commit、push、clone</li>
+<li>Node.js：是什么、npm 是什么、<code>npm install</code> 做了什么</li>
+<li>用 VS Code 打开终端，跑 <code>node -v</code> 和 <code>npm -v</code> 确认安装</li>
+</ul>
+<p><strong>练</strong>：把第一周的作品集项目用 Git 管起来，推到 GitHub</p>
+<hr />
+<h3>Day 8：模块化 + 打包工具概念</h3>
+<p><strong>学</strong>：</p>
+<ul>
+<li>为什么需要模块化（一个 HTML 里引 10 个 <code>&lt;script&gt;</code> 的痛苦）</li>
+<li>import/export 语法</li>
+<li>Vite 是什么（5 分钟理解：它帮你打包、热更新、处理兼容）</li>
+</ul>
+<p><strong>练</strong>：用 Vite 创建一个项目</p>
+<pre><code>npm create vite@latest my-project -- --template vanilla
+cd my-project
+npm install
+npm run dev
+</code></pre>
+<p>把第一周的 Todo List 迁移到 Vite 项目中，拆分成多个 JS 文件用 import/export 组织。</p>
+<hr />
+<h3>Day 9-10：Vue 3 入门（选 Vue 因为上手最快）</h3>
+<p><strong>Day 9 学</strong>：</p>
+<ul>
+<li>Vue 是什么（响应式数据 + 组件化）</li>
+<li>单文件组件（.vue 文件：template + script + style 在一块）</li>
+<li>ref、computed、v-if、v-for、v-on、v-bind</li>
+</ul>
+<p><strong>Day 9 练</strong>：用 Vue 3 重写 Todo List</p>
+<pre><code>npm create vite@latest vue-todo -- --template vue
+</code></pre>
+<p>把之前原生 JS 写的 Todo List 改成 Vue 组件：</p>
+<ul>
+<li><code>App.vue</code> → 主布局</li>
+<li><code>TodoList.vue</code> → 列表展示</li>
+<li><code>TodoItem.vue</code> → 单条待办</li>
+<li><code>AddTodo.vue</code> → 输入框 + 添加按钮</li>
+</ul>
+<p><strong>Day 10 练</strong>：用 Vue 3 重写天气查询页</p>
+<ul>
+<li>拆分为 <code>SearchBox.vue</code> + <code>WeatherCard.vue</code> + <code>Loading.vue</code></li>
+<li>数据用 ref 管理</li>
+</ul>
+<hr />
+<h2>第三周：Vue 深入 + 路由 + 组件库</h2>
+<h3>Day 11：组件通信</h3>
+<p><strong>学</strong>：props（父→子）、emit（子→父）、provide/inject（跨层级）</p>
+<p><strong>练</strong>：在 Todo List 里补一个全局主题切换（亮色/暗色），用 provide/inject 传递主题状态</p>
+<hr />
+<h3>Day 12：Vue Router 路由</h3>
+<p><strong>学</strong>：vue-router、<code>&lt;router-view&gt;</code>、<code>&lt;router-link&gt;</code>、动态路由</p>
+<p><strong>练</strong>：把作品集网站拆成多页面</p>
+<ul>
+<li><code>/</code> → 首页（Hero + 关于我）</li>
+<li><code>/projects</code> → 项目列表页</li>
+<li><code>/projects/:id</code> → 项目详情页</li>
+<li><code>/timeline</code> → 时间线页</li>
+</ul>
+<hr />
+<h3>Day 13：组件库 + 响应式实战</h3>
+<p><strong>学</strong>：Element Plus（Vue 3 最流行的组件库）</p>
+<ul>
+<li>表格、表单、对话框、消息提示</li>
+<li>不需要自己写轮子，学会看文档用现成组件</li>
+</ul>
+<p><strong>练</strong>：在作品集项目里加一个留言板页面</p>
+<ul>
+<li>用 Element Plus 的表单组件（姓名、邮箱、留言内容、提交按钮）</li>
+<li>用表格组件展示留言列表</li>
+<li>留言数据存 localStorage</li>
+</ul>
+<hr />
+<h3>Day 14：完整 Vue 项目 —— 豆瓣电影搜索</h3>
+<p><strong>项目</strong>：做一个电影搜索 + 收藏网站</p>
+<ul>
+<li>搜索框 → 调豆瓣/OMDb API → 展示电影卡片（海报、片名、年份、评分）</li>
+<li>点击卡片 → 电影详情页（剧情简介、演员、评分）</li>
+<li>收藏功能（收藏列表存 localStorage）</li>
+<li>用 Vue Router + Element Plus</li>
+</ul>
+<p><strong>做完这一周，你就有了一个用框架做的完整单页应用。</strong></p>
+<hr />
+<h2>第四周：高阶 + 简历项目</h2>
+<h3>Day 15-16：状态管理 Pinia + API 封装</h3>
+<p><strong>学</strong>：Pinia（Vue 的状态管理库）、axios 封装（拦截器、统一错误处理）</p>
+<p><strong>练</strong>：把豆瓣电影搜索项目的全局状态（收藏列表、用户偏好）迁移到 Pinia store</p>
+<hr />
+<h3>Day 17-18：简历项目 —— 个人博客/知识库</h3>
+<p><strong>项目定位</strong>：这是你面试时要讲的"核心项目"</p>
+<p><strong>功能</strong>：</p>
+<ul>
+<li>文章列表页（分页、标签筛选、搜索）</li>
+<li>文章详情页（Markdown 渲染）</li>
+<li>暗色/亮色主题切换</li>
+<li>响应式适配</li>
+<li>GitHub Pages 部署</li>
+</ul>
+<p><strong>技术栈</strong>：Vue 3 + Vue Router + Pinia + Element Plus + Vite</p>
+<hr />
+<h3>Day 19-20：完善 + 面试准备</h3>
+<ul>
+<li>优化加载速度（图片懒加载、路由懒加载）</li>
+<li>写 README.md（项目介绍、技术栈、如何运行、截图）</li>
+<li>补充代码注释</li>
+<li>把 3 个项目（作品集、电影搜索、个人博客）的 GitHub 链接更新到简历</li>
+</ul>
+<hr />
+<h2>你的项目矩阵（面试时能讲的）</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>技术栈</th>
+<th>难度</th>
+<th>完成时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>个人作品集网站</td>
+<td>HTML + CSS + JS 原生</td>
+<td>⭐</td>
+<td>Day 6</td>
+</tr>
+<tr>
+<td>天气预报查询</td>
+<td>fetch + async/await</td>
+<td>⭐</td>
+<td>Day 4</td>
+</tr>
+<tr>
+<td>Todo List</td>
+<td>Vue 3 + 组件通信</td>
+<td>⭐⭐</td>
+<td>Day 10</td>
+</tr>
+<tr>
+<td>豆瓣电影搜索</td>
+<td>Vue Router + Element Plus</td>
+<td>⭐⭐⭐</td>
+<td>Day 14</td>
+</tr>
+<tr>
+<td>个人博客/知识库</td>
+<td>Vue 3 全家桶 + Pinia</td>
+<td>⭐⭐⭐⭐</td>
+<td>Day 18</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>学习原则</h2>
+<ol>
+<li><strong>先跑通，再优化</strong>。不要追求完美代码，先让页面能看、功能能用</li>
+<li><strong>每天一个完整小产出</strong>。哪怕只是一个导航栏，也要做完、能看</li>
+<li><strong>遇到问题先自己调试 15 分钟</strong>。console.log 是最好用的工具</li>
+<li><strong>不抄完整代码</strong>。看思路、自己写、卡住了再看答案</li>
+<li><strong>GitHub 每天提交</strong>。绿点就是你的学习轨迹</li>
+</ol>
+<hr />
+<blockquote>
+<p>4 周前你只会 HTML 标签。4 周后你有 3-5 个完整项目、能独立开发 Vue 单页应用、简历上有东西可写。开始吧。</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>Yuzumoon82</name>
+    </author>
+    <category term="学习笔记"></category>
+  </entry>
+  <entry>
+    <title>MCP 核心链路面试话术</title>
+    <link href="https://yuzumoon82.github.io/personal-blog/posts/mcp%E4%B8%89%E6%AD%A5%E8%B5%B0-%E9%9D%A2%E8%AF%95%E8%AF%9D%E6%9C%AF/" rel="alternate" type="text/html"/>
+    <id>https://yuzumoon82.github.io/personal-blog/posts/mcp%E4%B8%89%E6%AD%A5%E8%B5%B0-%E9%9D%A2%E8%AF%95%E8%AF%9D%E6%9C%AF/</id>
+    <published>2025-07-23T00:00:00.000Z</published>
+    <updated>2025-07-23T00:00:00.000Z</updated>
+    <summary>Transport → McpSyncClient → ToolCallback，从架构到代码，讲透 MCP 三步走</summary>
+    <content type="html"><![CDATA[<h1>MCP 核心链路面试话术：Transport → McpSyncClient → ToolCallback</h1>
+<blockquote>
+<p>约 5000 字，面向技术面试。从架构痛点 → 设计原理 → 代码实现 → 生产实践，四个维度讲透 MCP 三步走模式。</p>
+</blockquote>
+<hr />
+<h2>一、开场定调：MCP 解决了什么问题（30 秒，100 字）</h2>
+<p><strong>话术</strong>：</p>
+<p>"MCP（Model Context Protocol）是一个标准化的工具接入协议。它让 LLM Agent 接入外部工具这件事从'每个工具写一套适配代码'变成'只要支持 MCP 协议，接上去就能用'。类比就是 USB-C——你不用关心设备内部的电路，只要接口匹配，插上就工作。</p>
+<p>在我们的项目里，从 Transport 创建到最终注入 Agent，有一个贯穿始终的三步走模式，我来完整讲一下。"</p>
+<p><strong>考察点</strong>：是否一句话说清 MCP 的定位（协议，不是框架），是否有类比能力。</p>
+<hr />
+<h2>二、总览：三步走模式是什么（1 分钟，300 字）</h2>
+<p><strong>话术</strong>：</p>
+<p>"整个链路的入口只有一个模式，我叫它三步走：</p>
+<p><strong>第一步：创建 Transport</strong>——选择你用什么方式连接到 MCP Server。MCP 协议定义了三种标准 Transport：Stdio（子进程通信）、SSE（HTTP 长连接）、Streamable HTTP（标准 REST 短连接）。这一步要回答的问题是：'我的 Agent 和工具 Server 之间，通过什么通道通信？'</p>
+<p><strong>第二步：创建 McpSyncClient 并 initialize</strong>——这是 MCP 协议的握手层。把 Transport 传给 <code>McpClient.sync(transport).build()</code> 得到一个 Client 对象，然后调用 <code>initialize()</code>。这一步做了两件事：协议版本协商和工具列表发现。握手成功后，Client 内部缓存了 Server 的元信息和所有可用工具的完整 Schema。</p>
+<p><strong>第三步：包装为 ToolCallback[]</strong>——这是 MCP 协议和 Spring AI 框架之间的适配层。<code>SyncMcpToolCallbackProvider</code> 遍历 Client 持有的工具列表，把每个 <code>McpSchema.Tool</code> 包装为一个 <code>SyncMcpToolCallback</code>，最终暴露为 Spring AI 标准的 <code>ToolCallback[]</code>，注入 <code>ChatClient</code>。</p>
+<p>这三步做完，Agent 调用工具的全链路就通了：LLM 输出 tool_call → ChatClient 匹配 ToolCallback → ToolCallback 调用 McpSyncClient → Transport 发送 JSON-RPC → MCP Server 执行 → 原路返回结果。</p>
+<p>我用代码来展开每一步。"</p>
+<p><strong>考察点</strong>：是否有全局视角，能否用三层结构讲清复杂链路。</p>
+<hr />
+<h2>三、第一步深入：Transport —— 三种通信方式的选型逻辑（1.5 分钟，800 字）</h2>
+<p><strong>话术</strong>：</p>
+<p>"Transport 是 MCP 架构的第一层抽象，它要解决的问题是：Agent 和工具 Server 可能部署在不同的机器上，可能用不同的通信协议，可能跑在不同的操作系统上。MCP 把所有这些差异抽象成了三种标准 Transport。</p>
+<p><strong>第一种，StdioClientTransport——子进程通信。</strong></p>
+<p>最直接的方式。Agent 通过 <code>ProcessBuilder</code> 启动工具 Server 的 JAR 包作为子进程，然后通过子进程的 stdin 发 JSON-RPC 请求，通过 stdout 接收响应。Server 的生命周期和子进程绑定。</p>
+<p>代码上就是两步：</p>
+<pre><code>ServerParameters params = ServerParameters.builder("java")
+    .args("-jar", "mcp-server-stdio.jar").build();
+StdioClientTransport transport = new StdioClientTransport(params);
+</code></pre>
+<p>Stdio 的特点是：零网络开销，天然安全（进程隔离），但 Server 和 Agent 必须在同一台机器上。适合本地开发和单机部署。</p>
+<p><strong>第二种，HttpClientSseClientTransport——SSE 长连接。</strong></p>
+<p>Server 作为独立的 HTTP 服务部署。Agent 和 Server 之间维持一个 SSE（Server-Sent Events）长连接，Server 可以主动推送事件给 Agent。</p>
+<pre><code>HttpClientSseClientTransport transport = HttpClientSseClientTransport
+    .builder("http://127.0.0.1:8003")
+    .sseEndpoint("/sse")
+    .build();
+</code></pre>
+<p>SSE 的好处是支持服务端主动推送——比如工具执行进度、日志流。代价是必须维护长连接。网络断开后 Agent 需要感知到并自动重连，否则后续的工具调用全部失败。我们专门写了一个 <code>RetrySSEMcpService</code> 来做心跳检测和自动重连——每 5 秒 ping 一次，失败了就 CAS 互斥地启动重连线程，重连成功后必须重建 ChatClient，因为旧的 ToolCallback 持有的 McpSyncClient 引用已经失效了。这是一个很容易踩的坑。</p>
+<p><strong>第三种，HttpClientStreamableHttpTransport——标准 HTTP 短连接。</strong></p>
+<p>我们生产环境实际用的就是这种。它最接近传统 REST API，每次工具调用就是一个独立的 HTTP POST 请求。</p>
+<pre><code>HttpClientStreamableHttpTransport transport = HttpClientStreamableHttpTransport
+    .builder("https://api.tavily.com/mcp")
+    .requestBuilder(r -&gt; r.header("Authorization", "Bearer " + apiKey))
+    .build();
+</code></pre>
+<p>为什么选它？三个原因：第一，认证友好。我们通过 <code>requestBuilder</code> 直接把 API Key 注入到 HTTP Header，网关层可以统一做鉴权。第二，运维简单。没有长连接，不需要负载均衡器维护连接亲和性，Server 重启不影响已经在队列里的请求——它们收到 503 后会重试。第三，和 API 网关天然兼容。限流、鉴权、日志采集这些基础设施全部复用，不需要为 MCP 单独开一条通道。</p>
+<p><strong>选型总结</strong>：选 Transport 的本质是匹配部署场景。Stdio 匹配本地，SSE 匹配需要推送的远程，Streamable HTTP 匹配需要认证和网关的标准云服务。代码逻辑完全一样，换 Transport 只是换一个工厂方法。"</p>
+<p><strong>考察点</strong>：是否亲手用过三种 Transport、是否有选型思考框架、是否踩过生产环境的坑（长连接断开 + 重连机制）。</p>
+<hr />
+<h2>四、第二步深入：McpSyncClient.initialize() —— 握手机制（1 分钟，500 字）</h2>
+<p><strong>话术</strong>：</p>
+<p>"Transport 建好后，下一步就是用 Transport 创建 McpSyncClient 并握手。</p>
+<pre><code>McpSyncClient client = McpClient.sync(transport)
+    .requestTimeout(Duration.ofSeconds(300))
+    .build();
+client.initialize();  // ← 握手
+</code></pre>
+<p>这里有一个非常重要的设计决策：<strong>initialize() 只在应用启动时调用一次，不在每次请求时调用</strong>。为什么？因为 initialize 内部做了两件事，都有网络开销。</p>
+<p><strong>第一件事：协议版本协商。</strong> Agent 和 Server 交换各自的身份信息和能力声明。Agent 说'我是 dodo-agent v1.0，我支持 tools 能力'，Server 回应'我是 tavily-server v1.0，我支持 tools 能力，以下是我的工具列表'。这一步本质上是一个 HTTP 往返。</p>
+<p><strong>第二件事：工具列表拉取。</strong> Client 内部会自动调用 <code>tools/list</code> 获取 Server 暴露的所有工具。每个工具的返回包括它的名称、自然语言描述、参数 JSON Schema——这三个字段是 LLM 决定要不要调、怎么调这个工具的全部依据。</p>
+<p>握手成功后，Client 在内存中缓存了 serverInfo 和 toolList。后续 <code>client.callTool()</code> 不再需要握手，直接发起 JSON-RPC 调用。</p>
+<p><strong>如果在每次请求时都握手会怎样？</strong> 假设一次 MCP 握手耗时 100ms，那每次用户请求都会额外增加 100ms 的首字响应延迟。而且这是纯浪费——工具的 Schema 不会在两次请求之间发生变化。所以我们把 initialize 放在 <code>@PostConstruct</code> 或 <code>InitializingBean.afterPropertiesSet()</code> 中，启动时执行一次，缓存结果，请求间复用。</p>
+<p><strong>这个缓存是线程安全的吗？</strong> 是。McpSyncClient 的 <code>callTool()</code> 底层用的是 Java 11 的 <code>HttpClient</code>，它内部的连接池是线程安全的。ToolCallback 是只读对象，天然线程安全。所以我们可以在高并发下放心地用同一个 client 实例。"</p>
+<p><strong>考察点</strong>：是否理解 initialize 做了什么、为什么只调一次、是否考虑过并发安全性。</p>
+<hr />
+<h2>五、第三步深入：ToolCallback[] —— 从 MCP 协议到 Spring AI 框架的适配（1 分钟，500 字）</h2>
+<p><strong>话术</strong>：</p>
+<p>"握完手后，McpSyncClient 内部已经有了 <code>List&lt;McpSchema.Tool&gt;</code>。但这些是 MCP 协议层的对象，Spring AI 不认识。我们需要一个适配层把它们转换成 Spring AI 的 <code>ToolCallback</code> 接口。</p>
+<p>这就是 <code>SyncMcpToolCallbackProvider</code> 做的事情：</p>
+<pre><code>List&lt;McpSyncClient&gt; mcpClients = List.of(client);
+
+SyncMcpToolCallbackProvider provider = SyncMcpToolCallbackProvider.builder()
+    .mcpClients(mcpClients)
+    .toolFilter((conn, tool) -&gt; tool.name().startsWith("goods"))
+    .build();
+
+ToolCallback[] callbacks = provider.getToolCallbacks();
+</code></pre>
+<p>这个 Provider 做了三件事：</p>
+<p><strong>第一，遍历。</strong> 遍历你给它的所有 McpSyncClient。注意，<code>mcpClients</code> 是一个 List，意味着你可以同时连多个 MCP Server——比如 Tavily 搜索、飞书文档、MySQL 查询——一个 Provider 把它们的工具列表合并为一个统一的 ToolCallback[]。</p>
+<p><strong>第二，过滤。</strong> <code>toolFilter</code> 是一个可选的 Predicate。比如你的 Agent 只需要搜索工具，可以用 <code>toolFilter</code> 把其他工具过滤掉。这在多租户场景下非常有用——不同租户可以看到不同的工具子集，而不需要为每个租户部署一套 Server。</p>
+<p><strong>第三，包装。</strong> 对每个 <code>McpSchema.Tool</code>，创建一个 <code>SyncMcpToolCallback</code>。这个 Callback 实现了 Spring AI 的 <code>ToolCallback</code> 接口，核心方法就是 <code>call(argsJson)</code>。内部做的事很简单：把 argsJson 转成 <code>McpSchema.CallToolRequest</code>，调 <code>McpSyncClient.callTool(request)</code>，返回结果。</p>
+<p>然后把 ToolCallback[] 注入 ChatClient：</p>
+<pre><code>ChatClient chatClient = ChatClient.builder(chatModel)
+    .defaultToolCallbacks(callbacks)
+    .build();
+</code></pre>
+<p>之后每次 LLM 请求，Spring AI 会自动把这些 Callback 的 Schema 作为 available tools 参数发送给 LLM。LLM 返回 tool_call 时，框架根据 name 匹配到对应的 Callback，调用 <code>call()</code> 方法，整个链路就跑通了。</p>
+<p><strong>为什么这一层叫适配层？</strong> 因为它的职责就是解耦——MCP Server 不关心 Agent 用的是什么框架（Spring AI、LangChain、LlamaIndex），Agent 框架也不关心工具 Server 是什么语言实现的。Connector 负责在两者之间做翻译。这是经典的设计模式——适配器模式。"</p>
+<p><strong>考察点</strong>：是否理解 CallbackProvider 的设计意图、是否能讲出多 Server 合并和过滤的能力。</p>
+<hr />
+<h2>六、全链路串联：从 LLM 的 tool_call 到工具执行结果返回（1 分钟，600 字）</h2>
+<p><strong>话术</strong>：</p>
+<p>"三步走完后，Agent 的工具调用链路就完整了。我来串一下一次实际调用的全流程。</p>
+<p>用户问'今天北京天气怎么样'，我们来看看数据是怎么流的：</p>
+<p><strong>第 1 步：LLM 分析 + tool_call 生成。</strong> ChatClient 把用户问题 + 聊天历史 + 所有可用工具的 Schema 发给 LLM。LLM 看到有一个 <code>getWeather</code> 工具，参数是 <code>city</code>，描述是'根据城市名称查询天气'，于是它判断：这个问题需要调用这个工具。LLM 返回一个 tool_call：<code>{name: "getWeather", arguments: {city: "北京"}}</code>。</p>
+<p><strong>第 2 步：ChatClient 匹配 ToolCallback。</strong> ChatClient 收到 tool_call，通过 name <code>getWeather</code> 在 ToolCallback[] 中找到对应的 <code>SyncMcpToolCallback</code>——这一步是纯内存操作，毫秒级。</p>
+<p><strong>第 3 步：ToolCallback.call(argsJson)。</strong> <code>SyncMcpToolCallback</code> 内部用 argsJson 构造出 <code>McpSchema.CallToolRequest</code>，调用 <code>McpSyncClient.callTool(request)</code>。</p>
+<p><strong>第 4 步：McpSyncClient 走 Transport。</strong> Client 把 CallToolRequest 序列化为 JSON-RPC 2.0 格式，通过 Transport 发送 HTTP POST 到 MCP Server 的端点。如果是 Streamable HTTP，这就是一个标准 POST 请求；如果是 SSE，这是一个独立的 HTTP 请求（不经过 SSE 长连接）。</p>
+<p><strong>第 5 步：MCP Server 反射执行。</strong> Server 收到 JSON-RPC 请求，解析出 method 是 <code>tools/call</code>，name 是 <code>getWeather</code>。通过反射找到 <code>WeatherService.getWeather("北京")</code> 方法，执行，拿到返回值 <code>"北京: 晴, 25°C"</code>，包装为 <code>McpSchema.CallToolResult</code>，序列化为 JSON-RPC 响应，原路返回。</p>
+<p><strong>第 6 步：结果回到 Agent。</strong> ToolCallback 把 CallToolResult 的内容提取出来，包装为 <code>ToolResponseMessage</code>，追加到 LLM 的 messages 列表。ChatClient 把这个结果送回 LLM。</p>
+<p><strong>第 7 步：LLM 生成最终回答。</strong> LLM 现在有了工具执行的结果，基于它生成自然语言回答：'根据最新数据，今天北京天气晴朗，气温 25°C，适合出行。'</p>
+<p>这 7 步中，前两步和最后两步是 Spring AI 框架层，中间三步是 MCP 协议层。框架层和协议层之间的边界就是 ToolCallback——它既是 Spring AI 的 ToolCallback 实现，又持有一个 MCP Client 引用。这就是适配器模式在真实项目中的体现。"</p>
+<p><strong>考察点</strong>：是否能从单个请求的视角讲清全链路、是否理解每层的职责边界。</p>
+<hr />
+<h2>七、生产实践：初始化时机 + 超时 + 健壮性（1 分钟，500 字）</h2>
+<p><strong>话术</strong>：</p>
+<p>"三步走模式说完了，我再补充三个生产环境的实践细节。</p>
+<p><strong>第一个，初始化时机的选择。</strong> 我们在 <code>AgentController</code> 的 <code>afterPropertiesSet()</code> 中执行整个三步走流程，把得到的 <code>ToolCallback[]</code> 缓存到成员变量。每次 HTTP 请求进来，创建一个新的 Agent 实例，注入同一个 <code>ToolCallback[]</code>。这意味着 MCP 握手只在应用启动时执行一次，所有请求共享。ToolCallback[] 是只读的，线程安全，McpSyncClient 下的 HTTP 连接池也是线程安全的。但如果你的 MCP Server 支持热更新工具列表，这种缓存策略就不适用了——你需要定期刷新 ToolCallback[]。</p>
+<p><strong>第二个，超时配置。</strong> 不同工具的执行时间差异很大。天气查询可能 50ms 返回，搜索引擎可能要 5 秒，大数据分析可能要几分钟。我们在创建 McpSyncClient 时用 <code>requestTimeout</code> 设置硬超时：<code>Duration.ofSeconds(300)</code>。这是 5 分钟，足够覆盖搜索引擎的极端情况。但要注意——这个超时是整个工具调用的超时，不是单次 HTTP 的超时。如果 MCP Server 内部有重试逻辑，需要把重试的时间也考虑进去。</p>
+<p><strong>第三个，SSE 长连接的健壮性。</strong> Streamable HTTP 不需要特别处理，因为每次调用是独立的短连接。但 SSE 不同——它是一个长连接，断开后必须重连。我们的 <code>RetrySSEMcpService</code> 做到了三点：心跳检测（5 秒一次 ping）、原子重连（AtomicBoolean CAS 保证只有一个线程重连）、全链路刷新（不只重建 McpSyncClient，还要重建 ToolCallback 和 ChatClient）。第三点很容易漏——你重建了底层 Client，但上层 Agent 持有的 ChatClient 还在用旧的 ToolCallback，而旧的 ToolCallback 内部引用的是已经断了连接的 Client。所以重连后必须全链路刷新，一个都不能漏。"</p>
+<p><strong>考察点</strong>：是否考虑过生产环境的具体问题（启动时初始化、超时配置、长连接断开）。</p>
+<hr />
+<h2>八、总结收尾：三步走模式的本质（30 秒，200 字）</h2>
+<p><strong>话术</strong>：</p>
+<p>"总结一下，Transport → McpSyncClient(+initialize) → ToolCallback[] 这个三步走模式，本质上是用三个抽象层解耦了一个复杂问题：</p>
+<ul>
+<li><strong>Transport 层</strong>：解耦通信方式。换部署环境只需换一个 Transport 工厂方法。</li>
+<li><strong>McpSyncClient 层</strong>：解耦协议细节。只需调用 <code>callTool()</code>，不关心 JSON-RPC 怎么编解码。</li>
+<li><strong>ToolCallback 层</strong>：解耦 Agent 框架。Spring AI 不需要知道工具是 MCP 接的还是本地 <code>@Tool</code> 注解的。</li>
+</ul>
+<p>这三层合在一起，让 Agent 的工具接入从'每个工具写一套代码'变成'支持 MCP 协议即插即用'。这就是 MCP 的核心价值。"</p>
+<hr />
+<h2>九、面试追问预案</h2>
+<table>
+<thead>
+<tr>
+<th>追问</th>
+<th>回答要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MCP 和 Function Calling 的关系？</strong></td>
+<td>MCP 负责工具发现和调用（协议层），Function Calling 负责 LLM 决策（能力层）。MCP 把工具 Schema 送到 LLM 面前，Function Calling 让 LLM 决定要不要用、怎么用</td>
+</tr>
+<tr>
+<td><strong>initialize 握手具体交换了什么？</strong></td>
+<td>Client 发 <code>protocolVersion</code> + <code>clientInfo</code> + <code>capabilities</code>；Server 返回 <code>serverInfo</code> + <code>capabilities</code>。握手成功后 Client 内部自动调 <code>tools/list</code> 获取完整工具 Schema</td>
+</tr>
+<tr>
+<td><strong>性能开销多大？</strong></td>
+<td>握手：1 次 HTTP 往返 + 1 次 tools/list，毫秒级，只在启动时执行。调用：每次 tool_call 多一层 JSON-RPC 包装，开销可忽略。瓶颈在工具执行本身</td>
+</tr>
+<tr>
+<td><strong>为什么不用 gRPC？</strong></td>
+<td>gRPC 需要共享 <code>.proto</code> 文件做代码生成。MCP 在握手时动态发现工具 Schema，松耦合，且 JSON 对人类可调试</td>
+</tr>
+<tr>
+<td><strong>多个 MCP Server 怎么合并工具？</strong></td>
+<td><code>SyncMcpToolCallbackProvider</code> 的 <code>mcpClients</code> 是 List，遍历所有 Client 的 toolList，合并为一个 ToolCallback[]，LLM 看到的是一份统一列表</td>
+</tr>
+<tr>
+<td><strong>工具 Schema 变更了怎么办？</strong></td>
+<td>缓存策略下需要重启应用或实现定时刷新。如果对可用性要求高，可以实现类似 <code>RetrySSEMcpService</code> 的定期重建机制</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<blockquote>
+<p><strong>最后更新：</strong> 2026-07-23</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>Yuzumoon82</name>
+    </author>
+    <category term="面试准备"></category>
   </entry>
 </feed>
