@@ -1,375 +1,1210 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Yuzumoon82</title><description>Yuzumoon82 的博客</description><link>https://yuzumoon82.github.io/personal-blog/</link><language>zh_CN</language><item><title>Mizuki 项目学习计划</title><link>https://yuzumoon82.github.io/personal-blog/posts/mizuki%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/</link><guid isPermaLink="true">https://yuzumoon82.github.io/personal-blog/posts/mizuki%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/</guid><description>从零到上线自己的博客——Mizuki 开源 Astro 静态博客模板学习路径</description><pubDate>Sat, 26 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Mizuki 项目学习计划 —— 从零到上线自己的博客&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Mizuki 是一个开源的 Astro 静态博客模板。你的目标：看懂它 → 改它 → 把它变成你自己的博客。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Yuzumoon82</title><description>Yuzumoon82 的博客</description><link>https://yuzumoon82.github.io/personal-blog/</link><language>zh_CN</language><item><title>Mizuki 项目学习计划——从看懂到拥有自己的博客</title><link>https://yuzumoon82.github.io/personal-blog/posts/mizuki%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/</link><guid isPermaLink="true">https://yuzumoon82.github.io/personal-blog/posts/mizuki%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/</guid><description>前端小白专属的 Mizuki 博客项目学习路径，分 10 阶段 24 天，从跑起来到部署上线</description><pubDate>Sun, 27 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;适合人群&lt;/strong&gt;：前端小白，已有基本的 HTML/CSS/JS 语法基础，还没做过完整项目。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：看懂 Mizuki → 会改 Mizuki → 把它变成你自己的博客并上线。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考文档&lt;/strong&gt;：配合 &lt;code&gt;Mizuki项目结构详解.md&lt;/code&gt; 一起看，里面标注了每个文件的作用，看不懂某个文件时去查。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr /&gt;
-&lt;h2&gt;〇、先认识这个项目&lt;/h2&gt;
-&lt;h3&gt;Mizuki 是什么&lt;/h3&gt;
-&lt;p&gt;一个&lt;strong&gt;静态博客网站&lt;/strong&gt;。写 Markdown 文章 → 自动生成 HTML 页面 → 部署到网上就能访问。&lt;/p&gt;
-&lt;h3&gt;技术栈一览&lt;/h3&gt;
+&lt;h2&gt;目录&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#0-%E5%AD%A6%E4%B9%8B%E5%89%8D%E9%9C%80%E8%A6%81%E4%BB%80%E4%B9%88%E5%9F%BA%E7%A1%80&quot;&gt;0. 学之前需要什么基础&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%E8%B7%91%E8%B5%B7%E6%9D%A5%E5%BB%BA%E7%AB%8B%E6%89%8B%E6%84%9Fday-1-2&quot;&gt;第一阶段：跑起来，建立手感（Day 1-2）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%8D%E5%8A%A8%E4%BB%A3%E7%A0%81day-3-4&quot;&gt;第二阶段：改配置文件，不动代码（Day 3-4）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%E5%86%99%E6%96%87%E7%AB%A0%E7%90%86%E8%A7%A3%E5%86%85%E5%AE%B9%E7%B3%BB%E7%BB%9Fday-5-6&quot;&gt;第三阶段：写文章，理解内容系统（Day 5-6）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E7%AC%AC%E5%9B%9B%E9%98%B6%E6%AE%B5%E8%AF%BB%E6%87%82-astro-%E7%BB%84%E4%BB%B6day-7-8&quot;&gt;第四阶段：读懂 Astro 组件（Day 7-8）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E7%AC%AC%E4%BA%94%E9%98%B6%E6%AE%B5%E6%94%B9%E6%A0%B7%E5%BC%8F%E7%90%86%E8%A7%A3-tailwind-cssday-9-10&quot;&gt;第五阶段：改样式，理解 Tailwind CSS（Day 9-10）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E7%AC%AC%E5%85%AD%E9%98%B6%E6%AE%B5%E6%94%B9%E7%BB%84%E4%BB%B6%E7%9C%9F%E5%88%80%E7%9C%9F%E6%9E%AA%E5%8A%A8%E6%89%8Bday-11-13&quot;&gt;第六阶段：改组件，真刀真枪动手（Day 11-13）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E7%AC%AC%E4%B8%83%E9%98%B6%E6%AE%B5%E7%90%86%E8%A7%A3-svelte-%E4%BA%A4%E4%BA%92%E7%BB%84%E4%BB%B6day-14-15&quot;&gt;第七阶段：理解 Svelte 交互组件（Day 14-15）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E7%AC%AC%E5%85%AB%E9%98%B6%E6%AE%B5%E5%8A%A0%E6%96%B0%E5%8A%9F%E8%83%BD%E4%BB%8E%E6%94%B9%E5%88%B0%E5%86%99day-16-18&quot;&gt;第八阶段：加新功能，从改到写（Day 16-18）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E7%AC%AC%E4%B9%9D%E9%98%B6%E6%AE%B5%E6%8A%8A%E5%AE%83%E5%8F%98%E6%88%90%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2day-19-22&quot;&gt;第九阶段：把它变成你的博客（Day 19-22）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E7%AC%AC%E5%8D%81%E9%98%B6%E6%AE%B5%E9%83%A8%E7%BD%B2%E4%B8%8A%E7%BA%BFday-23-24&quot;&gt;第十阶段：部署上线（Day 23-24）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E9%99%84%E5%BD%95%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98%E6%80%8E%E4%B9%88%E8%87%AA%E6%95%91&quot;&gt;附录：遇到问题怎么自救&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2&gt;0. 学之前需要什么基础&lt;/h2&gt;
+&lt;p&gt;在开始学 Mizuki 之前，确保你已经会：&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;技术&lt;/th&gt;
-&lt;th&gt;干什么的&lt;/th&gt;
-&lt;th&gt;你需要学到什么程度&lt;/th&gt;
+&lt;th&gt;基础&lt;/th&gt;
+&lt;th&gt;程度要求&lt;/th&gt;
+&lt;th&gt;怎么验证&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;Astro&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;框架，把 Markdown + 组件 → HTML 页面&lt;/td&gt;
-&lt;td&gt;会用 .astro 文件，理解 frontmatter 和 template&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;HTML&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;认识常用标签：&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;h1&amp;gt;-&amp;lt;h6&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;a&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;img&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;ul&amp;gt;/&amp;lt;li&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;header&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;main&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;footer&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;打开任意 .astro 文件的模板区，能认出 80% 的标签&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;Tailwind CSS&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;写样式的，用 class 名控制外观&lt;/td&gt;
-&lt;td&gt;会查文档，找到你想要的 class 名&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;CSS&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;理解盒模型、Flex、选择器、class 的概念&lt;/td&gt;
+&lt;td&gt;能在浏览器开发者工具里改一个元素的样式&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;Svelte&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;做交互组件（音乐播放器、搜索等）&lt;/td&gt;
-&lt;td&gt;先跳过，只看不改&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;JavaScript&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;变量、函数、数组、对象、&lt;code&gt;import/export&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;能看懂 &lt;code&gt;const x = [1,2,3].map(n =&amp;gt; n*2)&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;TypeScript&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;带类型的 JavaScript&lt;/td&gt;
-&lt;td&gt;能读懂就行，不需要写&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;命令行&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;cd&lt;/code&gt;、&lt;code&gt;ls&lt;/code&gt;、&lt;code&gt;mkdir&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;能在终端里进入项目目录&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;Markdown/MDX&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;写文章的格式&lt;/td&gt;
-&lt;td&gt;会用 # 标题、列表、链接&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Git&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;clone&lt;/code&gt;、&lt;code&gt;add&lt;/code&gt;、&lt;code&gt;commit&lt;/code&gt;、&lt;code&gt;push&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;能把代码推到 GitHub&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h3&gt;目录结构速览&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;Mizuki/
-├── astro.config.mjs          ← 网站配置（插件、域名、SEO）
-├── src/
-│   ├── pages/                ← ★ 页面：首页、关于、文章列表...
-│   ├── components/           ← ★ 组件：按钮、卡片、导航栏...
-│   │   ├── atoms/            ←   最小组件（Button, Icon, Badge）
-│   │   ├── widgets/          ←   大组件（音乐播放器、评论）
-│   │   └── layout/           ←   页面骨架（header, footer, sidebar）
-│   ├── layouts/Layout.astro  ← ★ 全局布局（所有页面都套这个壳）
-│   ├── config/               ← ★ 配置文件（改这个就能改网站内容）
-│   ├── content/posts/        ← ★ 博客文章（Markdown 文件）
-│   ├── styles/               ← 样式文件
-│   └── data/                 ← 数据文件（项目列表、朋友列表等）
-├── public/                   ← 静态资源（图片、字体）
-└── package.json              ← 项目依赖和脚本命令
-&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果以上还有不熟的，先看 &lt;code&gt;前端学习计划-零基础到实战.md&lt;/code&gt; 的第一周内容，打基础。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;不需要会的&lt;/strong&gt;（会在学习过程中慢慢接触）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Astro 框架（这个学习计划会带你入门）&lt;/li&gt;
+&lt;li&gt;Svelte（第七阶段才接触）&lt;/li&gt;
+&lt;li&gt;TypeScript（看懂就行，不用写）&lt;/li&gt;
+&lt;li&gt;Tailwind CSS（第五阶段会专门练）&lt;/li&gt;
+&lt;/ul&gt;
 &lt;hr /&gt;
-&lt;h2&gt;第一阶段：跑起来（Day 1）&lt;/h2&gt;
-&lt;h3&gt;目标：能在本地浏览器看到这个网站&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Step 1：安装依赖&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cd /Users/dduo/WebstormProjects/Mizuki
-
-# 如果没有 pnpm，先装它
+&lt;h2&gt;第一阶段：跑起来，建立手感（Day 1-2）&lt;/h2&gt;
+&lt;h3&gt;Day 1：让项目在本地跑起来&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：在浏览器里看到这个博客网站。&lt;/p&gt;
+&lt;h4&gt;Step 1：确认环境&lt;/h4&gt;
+&lt;p&gt;打开终端，依次执行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;node -v    # 确认 Node.js 已安装（需要 v18+）
+npm -v     # 确认 npm 已安装
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果报错 &quot;command not found&quot;，先去 &lt;a href=&quot;https://nodejs.org&quot;&gt;nodejs.org&lt;/a&gt; 下载安装 LTS 版本。&lt;/p&gt;
+&lt;h4&gt;Step 2：安装 pnpm 和依赖&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;# 安装 pnpm 包管理器（比 npm 更快、更省磁盘）
 npm install -g pnpm
 
-# 装项目依赖
+# 进入项目目录
+cd /Users/gaoyaoqian/DevCode/webwork/Mizuki
+
+# 安装所有依赖（第一次需要几分钟）
 pnpm install
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Step 2：启动开发服务器&lt;/strong&gt;&lt;/p&gt;
+&lt;h4&gt;Step 3：启动开发服务器&lt;/h4&gt;
 &lt;pre&gt;&lt;code&gt;pnpm dev
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;浏览器打开 &lt;code&gt;http://localhost:4321&lt;/code&gt; —— 你应该能看到一个完整的博客网站。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Step 3：改一行字，验证热更新&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;打开 &lt;code&gt;src/config/site.ts&lt;/code&gt;（或 &lt;code&gt;src/config/&lt;/code&gt; 下的配置文件），找到网站标题，改一个字，保存。浏览器自动刷新——这说明&lt;strong&gt;热更新&lt;/strong&gt;在工作。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;今天学到什么&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;浏览器打开 &lt;code&gt;http://localhost:3000&lt;/code&gt;，你应该能看到一个完整的博客网站。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;端口说明&lt;/strong&gt;：这个项目配置的是 3000 端口（在 &lt;code&gt;astro.config.mjs&lt;/code&gt; 第 97-99 行的 &lt;code&gt;server.port&lt;/code&gt;），不是默认的 4321。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;Step 4：初体验 —— 改一个字看效果&lt;/h4&gt;
+&lt;p&gt;打开 &lt;code&gt;src/config/siteConfig.ts&lt;/code&gt;，找到第 7 行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;title: &quot;Yuzumoon82&quot;,
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;改成你的名字，保存。浏览器自动刷新——标题变了。&lt;/p&gt;
+&lt;p&gt;这就是&lt;strong&gt;热更新（HMR, Hot Module Replacement）&lt;/strong&gt;：改代码 → 保存 → 浏览器自动刷新，不用手动 F5。&lt;/p&gt;
+&lt;h4&gt;Step 5：随便点点&lt;/h4&gt;
+&lt;p&gt;在浏览器里逛一逛这个网站，了解它有哪些页面：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;pnpm 是包管理器，&lt;code&gt;pnpm install&lt;/code&gt; = 下载项目需要的所有代码&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;pnpm dev&lt;/code&gt; = 启动开发服务器，&quot;dev&quot; = development&lt;/li&gt;
-&lt;li&gt;Astro 的热更新：改代码 → 保存 → 浏览器自动刷新，不用手动 F5&lt;/li&gt;
+&lt;li&gt;首页（文章列表）&lt;/li&gt;
+&lt;li&gt;点击任意文章 → 文章详情页&lt;/li&gt;
+&lt;li&gt;归档页、关于页、友链页、番剧页……&lt;/li&gt;
+&lt;li&gt;试试右上角的搜索按钮&lt;/li&gt;
+&lt;li&gt;试试侧边栏的音乐播放器&lt;/li&gt;
+&lt;li&gt;试试切换亮色/暗色主题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;目的&lt;/strong&gt;：建立感性认识——&quot;这个博客长什么样、有哪些功能&quot;。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Day 2：建立项目地图&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：知道&quot;想改 XX 应该去哪个文件&quot;。&lt;/p&gt;
+&lt;h4&gt;任务 1：对比项目结构文档&lt;/h4&gt;
+&lt;p&gt;打开 &lt;code&gt;Mizuki项目结构详解.md&lt;/code&gt;，对着文件列表，用 VS Code 打开项目，按图索骥找到以下关键文件：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;找这个文件&lt;/th&gt;
+&lt;th&gt;它在哪&lt;/th&gt;
+&lt;th&gt;它是干什么的&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;首页&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;src/pages/[...page].astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;博客文章列表页&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;文章详情页&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;src/pages/posts/[...slug].astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;单篇文章&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;全局布局（壳）&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;src/layouts/Layout.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;所有页面的 HTML 骨架&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;主网格布局&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;src/layouts/MainGridLayout.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;内容区布局（导航+侧栏+内容+Footer）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;主配置&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;src/config/siteConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;网站的几乎所有设置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;一篇文章&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;src/content/posts/*.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;随便打开一篇看 Markdown 格式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;导航栏&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;src/components/organisms/navigation/Navbar.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;顶部导航&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;音乐播放器&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;src/components/widgets/music-player/MusicPlayer.svelte&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;交互组件示例&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;任务 2：理解文件路由的对应关系&lt;/h4&gt;
+&lt;p&gt;在浏览器里访问，然后找到对应的源文件：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;URL&lt;/th&gt;
+&lt;th&gt;源文件&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;http://localhost:3000/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;src/pages/[...page].astro&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;http://localhost:3000/about/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;src/pages/about.astro&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;http://localhost:3000/friends/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;src/pages/friends.astro&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;http://localhost:3000/projects/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;src/pages/projects.astro&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;http://localhost:3000/posts/xxx/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;src/pages/posts/[...slug].astro&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;规律&lt;/strong&gt;：&lt;code&gt;src/pages/xxx.astro&lt;/code&gt; → 自动映射到 &lt;code&gt;/xxx&lt;/code&gt; 这个 URL。这就是 Astro 的&lt;strong&gt;文件路由&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;关键理解&lt;/strong&gt;：&lt;code&gt;[...page].astro&lt;/code&gt; 和 &lt;code&gt;[...slug].astro&lt;/code&gt; 中的 &lt;code&gt;[...]&lt;/code&gt; 是 Astro 的&lt;strong&gt;动态路由&lt;/strong&gt;语法。&lt;code&gt;[...page]&lt;/code&gt; 匹配 &lt;code&gt;/&lt;/code&gt;、&lt;code&gt;/2/&lt;/code&gt;、&lt;code&gt;/3/&lt;/code&gt;……&lt;code&gt;[...slug]&lt;/code&gt; 匹配 &lt;code&gt;/posts/任意文章名/&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;任务 3：画一张自己的&quot;项目地图&quot;&lt;/h4&gt;
+&lt;p&gt;在纸上或笔记软件里画一个简单的图：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;我打开浏览器访问 /
+    ↓
+[...page].astro 处理请求
+    ↓
+用 MainGridLayout.astro 布局
+    ├── Navbar.astro（导航栏）
+    ├── Banner.astro（顶部横幅）
+    ├── SideBar.astro（左侧栏）
+    ├── PostPage.astro（文章列表）← 主要内容
+    ├── RightSideBar.astro（右侧栏）
+    └── Footer.astro（底部）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;第二阶段：改配置文件，不动代码（Day 3-4）&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;核心理念&lt;/strong&gt;：这个项目是&lt;strong&gt;配置驱动&lt;/strong&gt;的。很多内容不需要动 .astro 文件，改配置就能改。配置文件在 &lt;code&gt;src/config/&lt;/code&gt; 下，是最安全的修改入口——改不坏，改错了改回来就行。&lt;/p&gt;
+&lt;h3&gt;Day 3：把网站信息改成你的&lt;/h3&gt;
+&lt;h4&gt;任务 1：改站点基本信息&lt;/h4&gt;
+&lt;p&gt;打开 &lt;code&gt;src/config/siteConfig.ts&lt;/code&gt;，逐行看，改以下内容：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;行&lt;/th&gt;
+&lt;th&gt;改什么&lt;/th&gt;
+&lt;th&gt;改成&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;第 7 行 &lt;code&gt;title&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;网站标题&lt;/td&gt;
+&lt;td&gt;你的名字或昵称&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;第 8 行 &lt;code&gt;subtitle&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;网站副标题&lt;/td&gt;
+&lt;td&gt;&quot;XXX 的博客&quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;第 9 行 &lt;code&gt;siteURL&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;网站域名&lt;/td&gt;
+&lt;td&gt;先不改，部署时再改&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;第 14 行 &lt;code&gt;hue&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;主题色相（0-360）&lt;/td&gt;
+&lt;td&gt;挑一个你喜欢的颜色：红色=0，蓝色=240，绿色=120，紫色=270&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;每改一处保存，看浏览器变化。&lt;/p&gt;
+&lt;h4&gt;任务 2：改个人信息&lt;/h4&gt;
+&lt;p&gt;打开 &lt;code&gt;src/config/profileConfig.ts&lt;/code&gt;，修改：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;头像（先替换 &lt;code&gt;public/&lt;/code&gt; 下的图片，再改路径）&lt;/li&gt;
+&lt;li&gt;名字&lt;/li&gt;
+&lt;li&gt;个人简介&lt;/li&gt;
+&lt;li&gt;社交链接（GitHub、邮箱等）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;任务 3：改导航栏菜单&lt;/h4&gt;
+&lt;p&gt;打开 &lt;code&gt;src/config/navBarConfig.ts&lt;/code&gt;，看看菜单项是怎么配置的。试着：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;改一个菜单名（比如 &quot;关于&quot; 改成 &quot;关于我&quot;）&lt;/li&gt;
+&lt;li&gt;去掉一个你不想要的菜单项&lt;/li&gt;
+&lt;li&gt;注意 &lt;code&gt;featurePages&lt;/code&gt; 开关的影响（在 &lt;code&gt;siteConfig.ts&lt;/code&gt; 里）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;任务 4：理解&quot;开关&quot;模式&lt;/h4&gt;
+&lt;p&gt;在 &lt;code&gt;siteConfig.ts&lt;/code&gt; 第 19-30 行，找到 &lt;code&gt;featurePages&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;featurePages: {
+    anime: true,    // true = 显示番剧页面
+    diary: true,    // false = 隐藏日记页面
+    // ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;试着把 &lt;code&gt;anime: true&lt;/code&gt; 改成 &lt;code&gt;anime: false&lt;/code&gt;，保存——番剧页面的入口在导航栏里消失了。&lt;/p&gt;
+&lt;p&gt;这就是&quot;配置开关&quot;：&lt;strong&gt;不需要删代码，改一个 true/false 就能控制功能显隐&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Day 4：改外观配置&lt;/h3&gt;
+&lt;h4&gt;任务 1：改 Banner&lt;/h4&gt;
+&lt;p&gt;在 &lt;code&gt;siteConfig.ts&lt;/code&gt; 里找到 &lt;code&gt;banner&lt;/code&gt; 配置块（约第 108-180 行），理解以下配置：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;配置&lt;/th&gt;
+&lt;th&gt;作用&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;src.desktop&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;桌面端 Banner 图片数组（多张 = 自动轮播）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;src.mobile&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;移动端 Banner 图片&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;carousel.interval&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;轮播间隔（秒）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;homeText.title&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Banner 上的大标题&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;homeText.subtitle&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Banner 上的副标题（数组 = 随机/轮播显示）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;typewriter.enable&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;副标题打字机效果开关&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;typewriter.speed&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;打字速度&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;任务 2：替换 Banner 图片&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;找 4 张你喜欢的图片（建议 &lt;code&gt;.webp&lt;/code&gt; 格式，桌面端宽度至少 1920px）&lt;/li&gt;
+&lt;li&gt;放到 &lt;code&gt;public/assets/desktop-banner/&lt;/code&gt; 下（替换原有的或新增）&lt;/li&gt;
+&lt;li&gt;在 &lt;code&gt;siteConfig.ts&lt;/code&gt; 里修改 &lt;code&gt;banner.src.desktop&lt;/code&gt; 数组的路径&lt;/li&gt;
+&lt;li&gt;同样操作移动端 Banner 到 &lt;code&gt;public/assets/mobile-banner/&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;任务 3：改页面布局&lt;/h4&gt;
+&lt;p&gt;理解三种壁纸模式（&lt;code&gt;wallpaperMode.defaultMode&lt;/code&gt;）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&quot;banner&quot;&lt;/code&gt; — 顶部大横幅（默认）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&quot;fullscreen&quot;&lt;/code&gt; — 全屏壁纸&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&quot;none&quot;&lt;/code&gt; — 无壁纸&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;改成不同的值，观察页面变化。&lt;/p&gt;
+&lt;h4&gt;任务 4：改文章列表布局&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;postListLayout.defaultMode&lt;/code&gt;：&lt;code&gt;&quot;list&quot;&lt;/code&gt; = 单列列表，&lt;code&gt;&quot;grid&quot;&lt;/code&gt; = 双列网格&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;postListLayout.allowSwitch&lt;/code&gt;：是否允许访客切换布局&lt;/li&gt;
+&lt;li&gt;把 &lt;code&gt;defaultMode&lt;/code&gt; 改成 &lt;code&gt;&quot;grid&quot;&lt;/code&gt;，看看效果&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr /&gt;
-&lt;h2&gt;第二阶段：改内容，不动代码（Day 2-3）&lt;/h2&gt;
-&lt;h3&gt;Day 2：改配置 —— 把网站变成你的&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：不用写一行 HTML/CSS，只改配置文件，让这个网站变成&quot;你的&quot;。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;任务 1：改网站基本信息&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;打开 &lt;code&gt;src/config/&lt;/code&gt; 目录，找到这些配置文件，逐行看，改掉能看懂的：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;网站标题、描述&lt;/li&gt;
-&lt;li&gt;你的名字、头像链接&lt;/li&gt;
-&lt;li&gt;导航栏菜单项&lt;/li&gt;
-&lt;li&gt;社交链接（GitHub、邮箱）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;每改一处保存，看浏览器变化。这是最快建立信心的方式。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;任务 2：改首页 Hero 区&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;找首页的配置（通常在 config 文件或 &lt;code&gt;src/pages/index.astro&lt;/code&gt; 的 frontmatter），改：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;大标题&lt;/li&gt;
-&lt;li&gt;副标题&lt;/li&gt;
-&lt;li&gt;按钮文字&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;任务 3：理解 Tailwind CSS 的 class&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;打开 &lt;code&gt;src/pages/index.astro&lt;/code&gt;，你会看到很多像 &lt;code&gt;class=&quot;text-2xl font-bold text-center&quot;&lt;/code&gt; 这样的代码。不用背，记住两个网站：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://tailwindcss.com/docs&quot;&gt;Tailwind CSS 文档&lt;/a&gt; —— 查任何 class 的含义&lt;/li&gt;
-&lt;li&gt;改一个 class，保存，看效果。比如把 &lt;code&gt;text-2xl&lt;/code&gt; 改成 &lt;code&gt;text-4xl&lt;/code&gt;，字体会变大&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;今天学到什么&lt;/strong&gt;：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;配置驱动：这个项目的很多内容不用改代码，改配置就行&lt;/li&gt;
-&lt;li&gt;Tailwind CSS：用 class 控制样式，不用写 CSS 文件&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;h3&gt;Day 3：写第一篇文章&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：在博客上发布一篇你自己的文章。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;任务 1：找到文章目录&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ls src/content/posts/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;你会看到一些 &lt;code&gt;.md&lt;/code&gt; 或 &lt;code&gt;.mdx&lt;/code&gt; 文件。这些就是博客文章。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;任务 2：新建一篇文章&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;pnpm new-post
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;按提示输入标题。会在 &lt;code&gt;src/content/posts/&lt;/code&gt; 下生成一个新文件。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;任务 3：写 Markdown&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;打开你新建的文件，顶部是 frontmatter（用 &lt;code&gt;---&lt;/code&gt; 包起来的部分）：&lt;/p&gt;
+&lt;h2&gt;第三阶段：写文章，理解内容系统（Day 5-6）&lt;/h2&gt;
+&lt;h3&gt;Day 5：用 Markdown 写文章&lt;/h3&gt;
+&lt;h4&gt;任务 1：理解 Markdown Frontmatter&lt;/h4&gt;
+&lt;p&gt;打开 &lt;code&gt;src/content/posts/&lt;/code&gt; 下的任意一篇文章（&lt;code&gt;.md&lt;/code&gt; 文件），观察顶部：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;---
-title: 我的第一篇文章
-date: 2026-07-25
-description: 这是我用 Mizuki 写的第一篇博客
+title: &quot;文章标题&quot;
+published: 2025-07-24
+description: &quot;文章简介&quot;
 tags: [前端, 学习]
+category: 学习笔记
+draft: false
+pinned: false
 ---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这就是 &lt;strong&gt;Frontmatter&lt;/strong&gt;——文章元数据，用 &lt;code&gt;---&lt;/code&gt; 包起来。它告诉 Astro：这篇文章的标题是什么、什么时候发布的、属于哪个分类。&lt;/p&gt;
+&lt;p&gt;查阅 &lt;code&gt;src/content.config.ts&lt;/code&gt;，这里面用 Zod 定义了所有支持的 frontmatter 字段及其类型。&lt;/p&gt;
+&lt;h4&gt;任务 2：创建你的第一篇文章&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;pnpm new-post 我的第一篇文章
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这会在 &lt;code&gt;src/content/posts/&lt;/code&gt; 下生成一个新文件。打开它：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;修改 frontmatter 里的 &lt;code&gt;description&lt;/code&gt;、&lt;code&gt;tags&lt;/code&gt;、&lt;code&gt;category&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在 &lt;code&gt;---&lt;/code&gt; 下面的区域用 Markdown 写内容：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;## 今天学了什么
 
-## 今天学到了什么
+今天我开始学习 Astro 静态博客框架……
 
-今天我开始学习 Astro...
+### 三个收获
 
-## 代码示例
+1. Astro 的 `.astro` 文件分为 frontmatter 区和模板区
+2. 文件路由：`src/pages/xxx.astro` → `/xxx`
+3. 热更新：改了代码不用手动刷新
+
+### 代码示例
 
 ​```javascript
-console.log(&apos;hello world&apos;);
+console.log(&apos;Hello, Mizuki!&apos;);
 ​```
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;保存 → 浏览器自动刷新 → 首页应该能看到你的新文章。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;今天学到什么&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;保存，首页应能看到你的新文章。&lt;/p&gt;
+&lt;h4&gt;任务 3：理解 Markdown → HTML 的渲染过程&lt;/h4&gt;
+&lt;p&gt;Astro 处理文章的流程：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.md 文件
+  → frontmatter 被解析为元数据（标题、日期、标签...）
+  → Markdown 正文被 remark/rehype 插件处理
+    → 代码块 → Expressive Code 高亮
+    → 数学公式 → KaTeX 渲染
+    → Mermaid 图表 → 转为 SVG
+    → 图片 → 优化 + 响应式
+    → Admonition（提示框）→ 自定义组件
+  → 最终生成 HTML 页面
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;用到的插件都在 &lt;code&gt;src/plugins/&lt;/code&gt; 下，在 &lt;code&gt;astro.config.mjs&lt;/code&gt; 的 &lt;code&gt;markdown.processor&lt;/code&gt; 中注册。&lt;strong&gt;现在不需要看懂插件代码，只要知道它们存在就行&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Day 6：理解内容与代码分离&lt;/h3&gt;
+&lt;h4&gt;任务 1：理解内容同步机制&lt;/h4&gt;
+&lt;p&gt;这个项目支持&lt;strong&gt;内容与代码分离&lt;/strong&gt;——文章可以存放在另一个 Git 仓库里，构建时自动拉取。&lt;/p&gt;
+&lt;p&gt;看这几个文件：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Markdown frontmatter：文章标题、日期、标签在 &lt;code&gt;---&lt;/code&gt; 之间&lt;/li&gt;
-&lt;li&gt;Markdown 语法：&lt;code&gt;#&lt;/code&gt; = 标题，&lt;code&gt;##&lt;/code&gt; = 二级标题，``` 包起来 = 代码块&lt;/li&gt;
-&lt;li&gt;Astro 的内容集合：&lt;code&gt;src/content/posts/&lt;/code&gt; 下的 .md 文件自动变成博客文章&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;scripts/sync-content.js&lt;/code&gt; — 从远程仓库拉取文章&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;scripts/init-content-repo.js&lt;/code&gt; — 初始化内容仓库&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;docs/CONTENT_SEPARATION.md&lt;/code&gt; — 内容分离说明文档&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;package.json&lt;/code&gt; 里的 &lt;code&gt;predev&lt;/code&gt; 和 &lt;code&gt;prebuild&lt;/code&gt; 脚本会在启动/构建前自动执行同步：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&quot;predev&quot;: &quot;node scripts/sync-content.js || true&quot;,
+&quot;prebuild&quot;: &quot;node scripts/sync-content.js || true&quot;,
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;|| true&lt;/code&gt; 的意思是：即使同步失败（比如没有配置内容仓库），也不影响启动。&lt;/p&gt;
+&lt;h4&gt;任务 2：再写两篇文章&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;&quot;我是怎么开始学前端的&quot;&lt;/strong&gt; — 自我介绍，用上图片、链接、列表&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&quot;Mizuki 博客搭建记录&quot;&lt;/strong&gt; — 记录你学到现在的过程&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;练习 Markdown 语法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;#&lt;/code&gt; &lt;code&gt;##&lt;/code&gt; &lt;code&gt;###&lt;/code&gt; 标题层级&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;**粗体**&lt;/code&gt; &lt;code&gt;*斜体*&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[链接文字](URL)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;![图片描述](图片路径)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;- 列表项&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;1. 有序列表&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;gt; 引用文字&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;​&lt;code&gt;语言 代码块 &lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr /&gt;
-&lt;h2&gt;第三阶段：改样式，理解组件（Day 4-6）&lt;/h2&gt;
-&lt;h3&gt;Day 4：理解 Astro 组件&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：能看懂 &lt;code&gt;.astro&lt;/code&gt; 文件的结构。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;.astro 文件的两段式结构&lt;/strong&gt;：&lt;/p&gt;
+&lt;h2&gt;第四阶段：读懂 Astro 组件（Day 7-8）&lt;/h2&gt;
+&lt;h3&gt;Day 7：.astro 文件的解剖&lt;/h3&gt;
+&lt;h4&gt;核心概念：三段式结构&lt;/h4&gt;
+&lt;p&gt;每一个 &lt;code&gt;.astro&lt;/code&gt; 文件包含三个区域（后两个可选）：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;---
-// ↑↑↑ 上面这段叫 frontmatter（脚本区）
-// 在这里写 JavaScript/TypeScript
-// 可以 import 其他组件、定义变量、获取数据
+// ╔══════════════════════════════╗
+// ║  ① Frontmatter（脚本区）      ║
+// ║  运行在服务器端（构建时）       ║
+// ║  写 JS/TS 逻辑、import、取数据  ║
+// ╚══════════════════════════════╝
 import Layout from &apos;../layouts/Layout.astro&apos;;
 const title = &apos;我的页面&apos;;
+const items = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
 ---
 
-&amp;lt;!-- ↓↓↓ 下面这段叫 template（模板区） --&amp;gt;
-&amp;lt;!-- 在这里写 HTML --&amp;gt;
+&amp;lt;!-- ╔══════════════════════════════╗ --&amp;gt;
+&amp;lt;!-- ║  ② Template（模板区）         ║ --&amp;gt;
+&amp;lt;!-- ║  写 HTML/组件，可用 {变量}      ║ --&amp;gt;
+&amp;lt;!-- ╚══════════════════════════════╝ --&amp;gt;
 &amp;lt;Layout&amp;gt;
   &amp;lt;h1&amp;gt;{title}&amp;lt;/h1&amp;gt;
-  &amp;lt;p&amp;gt;这是一个 Astro 组件&amp;lt;/p&amp;gt;
+  &amp;lt;ul&amp;gt;
+    {items.map(item =&amp;gt; &amp;lt;li&amp;gt;{item}&amp;lt;/li&amp;gt;)}
+  &amp;lt;/ul&amp;gt;
 &amp;lt;/Layout&amp;gt;
 
 &amp;lt;style&amp;gt;
-  /* 样式只影响当前组件，不会泄露到其他组件 */
+  /* ╔══════════════════════════════╗ */
+  /* ║  ③ Style（样式区，可选）      ║ */
+  /* ║  默认 Scoped：只影响当前组件   ║ */
+  /* ╚══════════════════════════════╝ */
   h1 { color: red; }
 &amp;lt;/style&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;练习&lt;/strong&gt;：打开 &lt;code&gt;src/pages/about.astro&lt;/code&gt;，对照上面的结构看懂它。改一下 &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt; 里的文字，保存看效果。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;任务&lt;/strong&gt;：找一个 atom 组件（如 &lt;code&gt;src/components/atoms/Button/Button.astro&lt;/code&gt;），逐行读完。原子组件通常很短（20-50 行），是最容易看懂的入口。&lt;/p&gt;
+&lt;h4&gt;练习 1：从最简单的原子组件开始&lt;/h4&gt;
+&lt;p&gt;打开 &lt;code&gt;src/components/atoms/Badge/Badge.svelte&lt;/code&gt;（或 &lt;code&gt;Button/Button.astro&lt;/code&gt;），逐行读完。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这类原子组件通常很短（20-50 行），是最容易看懂的入口&lt;/li&gt;
+&lt;li&gt;注意：它接受 &lt;code&gt;Props&lt;/code&gt;（也叫属性/参数），父组件传入，组件内部使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;练习 2：读懂 about.astro&lt;/h4&gt;
+&lt;p&gt;打开 &lt;code&gt;src/pages/about.astro&lt;/code&gt;，对照上面的三段式结构理解它：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Frontmatter 区导入了什么？&lt;/li&gt;
+&lt;li&gt;模板区用了什么 HTML 标签和组件？&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;Layout&amp;gt;&lt;/code&gt; 是怎么包裹它的？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;改一下 &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt; 里的文字，保存看效果。&lt;/p&gt;
+&lt;h4&gt;练习 3：找 5 个 &lt;code&gt;.astro&lt;/code&gt; 组件，标出&quot;三段式&quot;&lt;/h4&gt;
+&lt;p&gt;随便打开 5 个 &lt;code&gt;.astro&lt;/code&gt; 文件，每个都：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;找到 frontmatter 区（&lt;code&gt;---&lt;/code&gt; 之间）&lt;/li&gt;
+&lt;li&gt;找到模板区（HTML/组件部分）&lt;/li&gt;
+&lt;li&gt;找到样式区（如果有的话）&lt;/li&gt;
+&lt;/ol&gt;
 &lt;hr /&gt;
-&lt;h3&gt;Day 5：理解布局和插槽&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：理解&quot;所有页面套同一个壳&quot;是怎么实现的。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;核心概念&lt;/strong&gt;：&lt;code&gt;Layout.astro&lt;/code&gt;（&lt;code&gt;src/layouts/Layout.astro&lt;/code&gt;）。&lt;/p&gt;
-&lt;p&gt;打开它，你会看到类似这样的结构：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;html&amp;gt;
+&lt;h3&gt;Day 8：理解布局和插槽（Slot）&lt;/h3&gt;
+&lt;h4&gt;核心概念：Layout 模式&lt;/h4&gt;
+&lt;p&gt;这是 Astro / 所有组件化框架最重要的模式之一：&lt;strong&gt;Layout 组件提供&quot;壳&quot;，每个页面填充自己的&quot;肉&quot;&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;打开 &lt;code&gt;src/layouts/Layout.astro&lt;/code&gt;，找到 &lt;code&gt;&amp;lt;slot /&amp;gt;&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- Layout.astro --&amp;gt;
+&amp;lt;html&amp;gt;
   &amp;lt;head&amp;gt;...&amp;lt;/head&amp;gt;
   &amp;lt;body&amp;gt;
-    &amp;lt;Header /&amp;gt;         ← 导航栏，每个页面都一样
+    &amp;lt;Header /&amp;gt;            ← 每个页面都一样
     &amp;lt;main&amp;gt;
-      &amp;lt;slot /&amp;gt;         ← ★ 插槽：每个页面的不同内容放在这里
+      &amp;lt;slot /&amp;gt;            ← ★ 这里放每个页面自己的内容
     &amp;lt;/main&amp;gt;
-    &amp;lt;Footer /&amp;gt;         ← 底部，每个页面都一样
+    &amp;lt;Footer /&amp;gt;            ← 每个页面都一样
   &amp;lt;/body&amp;gt;
 &amp;lt;/html&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;&amp;lt;slot /&amp;gt;&lt;/code&gt; 是关键——它是一个占位符。当你在 &lt;code&gt;about.astro&lt;/code&gt; 里写：&lt;/p&gt;
+&lt;p&gt;当 &lt;code&gt;about.astro&lt;/code&gt; 这样写：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;Layout title=&quot;关于我&quot;&amp;gt;
-  &amp;lt;h1&amp;gt;这是关于页面&amp;lt;/h1&amp;gt;     ← 这段内容替换 &amp;lt;slot /&amp;gt;
+  &amp;lt;h1&amp;gt;这是关于页面&amp;lt;/h1&amp;gt;     ← 这段内容会替换 &amp;lt;slot /&amp;gt;
 &amp;lt;/Layout&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;练习&lt;/strong&gt;：打开 &lt;code&gt;src/layouts/Layout.astro&lt;/code&gt;，找到 &lt;code&gt;&amp;lt;slot /&amp;gt;&lt;/code&gt; 的位置。然后打开 &lt;code&gt;src/pages/about.astro&lt;/code&gt;，看看它怎么用 &lt;code&gt;&amp;lt;Layout&amp;gt;&lt;/code&gt; 包裹自己的内容。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最终生成的 HTML&lt;/strong&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;...&amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    &amp;lt;Header /&amp;gt;
+    &amp;lt;main&amp;gt;
+      &amp;lt;h1&amp;gt;这是关于页面&amp;lt;/h1&amp;gt;   ← 替换了 &amp;lt;slot /&amp;gt; 的位置
+    &amp;lt;/main&amp;gt;
+    &amp;lt;Footer /&amp;gt;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;练习：追踪 slot 的传递链&lt;/h4&gt;
+&lt;p&gt;从 &lt;code&gt;about.astro&lt;/code&gt; 开始追踪：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;about.astro
+  → &amp;lt;Layout&amp;gt;...&amp;lt;/Layout&amp;gt;  ← 给 Layout 传了 title 和 slot 内容
+    → Layout.astro  ← 接收 title prop；&amp;lt;slot /&amp;gt; 放内容
+      → 在 &amp;lt;head&amp;gt; 里用 {title} 拼出 &amp;lt;title&amp;gt; 标签
+      → 在 &amp;lt;body&amp;gt; 里用 &amp;lt;slot /&amp;gt; 渲染子内容
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;再用同样的方法追踪首页 &lt;code&gt;[...page].astro&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[...page].astro
+  → &amp;lt;MainGridLayout&amp;gt;...&amp;lt;/MainGridLayout&amp;gt;
+    → MainGridLayout.astro  ← 包装在 Layout 之上
+      → Layout.astro  ← 最终还是套这个壳
+&lt;/code&gt;&lt;/pre&gt;
 &lt;hr /&gt;
-&lt;h3&gt;Day 6：改一个组件 —— 把导航栏改成你自己的&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：找到导航栏组件，改菜单项。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;定位导航栏&lt;/strong&gt;：&lt;/p&gt;
-&lt;p&gt;导航栏通常在 &lt;code&gt;src/components/layout/&lt;/code&gt; 或 &lt;code&gt;src/components/organisms/&lt;/code&gt; 下，找文件名含 &lt;code&gt;Header&lt;/code&gt;、&lt;code&gt;Nav&lt;/code&gt;、&lt;code&gt;Navbar&lt;/code&gt; 的文件。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;练习&lt;/strong&gt;：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;打开导航栏组件&lt;/li&gt;
-&lt;li&gt;找到菜单项（通常是 &lt;code&gt;&amp;lt;a&amp;gt;&lt;/code&gt; 标签列表）&lt;/li&gt;
-&lt;li&gt;改一个菜单名（比如 &quot;关于&quot; 改成 &quot;关于我&quot;）&lt;/li&gt;
-&lt;li&gt;给&quot;关于我&quot;加一个高亮样式（加 &lt;code&gt;class=&quot;text-blue-500&quot;&lt;/code&gt; 或 &lt;code&gt;class=&quot;font-bold&quot;&lt;/code&gt;）&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;今天学到什么&lt;/strong&gt;：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;组件的复用：导航栏写在 Header 组件里一次，所有页面都自动有&lt;/li&gt;
-&lt;li&gt;Tailwind 的 class 命名规律：&lt;code&gt;text-&lt;/code&gt; = 文字颜色，&lt;code&gt;font-&lt;/code&gt; = 字体粗细，&lt;code&gt;bg-&lt;/code&gt; = 背景色&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;h2&gt;第四阶段：加功能，真正动手（Day 7-8）&lt;/h2&gt;
-&lt;h3&gt;Day 7：加一个新页面&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：从零新建一个页面，加到导航栏里。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Step 1：创建页面文件&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;在 &lt;code&gt;src/pages/&lt;/code&gt; 下新建 &lt;code&gt;learning.astro&lt;/code&gt;：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;---
-import Layout from &apos;../layouts/Layout.astro&apos;;
----
+&lt;h2&gt;第五阶段：改样式，理解 Tailwind CSS（Day 9-10）&lt;/h2&gt;
+&lt;h3&gt;Day 9：Tailwind CSS 入门&lt;/h3&gt;
+&lt;h4&gt;核心理念&lt;/h4&gt;
+&lt;p&gt;Tailwind CSS 是&lt;strong&gt;原子化 CSS 框架&lt;/strong&gt;。传统方式是你写 CSS 规则给 class 起名，Tailwind 是给你成千上万个预先定义好的、单一用途的 class，你直接在 HTML 里组合它们。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- 传统写法 --&amp;gt;
+&amp;lt;style&amp;gt;
+  .my-button {
+    padding: 8px 16px;
+    background: blue;
+    color: white;
+    border-radius: 8px;
+  }
+&amp;lt;/style&amp;gt;
+&amp;lt;button class=&quot;my-button&quot;&amp;gt;按钮&amp;lt;/button&amp;gt;
 
-&amp;lt;Layout title=&quot;我的学习记录&quot;&amp;gt;
-  &amp;lt;main class=&quot;max-w-2xl mx-auto py-20&quot;&amp;gt;
-    &amp;lt;h1 class=&quot;text-3xl font-bold&quot;&amp;gt;📚 我的前端学习记录&amp;lt;/h1&amp;gt;
-    &amp;lt;p class=&quot;mt-4 text-gray-600&quot;&amp;gt;这里记录我每天学到的东西。&amp;lt;/p&amp;gt;
-  &amp;lt;/main&amp;gt;
-&amp;lt;/Layout&amp;gt;
+&amp;lt;!-- Tailwind 写法 --&amp;gt;
+&amp;lt;button class=&quot;px-4 py-2 bg-blue-500 text-white rounded-lg&quot;&amp;gt;按钮&amp;lt;/button&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;保存，访问 &lt;code&gt;http://localhost:4321/learning&lt;/code&gt; —— 你的新页面在。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Step 2：加到导航栏&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;找到导航栏组件，在菜单列表里加一个 &lt;code&gt;&amp;lt;a href=&quot;/learning&quot;&amp;gt;学习记录&amp;lt;/a&amp;gt;&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;今天学到什么&lt;/strong&gt;：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Astro 的文件路由：&lt;code&gt;src/pages/xxx.astro&lt;/code&gt; → 自动映射到 &lt;code&gt;/xxx&lt;/code&gt; 这个 URL&lt;/li&gt;
-&lt;li&gt;加页面只需要两步：建文件 + 加导航链接&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;h3&gt;Day 8：读懂一个 Svelte 交互组件（只读不改）&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：理解项目中 &lt;code&gt;.svelte&lt;/code&gt; 文件是干什么的。&lt;/p&gt;
-&lt;p&gt;Svelte 和 Astro 的区别：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;.astro&lt;/code&gt; 文件：在&lt;strong&gt;服务器端&lt;/strong&gt;运行，生成静态 HTML，没有交互&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;.svelte&lt;/code&gt; 文件：在&lt;strong&gt;浏览器端&lt;/strong&gt;运行，可以做交互（点击、输入、动画）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;练习&lt;/strong&gt;：打开 &lt;code&gt;src/components/widgets/music-player/MusicPlayer.svelte&lt;/code&gt;，不用全看懂，找到这三样东西：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; 标签里的 &lt;code&gt;let&lt;/code&gt; 变量 —— 这就是组件的&quot;状态&quot;（比如 &lt;code&gt;let isPlaying = false&lt;/code&gt;）&lt;/li&gt;
-&lt;li&gt;模板里的 &lt;code&gt;{#if ...}&lt;/code&gt; 和 &lt;code&gt;{变量}&lt;/code&gt; —— Svelte 的模板语法&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;on:click={...}&lt;/code&gt; —— 事件监听&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;今天学到什么&lt;/strong&gt;：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;.astro = 静态内容，构建时生成 HTML&lt;/li&gt;
-&lt;li&gt;.svelte = 交互内容，用户在浏览器里点按钮时响应&lt;/li&gt;
-&lt;li&gt;不需要现在就学会写 Svelte，知道它们在项目里的角色就够了&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;h2&gt;第五阶段：部署上线（Day 9-10）&lt;/h2&gt;
-&lt;h3&gt;Day 9：构建 + 部署到 GitHub Pages&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：你的博客有一个人人可以访问的网址。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Step 1：构建&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;pnpm build
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;构建产物在 &lt;code&gt;dist/&lt;/code&gt; 目录下——这就是你的整个网站，纯 HTML+CSS+JS，可以部署到任何静态托管服务。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Step 2：推到自己新建的 GitHub 仓库&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# 在 GitHub 上新建一个仓库，比如 mizuki-blog
-git remote add myblog https://github.com/你的用户名/mizuki-blog.git
-git push myblog main
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Step 3：用 Vercel 部署（比 GitHub Pages 更简单）&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;访问 &lt;a href=&quot;https://vercel.com&quot;&gt;vercel.com&lt;/a&gt;，用 GitHub 登录&lt;/li&gt;
-&lt;li&gt;点 &quot;New Project&quot; → 选择你的仓库&lt;/li&gt;
-&lt;li&gt;不用改任何配置，点 Deploy&lt;/li&gt;
-&lt;li&gt;等 2 分钟，拿到一个 &lt;code&gt;xxx.vercel.app&lt;/code&gt; 的网址&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;今天学到什么&lt;/strong&gt;：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;pnpm build&lt;/code&gt; = 生产构建，把所有代码编译成浏览器能直接读的 HTML/CSS/JS&lt;/li&gt;
-&lt;li&gt;Vercel 自动检测到 Astro 项目，零配置部署&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;h3&gt;Day 10：写 3 篇文章 + 完善博客&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：你的博客有内容可以给人看了。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;写 3 篇文章&lt;/strong&gt;：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&quot;我是怎么开始学前端的&quot; —— 自我介绍&lt;/li&gt;
-&lt;li&gt;&quot;前端学习第一周总结&quot; —— 记录你的学习过程&lt;/li&gt;
-&lt;li&gt;&quot;Mizuki 博客搭建记录&quot; —— 记录你是怎么做这个博客的&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;完善细节&lt;/strong&gt;：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;把默认的头像换成你自己的&lt;/li&gt;
-&lt;li&gt;把默认的项目卡片换成你自己的项目链接&lt;/li&gt;
-&lt;li&gt;把 README.md 改成你自己的项目介绍&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;h2&gt;学习方法&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;优点&lt;/strong&gt;：不用在 HTML 和 CSS 文件之间来回切换，不用给 class 起名字。
+&lt;strong&gt;缺点&lt;/strong&gt;：HTML 会变得很长。习惯了就好。&lt;/p&gt;
+&lt;h4&gt;最重要的记忆规律&lt;/h4&gt;
+&lt;p&gt;Tailwind 的 class 命名非常有规律：&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;原则&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;类别&lt;/th&gt;
+&lt;th&gt;命名模式&lt;/th&gt;
+&lt;th&gt;示例&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;先改配置文件，再动组件代码&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;配置文件是最安全的修改入口，改不坏&lt;/td&gt;
+&lt;td&gt;颜色&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{color}-{depth}&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;text-gray-500&lt;/code&gt;, &lt;code&gt;bg-blue-100&lt;/code&gt;, &lt;code&gt;border-red-300&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;改一个 class → 保存 → 看效果&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;Tailwind 的 class 不用背，试出来的记得最牢&lt;/td&gt;
+&lt;td&gt;尺寸&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{property}-{size}&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;p-4&lt;/code&gt;（padding 16px）, &lt;code&gt;m-2&lt;/code&gt;（margin 8px）, &lt;code&gt;w-64&lt;/code&gt;（width 256px）&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;遇到看不懂的代码，先跳过&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;这个项目有几百个文件，不需要全看懂&lt;/td&gt;
+&lt;td&gt;文字&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;text-{size}&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;text-sm&lt;/code&gt;, &lt;code&gt;text-lg&lt;/code&gt;, &lt;code&gt;text-2xl&lt;/code&gt;, &lt;code&gt;text-4xl&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;每天只吃透一个文件&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;比如今天就看懂 Button.astro，明天看 Header.astro&lt;/td&gt;
+&lt;td&gt;粗细&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;font-{weight}&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;font-normal&lt;/code&gt;, &lt;code&gt;font-bold&lt;/code&gt;, &lt;code&gt;font-black&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;不要怕改坏&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;改坏了 &lt;code&gt;git checkout -- .&lt;/code&gt; 一键恢复&lt;/td&gt;
+&lt;td&gt;圆角&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;rounded-{size}&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;rounded&lt;/code&gt;, &lt;code&gt;rounded-lg&lt;/code&gt;, &lt;code&gt;rounded-full&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;阴影&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;shadow-{size}&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;shadow&lt;/code&gt;, &lt;code&gt;shadow-md&lt;/code&gt;, &lt;code&gt;shadow-xl&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;显示&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;flex&lt;/code&gt;, &lt;code&gt;grid&lt;/code&gt;, &lt;code&gt;hidden&lt;/code&gt;, &lt;code&gt;block&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;布局相关&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;响应式&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{screen}:{class}&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;md:flex&lt;/code&gt;, &lt;code&gt;lg:hidden&lt;/code&gt;, &lt;code&gt;xl:text-2xl&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;学习方法&lt;/strong&gt;：不背。打开 &lt;a href=&quot;https://tailwindcss.com/docs&quot;&gt;Tailwind CSS 文档&lt;/a&gt;，用到什么查什么。试 100 次就记住了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;练习 1：在浏览器里改 class&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;打开 &lt;code&gt;http://localhost:3000&lt;/code&gt;，按 F12 打开开发者工具&lt;/li&gt;
+&lt;li&gt;点击左上角的元素选择器（箭头图标）&lt;/li&gt;
+&lt;li&gt;选中一个元素（比如文章标题）&lt;/li&gt;
+&lt;li&gt;在右侧 Styles 面板里，找到它的 class&lt;/li&gt;
+&lt;li&gt;双击一个 class 名，改成别的值，观察效果&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;比如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;把 &lt;code&gt;text-lg&lt;/code&gt; 改成 &lt;code&gt;text-4xl&lt;/code&gt; → 字变大&lt;/li&gt;
+&lt;li&gt;把 &lt;code&gt;text-gray-500&lt;/code&gt; 改成 &lt;code&gt;text-blue-500&lt;/code&gt; → 颜色变蓝&lt;/li&gt;
+&lt;li&gt;加一个 &lt;code&gt;bg-yellow-200&lt;/code&gt; → 背景变黄&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;练习 2：改一个组件的样式&lt;/h4&gt;
+&lt;p&gt;打开 &lt;code&gt;src/components/features/posts/PostCard.astro&lt;/code&gt;，找到其中的 class：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;给卡片加一个 &lt;code&gt;hover:shadow-xl&lt;/code&gt;（鼠标悬停大阴影）&lt;/li&gt;
+&lt;li&gt;把标题颜色改成 &lt;code&gt;text-blue-600&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;保存看效果。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Day 10：理解和修改全局样式&lt;/h3&gt;
+&lt;h4&gt;任务 1：理解 main.css 的结构&lt;/h4&gt;
+&lt;p&gt;打开 &lt;code&gt;src/styles/main.css&lt;/code&gt;。这个文件导入了 Tailwind 并注册了项目中用到的自定义 CSS 变量。观察 &lt;code&gt;@theme&lt;/code&gt; 块中定义的 CSS 变量（以 &lt;code&gt;--&lt;/code&gt; 开头）。&lt;/p&gt;
+&lt;h4&gt;任务 2：改主题色&lt;/h4&gt;
+&lt;p&gt;主题色通过 CSS 变量控制，核心是 &lt;code&gt;--hue&lt;/code&gt;（色相）。Mizuki 的主题色系统基于 OKLCH 色彩空间：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用 &lt;code&gt;--hue&lt;/code&gt; 设定色相（0-360）&lt;/li&gt;
+&lt;li&gt;网站的所有主题色自动基于这个值计算出来&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;你在 &lt;code&gt;siteConfig.ts&lt;/code&gt; 里改的 &lt;code&gt;themeColor.hue&lt;/code&gt; 就是在控制这个值。&lt;/p&gt;
+&lt;h4&gt;任务 3：改暗色模式颜色&lt;/h4&gt;
+&lt;p&gt;打开浏览器开发者工具，在 &lt;code&gt;&amp;lt;html&amp;gt;&lt;/code&gt; 元素上找到 &lt;code&gt;class=&quot;dark&quot;&lt;/code&gt; 或类似的暗色模式标记。手动切换主题，观察哪些 CSS 变量变了。&lt;/p&gt;
+&lt;p&gt;如果想自定义暗色模式的配色，搜 &lt;code&gt;@media (prefers-color-scheme: dark)&lt;/code&gt; 和 &lt;code&gt;.dark&lt;/code&gt; 相关的样式规则。&lt;/p&gt;
+&lt;h4&gt;任务 4：改字体&lt;/h4&gt;
+&lt;p&gt;在 &lt;code&gt;src/styles/main.css&lt;/code&gt; 的 &lt;code&gt;@theme&lt;/code&gt; 块里找到 &lt;code&gt;--font-sans&lt;/code&gt; 变量。这控制了全站的默认字体。字体文件本身通过 &lt;code&gt;astro.config.mjs&lt;/code&gt; 的 &lt;code&gt;fonts&lt;/code&gt; 配置加载。&lt;/p&gt;
+&lt;p&gt;如果想用系统默认字体（更快）：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;--font-sans: -apple-system, BlinkMacSystemFont, &apos;Segoe UI&apos;, Roboto, sans-serif;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;第六阶段：改组件，真刀真枪动手（Day 11-13）&lt;/h2&gt;
+&lt;h3&gt;Day 11：改导航栏&lt;/h3&gt;
+&lt;h4&gt;目标：把导航栏改成你想要的样子&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;打开 &lt;code&gt;src/components/organisms/navigation/Navbar.astro&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;找到菜单项渲染的部分&lt;/li&gt;
+&lt;li&gt;改一个菜单名&lt;/li&gt;
+&lt;li&gt;改菜单的样式（高亮当前页面的样式）&lt;/li&gt;
+&lt;li&gt;给导航栏加一个背景模糊效果：&lt;code&gt;backdrop-blur-md&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;同时看 &lt;code&gt;src/config/navBarConfig.ts&lt;/code&gt;，理解配置如何驱动导航栏的渲染。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Day 12：改首页文章列表&lt;/h3&gt;
+&lt;h4&gt;目标：调整首页文章卡片的展示&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;打开 &lt;code&gt;src/components/features/posts/PostCard.astro&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;改卡片的布局（封面图位置、标题大小、描述截断行数）&lt;/li&gt;
+&lt;li&gt;把日期格式改成你喜欢的样子（比如 &quot;2025年7月26日&quot;）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;相关工具函数在 &lt;code&gt;src/utils/date-utils.ts&lt;/code&gt;。&lt;/p&gt;
+&lt;h4&gt;理解 PostCard vs PostListItem&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;PostCard.astro&lt;/code&gt;：网格模式的卡片&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;PostListItem.astro&lt;/code&gt;：列表模式的行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;两者的区别是布局，数据来源相同。在 &lt;code&gt;PostPage.astro&lt;/code&gt; 中按当前布局模式决定用哪个。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Day 13：改 Footer&lt;/h3&gt;
+&lt;h4&gt;目标：把页脚改成你自己的&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;打开 &lt;code&gt;src/components/organisms/footer/Footer.astro&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;改版权信息、链接&lt;/li&gt;
+&lt;li&gt;改 ICP 备案号（如果需要的话）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;相关配置：&lt;code&gt;src/config/footerConfig.ts&lt;/code&gt;、&lt;code&gt;src/config/licenseConfig.ts&lt;/code&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;第七阶段：理解 Svelte 交互组件（Day 14-15）&lt;/h2&gt;
+&lt;h3&gt;Day 14：Svelte 是什么，和 Astro 什么关系&lt;/h3&gt;
+&lt;h4&gt;关键区别&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;.astro 组件&lt;/th&gt;
+&lt;th&gt;.svelte 组件&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;运行位置&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;服务器端（构建时）&lt;/td&gt;
+&lt;td&gt;浏览器端（运行时）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;生成什么&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;静态 HTML&lt;/td&gt;
+&lt;td&gt;带交互的 HTML + JS&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;能做什么&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;渲染内容、接收 props&lt;/td&gt;
+&lt;td&gt;响应用户点击、输入、动画、状态管理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;什么时候用&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;页面、布局、纯展示组件&lt;/td&gt;
+&lt;td&gt;音乐播放器、搜索、主题切换、表单&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;程序员的类比&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.astro&lt;/code&gt; = &lt;strong&gt;打印机&lt;/strong&gt;：构建时跑一次，产出静态 HTML，和用户没有互动&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.svelte&lt;/code&gt; = &lt;strong&gt;手机 App&lt;/strong&gt;：跑在用户浏览器里，响应用户操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Svelte 组件的基本结构&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;script&amp;gt;
+  // ① 脚本区：变量、函数、逻辑
+  let count = 0;
+  function increment() {
+    count += 1;
+  }
+&amp;lt;/script&amp;gt;
+
+&amp;lt;!-- ② 模板区：HTML + Svelte 模板语法 --&amp;gt;
+&amp;lt;button on:click={increment}&amp;gt;
+  点击了 {count} 次
+&amp;lt;/button&amp;gt;
+
+&amp;lt;style&amp;gt;
+  /* ③ 样式区：Scoped 样式 */
+  button {
+    background: blue;
+    color: white;
+  }
+&amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;练习：找到一个 Svelte 组件，认三样东西&lt;/h4&gt;
+&lt;p&gt;打开 &lt;code&gt;src/components/control/ThemeSwitch.svelte&lt;/code&gt;（主题切换按钮）：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;找到 &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; 里的 &lt;code&gt;let&lt;/code&gt; 变量 —— 这是组件的&lt;strong&gt;状态&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;找到 &lt;code&gt;on:click={...}&lt;/code&gt; —— 这是&lt;strong&gt;事件监听&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;找到模板里的 &lt;code&gt;{#if ...}&lt;/code&gt; 和 &lt;code&gt;{变量}&lt;/code&gt; —— 这是 Svelte 的&lt;strong&gt;模板语法&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Day 15：跟踪音乐播放器的数据流&lt;/h3&gt;
+&lt;h4&gt;目标：理解一个复杂 Svelte 组件是怎么工作的&lt;/h4&gt;
+&lt;p&gt;音乐播放器是这个项目里最复杂的 Svelte 组件，在 &lt;code&gt;src/components/widgets/music-player/&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;组件层级&lt;/strong&gt;（从外到内）：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MusicPlayer.svelte          ← 顶层：控制播放器整体显示/隐藏
+  ├── FabMusicPanel.svelte  ← 悬浮按钮 + 弹出面板
+  └── PlayerBar.svelte      ← 底部播放条
+        ├── TrackDisplay     ← 当前曲目信息（封面、歌名、歌手）
+        ├── PlayerControls   ← 播放/暂停/上一首/下一首
+        ├── ProgressControl  ← 进度条
+        └── VolumeControl    ← 音量控制
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;数据流&lt;/strong&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;musicPlayerStore.ts（全局状态仓库）
+  ↓ 订阅
+MusicPlayer.svelte
+  ↓ props 传递
+PlayerBar.svelte
+  ↓ props 传递
+TrackDisplay / PlayerControls / ProgressControl ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;musicPlayerStore.ts&lt;/code&gt;（&lt;code&gt;src/stores/musicPlayerStore.ts&lt;/code&gt;）是数据源——它存储了：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当前播放的歌曲&lt;/li&gt;
+&lt;li&gt;播放列表&lt;/li&gt;
+&lt;li&gt;播放状态（播放中/暂停）&lt;/li&gt;
+&lt;li&gt;音量&lt;/li&gt;
+&lt;li&gt;播放模式（顺序/随机/单曲循环）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;概念理解&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Store（状态仓库）&lt;/strong&gt;：类似一个全局变量，任何组件都能读取/修改它&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;当 Store 更新时，所有读取它的组件自动更新&lt;/strong&gt;——这就是&quot;响应式&quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;不用现在就学会写 Svelte。这个阶段的目标只是：能认出 .svelte 文件、知道它是做交互的、理解数据从 store 流向组件。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2&gt;第八阶段：加新功能，从改到写（Day 16-18）&lt;/h2&gt;
+&lt;h3&gt;Day 16：加一个新页面&lt;/h3&gt;
+&lt;h4&gt;目标：从零新建一个页面，并加到导航栏里&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Step 1：创建页面文件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在 &lt;code&gt;src/pages/&lt;/code&gt; 下新建 &lt;code&gt;reading.astro&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---
+import MainGridLayout from &apos;../layouts/MainGridLayout.astro&apos;;
+---
+
+&amp;lt;MainGridLayout title=&quot;读书笔记&quot;&amp;gt;
+  &amp;lt;main class=&quot;max-w-2xl mx-auto py-12 px-4&quot;&amp;gt;
+    &amp;lt;h1 class=&quot;text-3xl font-bold mb-6&quot;&amp;gt;📚 读书笔记&amp;lt;/h1&amp;gt;
+    &amp;lt;p class=&quot;text-gray-500&quot;&amp;gt;这里记录我读过的书和笔记。&amp;lt;/p&amp;gt;
+
+    &amp;lt;div class=&quot;mt-8 space-y-4&quot;&amp;gt;
+      &amp;lt;div class=&quot;p-4 border rounded-lg&quot;&amp;gt;
+        &amp;lt;h3 class=&quot;font-bold&quot;&amp;gt;《书名》&amp;lt;/h3&amp;gt;
+        &amp;lt;p class=&quot;text-sm text-gray-500&quot;&amp;gt;作者 · 2025 年 7 月读完&amp;lt;/p&amp;gt;
+        &amp;lt;p class=&quot;mt-2&quot;&amp;gt;这本书讲了……&amp;lt;/p&amp;gt;
+      &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/main&amp;gt;
+&amp;lt;/MainGridLayout&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;保存，访问 &lt;code&gt;http://localhost:3000/reading/&lt;/code&gt;——你的新页面出现了！&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 2：加到导航栏&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;打开 &lt;code&gt;src/config/navBarConfig.ts&lt;/code&gt;，在菜单列表里加一项链接到 &lt;code&gt;/reading/&lt;/code&gt;。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Day 17：添加一个新的侧边栏小部件&lt;/h3&gt;
+&lt;h4&gt;目标：在侧边栏加一个自定义小部件&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Step 1：理解侧边栏的渲染机制&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;侧边栏的内容由 &lt;code&gt;widget-manager.ts&lt;/code&gt;（&lt;code&gt;src/utils/widget-manager.ts&lt;/code&gt;）管理。它在启动时读取 &lt;code&gt;sidebarConfig.ts&lt;/code&gt;，决定哪些 widget 在什么条件下显示。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 2：创建一个小部件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在 &lt;code&gt;src/components/widgets/&lt;/code&gt; 下新建 &lt;code&gt;my-quote/MyQuote.astro&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---
+// 随机显示一句名言
+const quotes = [
+  { text: &quot;代码是写给人看的，顺便能在机器上运行。&quot;, author: &quot;Harold Abelson&quot; },
+  { text: &quot;简单是可靠的先决条件。&quot;, author: &quot;Edsger Dijkstra&quot; },
+  { text: &quot;先让程序跑起来，再考虑优化。&quot;, author: &quot;Kent Beck&quot; },
+];
+const random = quotes[Math.floor(Math.random() * quotes.length)];
+---
+
+&amp;lt;div class=&quot;my-quote p-4 rounded-xl bg-gray-50 dark:bg-gray-800&quot;&amp;gt;
+  &amp;lt;p class=&quot;text-sm italic&quot;&amp;gt;&quot;{random.text}&quot;&amp;lt;/p&amp;gt;
+  &amp;lt;p class=&quot;text-xs text-gray-500 mt-1&quot;&amp;gt;— {random.author}&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Step 3：注册到侧边栏&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在 &lt;code&gt;src/config/sidebarConfig.ts&lt;/code&gt; 中配置这个新 widget。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Day 18：定制文章详情页&lt;/h3&gt;
+&lt;h4&gt;目标：文章页面的展示由你掌控&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;打开 &lt;code&gt;src/pages/posts/[...slug].astro&lt;/code&gt; — 理解它如何获取文章数据并传给布局&lt;/li&gt;
+&lt;li&gt;打开 &lt;code&gt;src/components/features/posts/PostPage.astro&lt;/code&gt; — 这是文章页面的核心组件&lt;/li&gt;
+&lt;li&gt;试着改：
+&lt;ul&gt;
+&lt;li&gt;文章标题的字号&lt;/li&gt;
+&lt;li&gt;文章元数据（日期、分类、字数、阅读时长）的显示顺序&lt;/li&gt;
+&lt;li&gt;要不要显示文章封面&lt;/li&gt;
+&lt;li&gt;相关文章推荐的数量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;相关工具函数在：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;src/utils/content-utils.ts&lt;/code&gt; — 内容处理&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/utils/post-card-content.ts&lt;/code&gt; — 卡片内容提取&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/utils/reading-time&lt;/code&gt; — 阅读时长计算（这是一个 npm 包）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2&gt;第九阶段：把它变成你的博客（Day 19-22）&lt;/h2&gt;
+&lt;h3&gt;Day 19：彻底改头换面&lt;/h3&gt;
+&lt;h4&gt;目标：让博客在视觉上不再像原版 Mizuki&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;要改的&lt;/th&gt;
+&lt;th&gt;在哪改&lt;/th&gt;
+&lt;th&gt;改成什么&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;网站标题&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;siteConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;你的名字&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Banner 图&lt;/td&gt;
+&lt;td&gt;替换 &lt;code&gt;public/assets/desktop-banner/&lt;/code&gt; 下的图&lt;/td&gt;
+&lt;td&gt;你自己的图&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;头像&lt;/td&gt;
+&lt;td&gt;替换 &lt;code&gt;public/assets/&lt;/code&gt; 或 &lt;code&gt;src/assets/images/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;你自己的头像&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;主题色&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;siteConfig.ts&lt;/code&gt; 的 &lt;code&gt;themeColor.hue&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;你喜欢的颜色&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;字体&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;astro.config.mjs&lt;/code&gt; 的 &lt;code&gt;fonts&lt;/code&gt; 配置&lt;/td&gt;
+&lt;td&gt;你喜欢的字体（或用系统默认）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;首页介绍&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;siteConfig.ts&lt;/code&gt; 的 &lt;code&gt;banner.homeText&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;你自己的欢迎语&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;导航栏菜单&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;navBarConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;你想要的菜单&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;音乐&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;musicConfig.ts&lt;/code&gt; + &lt;code&gt;public/assets/music/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;你喜欢的歌&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;社交链接&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;profileConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;你自己的链接&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Footer 版权&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;footerConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;你的名字&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;hr /&gt;
-&lt;h2&gt;按照前端学习计划，这个项目对应什么水平&lt;/h2&gt;
+&lt;h3&gt;Day 20：清理内容&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;删除 &lt;code&gt;src/content/posts/&lt;/code&gt; 下原有的示例文章（或移到备份文件夹）&lt;/li&gt;
+&lt;li&gt;保留你之前写的 3 篇文章&lt;/li&gt;
+&lt;li&gt;再写至少 2 篇新文章，让你的博客有 5+ 篇文章&lt;/li&gt;
+&lt;li&gt;删掉不想要的特色页面（在 &lt;code&gt;siteConfig.ts&lt;/code&gt; 的 &lt;code&gt;featurePages&lt;/code&gt; 里关掉）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Day 21：整理数据和图片&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;src/data/projects.ts&lt;/code&gt; — 改成你自己的项目&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/data/friends.ts&lt;/code&gt; — 加你自己的友链（或清空）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/data/skills.ts&lt;/code&gt; — 改成你会的技能&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/data/timeline.ts&lt;/code&gt; — 改成你的经历&lt;/li&gt;
+&lt;li&gt;清理 &lt;code&gt;public/&lt;/code&gt; 下的旧图片，换上你自己的&lt;/li&gt;
+&lt;li&gt;把 &lt;code&gt;logo.png&lt;/code&gt; 换成你自己的 logo&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Day 22：打磨细节&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;改 404 页面（&lt;code&gt;src/pages/404.astro&lt;/code&gt;）：写一句有趣的话&lt;/li&gt;
+&lt;li&gt;改 RSS 配置（检查 &lt;code&gt;rss.xml.ts&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;改 &lt;code&gt;README.md&lt;/code&gt;：介绍你自己的博客&lt;/li&gt;
+&lt;li&gt;检查所有中文文案，确保没有&quot;Yuzumoon82&quot;的痕迹&lt;/li&gt;
+&lt;li&gt;打开所有页面（首页、文章、关于、友链……），确认都正常&lt;/li&gt;
+&lt;li&gt;在手机浏览器上测试，确认移动端也正常&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2&gt;第十阶段：部署上线（Day 23-24）&lt;/h2&gt;
+&lt;h3&gt;Day 23：构建 + GitHub Pages 部署&lt;/h3&gt;
+&lt;h4&gt;Step 1：在 GitHub 上创建仓库&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;登录 GitHub → New Repository&lt;/li&gt;
+&lt;li&gt;仓库名：&lt;code&gt;my-blog&lt;/code&gt;（或任何你喜欢的名字）&lt;/li&gt;
+&lt;li&gt;不要勾选 &quot;Initialize this repository with a README&quot;（因为已有代码）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;Step 2：关联远程仓库&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;cd /Users/gaoyaoqian/DevCode/webwork/Mizuki
+
+# 查看当前的远程仓库
+git remote -v
+
+# 添加你自己的远程仓库
+git remote add origin https://github.com/你的用户名/my-blog.git
+
+# 推送代码
+git push -u origin main
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Step 3：修改 siteURL&lt;/h4&gt;
+&lt;p&gt;在 &lt;code&gt;src/config/siteConfig.ts&lt;/code&gt; 里，把 &lt;code&gt;siteURL&lt;/code&gt; 改成你的 GitHub Pages 地址：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;siteURL: &quot;https://你的用户名.github.io/my-blog/&quot;,
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;同时确认 &lt;code&gt;astro.config.mjs&lt;/code&gt; 里的 &lt;code&gt;base&lt;/code&gt; 路径正确：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;base: process.env.NODE_ENV === &quot;production&quot; ? &quot;/my-blog/&quot; : &quot;/&quot;,
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Step 4：本地构建测试&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;pnpm build
+pnpm preview
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;打开 &lt;code&gt;http://localhost:4321&lt;/code&gt; 检查构建结果。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Day 24：正式部署&lt;/h3&gt;
+&lt;h4&gt;方案 A：Vercel 部署（推荐，最简单）&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;访问 &lt;a href=&quot;https://vercel.com&quot;&gt;vercel.com&lt;/a&gt;，用 GitHub 登录&lt;/li&gt;
+&lt;li&gt;点 &quot;New Project&quot; → 选择你的仓库&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FrameWork Preset&lt;/strong&gt; 会自动识别为 Astro&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Build Command&lt;/strong&gt;: &lt;code&gt;pnpm build&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Output Directory&lt;/strong&gt;: &lt;code&gt;dist&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;点 Deploy&lt;/li&gt;
+&lt;li&gt;等 2 分钟，拿到 &lt;code&gt;xxx.vercel.app&lt;/code&gt; 网址&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Vercel 的优势：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;自动检测 Astro 项目，零配置&lt;/li&gt;
+&lt;li&gt;每次 push 自动重新部署&lt;/li&gt;
+&lt;li&gt;支持自定义域名&lt;/li&gt;
+&lt;li&gt;免费额度足够个人博客使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;方案 B：GitHub Pages（用 Actions 自动部署）&lt;/h4&gt;
+&lt;p&gt;项目已经有 &lt;code&gt;.github/workflows/deploy.yml&lt;/code&gt;，但可能需要调整：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 GitHub 仓库 Settings → Pages → Source 选 &quot;GitHub Actions&quot;&lt;/li&gt;
+&lt;li&gt;每次 push 到 main 分支，Actions 自动构建部署&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：如果用 GitHub Pages，注意 &lt;code&gt;astro.config.mjs&lt;/code&gt; 里的 &lt;code&gt;base&lt;/code&gt; 配置和 &lt;code&gt;siteConfig.ts&lt;/code&gt; 里的 &lt;code&gt;siteURL&lt;/code&gt; 要匹配你的 GitHub Pages 地址。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;✅ 部署成功标志&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;用手机/其他设备打开你的网址，能正常访问&lt;/li&gt;
+&lt;li&gt;文章、图片、样式都正常显示&lt;/li&gt;
+&lt;li&gt;RSS 订阅地址可以正常访问&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2&gt;🎯 完整里程碑速查&lt;/h2&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;前端学习计划的阶段&lt;/th&gt;
-&lt;th&gt;Mizuki 中的对应&lt;/th&gt;
+&lt;th&gt;天数&lt;/th&gt;
+&lt;th&gt;阶段&lt;/th&gt;
+&lt;th&gt;核心目标&lt;/th&gt;
+&lt;th&gt;产出&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;Day 1-2（CSS 实战）&lt;/td&gt;
-&lt;td&gt;改 Tailwind class，观察效果&lt;/td&gt;
+&lt;td&gt;Day 1-2&lt;/td&gt;
+&lt;td&gt;跑起来&lt;/td&gt;
+&lt;td&gt;项目在本地跑起来&lt;/td&gt;
+&lt;td&gt;能访问 localhost:3000&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;Day 3-4（JS 原生）&lt;/td&gt;
-&lt;td&gt;看懂 .astro 的 frontmatter 脚本区&lt;/td&gt;
+&lt;td&gt;Day 3-4&lt;/td&gt;
+&lt;td&gt;改配置&lt;/td&gt;
+&lt;td&gt;用配置文件改网站信息&lt;/td&gt;
+&lt;td&gt;标题、个人信息变成你的&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;Day 5-6（第一个项目）&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;Mizuki 就是你的第一个项目&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Day 5-6&lt;/td&gt;
+&lt;td&gt;写文章&lt;/td&gt;
+&lt;td&gt;用 Markdown 写文章&lt;/td&gt;
+&lt;td&gt;3 篇自己写的文章&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;Day 9-10（Vue 入门）&lt;/td&gt;
-&lt;td&gt;Svelte 和 Vue 概念相通：组件、响应式、插槽&lt;/td&gt;
+&lt;td&gt;Day 7-8&lt;/td&gt;
+&lt;td&gt;懂 Astro&lt;/td&gt;
+&lt;td&gt;理解 .astro 文件结构&lt;/td&gt;
+&lt;td&gt;能看懂任意 .astro 组件&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;Week 3（组件库）&lt;/td&gt;
-&lt;td&gt;Mizuki 的 atoms/ 就是一套组件库&lt;/td&gt;
+&lt;td&gt;Day 9-10&lt;/td&gt;
+&lt;td&gt;改样式&lt;/td&gt;
+&lt;td&gt;能用 Tailwind CSS class&lt;/td&gt;
+&lt;td&gt;改了 5+ 个组件的样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Day 11-13&lt;/td&gt;
+&lt;td&gt;改组件&lt;/td&gt;
+&lt;td&gt;改导航栏、文章卡片、Footer&lt;/td&gt;
+&lt;td&gt;导航栏/Footer 是你的样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Day 14-15&lt;/td&gt;
+&lt;td&gt;懂 Svelte&lt;/td&gt;
+&lt;td&gt;理解 .svelte 交互组件&lt;/td&gt;
+&lt;td&gt;能说出数据流怎么走&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Day 16-18&lt;/td&gt;
+&lt;td&gt;加功能&lt;/td&gt;
+&lt;td&gt;新建页面 + 侧边栏部件&lt;/td&gt;
+&lt;td&gt;一个自定义页面 + widget&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Day 19-22&lt;/td&gt;
+&lt;td&gt;变我的&lt;/td&gt;
+&lt;td&gt;彻底个性化&lt;/td&gt;
+&lt;td&gt;看起来完全是你的博客&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Day 23-24&lt;/td&gt;
+&lt;td&gt;上线&lt;/td&gt;
+&lt;td&gt;构建 + 部署&lt;/td&gt;
+&lt;td&gt;人人都能访问的网址&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;📖 建议的阅读顺序（如果想系统学习源码）&lt;/h2&gt;
+&lt;p&gt;当你想深入理解这个项目时，按以下顺序阅读关键文件：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;第 1 层：入门
+  ├── src/config/siteConfig.ts        ← 先看配置，理解网站有哪些开关
+  ├── src/content.config.ts           ← 理解内容集合定义
+  └── src/pages/about.astro           ← 最简单的页面
+
+第 2 层：布局
+  ├── src/layouts/Layout.astro        ← 全局 HTML 骨架
+  ├── src/layouts/MainGridLayout.astro ← 内容区布局
+  └── src/pages/[...page].astro       ← 首页的文章列表渲染
+
+第 3 层：组件
+  ├── src/components/atoms/Icon/Icon.astro       ← 原子组件
+  ├── src/components/atoms/Button/Button.astro   ← 原子组件
+  ├── src/components/features/posts/PostCard.astro  ← 业务组件
+  ├── src/components/organisms/navigation/Navbar.astro ← 有机体
+  └── src/components/widgets/profile/Profile.astro    ← 侧边栏部件
+
+第 4 层：交互
+  ├── src/components/control/ThemeSwitch.svelte   ← 简单 Svelte 组件
+  ├── src/stores/musicPlayerStore.ts              ← 全局状态
+  └── src/components/widgets/music-player/        ← 复杂 Svelte 组件群
+
+第 5 层：工具和插件
+  ├── src/utils/content-utils.ts     ← 核心数据处理
+  ├── src/scripts/swup-manager.ts    ← 页面过渡管理器
+  ├── src/plugins/rehype-component-admonition.mjs  ← 自定义 Markdown 组件
+  └── astro.config.mjs               ← 总配置（最后看，因为包含所有插件）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;附录：遇到问题怎么自救&lt;/h2&gt;
+&lt;h3&gt;1. 改坏了怎么办？&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;# 放弃所有修改，回到最后一次 commit 的状态
+git checkout -- .
+
+# 或者只恢复一个文件
+git checkout -- src/config/siteConfig.ts
+
+# 查看你改了哪些文件
+git status
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;所以&lt;/strong&gt;：改代码之前先 &lt;code&gt;git commit&lt;/code&gt;！养成习惯：做一个小改动 → commit → 再做下一个。&lt;/p&gt;
+&lt;h3&gt;2. 页面报错怎么办？&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;先看终端（运行 &lt;code&gt;pnpm dev&lt;/code&gt; 的窗口），错误信息通常在那&lt;/li&gt;
+&lt;li&gt;再看浏览器的开发者工具 Console（F12 → Console 标签）&lt;/li&gt;
+&lt;li&gt;把错误信息复制到 Google 搜&lt;/li&gt;
+&lt;li&gt;Astro 的错误提示通常非常清晰，&lt;strong&gt;认真读&lt;/strong&gt;就能定位到具体文件和行号&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;3. 不知道怎么改某个东西？&lt;/h3&gt;
+&lt;p&gt;查找法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在浏览器里右键 → 检查元素，看它的 class 名&lt;/li&gt;
+&lt;li&gt;用 VS Code 的全局搜索（Cmd+Shift+F），搜这个 class 名&lt;/li&gt;
+&lt;li&gt;找到对应的 &lt;code&gt;.astro&lt;/code&gt; 或 &lt;code&gt;.svelte&lt;/code&gt; 文件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;问 AI 法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;打开 &lt;code&gt;Mizuki项目结构详解.md&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;找到你想改的部分属于哪个目录&lt;/li&gt;
+&lt;li&gt;打开对应的文件，把代码贴给 AI 问&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;4. &quot;这个技术我不懂&quot;怎么办？&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;不懂的&lt;/th&gt;
+&lt;th&gt;学哪个&lt;/th&gt;
+&lt;th&gt;需要多深&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Astro&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://docs.astro.build/en/tutorial/0-introduction/&quot;&gt;Astro 官方教程&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;前三章就够了&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Tailwind CSS&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://tailwindcss.com/docs&quot;&gt;Tailwind 文档&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;会查 class 名就行&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Svelte&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://svelte.dev/tutorial/&quot;&gt;Svelte 教程&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;前 10 节，理解响应式概念&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;TypeScript&lt;/td&gt;
+&lt;td&gt;先跳过&lt;/td&gt;
+&lt;td&gt;能看懂 &lt;code&gt;let x: string&lt;/code&gt; 这种类型注解就行&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Markdown&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://www.markdownguide.org/&quot;&gt;Markdown 指南&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;10 分钟学会&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;hr /&gt;
 &lt;blockquote&gt;
-&lt;p&gt;10 天后，你应该有一个自己的博客、3 篇文章、一个可访问的网址。重要的是——你知道改哪里能改什么。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最后的话&lt;/strong&gt;：这个项目有 600+ 个文件，你不需要全看懂。你的目标是让别人访问你的博客时，觉得&quot;这是你的博客&quot;，而不是&quot;这是用 Mizuki 模板改的&quot;。做到这一点，你就成功了。🎉&lt;/p&gt;
 &lt;/blockquote&gt;
 </content:encoded></item><item><title>Markdown 入门教程</title><link>https://yuzumoon82.github.io/personal-blog/posts/markdown-tutorial/</link><guid isPermaLink="true">https://yuzumoon82.github.io/personal-blog/posts/markdown-tutorial/</guid><description>Markdown 语法完整示例，涵盖块级元素、行内元素及扩展语法。</description><pubDate>Mon, 20 Jan 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Markdown 入门教程&lt;/h1&gt;
 &lt;p&gt;本文演示如何使用 Markdown 编写文章，涵盖核心语法和 GFM 扩展。&lt;/p&gt;
@@ -644,6 +1479,2179 @@ ___
 &amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;表格内容&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;
 &amp;lt;/table&amp;gt;&lt;/p&gt;
 &lt;p&gt;这是另一个段落。&lt;/p&gt;
+</content:encoded></item><item><title>Mizuki 项目结构详解</title><link>https://yuzumoon82.github.io/personal-blog/posts/mizuki%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/</link><guid isPermaLink="true">https://yuzumoon82.github.io/personal-blog/posts/mizuki%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/</guid><description>Mizuki Astro 静态博客项目的完整目录结构和文件说明，覆盖所有源码目录、配置文件、组件库的详细拆解</description><pubDate>Sun, 27 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;项目概述&lt;/h2&gt;
+&lt;p&gt;Mizuki 是一个基于 &lt;strong&gt;Astro 7&lt;/strong&gt; 的静态博客站点生成器 (SSG)，源自 &lt;a href=&quot;https://github.com/saicaca/fuwari&quot;&gt;Fuwari&lt;/a&gt; → &lt;a href=&quot;https://github.com/LyraVoid/Mizuki&quot;&gt;LyraVoid/Mizuki&lt;/a&gt; 的演进。当前项目是 Yuzumoon82 的个人博客。&lt;/p&gt;
+&lt;h3&gt;技术栈&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;技术&lt;/th&gt;
+&lt;th&gt;用途&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Astro 7&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;静态站点框架，核心&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Svelte 5&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;交互式组件（音乐播放器、搜索等）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Tailwind CSS 4&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;原子化 CSS 框架&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;TypeScript 6&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;类型检查&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Pagefind&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;站内全文搜索&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Expressive Code&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;代码块语法高亮&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Swup&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;页面切换过渡动画&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Iconify&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;图标系统&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;KaTeX&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;数学公式渲染&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;pnpm&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;包管理器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;🏠 项目入口&lt;/h2&gt;
+&lt;p&gt;入口有多个层次：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;构建入口&lt;/strong&gt;: &lt;code&gt;astro.config.mjs&lt;/code&gt; — Astro 框架的配置文件，定义了所有集成、Markdown 处理器、Vite 配置等，是整个构建流程的总控制文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;页面路由入口&lt;/strong&gt;: &lt;code&gt;src/pages/&lt;/code&gt; 目录 — Astro 基于文件系统路由，每个 &lt;code&gt;.astro&lt;/code&gt; 文件就是网站的一个页面路由。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;主页面入口&lt;/strong&gt;: &lt;code&gt;src/pages/[...page].astro&lt;/code&gt; — 博客首页/文章列表的分页路由（&lt;code&gt;/&lt;/code&gt;, &lt;code&gt;/2/&lt;/code&gt;, &lt;code&gt;/3/&lt;/code&gt;…）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;文章详情入口&lt;/strong&gt;: &lt;code&gt;src/pages/posts/[...slug].astro&lt;/code&gt; — 单篇文章详情页&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;布局入口&lt;/strong&gt;: &lt;code&gt;src/layouts/Layout.astro&lt;/code&gt; — 全局 HTML 骨架（&lt;code&gt;&amp;lt;html&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt;）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;内容入口&lt;/strong&gt;: &lt;code&gt;src/content.config.ts&lt;/code&gt; — Astro Content Collections 的内容定义，定义了 &lt;code&gt;posts&lt;/code&gt; 和 &lt;code&gt;spec&lt;/code&gt; 两个集合&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;h2&gt;📁 根目录文件&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;astro.config.mjs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Astro 核心配置&lt;/strong&gt; — 集成插件、Markdown 渲染管线、Vite 配置、字体配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;package.json&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;项目依赖与脚本定义，使用 pnpm 作为包管理器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;tsconfig.json&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;TypeScript 编译配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;svelte.config.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Svelte 组件编译配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;biome.json&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Biome 代码格式化和 Lint 配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;postcss.config.mjs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;PostCSS 配置（Tailwind CSS 相关）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;pagefind.yml&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Pagefind 搜索索引配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;pnpm-workspace.yaml&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;pnpm monorepo 工作空间配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;pnpm-lock.yaml&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;依赖锁定文件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;vercel.json&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Vercel 部署配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;.env.example&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;环境变量模板（Bilibili SESSDATA 等）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;.npmrc&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;npm 配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;.gitignore&lt;/code&gt; / &lt;code&gt;.gitattributes&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Git 配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;README.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;项目说明文档&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;CLAUDE.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Claude Code AI 助手的项目行为指南&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;LICENSE&lt;/code&gt; / &lt;code&gt;LICENSE.MIT&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Apache 2.0 + MIT 双许可证&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;logo.png&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;项目 Logo&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;_frontmatter.json&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Frontmatter 的 JSON 描述（可能与 CMS 集成相关）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;📁 &lt;code&gt;.github/&lt;/code&gt; — CI/CD 与社区&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;路径&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;workflows/deploy.yml&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;部署 GitHub Actions 工作流（构建并部署到 GitHub Pages）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;workflows/lint.yml&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;代码检查 CI 工作流&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ISSUE_TEMPLATE/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;三种 Issue 模板（Bug报告、功能请求、自定义问题）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;dependabot.yml&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;依赖自动更新配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;pull_request_template.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;PR 模板&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;📁 &lt;code&gt;.vscode/&lt;/code&gt; — 编辑器配置&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;extensions.json&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;推荐安装的 VS Code 扩展&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;settings.json&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;工作区级别的 VS Code 设置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;📁 &lt;code&gt;public/&lt;/code&gt; — 静态资源&lt;/h2&gt;
+&lt;p&gt;直接映射到网站根目录的静态文件，构建时原样复制到 &lt;code&gt;dist/&lt;/code&gt;。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;路径&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;_headers&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;自定义 HTTP 响应头（Cloudflare Pages / Netlify）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;favicon/favicon.ico&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;网站图标&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;assets/anime/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;番剧页面封面图&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;assets/desktop-banner/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;桌面端 Banner 横幅图（4张）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;assets/mobile-banner/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;移动端 Banner 横幅图（4张）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;assets/home/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;首页 Logo 和装饰图&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;assets/music/cover/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;音乐播放器封面图&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;assets/music/url/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;音乐播放器音频文件（&lt;code&gt;.mp3&lt;/code&gt;）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;assets/projects/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;项目展示图片&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;assets/css/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;外部 CSS（highlight.js 主题）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;assets/js/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;外部 JS（Twikoo 评论系统）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;images/albums/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;相册图片数据及 &lt;code&gt;info.json&lt;/code&gt; 配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;images/demos/image-grid-demo/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;图片网格组件的演示图片&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;images/device/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;设备页面展示图&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;images/diary/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;日记页面插图&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;js/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;页面特定交互脚本（devices、friends、filter-tabs）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;pio/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Live2D 看板娘&lt;/strong&gt; — &lt;code&gt;l2d-widget.min.js&lt;/code&gt; 核心 + NOIR 模型文件（&lt;code&gt;.moc3&lt;/code&gt;, &lt;code&gt;.model3.json&lt;/code&gt;, &lt;code&gt;.physics3.json&lt;/code&gt; 等）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;📁 &lt;code&gt;src/&lt;/code&gt; — 源代码核心&lt;/h2&gt;
+&lt;p&gt;这是整个项目的核心，所有源码都在这里。&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;src/pages/&lt;/code&gt; — 页面路由（Astro 文件路由）&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;URL 路由&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;[...page].astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/&lt;/code&gt;, &lt;code&gt;/2/&lt;/code&gt;, &lt;code&gt;/3/&lt;/code&gt;...&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;博客首页/文章列表&lt;/strong&gt;，分页显示&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;posts/[...slug].astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/posts/xxx/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;文章详情页&lt;/strong&gt;，动态路由&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;[...permalink].astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/自定义固定链接/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;自定义永久链接页（优先级高于 posts）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;about.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/about/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;关于页面&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;archive.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/archive/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;文章归档页&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;anime.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/anime/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;番剧追踪页&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;diary.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/diary/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;日记/动态页&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;friends.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/friends/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;友链页面&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;projects.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/projects/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;项目展示页&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;skills.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/skills/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;技能展示页&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;timeline.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/timeline/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;时间线页面&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;albums.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/albums/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;相册列表页&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;albums/[id]/index.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/albums/:id/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;单个相册详情&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;devices.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/devices/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;设备展示页&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ai-tools.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/ai-tools/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;AI 工具推荐页&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;404.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;任意不存在的路径&lt;/td&gt;
+&lt;td&gt;404 页面&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;rss.astro&lt;/code&gt; + &lt;code&gt;rss.xml.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/rss/&lt;/code&gt;, &lt;code&gt;/rss.xml&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;RSS 订阅源&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;atom.astro&lt;/code&gt; + &lt;code&gt;atom.xml.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/atom/&lt;/code&gt;, &lt;code&gt;/atom.xml&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Atom 订阅源&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;robots.txt.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/robots.txt&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;搜索引擎爬虫规则&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;og/[...slug].ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/og/:slug.png&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Open Graph 社交分享图片动态生成&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;api/allPostMeta.json.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/api/allPostMeta.json&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;所有文章元数据的 JSON API&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;api/calendar-data.json.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/api/calendar-data.json&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;日历组件数据的 JSON API&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;&lt;code&gt;src/layouts/&lt;/code&gt; — 布局组件&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Layout.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;根布局&lt;/strong&gt; — HTML 骨架（&lt;code&gt;&amp;lt;!doctype html&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt;），加载全局 CSS、字体、Analytics、Pio 看板娘、音乐播放器、Swup 过渡管理器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;MainGridLayout.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;主内容网格布局&lt;/strong&gt; — 包装在 Layout 之上，渲染 Navbar、Banner、侧边栏、主内容区、Footer、TOC、悬浮控件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;partials/AnalyticsScripts.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;第三方统计脚本（Google Tag Manager、Microsoft Clarity）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;partials/GridScripts.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;网格布局相关的客户端 JS 初始化（壁纸模式、Banner、Swup 等）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;partials/HeadTags.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;SEO 元标签（Open Graph、Twitter Card、favicon、主题色初始化脚本）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;&lt;code&gt;src/components/&lt;/code&gt; — 组件库（按 Atomic Design 组织）&lt;/h3&gt;
+&lt;h4&gt;&lt;code&gt;atoms/&lt;/code&gt; — 原子组件（最小可复用单元）&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;组件&lt;/th&gt;
+&lt;th&gt;技术&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Badge/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Svelte&lt;/td&gt;
+&lt;td&gt;徽标标签&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Button/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Astro&lt;/td&gt;
+&lt;td&gt;按钮&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Chip/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Svelte&lt;/td&gt;
+&lt;td&gt;小标签&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;custom-scrollbar/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Astro&lt;/td&gt;
+&lt;td&gt;自定义滚动条&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;filter-tabs/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Astro&lt;/td&gt;
+&lt;td&gt;筛选标签页&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Icon/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Astro + Svelte&lt;/td&gt;
+&lt;td&gt;图标组件（支持 Iconify 和本地图标）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Image/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Astro&lt;/td&gt;
+&lt;td&gt;优化的图片组件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Link/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Astro&lt;/td&gt;
+&lt;td&gt;链接组件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Loader/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Astro&lt;/td&gt;
+&lt;td&gt;加载动画&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;tag-chip/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Svelte&lt;/td&gt;
+&lt;td&gt;标签芯片&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;typewriter-text/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Astro&lt;/td&gt;
+&lt;td&gt;打字机效果文本&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;&lt;code&gt;features/&lt;/code&gt; — 功能性/业务组件&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;目录&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ai-tools/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;AI 工具卡片&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;albums/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;相册卡片、照片卡片&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;anime/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;番剧卡片、筛选栏、排序栏&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;archive/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;归档面板（Svelte 交互）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;auth/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;文章加密/密码保护组件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;devices/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;设备卡片&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;diary/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;日记/动态卡片&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;featured-projects/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;特色项目展示&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;friends/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;友链卡片&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;page-header/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;页面标题头部&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;pio/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Live2D 看板娘组件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;posts/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;最核心的文章组件&lt;/strong&gt; — PostCard、PostListItem、PostPage、PostMeta、PostNavigation、CategoryBar、JsonLd、RandomPosts、RelatedPosts、ShareCard、LastModified 等&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;projects/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;项目卡片&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;projects-category/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;项目分类组件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;section-title/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;区块标题&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;settings/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;显示设置面板（Svelte 交互组件）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;skills/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;技能卡片&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;stats/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;统计卡片&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;stats-grid/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;统计网格&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;tech-stack/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;技术栈展示&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;timeline/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;时间线卡片&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;toc/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;目录系统&lt;/strong&gt; — FloatingTOC、MobileTOC、SidebarTOC + hooks + utils&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;&lt;code&gt;widgets/&lt;/code&gt; — 侧边栏小部件&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;目录&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;announcement/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;公告栏&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;calendar/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;日历小部件（复杂的 Svelte 组件，含子组件和 hooks）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;card-toc/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;卡片内目录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;categories/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;分类列表&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;common/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;通用部件（AccordionDrawer、WidgetHeader、WidgetLayout）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;feed/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;RSS/Feed 信息&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;music-player/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;音乐播放器&lt;/strong&gt;（最复杂的 Svelte 组件，atom/molecule/organism 分层）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;music-sidebar/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;侧边栏音乐播放器（独立的瘦身版本）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;profile/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;个人信息卡片&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;sidebar/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;侧边栏容器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;site-stats/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;站点统计&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;tags/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;标签云&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;toc/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;目录小部件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;&lt;code&gt;layout/&lt;/code&gt; — 布局组件&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Banner.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;首页 Banner（含波浪动画、轮播）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;RightSideBar.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;右侧边栏容器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;SidebarColumn.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;侧边栏列&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;&lt;code&gt;organisms/&lt;/code&gt; — 有机体组件（组合多个 atom/feature）&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;navigation/Navbar.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;顶部导航栏&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;navigation/NavMenuPanel.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;导航菜单面板&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;navigation/DropdownMenu.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;下拉菜单&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;navigation/Search.svelte&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;搜索组件（Svelte，使用 Pagefind）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;footer/Footer.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;页脚&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;&lt;code&gt;misc/&lt;/code&gt; — 杂项/工具组件&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ConfigCarrier.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;将服务端配置传递给客户端&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;FullscreenWallpaper.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;全屏壁纸&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;IconifyLoader.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Iconify 图标预加载器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;License.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;许可证信息&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ListContainer.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;列表容器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ListDivider.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;列表分隔线&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Markdown.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Markdown 渲染组件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;SharePoster.svelte&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;分享海报生成&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;poster/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;海报 Canvas 渲染逻辑&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;&lt;code&gt;comment/&lt;/code&gt; — 评论系统&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Giscus.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;GitHub Discussions 评论&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Twikoo.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Twikoo 评论系统&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;index.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;评论系统统一入口（按配置切换）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;&lt;code&gt;control/&lt;/code&gt; — 控制/浮动组件&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;BackToHome.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;返回首页按钮&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;BackToTop.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;返回顶部按钮&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ButtonLink.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;链接按钮&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ButtonTag.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;标签按钮&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;FloatingControls.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;浮动控件容器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;FloatingTOC.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;悬浮目录按钮&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;LayoutSwitch.svelte&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;布局切换（列表/网格）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;MusicFabButton.svelte&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;悬浮音乐播放按钮&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Pagination.astro&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;分页导航&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ThemeSwitch.svelte&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;主题切换按钮&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;PageProgressBar/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;页面顶部阅读进度条&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;&lt;code&gt;src/config/&lt;/code&gt; — 配置文件&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;siteConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;主站配置&lt;/strong&gt;（约 230 行）— 站点标题、URL、主题色、Banner、TOC、各页面开关、壁纸模式、字体、SEO 等&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;index.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;配置聚合导出&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;navBarConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;导航栏链接配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;profileConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;个人信息配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;footerConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;页脚配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;sidebarConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;侧边栏配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;musicConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;音乐播放器配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;commentConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;评论系统配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;announcementConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;公告配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;backgroundWallpaper.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;背景壁纸配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;effectsConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;特效配置（樱花等）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;expressiveCodeConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;代码高亮配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;licenseConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;许可证配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;permalinkConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;固定链接配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;pioConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Live2D 看板娘配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;randomPostsConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;随机文章推荐配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;relatedPostsConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;相关文章配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;shareConfig.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;分享按钮配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;&lt;code&gt;src/content/&lt;/code&gt; — 内容集合&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;路径&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;posts/*.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;博客文章&lt;/strong&gt;（Markdown/MDX 格式），这是站点的核心内容，如 &lt;code&gt;markdown-tutorial.md&lt;/code&gt;、&lt;code&gt;Mizuki项目学习计划.md&lt;/code&gt; 等&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;spec/*.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;特殊页面内容（如 &lt;code&gt;about.md&lt;/code&gt; 关于页、&lt;code&gt;friends.md&lt;/code&gt; 友链页）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;&lt;code&gt;src/data/&lt;/code&gt; — 静态数据&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;anime.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;番剧数据（本地模式）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ai-tools.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;AI 工具列表&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;devices.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;设备列表&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;diary.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;日记/动态数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;friends.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;友链数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;projects.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;项目数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;skills.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;技能数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;timeline.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;时间线事件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;&lt;code&gt;src/i18n/&lt;/code&gt; — 国际化&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;i18nKey.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;翻译 key 常量定义&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;translation.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;翻译函数实现&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;languages/en.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;英文翻译&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;languages/ja.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;日文翻译&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;languages/zh_CN.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;简体中文翻译&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;languages/zh_TW.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;繁体中文翻译&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;&lt;code&gt;src/styles/&lt;/code&gt; — 样式文件&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;main.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;主样式入口（导入所有其他 CSS）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;variables.styl&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Stylus 全局变量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;markdown.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Markdown 渲染样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;markdown-extend.styl&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Markdown 扩展样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;banner.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Banner 样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;transition.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;页面过渡动画&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;animation-enhancements.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;动画增强&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;scrollbar.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;自定义滚动条样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;toc.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;目录样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;albums.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;相册样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;anime.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;番剧页面样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;encrypted-content.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;加密内容样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;expressive-code.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;代码块样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;fancybox-custom.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;图片灯箱样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;gradient-buttons.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;渐变按钮样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;mobile-navbar.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;移动端导航栏样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;mobile-post-list-fix.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;移动端文章列表修复&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;mobile-transition-fix.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;移动端过渡修复&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;panel-animations.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;面板动画&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;photoswipe.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;图片查看器样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;twikoo.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Twikoo 评论样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;wallpaper-navbar-transparent.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;壁纸模式下导航栏透明样式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;widget-responsive.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;小部件响应式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;_transition-vars.css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;过渡 CSS 变量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;&lt;code&gt;src/plugins/&lt;/code&gt; — Markdown/Remark/Rehype 插件&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;remark-content.mjs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;内容处理（提取摘要等）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;remark-mermaid.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Mermaid 图表语法支持&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;remark-fix-github-admonitions.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;修复 GitHub 风格的 Admonition 语法&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;remark-directive-rehype.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;将 Remark Directive 转为 Rehype 节点&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;remark-escape-numeric-colons.mjs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;转义数字冒号（避免被解析为 URL）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;rehype-component-admonition.mjs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;自定义 Admonition 组件（note/tip/important/caution/warning）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;rehype-component-github-card.mjs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;GitHub 仓库卡片组件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;rehype-component-image-grid.mjs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;图片网格布局组件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;rehype-image-width.mjs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;自动设置图片宽高&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;rehype-mermaid.mjs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Rehype 层面的 Mermaid 处理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;rehype-wrap-table.mjs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;表格包裹（响应式滚动）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;astro-icon-include.mjs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;构建时确定需要打包的图标集合&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;expressive-code/custom-copy-button.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;代码块自定义复制按钮&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;expressive-code/language-badge.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;代码块语言标签&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;mermaid-render-script.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Mermaid 客户端渲染脚本&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;&lt;code&gt;src/scripts/&lt;/code&gt; — 客户端 JS/TS&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;swup-manager.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Swup 页面过渡管理器入口&lt;/strong&gt; — 统一注册所有 Swup hooks&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;core/swup-config.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Swup 核心配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;core/swup-hooks.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Swup 生命周期 hooks（页面进入/离开等）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;effects/sakura-effect.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;樱花飘落特效&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;effects/transition-effect.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;页面过渡特效&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;handlers/back-to-top-handler.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;返回顶部按钮逻辑&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;handlers/fancybox-handler.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;图片灯箱逻辑&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;handlers/panel-handler.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;面板管理逻辑&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;handlers/scroll-handler.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;滚动处理逻辑&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;anime-filter-handler.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;番剧筛选交互&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;anime-layout-handler.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;番剧页面布局&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;code-collapse.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;代码块折叠功能&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;post-lastmodified.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;文章最后修改时间更新&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;right-sidebar-layout.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;右侧边栏布局&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;theme-optimizer.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;主题切换性能优化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;&lt;code&gt;src/stores/&lt;/code&gt; — Svelte 状态管理&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;musicPlayerStore.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;音乐播放器全局状态（当前曲目、播放列表、音量、播放模式等）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;&lt;code&gt;src/constants/&lt;/code&gt; — 常量&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;constants.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;全局常量（BANNER_HEIGHT、PAGE_WIDTH 等）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;icon.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;图标名称常量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;link-presets.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;链接预设&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;&lt;code&gt;src/utils/&lt;/code&gt; — 工具函数（26个）&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;content-utils.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;文章内容处理&lt;/strong&gt; — 排序、筛选、分类、标签聚合&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;crypto-utils.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;AES 加密工具（文章密码保护）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;date-utils.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;日期格式化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;image-utils.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;图片处理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;icon-loader.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;图标加载&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;language-utils.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;语言工具&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;navigation-utils.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;导航工具&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;permalink-utils.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;固定链接解析&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;post-url.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;文章 URL 生成&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;post-card-content.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;文章卡片内容提取&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;url-utils.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;URL 处理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;album-scanner.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;相册扫描&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;anime-data.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;番剧数据处理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;feed-image-utils.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Feed 图片处理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;grid-layout-utils.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;网格布局计算&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;panel-manager.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;面板管理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;performance-observer.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;性能监控&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;poster-image.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;海报图片生成&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;sakura-manager.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;樱花效果管理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;setting-utils.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;设置工具&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;tocManager.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;目录管理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;widget-manager.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;小部件管理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;widget-renderer.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;小部件渲染&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;responsive-sidebar.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;响应式侧边栏&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;animation-utils.ts&lt;/code&gt; / &lt;code&gt;animation-test.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;动画工具&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;&lt;code&gt;src/types/&lt;/code&gt; — TypeScript 类型定义&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;config.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;SiteConfig 等配置类型&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;album.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;相册类型&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;framework-components.d.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;框架组件类型声明&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;📁 &lt;code&gt;scripts/&lt;/code&gt; — 构建与维护脚本&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;sync-content.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;内容同步&lt;/strong&gt; — 从远程 Git 仓库拉取文章内容（内容与代码分离架构）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;init-content-repo.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;初始化内容仓库&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;new-post.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;交互式创建新文章（模板生成）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;update-anime.mjs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;从 Bangumi/Bilibili API 更新番剧数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;update-bangumi.mjs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;更新 Bangumi 数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;update-bilibili.mjs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;更新 Bilibili 追番数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;indexnow-submit.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;向搜索引擎提交新内容索引&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;convert-images.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;图片格式转换&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;load-env.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;加载 &lt;code&gt;.env&lt;/code&gt; 环境变量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;compress-fonts/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;字体压缩工具链&lt;/strong&gt; — &lt;code&gt;index.js&lt;/code&gt;（入口）、&lt;code&gt;font-compressor.js&lt;/code&gt;、&lt;code&gt;text-collector.js&lt;/code&gt;、&lt;code&gt;css-rewriter.js&lt;/code&gt;、&lt;code&gt;config-parser.js&lt;/code&gt;、&lt;code&gt;utils.js&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;📁 &lt;code&gt;docs/&lt;/code&gt; — 项目文档&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;路径&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;rule/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;代码规范文档（组件架构、拆分指南、文件组织、CSS 风格、原子组件用法、侧边栏开发、图标规范）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;editor/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;编辑器预览 HTML/CSS/JS&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;image/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;文档配图&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;README.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;文档索引&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;AUTO_BUILD_TRIGGER.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;自动构建触发说明&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;CONTENT_REPOSITORY.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;内容仓库分离架构说明&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;CONTENT_SEPARATION.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;内容分离机制&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;DEPLOYMENT.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;部署文档&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;MIGRATION_GUIDE.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;迁移指南&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;PERFORMANCE_MONITORING.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;性能监控说明&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;📁 &lt;code&gt;tests/&lt;/code&gt; — 测试&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;crypto.test.mjs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;加密功能单元测试&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;feed-image-utils.test.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Feed 图片工具测试&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;post-card-content.test.ts&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;文章卡片内容提取测试&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;📁 &lt;code&gt;.astro/&lt;/code&gt; — Astro 框架生成的类型和缓存&lt;/h2&gt;
+&lt;p&gt;这是 Astro 框架自动生成的目录，包含内容集合的类型定义 (&lt;code&gt;content.d.ts&lt;/code&gt;, &lt;code&gt;types.d.ts&lt;/code&gt;)、字体缓存、数据存储等，&lt;strong&gt;不需要手动修改&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;🔄 页面渲染流程总结&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;用户请求 URL
+    ↓
+Astro 路由匹配 (src/pages/)
+    ↓
+MainGridLayout.astro (包装 Layout.astro)
+    ├── Navbar.astro (导航栏)
+    ├── Banner.astro (横幅)
+    ├── SideBar.astro (左侧栏)
+    ├── &amp;lt;main&amp;gt; 内容区 ← slot (页面具体内容)
+    ├── RightSideBar.astro (右侧栏)
+    ├── Footer.astro (页脚)
+    └── FloatingControls (悬浮控件)
+    ↓
+Layout.astro (HTML 骨架)
+    ├── &amp;lt;head&amp;gt; SEO、字体、样式
+    ├── MusicPlayer.svelte (音乐播放器)
+    ├── Pio.astro (Live2D 看板娘)
+    └── Swup 页面过渡管理器
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;🎯 关键设计特点&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;内容与代码分离&lt;/strong&gt;: 文章内容可以从远程 Git 仓库同步（&lt;code&gt;scripts/sync-content.js&lt;/code&gt;），支持独立的内容管理&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Atomic Design&lt;/strong&gt;: 组件严格分层为 atoms → features → widgets → organisms → layouts&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Astro + Svelte 混合&lt;/strong&gt;: 静态内容用 Astro（服务端渲染），交互组件用 Svelte（客户端水合）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Swup 页面过渡&lt;/strong&gt;: 实现了类似 SPA 的平滑页面切换体验，同时保持静态站点的优势&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;高度可配置&lt;/strong&gt;: &lt;code&gt;src/config/&lt;/code&gt; 下有 15+ 个独立配置文件，几乎所有 UI 行为都可以开关和定制&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文章加密&lt;/strong&gt;: 支持 AES 加密的文章密码保护（&lt;code&gt;crypto-utils.ts&lt;/code&gt; + &lt;code&gt;auth/&lt;/code&gt; 组件）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多语言&lt;/strong&gt;: 支持简体中文、繁体中文、英文、日文四种语言&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;丰富的特殊页面&lt;/strong&gt;: 番剧追踪、相册、日记/动态、时间线、设备展示、AI 工具推荐等&lt;/li&gt;
+&lt;/ol&gt;
+</content:encoded></item><item><title>vue2-project 结构分析与知识点总结</title><link>https://yuzumoon82.github.io/personal-blog/posts/vue2-project-%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90%E4%B8%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</link><guid isPermaLink="true">https://yuzumoon82.github.io/personal-blog/posts/vue2-project-%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90%E4%B8%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</guid><description>vue2-project（Vue 3 项目）的完整目录结构分析、组件关系图、Vue 知识点总结</description><pubDate>Sun, 27 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt; 虽然项目命名为 &lt;code&gt;vue2-project&lt;/code&gt;，但实际上它是一个完整的 &lt;strong&gt;Vue 3&lt;/strong&gt; 项目，使用了 Vue 3 生态中的现代工具链。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2&gt;一、项目目录结构&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;vue2-project/
+├── .editorconfig                 # 编辑器统一配置
+├── .gitattributes                # Git 属性配置
+├── .gitignore                    # Git 忽略规则
+├── .oxlintrc.json                # Oxlint 规则配置
+├── .prettierrc.json              # Prettier 格式化配置
+├── .vscode/
+│   ├── extensions.json           # VS Code 推荐插件
+│   └── settings.json             # VS Code 工作区设置
+├── env.d.ts                      # 环境类型声明
+├── eslint.config.ts              # ESLint 扁平化配置
+├── index.html                    # Vite 入口 HTML
+├── package.json                  # 项目依赖与脚本
+├── public/
+│   └── favicon.ico               # 网站图标
+├── src/
+│   ├── App.vue                   # 根组件
+│   ├── Salary.vue                # ref + defineExpose 演示组件
+│   ├── assets/
+│   │   ├── base.css              # CSS 自定义属性（颜色变量等）
+│   │   ├── logo.svg              # 项目 Logo
+│   │   └── main.css              # 全局样式入口
+│   ├── components/
+│   │   ├── ChildCard.vue         # 子组件（ref 演示用）
+│   │   ├── HelloWorld.vue        # 经典入门组件
+│   │   ├── MessageDisplay.vue    # Props 演示组件
+│   │   ├── RefDemoParent.vue     # ref + defineExpose 父组件演示
+│   │   ├── TheWelcome.vue        # 欢迎页骨架组件
+│   │   ├── WelcomeItem.vue       # 欢迎页条目组件
+│   │   └── icons/                # SVG 图标组件
+│   │       ├── IconCommunity.vue
+│   │       ├── IconDocumentation.vue
+│   │       ├── IconEcosystem.vue
+│   │       ├── IconSupport.vue
+│   │       └── IconTooling.vue
+│   ├── main.ts                   # 应用入口文件
+│   ├── router/
+│   │   └── index.ts              # Vue Router 路由配置
+│   ├── stores/
+│   │   ├── counter.ts            # Pinia 计数器 Store（Options API 风格）
+│   │   └── user.ts               # Pinia 用户 Store（Setup / Composition API 风格）
+│   └── views/
+│       ├── AboutView.vue         # 关于页面
+│       ├── Date720View.vue       # Props 接收演示页
+│       ├── ElementPlusDemo.vue   # Element Plus 组件库演示
+│       ├── HomeView.vue          # 首页
+│       ├── PiniaDemo.vue         # Pinia 状态管理综合演示
+│       ├── RouterDemo.vue        # Vue Router 路由综合演示
+│       ├── UserDetail.vue        # 动态路由用户详情页
+│       └── UserList.vue          # 嵌套路由用户列表页
+├── tsconfig.json                 # TypeScript 项目引用配置
+├── tsconfig.app.json             # 应用代码 TS 配置
+├── tsconfig.node.json            # Node 端 TS 配置
+└── vite.config.ts                # Vite 构建配置
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;二、技术栈总览&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类别&lt;/th&gt;
+&lt;th&gt;技术&lt;/th&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;框架&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Vue 3&lt;/td&gt;
+&lt;td&gt;3.5.38&lt;/td&gt;
+&lt;td&gt;Composition API + &lt;code&gt;&amp;lt;script setup&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;语言&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;TypeScript&lt;/td&gt;
+&lt;td&gt;6.0&lt;/td&gt;
+&lt;td&gt;全项目类型覆盖&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;构建工具&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Vite&lt;/td&gt;
+&lt;td&gt;8.0&lt;/td&gt;
+&lt;td&gt;极速开发构建&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;路由&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Vue Router&lt;/td&gt;
+&lt;td&gt;4.6.4&lt;/td&gt;
+&lt;td&gt;官方路由方案&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;状态管理&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Pinia&lt;/td&gt;
+&lt;td&gt;3.0.4&lt;/td&gt;
+&lt;td&gt;Vue 3 官方状态管理（替代 Vuex）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;UI 组件库&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Element Plus&lt;/td&gt;
+&lt;td&gt;2.14.3&lt;/td&gt;
+&lt;td&gt;企业级 Vue 3 组件库&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;代码检查&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Oxlint + ESLint&lt;/td&gt;
+&lt;td&gt;1.69 / 10.5&lt;/td&gt;
+&lt;td&gt;双引擎 Lint&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;代码格式化&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Prettier&lt;/td&gt;
+&lt;td&gt;3.8&lt;/td&gt;
+&lt;td&gt;统一代码风格&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;类型检查&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;vue-tsc&lt;/td&gt;
+&lt;td&gt;3.3&lt;/td&gt;
+&lt;td&gt;Vue 感知的 TS 类型检查&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Node 要求&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Node.js&lt;/td&gt;
+&lt;td&gt;^22.18 || &amp;gt;=24.12&lt;/td&gt;
+&lt;td&gt;运行时环境&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;三、配置文件详解&lt;/h2&gt;
+&lt;h3&gt;3.1 package.json — npm 脚本&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;脚本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;npm run dev&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;启动 Vite 开发服务器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;npm run build&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;先跑 &lt;code&gt;vue-tsc&lt;/code&gt; 类型检查，再 &lt;code&gt;vite build&lt;/code&gt; 打包（并行执行）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;npm run preview&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;本地预览生产构建&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;npm run lint&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Oxlint + ESLint 双重检查并自动修复&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;npm run format&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Prettier 格式化所有代码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;3.2 Vite 配置 (&lt;code&gt;vite.config.ts&lt;/code&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;插件：&lt;code&gt;@vitejs/plugin-vue&lt;/code&gt;（Vue 单文件组件支持）+ &lt;code&gt;vite-plugin-vue-devtools&lt;/code&gt;（浏览器 DevTools 集成）&lt;/li&gt;
+&lt;li&gt;路径别名：&lt;code&gt;@&lt;/code&gt; → &lt;code&gt;./src&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;3.3 TypeScript 配置&lt;/h3&gt;
+&lt;p&gt;采用 &lt;strong&gt;项目引用（Project References）&lt;/strong&gt; 分层架构：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;tsconfig.json&lt;/code&gt;&lt;/strong&gt;：顶层引用两个子配置&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;tsconfig.app.json&lt;/code&gt;&lt;/strong&gt;：面向 &lt;code&gt;src/&lt;/code&gt; 中应用代码，映射 &lt;code&gt;@/*&lt;/code&gt; → &lt;code&gt;./src/*&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;tsconfig.node.json&lt;/code&gt;&lt;/strong&gt;：面向 Vite / ESLint 等 Node 端配置文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;3.4 ESLint 配置 (&lt;code&gt;eslint.config.ts&lt;/code&gt;)&lt;/h3&gt;
+&lt;p&gt;使用 ESLint &lt;strong&gt;扁平化配置&lt;/strong&gt;（Flat Config），集成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pluginVue&lt;/code&gt; Vue 基础规则&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;vueTsConfigs.recommended&lt;/code&gt; Vue + TS 推荐规则&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pluginOxlint&lt;/code&gt; 联动 &lt;code&gt;.oxlintrc.json&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;skipFormatting&lt;/code&gt;（与 Prettier 避免冲突）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;3.5 Prettier 配置 (&lt;code&gt;.prettierrc.json&lt;/code&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;无分号（&lt;code&gt;semi: false&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;单引号（&lt;code&gt;singleQuote: true&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;100 字符换行（&lt;code&gt;printWidth: 100&lt;/code&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;3.6 VS Code 配置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;推荐插件&lt;/strong&gt;：Volar（Vue 官方）、ESLint、EditorConfig、Oxc、Prettier&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;保存时&lt;/strong&gt;：自动格式化 + &lt;code&gt;source.fixAll&lt;/code&gt; 自动修复&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2&gt;四、核心架构与知识点&lt;/h2&gt;
+&lt;h3&gt;4.1 应用入口 (&lt;code&gt;main.ts&lt;/code&gt;)&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;// 初始化顺序
+createApp(App)
+  .use(createPinia())        // 1. 状态管理
+  .use(ElementPlus)          // 2. UI 组件库（全局注册）
+  .use(router)               // 3. 路由
+  .mount(&apos;#app&apos;)             // 4. 挂载
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;知识点：&lt;/strong&gt; Vue 3 插件安装链式调用，Pinia → Element Plus → Router → Mount&lt;/p&gt;
+&lt;h3&gt;4.2 App.vue 根组件讲解&lt;/h3&gt;
+&lt;p&gt;根组件同时展示了多种 Vue 3 通信模式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;模板 ref（Template Refs）&lt;/strong&gt;：通过 &lt;code&gt;ref=&quot;fullmoon&quot;&lt;/code&gt; 获取 &lt;code&gt;Salary.vue&lt;/code&gt; 组件的引用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Props 传递&lt;/strong&gt;：向 &lt;code&gt;Date720View&lt;/code&gt; 组件传递 &lt;code&gt;msg&lt;/code&gt; 和 &lt;code&gt;age&lt;/code&gt; 属性&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Router 集成&lt;/strong&gt;：&lt;code&gt;&amp;lt;router-link&amp;gt;&lt;/code&gt; 导航 + &lt;code&gt;&amp;lt;router-view&amp;gt;&lt;/code&gt; 出口&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;defineExpose 访问&lt;/strong&gt;：读取子组件暴露的 &lt;code&gt;salary&lt;/code&gt;、&lt;code&gt;userneme&lt;/code&gt; 等数据&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;h3&gt;4.3 Vue Router 路由系统&lt;/h3&gt;
+&lt;h4&gt;路由配置表&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;路径&lt;/th&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;组件&lt;/th&gt;
+&lt;th&gt;特点&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/home&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;home&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;HomeView&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;静态导入&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/about&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;about&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;AboutView&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;懒加载&lt;/strong&gt;（&lt;code&gt;() =&amp;gt; import()&lt;/code&gt;）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/Date720View&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Date720View&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Date720View&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;静态导入&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/user/:id&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;user-detail&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;UserDetail&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;动态路由参数&lt;/strong&gt; &lt;code&gt;:id&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/user-list&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;UserList&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;懒加载，&lt;strong&gt;嵌套路由&lt;/strong&gt;父级&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/user-list/:id&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;user-list-detail&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;UserDetail&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;嵌套子路由&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/pinia-demo&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;pinia-demo&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;PiniaDemo&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;懒加载&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/element-plus-demo&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;element-plus-demo&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ElementPlusDemo&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;静态导入&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/router-demo&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;router-demo&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;RouterDemo&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;静态导入&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;涉及的路由知识点&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;静态导入 vs 懒加载&lt;/strong&gt;：&lt;code&gt;import HomeView from &apos;./views/HomeView.vue&apos;&lt;/code&gt; vs &lt;code&gt;() =&amp;gt; import(&apos;./views/AboutView.vue&apos;)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;动态路由&lt;/strong&gt;：&lt;code&gt;/user/:id&lt;/code&gt; —— 通过 &lt;code&gt;route.params.id&lt;/code&gt; 获取参数&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;嵌套路由&lt;/strong&gt;：&lt;code&gt;UserList&lt;/code&gt; 作为父组件，&lt;code&gt;children&lt;/code&gt; 配置子路由，父组件需包含 &lt;code&gt;&amp;lt;router-view /&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;命名路由&lt;/strong&gt;：使用 &lt;code&gt;name&lt;/code&gt; 字段，导航时 &lt;code&gt;:to=&quot;{ name: &apos;home&apos; }&quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;查询参数&lt;/strong&gt;：&lt;code&gt;/router-demo?keyword=hello&lt;/code&gt; → &lt;code&gt;route.query.keyword&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HTML5 History 模式&lt;/strong&gt;：&lt;code&gt;createWebHistory()&lt;/code&gt;，URL 无 &lt;code&gt;#&lt;/code&gt; 号&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;编程式导航&lt;/strong&gt;：&lt;code&gt;router.push({ name: &apos;user-detail&apos;, params: { id: 2 } })&lt;/code&gt;、&lt;code&gt;router.back()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;useRouter()&lt;/code&gt; / &lt;code&gt;useRoute()&lt;/code&gt;&lt;/strong&gt;：Composition API 获取路由实例和当前路由信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h3&gt;4.4 Pinia 状态管理&lt;/h3&gt;
+&lt;p&gt;项目演示了 Pinia 两种 API 风格：&lt;/p&gt;
+&lt;h4&gt;Options Store 风格 (&lt;code&gt;counter.ts&lt;/code&gt;)&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;export const useCounterStore = defineStore(&apos;counter&apos;, {
+  state: () =&amp;gt; ({ count: 0 }),
+  getters: {
+    doubleCount: (state) =&amp;gt; state.count * 2,
+  },
+  actions: {
+    increment(value: number) { this.count += value },
+    reset() { this.count = 0 },
+  },
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;类似于 Vuex 的写法，使用 &lt;code&gt;state&lt;/code&gt; / &lt;code&gt;getters&lt;/code&gt; / &lt;code&gt;actions&lt;/code&gt; 选项。&lt;/p&gt;
+&lt;h4&gt;Setup Store 风格 (&lt;code&gt;user.ts&lt;/code&gt;)&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;export const useUserStore = defineStore(&apos;user&apos;, () =&amp;gt; {
+  const nickname = ref(&apos;张三&apos;)
+  const isLoggedIn = ref(false)
+  const greeting = computed(() =&amp;gt;
+    isLoggedIn.value ? `欢迎回来，${nickname.value}！` : &apos;请先登录&apos;
+  )
+  function login(name: string) { ... }
+  function logout() { ... }
+  return { nickname, isLoggedIn, greeting, login, logout }
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;使用 Composition API 的 &lt;code&gt;ref&lt;/code&gt; / &lt;code&gt;computed&lt;/code&gt; / 普通函数定义，更灵活。&lt;/p&gt;
+&lt;h4&gt;&lt;code&gt;storeToRefs&lt;/code&gt; 响应式解构&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;// ❌ 直接解构会丢失响应式
+const { count, doubleCount } = counterStore
+
+// ✅ 使用 storeToRefs 保持响应式
+const { count, doubleCount } = storeToRefs(counterStore)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;涉及的知识点&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;概念&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;defineStore(id, options)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;定义 Store&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;state&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;响应式数据（Options 风格）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;getters&lt;/code&gt; / &lt;code&gt;computed&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;派生状态&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;actions&lt;/code&gt; / 普通函数&lt;/td&gt;
+&lt;td&gt;修改状态的方法&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;storeToRefs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;解构时保持响应式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;跨组件共享&lt;/td&gt;
+&lt;td&gt;Store 即全局单例，自动解决跨组件通信&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h3&gt;4.5 Element Plus UI 组件库&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;ElementPlusDemo.vue&lt;/code&gt; 演示了 6 种核心组件的用法：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;组件&lt;/th&gt;
+&lt;th&gt;用途&lt;/th&gt;
+&lt;th&gt;关键知识点&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;el-button&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;按钮&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;type&lt;/code&gt; 属性：&lt;code&gt;primary&lt;/code&gt; / &lt;code&gt;success&lt;/code&gt; / &lt;code&gt;warning&lt;/code&gt; / &lt;code&gt;danger&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;el-input&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;输入框&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;v-model&lt;/code&gt; 双向绑定&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;el-select&lt;/code&gt; / &lt;code&gt;el-option&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;下拉选择&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;v-model&lt;/code&gt; + 选项列表&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;el-table&lt;/code&gt; / &lt;code&gt;el-table-column&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;数据表格&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;data&lt;/code&gt; 属性绑定数据源，&lt;strong&gt;作用域插槽&lt;/strong&gt;自定义操作列&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;el-dialog&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;对话框&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;v-model&lt;/code&gt; 控制显隐&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ElMessage&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;消息提示&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;编程式调用&lt;/strong&gt;：&lt;code&gt;ElMessage.success()&lt;/code&gt; / &lt;code&gt;.warning()&lt;/code&gt; / &lt;code&gt;.error()&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h3&gt;4.6 组件通信机制&lt;/h3&gt;
+&lt;p&gt;项目系统性地演示了 Vue 3 的父子组件通信：&lt;/p&gt;
+&lt;h4&gt;Props（父传子）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Date720View&lt;/code&gt;：接收 &lt;code&gt;msg&lt;/code&gt; 和 &lt;code&gt;age&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MessageDisplay&lt;/code&gt;：接收 &lt;code&gt;text&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;defineProps&amp;lt;{ msg: string; age: string }&amp;gt;()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Template Refs + defineExpose（父取子）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Salary.vue&lt;/code&gt;：通过 &lt;code&gt;defineExpose&lt;/code&gt; 暴露 &lt;code&gt;userneme&lt;/code&gt;、&lt;code&gt;salary&lt;/code&gt;、&lt;code&gt;addSalary&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ChildCard.vue&lt;/code&gt;：暴露 &lt;code&gt;count&lt;/code&gt;、&lt;code&gt;username&lt;/code&gt;、&lt;code&gt;addCount&lt;/code&gt;、&lt;code&gt;resetCount&lt;/code&gt;（&lt;strong&gt;注意：&lt;code&gt;secretKey&lt;/code&gt; 未暴露，外部无法访问&lt;/strong&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;RefDemoParent.vue&lt;/code&gt;：通过 &lt;code&gt;ref&lt;/code&gt; 获取子组件引用，调用暴露的数据和方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;// 子组件选择性暴露
+defineExpose({ count, username, addCount, resetCount })
+// secretKey 不会暴露给父组件
+
+// 父组件访问
+const childRef = ref()
+childRef.value.addCount()
+console.log(childRef.value.count)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Props vs Refs 设计理念对比&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;方式&lt;/th&gt;
+&lt;th&gt;数据流&lt;/th&gt;
+&lt;th&gt;适用场景&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Props&lt;/td&gt;
+&lt;td&gt;父主动传给子&lt;/td&gt;
+&lt;td&gt;数据向下流动，普通父子通信&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Refs + defineExpose&lt;/td&gt;
+&lt;td&gt;父主动从子获取&lt;/td&gt;
+&lt;td&gt;父组件需要调用子组件方法或读取其状态&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h3&gt;4.7 组合式 API（Composition API）&lt;/h3&gt;
+&lt;p&gt;项目全部使用 &lt;code&gt;&amp;lt;script setup lang=&quot;ts&quot;&amp;gt;&lt;/code&gt; 语法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ref&lt;/code&gt; / &lt;code&gt;reactive&lt;/code&gt;：响应式数据&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;computed&lt;/code&gt;：计算属性&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;watch&lt;/code&gt; / &lt;code&gt;watchEffect&lt;/code&gt;：侦听器&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;defineProps&lt;/code&gt;：声明 Props&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;defineExpose&lt;/code&gt;：暴露给父组件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;useRouter()&lt;/code&gt; / &lt;code&gt;useRoute()&lt;/code&gt;：组合函数获取路由实例&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h3&gt;4.8 TypeScript 集成&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;所有 &lt;code&gt;.vue&lt;/code&gt; 文件均使用 &lt;code&gt;&amp;lt;script setup lang=&quot;ts&quot;&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Props 使用泛型约束：&lt;code&gt;defineProps&amp;lt;{ msg: string }&amp;gt;()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Store 定义在 &lt;code&gt;.ts&lt;/code&gt; 文件中，完整类型推断&lt;/li&gt;
+&lt;li&gt;独立的类型检查工具链：&lt;code&gt;vue-tsc&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h3&gt;4.9 代码质量工具链&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;保存文件
+   │
+   ├──→ Prettier         格式化代码风格
+   ├──→ Oxlint           快速 Lint 检查（Rust 实现）
+   └──→ ESLint           深度规则检查 + 类型感知规则
+         ├── pluginVue         Vue 特定规则
+         ├── vueTsConfigs       TypeScript 感知规则
+         └── pluginOxlint      联动 Oxlint 配置
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;构建时：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;npm run build
+   └──→ vue-tsc --build       完整类型检查（独立于 Vite 构建）
+   └──→ vite build            生产构建（并行执行）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;五、项目整体评价&lt;/h2&gt;
+&lt;h3&gt;项目定位&lt;/h3&gt;
+&lt;p&gt;这是一个 &lt;strong&gt;教学性质&lt;/strong&gt; 的 Vue 3 全功能演示项目，系统覆盖了 Vue 3 生态的核心知识点。&lt;/p&gt;
+&lt;h3&gt;学习路径建议&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;阶段&lt;/th&gt;
+&lt;th&gt;内容&lt;/th&gt;
+&lt;th&gt;对应文件&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1. 入门&lt;/td&gt;
+&lt;td&gt;Vue 3 基础语法、Composition API&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;HelloWorld.vue&lt;/code&gt;、&lt;code&gt;Date720View.vue&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2. 组件通信&lt;/td&gt;
+&lt;td&gt;Props、Refs、defineExpose&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;RefDemoParent.vue&lt;/code&gt;、&lt;code&gt;ChildCard.vue&lt;/code&gt;、&lt;code&gt;MessageDisplay.vue&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3. 路由&lt;/td&gt;
+&lt;td&gt;导航、动态/嵌套路由、编程式导航&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;RouterDemo.vue&lt;/code&gt;、&lt;code&gt;UserList.vue&lt;/code&gt;、&lt;code&gt;UserDetail.vue&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4. 状态管理&lt;/td&gt;
+&lt;td&gt;Pinia Options / Setup Store&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;PiniaDemo.vue&lt;/code&gt;、&lt;code&gt;counter.ts&lt;/code&gt;、&lt;code&gt;user.ts&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5. UI 框架&lt;/td&gt;
+&lt;td&gt;Element Plus 组件使用&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ElementPlusDemo.vue&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;6. 工程化&lt;/td&gt;
+&lt;td&gt;Vite、TS、ESLint、Prettier&lt;/td&gt;
+&lt;td&gt;各配置文件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;技术亮点&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;✅ &lt;strong&gt;现代化工具链&lt;/strong&gt;：Vite 8 + TypeScript 6 + ESLint 扁平化配置&lt;/li&gt;
+&lt;li&gt;✅ &lt;strong&gt;双重 Lint 引擎&lt;/strong&gt;：Oxlint 负责速度 + ESLint 负责深度&lt;/li&gt;
+&lt;li&gt;✅ &lt;strong&gt;完整类型覆盖&lt;/strong&gt;：应用代码 + 配置文件的 TypeScript 全覆盖&lt;/li&gt;
+&lt;li&gt;✅ &lt;strong&gt;最佳实践&lt;/strong&gt;：懒加载、嵌套路由、Composition API、storeToRefs 等&lt;/li&gt;
+&lt;li&gt;✅ &lt;strong&gt;教学友好&lt;/strong&gt;：每个特性都有独立的 Demo 页面，注释清晰&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;em&gt;文档生成日期：2026-07-27&lt;/em&gt;&lt;/p&gt;
 </content:encoded></item><item><title>Mizuki 文章加密原理详解</title><link>https://yuzumoon82.github.io/personal-blog/posts/mizuki-encryption-principle/</link><guid isPermaLink="true">https://yuzumoon82.github.io/personal-blog/posts/mizuki-encryption-principle/</guid><description>从构建时 AES-256-GCM 加密到浏览器端 Web Crypto API 解密，逐行拆解 Mizuki 博客的密码保护机制</description><pubDate>Sat, 26 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Mizuki 文章加密原理详解&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;从构建时到运行时，逐层拆解 Mizuki 博客的文章密码保护机制。&lt;/p&gt;
@@ -845,6 +3853,1421 @@ passwordHint: &quot;密码提示（可选）&quot;
 &lt;blockquote&gt;
 &lt;p&gt;💡 这篇加密机制的分析文章本身没有加密，你可以随时查阅。只有那篇 MCP 面试话术设置了密码保护。&lt;/p&gt;
 &lt;/blockquote&gt;
+</content:encoded></item><item><title>Pinia 选项式 Store 与 Element Plus 组件库</title><link>https://yuzumoon82.github.io/personal-blog/posts/pinia%E9%80%89%E9%A1%B9%E5%BC%8Fstore%E4%B8%8Eelementplus%E7%BB%84%E4%BB%B6%E5%BA%93/</link><guid isPermaLink="true">https://yuzumoon82.github.io/personal-blog/posts/pinia%E9%80%89%E9%A1%B9%E5%BC%8Fstore%E4%B8%8Eelementplus%E7%BB%84%E4%BB%B6%E5%BA%93/</guid><description>Pinia 选项式 Store 写法详解 + Element Plus 组件库的安装、配置和常用组件示例</description><pubDate>Sat, 26 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;学习时间：2026.07.26&lt;br /&gt;
+适用：已了解 Vue 组件基础和 Router 基础&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2&gt;一、Pinia 选项式 Store 写法&lt;/h2&gt;
+&lt;h3&gt;1.1 和混合式的区别&lt;/h3&gt;
+&lt;p&gt;Pinia 有两种写法，效果一样，只是结构不同：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 混合式（Setup 风格）—— 像组件 setup
+defineStore(&apos;counter&apos;, () =&amp;gt; {
+  const count = ref(0)
+  const double = computed(() =&amp;gt; count.value * 2)
+  function increment() { count.value++ }
+  return { count, double, increment }
+})
+
+// 选项式（Options API 风格）—— state/getters/actions 分门别类
+defineStore(&apos;counter&apos;, {
+  state: () =&amp;gt; ({ count: 0 }),
+  getters: {
+    double: (state) =&amp;gt; state.count * 2,
+  },
+  actions: {
+    increment() { this.count++ },
+  },
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;1.2 选项式结构详解&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;defineStore(&apos;名字&apos;, {
+  state: () =&amp;gt; ({ ... }),    // ① 数据，必须是一个函数返回对象
+  getters: { ... },          // ② 计算属性，由数据派生新值
+  actions: { ... },          // ③ 方法，用来修改数据
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;① state — 定义数据&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;state: (): { count: number } =&amp;gt; ({
+  count: 0,
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;必须是函数&lt;/strong&gt;，返回一个对象&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(): { count: number }&lt;/code&gt; 是 TypeScript 类型注解，声明 count 是 number 类型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;② getters — 计算属性&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;getters: {
+  doubleCount(): number {
+    return this.count * 2
+  },
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;用 &lt;code&gt;this.xxx&lt;/code&gt; 访问 state 里的数据（和 actions 一样）&lt;/li&gt;
+&lt;li&gt;也可以用参数写法：&lt;code&gt;doubleCount: (state) =&amp;gt; state.count * 2&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;③ actions — 修改数据的方法&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;actions: {
+  increment(value: number): number {
+    if (typeof value === &apos;number&apos; &amp;amp;&amp;amp; value &amp;gt;= 0) {
+      this.count += value
+    }
+    return this.count
+  },
+  reset(): void {
+    this.count = 0
+  },
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;用 &lt;code&gt;this.xxx&lt;/code&gt; 访问和修改 state&lt;/li&gt;
+&lt;li&gt;可以接受参数、返回值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;1.3 TypeScript 类型注解&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;increment(value: number): number
+//          ↑               ↑
+//     参数是 number     返回值是 number
+
+reset(): void
+//        ↑
+//   无返回值（void = &quot;空的&quot;）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;th&gt;示例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;string&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;字符串&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&apos;hello&apos;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;number&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;数字&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;17&lt;/code&gt;、&lt;code&gt;3.14&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;boolean&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;布尔&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt; / &lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;void&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;无返回值&lt;/td&gt;
+&lt;td&gt;方法里没有 return&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;string[]&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;字符串数组&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;[&apos;a&apos;, &apos;b&apos;]&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;二、&lt;code&gt;this.count += value&lt;/code&gt; 详解（重点）&lt;/h2&gt;
+&lt;h3&gt;2.1 拆解&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;this.count   +=   value
+    ↑         ↑      ↑
+  store里   加等于   传进来的参数
+  的数据
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;+=&lt;/code&gt; 是 JavaScript 的简写运算符，等价于：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;this.count += value
+// 完全等于 ↓
+this.count = this.count + value
+// 新值    =   旧值    +  加多少
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;2.2 实际执行&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;假设 count = 5，调用 increment(1)
+
+第 1 步：value = 1
+第 2 步：检查通过（1 是 number 且 &amp;gt;= 0）
+第 3 步：this.count += 1
+         → this.count = 5 + 1
+         → this.count = 6
+第 4 步：return this.count  →  返回 6
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;2.3 常见简写运算符&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;this.count += value   // 加等于：count = count + value
+this.count -= value   // 减等于：count = count - value
+this.count++          // 自增 1：count = count + 1
+this.count--          // 自减 1：count = count - 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;三、computed 计算属性（重点）&lt;/h2&gt;
+&lt;h3&gt;3.1 它是什么？&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;computed&lt;/code&gt; 会自动追踪依赖的数据，数据一变，它自己重新算。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;3.2 对比普通函数&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;const count = ref(5)
+
+// 普通函数：需要手动调用
+function getDouble() {
+  return count.value * 2
+}
+console.log(getDouble())  // 10，不调用就不会算
+
+// computed：自动追踪，count 一变它就重算
+const double = computed(() =&amp;gt; count.value * 2)
+console.log(double.value)  // 10
+
+count.value = 10
+console.log(double.value)  // 20 ✅ 自动更新了！
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;3.3 自动追踪原理&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;computed(() =&amp;gt; count.value * 2)
+              ↑
+      computed 发现这里读了 count
+              ↓
+      把 count 记在&quot;依赖列表&quot;里
+              ↓
+      count 一变 → 收到通知 → 自动重新执行 → 得到新值
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;3.4 实际例子：user.ts 里的 greeting&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;const isLoggedIn = ref(false)
+const nickname = ref(&apos;张三&apos;)
+
+const greeting = computed(() =&amp;gt; {
+  if (isLoggedIn.value) {
+    return `欢迎回来，${nickname.value}！`
+  } else {
+    return &apos;请先登录&apos;
+  }
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;greeting&lt;/code&gt; 会自动盯着 &lt;code&gt;isLoggedIn&lt;/code&gt; 和 &lt;code&gt;nickname&lt;/code&gt;，任何一个变了它都会重新算，不需要手动更新。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;四、三元表达式和模板字符串&lt;/h2&gt;
+&lt;h3&gt;4.1 三元表达式&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;条件 ? 为 true 时取这个 : 为 false 时取这个
+
+// 读作：isLoggedIn 是 true 吗？是 → 取前面的，否则 → 取后面的
+isLoggedIn.value ? `欢迎回来！` : &apos;请先登录&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;等价于 if...else：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 三元表达式（一行）
+const msg = isLoggedIn.value ? &apos;欢迎&apos; : &apos;请登录&apos;
+
+// if...else（多行）
+let msg: string
+if (isLoggedIn.value) {
+  msg = &apos;欢迎&apos;
+} else {
+  msg = &apos;请登录&apos;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;4.2 模板字符串 &lt;code&gt;`...${}...`&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;反引号 &lt;code&gt;`&lt;/code&gt; 包裹的字符串里，&lt;code&gt;${变量}&lt;/code&gt; 可以把变量嵌入文字：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;const name = &apos;张三&apos;
+
+// 普通拼接
+&apos;欢迎回来，&apos; + name + &apos;！&apos;
+
+// 模板字符串（推荐，清晰直观）
+`欢迎回来，${name}！`
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;五、&lt;code&gt;||&lt;/code&gt; 运算符 — 备用值（重点）&lt;/h2&gt;
+&lt;h3&gt;5.1 逻辑&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;左边 || 右边
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;左边有值（truthy）→ 用左边&lt;/li&gt;
+&lt;li&gt;左边没值（falsy）→ 用右边作为备用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;5.2 实际例子&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;p&amp;gt;{{ inputText || &apos;（还没输入）&apos; }}&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;用户没输入 → inputText = &apos;&apos;（空字符串，falsy）
+            → &apos;&apos; || &apos;（还没输入）&apos; → 显示&quot;（还没输入）&quot;
+
+用户输入了 → inputText = &apos;hello&apos;（非空字符串，truthy）
+            → &apos;hello&apos; || &apos;（还没输入）&apos; → 显示&quot;hello&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;5.3 truthy 和 falsy&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;// falsy（假值，|| 会跳过它）
+&apos;&apos;        空字符串
+0         数字零
+false     布尔假
+null      空
+undefined 未定义
+
+// truthy（真值，|| 会用它）
+&apos;hello&apos;   非空字符串
+1         非零数字
+true      布尔真
+[]        空数组
+{}        空对象
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;六、storeToRefs 解构规则（重点）&lt;/h2&gt;
+&lt;h3&gt;6.1 核心规则&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;// 状态和 getter → 必须用 storeToRefs（保持响应式）
+const { count, doubleCount } = storeToRefs(counterStore)
+
+// 方法（action）→ 直接解构就行（方法不会变，不需要响应式）
+const { increment } = counterStore
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;6.2 为什么不能用 storeToRefs 包所有？&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;storeToRefs&lt;/code&gt; 刻意不提取方法。&lt;/strong&gt; 它只返回状态和 getter，方法会被忽略。所以方法必须单独从 store 上解构。&lt;/p&gt;
+&lt;h3&gt;6.3 为什么方法可以直接解构？&lt;/h3&gt;
+&lt;p&gt;方法就是函数引用，它从始至终不变。只有&quot;会变化的数据&quot;才需要响应式，方法不需要。&lt;/p&gt;
+&lt;h3&gt;6.4 解构赋值 &lt;code&gt;const { xxx } = 对象&lt;/code&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;const { increment } = counterStore
+// 等价于
+const increment = counterStore.increment
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;{}&lt;/code&gt; 就是把对象里的某个属性拆出来，变成一个独立的同名变量。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;七、Element Plus 组件库基础&lt;/h2&gt;
+&lt;h3&gt;7.1 注册（两件事）&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;// main.ts
+import ElementPlus from &apos;element-plus&apos;
+import &apos;element-plus/dist/index.css&apos;  // 别忘了引 CSS！
+
+app.use(ElementPlus)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;7.2 模板组件（写在 &lt;code&gt;&amp;lt;template&amp;gt;&lt;/code&gt; 里）&lt;/h3&gt;
+&lt;h4&gt;el-button — 按钮&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;el-button&amp;gt;默认&amp;lt;/el-button&amp;gt;
+&amp;lt;el-button type=&quot;primary&quot;&amp;gt;主要&amp;lt;/el-button&amp;gt;
+&amp;lt;el-button type=&quot;success&quot;&amp;gt;成功&amp;lt;/el-button&amp;gt;
+&amp;lt;el-button type=&quot;warning&quot;&amp;gt;警告&amp;lt;/el-button&amp;gt;
+&amp;lt;el-button type=&quot;danger&quot;&amp;gt;危险&amp;lt;/el-button&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;type&lt;/code&gt; 控制颜色，&lt;code&gt;@click&lt;/code&gt; 绑定点击事件。&lt;/p&gt;
+&lt;h4&gt;el-input — 输入框&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;el-input v-model=&quot;text&quot; placeholder=&quot;请输入&quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;v-model&lt;/code&gt; 双向绑定：输入框里的内容和 JS 变量 &lt;code&gt;text&lt;/code&gt; 实时同步。&lt;/p&gt;
+&lt;h4&gt;el-select — 下拉选择&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;el-select v-model=&quot;selected&quot; placeholder=&quot;请选择&quot;&amp;gt;
+  &amp;lt;el-option label=&quot;北京&quot; value=&quot;beijing&quot; /&amp;gt;
+  &amp;lt;el-option label=&quot;上海&quot; value=&quot;shanghai&quot; /&amp;gt;
+&amp;lt;/el-select&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;v-model&lt;/code&gt; 绑定选中的值（取到的就是 option 的 &lt;code&gt;value&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;label&lt;/code&gt; 是显示的文字，&lt;code&gt;value&lt;/code&gt; 是实际值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;el-table — 表格&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;el-table :data=&quot;tableData&quot; border&amp;gt;
+  &amp;lt;el-table-column prop=&quot;name&quot; label=&quot;姓名&quot; /&amp;gt;
+  &amp;lt;el-table-column prop=&quot;age&quot; label=&quot;年龄&quot; /&amp;gt;
+&amp;lt;/el-table&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;:data&lt;/code&gt;：数据源数组，数组几个对象就渲染几行&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;border&lt;/code&gt;：加上竖线边框&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;prop&lt;/code&gt;：对应数据里的字段名（必须一致）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;label&lt;/code&gt;：表头显示的文字（随便写）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;7.3 函数式组件（写在 &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; 里）&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;ElMessage&lt;/code&gt; 不需要在模板里写标签，直接在 JS 里调用：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import { ElMessage } from &apos;element-plus&apos;
+
+ElMessage.success(&apos;操作成功！&apos;)   // 绿色
+ElMessage.warning(&apos;请注意！&apos;)     // 黄色
+ElMessage.error(&apos;出错了！&apos;)       // 红色
+ElMessage(&apos;普通消息&apos;)             // 默认
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;一行代码，弹出、显示、几秒后自动消失。&lt;/p&gt;
+&lt;h3&gt;7.4 el-dialog — 对话框的显示/隐藏原理（重点）&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- 按钮：只负责改变量 --&amp;gt;
+&amp;lt;el-button @click=&quot;dialogVisible = true&quot;&amp;gt;打开对话框&amp;lt;/el-button&amp;gt;
+
+&amp;lt;!-- 对话框：盯着变量，true 就显示，false 就隐藏 --&amp;gt;
+&amp;lt;el-dialog v-model=&quot;dialogVisible&quot; title=&quot;对话框&quot;&amp;gt;
+  &amp;lt;el-button @click=&quot;dialogVisible = false&quot;&amp;gt;取消&amp;lt;/el-button&amp;gt;
+&amp;lt;/el-dialog&amp;gt;
+
+&amp;lt;script setup&amp;gt;
+const dialogVisible = ref(false)  // 初始隐藏
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;变量是按钮和对话框之间唯一的联系方式：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;初始：dialogVisible = false → 对话框隐藏
+  ↓ 用户点击按钮
+@click 把 dialogVisible 改为 true
+  ↓ el-dialog 通过 v-model 检测到 true
+对话框弹出
+  ↓ 用户点击取消
+@click 把 dialogVisible 改为 false
+  ↓ el-dialog 检测到 false
+对话框关闭
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;为什么 &lt;code&gt;ref(false)&lt;/code&gt; 不直接写 &lt;code&gt;true&lt;/code&gt;？&lt;/strong&gt; 因为对话框初始应该是隐藏的，用户点了才弹出来。直接写 &lt;code&gt;true&lt;/code&gt; 会页面一打开就弹框，体验很差。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;八、插槽 slot — 表格操作列（重点）&lt;/h2&gt;
+&lt;h3&gt;8.1 什么是插槽？&lt;/h3&gt;
+&lt;p&gt;插槽（slot）就是组件留的&quot;填空位置&quot;——组件留一个坑，你来填内容。&lt;/p&gt;
+&lt;h3&gt;8.2 &lt;code&gt;#default=&quot;scope&quot;&lt;/code&gt; 详解&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;el-table-column label=&quot;操作&quot;&amp;gt;
+  &amp;lt;template #default=&quot;scope&quot;&amp;gt;
+    &amp;lt;el-button @click=&quot;deleteRow(scope.$index)&quot;&amp;gt;删除&amp;lt;/el-button&amp;gt;
+  &amp;lt;/template&amp;gt;
+&amp;lt;/el-table-column&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;逐词解释：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;部分&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;template&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;定义一个模板片段&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;#default&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;默认插槽的名字（&lt;code&gt;#&lt;/code&gt; 是 &lt;code&gt;v-slot:&lt;/code&gt; 的简写）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;=&quot;scope&quot;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;接收表格传过来的当前行信息，存到 &lt;code&gt;scope&lt;/code&gt; 变量里&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;8.3 scope 对象的内容&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;scope = {
+  row:    { name: &apos;张三&apos;, age: 28, city: &apos;北京&apos; },  // 当前行的完整数据
+  $index: 0,                                         // 当前行号（从 0 开始）
+  // ... 还有其他属性
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;$&lt;/code&gt; 只是一个命名习惯&lt;/strong&gt;，表示&quot;系统提供的元数据&quot;，不是用户数据。&lt;code&gt;$index&lt;/code&gt; 就是一个普通属性名。&lt;/p&gt;
+&lt;h3&gt;8.4 scope.row vs scope.$index&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;scope.row&lt;/code&gt;&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;scope.$index&lt;/code&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;值&lt;/td&gt;
+&lt;td&gt;当前行的数据对象&lt;/td&gt;
+&lt;td&gt;当前行号&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;示例&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{ name: &apos;张三&apos;, age: 28 }&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;0&lt;/code&gt;、&lt;code&gt;1&lt;/code&gt;、&lt;code&gt;2&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;删除用法&lt;/td&gt;
+&lt;td&gt;需要先找位置&lt;/td&gt;
+&lt;td&gt;直接 &lt;code&gt;splice(index, 1)&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;九、今日难点速查&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;难点&lt;/th&gt;
+&lt;th&gt;一句话&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;+=&lt;/code&gt; 运算符&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;this.count += value&lt;/code&gt; = &lt;code&gt;this.count = this.count + value&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;computed&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;会自动追踪依赖的数据，数据变它就自动重算，不需要手动调用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;三元表达式&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;条件 ? 真 : 假&lt;/code&gt;，简写的 if...else&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;模板字符串&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;`文字${变量}文字`&lt;/code&gt;，用 &lt;code&gt;${}&lt;/code&gt; 嵌入变量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;||&lt;/code&gt; 备用值&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;A || B&lt;/code&gt;：A 有值用 A，没值用 B&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;storeToRefs&lt;/td&gt;
+&lt;td&gt;解构状态时用它保持响应式，方法直接解构&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;const { x } = obj&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;解构赋值：把对象的属性拆出来变成独立变量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Element Plus 注册&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;app.use(ElementPlus)&lt;/code&gt; + 引入 CSS&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;v-model&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;双向绑定，输入框/下拉和数据实时同步&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;el-table&lt;/code&gt; prop vs label&lt;/td&gt;
+&lt;td&gt;prop 对应数据字段，label 是表头文字&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ElMessage&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;函数式组件，JS 里调用，不用写在模板&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;对话框原理&lt;/td&gt;
+&lt;td&gt;按钮改变量 → el-dialog 通过 v-model 盯变量 → true 就弹，false 就关&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;插槽 &lt;code&gt;#default=&quot;scope&quot;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;组件留的坑，scope 传给你当前行的信息&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;scope.$index&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;当前行号，用来定位删第几行&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;scope.row&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;当前行完整数据对象&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</content:encoded></item><item><title>Vue Router 与 Pinia 状态管理</title><link>https://yuzumoon82.github.io/personal-blog/posts/vuerouter%E4%B8%8Epinia%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/</link><guid isPermaLink="true">https://yuzumoon82.github.io/personal-blog/posts/vuerouter%E4%B8%8Epinia%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/</guid><description>Vue Router 前端路由和 Pinia 全局状态管理的入门指南，含完整代码示例和项目实战</description><pubDate>Sat, 26 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;学习时间：2026.07.22 - 2026.07.26&lt;br /&gt;
+适用：前端小白，已了解 Vue 组件基础&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2&gt;一、Vue Router 是什么？&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Vue Router 就是前端页面的&quot;导航系统&quot;&lt;/strong&gt;。它让用户在多个页面之间切换，但&lt;strong&gt;不刷新浏览器&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3&gt;1.1 没有 Router vs 有 Router&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;没有 Router：
+  跳页面 = 浏览器重新加载整个 HTML → 慢、闪烁
+
+有 Router：
+  跳页面 = 只替换内容区域 → 快、顺滑（SPA 单页应用的核心体验）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;二、路由配置（router/index.ts）&lt;/h2&gt;
+&lt;h3&gt;2.1 路由表结构&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;// src/router/index.ts
+import { createRouter, createWebHistory } from &apos;vue-router&apos;
+
+const router = createRouter({
+  history: createWebHistory(),  // URL 模式：干净的路径 /home，没有 #
+  routes: [                     // 路由表：一个数组，定义所有页面
+    {
+      path: &apos;/home&apos;,            // ① URL 路径
+      name: &apos;home&apos;,             // ② 路由名字（跳转时可以用名字代替路径）
+      component: HomeView,      // ③ 匹配到这个路径时显示哪个组件
+    },
+  ],
+})
+
+export default router           // 导出，让 main.ts 用 import 接住
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;2.2 &lt;code&gt;component&lt;/code&gt; 的两种写法&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;写法&lt;/th&gt;
+&lt;th&gt;何时加载&lt;/th&gt;
+&lt;th&gt;优缺点&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;component: HomeView&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;页面一开始就加载&lt;/td&gt;
+&lt;td&gt;切换快，但首屏稍慢&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;component: () =&amp;gt; import(&apos;...&apos;)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;访问时才加载（懒加载）&lt;/td&gt;
+&lt;td&gt;首屏快，推荐&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre&gt;&lt;code&gt;// 直接加载（用于首页等高频页面）
+component: HomeView
+
+// 懒加载（用于不常访问的页面）
+component: () =&amp;gt; import(&apos;../views/AboutView.vue&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;三、两个核心标签&lt;/h2&gt;
+&lt;h3&gt;3.1 &lt;code&gt;&amp;lt;router-link&amp;gt;&lt;/code&gt; — 导航链接&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- 代替 &amp;lt;a href=&quot;/home&quot;&amp;gt;，点击不会刷新页面 --&amp;gt;
+&amp;lt;router-link to=&quot;/home&quot;&amp;gt;首页&amp;lt;/router-link&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;和 &lt;code&gt;&amp;lt;a&amp;gt;&lt;/code&gt; 标签的区别&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;a href=&quot;/home&quot;&amp;gt;&lt;/code&gt;：浏览器刷新整个页面&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;router-link to=&quot;/home&quot;&amp;gt;&lt;/code&gt;：只替换内容区域，不刷新&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;3.2 &lt;code&gt;&amp;lt;router-view /&amp;gt;&lt;/code&gt; — 路由出口&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- 当前 URL 匹配到哪个路由，就把哪个组件渲染在这里 --&amp;gt;
+&amp;lt;router-view /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;它是整个路由系统的&quot;舞台&quot;&lt;/strong&gt;，所有页面都在这个位置显示。&lt;/p&gt;
+&lt;h3&gt;3.3 它们怎么配合？&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;用户点击 &amp;lt;router-link to=&quot;/about&quot;&amp;gt;
+          ↓
+URL 变成 /about
+          ↓
+路由表匹配到 { path: &apos;/about&apos;, component: AboutView }
+          ↓
+&amp;lt;router-view /&amp;gt; 渲染 AboutView 组件
+          ↓
+用户看到 About 页面
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;四、路由跳转的两种方式&lt;/h2&gt;
+&lt;h3&gt;4.1 方式一：声明式（&lt;code&gt;&amp;lt;router-link&amp;gt;&lt;/code&gt;）&lt;/h3&gt;
+&lt;p&gt;写在模板里，生成链接。适合导航栏、菜单等。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- 写死路径 --&amp;gt;
+&amp;lt;router-link to=&quot;/home&quot;&amp;gt;首页&amp;lt;/router-link&amp;gt;
+
+&amp;lt;!-- 用命名路由（推荐，路径变了也不用改代码） --&amp;gt;
+&amp;lt;router-link :to=&quot;{ name: &apos;home&apos; }&quot;&amp;gt;首页&amp;lt;/router-link&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;注意上面第二行有 &lt;code&gt;:&lt;/code&gt; 冒号（&lt;code&gt;:to&lt;/code&gt;），这表示 &lt;code&gt;to&lt;/code&gt; 的值是 JavaScript 表达式，不是字符串。&lt;/p&gt;
+&lt;h3&gt;4.2 方式二：编程式（JS 代码）&lt;/h3&gt;
+&lt;p&gt;写在 &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; 里，用代码触发跳转。适合按钮点击、表单提交后跳转等场景。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import { useRouter } from &apos;vue-router&apos;
+const router = useRouter()
+
+router.push({ name: &apos;home&apos; })         // 跳转到首页
+router.push({ path: &apos;/home&apos; })        // 用路径跳转
+router.push(&apos;/home&apos;)                  // 直接写字符串也行
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;4.3 导航方法全家福&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;方法&lt;/th&gt;
+&lt;th&gt;效果&lt;/th&gt;
+&lt;th&gt;比喻&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;router.push(&apos;/a&apos;)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;跳转到新页面，留下历史记录&lt;/td&gt;
+&lt;td&gt;翻开新的一页&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;router.back()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;回到上一页&lt;/td&gt;
+&lt;td&gt;翻回上一页&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;router.forward()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;前进到下一页&lt;/td&gt;
+&lt;td&gt;回到刚才翻过去的那页&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;router.go(-2)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;后退 2 页&lt;/td&gt;
+&lt;td&gt;一次性往回翻两页&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;router.replace(&apos;/a&apos;)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;跳转但&lt;strong&gt;替换&lt;/strong&gt;当前页（不留下历史记录）&lt;/td&gt;
+&lt;td&gt;撕掉当前页，放上新页&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;4.4 push vs replace（重要！）&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;push（压入）                     replace（替换）
+┌─────────┐                     ┌─────────┐
+│ 新页面   │ ← 新增加            │ 新页面   │ ← 覆盖掉当前页
+├─────────┤                     ├─────────┤
+│ 当前页   │                     │ 旧页面   │ ← 当前页已消失
+├─────────┤                     ├─────────┤
+│ 旧页面   │                     │ 更旧     │
+└─────────┘                     └─────────┘
+
+push 后点&quot;后退&quot;能回当前页        replace 后点&quot;后退&quot;回不到当前页
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;什么时候用 replace？&lt;/strong&gt; 登录成功后跳首页——不希望用户点&quot;后退&quot;又回到登录页。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;五、useRoute() vs useRouter()&lt;/h2&gt;
+&lt;p&gt;这是新手最容易搞混的两个 API，但它们职责完全不同。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import { useRoute, useRouter } from &apos;vue-router&apos;
+
+const route = useRoute()    // ← 读：看当前页面的信息
+const router = useRouter()  // ← 做：跳转到别的地方
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;记法&lt;/strong&gt;：&lt;strong&gt;R&lt;/strong&gt;oute 里有个 &lt;strong&gt;R&lt;/strong&gt;ead（读），&lt;strong&gt;R&lt;/strong&gt;outer 里有个 &lt;strong&gt;R&lt;/strong&gt;un（跑/执行）。&lt;/p&gt;
+&lt;h3&gt;5.1 useRoute() — 读取当前路由信息&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;const route = useRoute()
+
+route.path       // 当前路径 → /user/99
+route.fullPath   // 完整路径（含 ? 和 #）→ /user/99?from=list
+route.params.id  // 动态路由参数 → &quot;99&quot;
+route.query.from // query 参数 → &quot;list&quot;
+route.name       // 当前路由名 → &quot;user-detail&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;都是只读的，别去改它们！&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;5.2 useRouter() — 操作导航&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;const router = useRouter()
+
+router.push(&apos;/home&apos;)    // 跳转
+router.back()           // 后退
+router.replace(&apos;/xxx&apos;)  // 替换
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;5.3 实际应用场景对照&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;需求&lt;/th&gt;
+&lt;th&gt;用什么&lt;/th&gt;
+&lt;th&gt;代码&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;获取 URL 里的用户 ID&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;useRoute()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;route.params.id&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;获取搜索关键词 &lt;code&gt;?keyword=vue&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;useRoute()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;route.query.keyword&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;导航栏高亮当前页&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;useRoute()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;route.name === &apos;home&apos;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;点击按钮跳转&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;useRouter()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;router.push(...)&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;表单提交后跳列表&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;useRouter()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;router.push(...)&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;无权限跳 403&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;useRouter()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;router.replace(&apos;/403&apos;)&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;六、路由传参：params 和 query&lt;/h2&gt;
+&lt;h3&gt;6.1 对比总览&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;params&lt;/th&gt;
+&lt;th&gt;query&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;URL 样子&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/user/123&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/user?id=123&amp;amp;name=张三&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;本质&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;参数是路径的一部分&lt;/td&gt;
+&lt;td&gt;路径后面挂的问号尾巴&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;比喻&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;房间号&lt;/td&gt;
+&lt;td&gt;门上的便利贴&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;路由定义&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;必须&lt;/strong&gt;提前声明 &lt;code&gt;:id&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;不需要声明&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;跳转写法&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;必须用 &lt;code&gt;name&lt;/code&gt;&lt;/strong&gt;，不能用 &lt;code&gt;path&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;name&lt;/code&gt; 和 &lt;code&gt;path&lt;/code&gt; 都可以&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;获取方式&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;route.params.xxx&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;route.query.xxx&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;适合场景&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;资源 ID（用户ID、文章ID）&lt;/td&gt;
+&lt;td&gt;搜索条件、来源追踪、分页&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;6.2 params 完整流程&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;// 1. 路由定义：用 :id 占位
+{ path: &apos;/user/:id&apos;, name: &apos;user-detail&apos;, component: UserDetail }
+
+// 2. 跳转：必须用 name
+router.push({ name: &apos;user-detail&apos;, params: { id: &apos;99&apos; } })
+// URL 变成：/user/99
+
+// 3. 在组件里接收
+const route = useRoute()
+console.log(route.params.id)  // &quot;99&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;6.3 query 完整流程&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;// 1. 路由定义：不需要额外声明
+{ path: &apos;/search&apos;, name: &apos;search&apos;, component: SearchView }
+
+// 2. 跳转：name 和 path 都可以
+router.push({ name: &apos;search&apos;, query: { keyword: &apos;vue&apos;, page: &apos;1&apos; } })
+// URL 变成：/search?keyword=vue&amp;amp;page=1
+
+// 3. 在组件里接收
+const route = useRoute()
+console.log(route.query.keyword)  // &quot;vue&quot;
+console.log(route.query.page)     // &quot;1&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;6.4 混用&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;router.push({
+  name: &apos;user-detail&apos;,
+  params: { id: &apos;99&apos; },          // → /user/99
+  query: { from: &apos;wechat&apos; },     // → ?from=wechat
+})
+// 最终 URL：/user/99?from=wechat
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;七、动态路由 — &lt;code&gt;:id&lt;/code&gt; 占位符&lt;/h2&gt;
+&lt;h3&gt;7.1 它是什么？&lt;/h3&gt;
+&lt;p&gt;路由路径中的 &lt;code&gt;:xxx&lt;/code&gt; 是一个&lt;strong&gt;占位符&lt;/strong&gt;，可以匹配任意值。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;定义：  /user/:id
+匹配：  /user/99     → route.params.id = &quot;99&quot;
+       /user/888    → route.params.id = &quot;888&quot;
+       /user/abc    → route.params.id = &quot;abc&quot;
+不匹配：/user        → 没有 id
+       /user/99/extra → 多了一层
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;同一个组件（&lt;code&gt;UserDetail.vue&lt;/code&gt;），根据 URL 里不同的 &lt;code&gt;:id&lt;/code&gt; 显示不同内容。&lt;/p&gt;
+&lt;h3&gt;7.2 实现详情页的典型模式&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;script setup lang=&quot;ts&quot;&amp;gt;
+import { useRoute } from &apos;vue-router&apos;
+const route = useRoute()
+
+// 根据 URL 里的 id 去后端请求对应的用户数据
+const userId = route.params.id
+// axios.get(`/api/user/${userId}`)
+&amp;lt;/script&amp;gt;
+
+&amp;lt;template&amp;gt;
+  &amp;lt;p&amp;gt;当前用户 ID：{{ route.params.id }}&amp;lt;/p&amp;gt;
+&amp;lt;/template&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;八、嵌套路由 — children&lt;/h2&gt;
+&lt;h3&gt;8.1 它是什么？&lt;/h3&gt;
+&lt;p&gt;父组件像一个&quot;壳&quot;，子路由的组件渲染在壳里面的 &lt;code&gt;&amp;lt;router-view /&amp;gt;&lt;/code&gt; 中。&lt;/p&gt;
+&lt;h3&gt;8.2 路由配置&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;{
+  path: &apos;/user-list&apos;,
+  component: UserList,       // 父组件（壳）
+  children: [
+    {
+      path: &apos;:id&apos;,            // 子路由 path 不要以 / 开头
+      name: &apos;user-list-detail&apos;,
+      component: UserDetail,  // 子组件（渲染在壳里面）
+    },
+  ],
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;8.3 父组件（壳）的写法&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- UserList.vue --&amp;gt;
+&amp;lt;template&amp;gt;
+  &amp;lt;div class=&quot;layout&quot;&amp;gt;
+    &amp;lt;div class=&quot;left&quot;&amp;gt;
+      &amp;lt;!-- 左侧：用户列表 --&amp;gt;
+      &amp;lt;router-link to=&quot;/user-list/1&quot;&amp;gt;张三&amp;lt;/router-link&amp;gt;
+      &amp;lt;router-link to=&quot;/user-list/2&quot;&amp;gt;李四&amp;lt;/router-link&amp;gt;
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&quot;right&quot;&amp;gt;
+      &amp;lt;!-- ⭐ 子路由出口！和 App.vue 里的 router-view 是同一个东西 --&amp;gt;
+      &amp;lt;router-view /&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;8.4 访问效果&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;访问 /user-list      → 只显示父组件壳，右侧为空（没有匹配的子路由）
+访问 /user-list/3    → 父组件壳 + 右侧渲染 UserDetail（id=3）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;8.5 理解要点&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;router-view /&amp;gt;&lt;/code&gt; 不止 App.vue 里可以有，任何组件里都可以有。子路由的组件渲染在&lt;strong&gt;最近的父级&lt;/strong&gt; &lt;code&gt;&amp;lt;router-view /&amp;gt;&lt;/code&gt; 里。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;App.vue
+  └─ &amp;lt;router-view /&amp;gt;          ← 一级出口
+       └─ UserList.vue
+            └─ &amp;lt;router-view /&amp;gt; ← 二级出口（嵌套路由的关键）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;九、Pinia 状态管理&lt;/h2&gt;
+&lt;h3&gt;9.1 它解决了什么问题？&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;没有 Pinia 时，跨组件共享数据很麻烦：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;组件 A ←→ 父组件（中转）←→ 组件 B
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;兄弟组件传数据，必须通过父组件中转：A emit 给父，父再传 props 给 B。层级一深就成了&quot;props 地狱&quot;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;有了 Pinia，数据放在全局仓库里：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;组件 A → store（全局仓库）← 组件 B
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;任何组件直接从 store 读、往 store 写，不需要经过父组件。&lt;/p&gt;
+&lt;h3&gt;9.2 Store 的混合式（Setup 风格）写法&lt;/h3&gt;
+&lt;p&gt;这是 Vue 官方推荐的写法，结构和组件 setup 几乎一样：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// src/stores/user.ts
+import { ref, computed } from &apos;vue&apos;
+import { defineStore } from &apos;pinia&apos;
+
+export const useXxxStore = defineStore(&apos;store名字&apos;, () =&amp;gt; {
+  // ① 状态（state）：用 ref / reactive 定义
+  const nickname = ref(&apos;张三&apos;)
+  const isLoggedIn = ref(false)
+
+  // ② 计算属性（getter）：用 computed 派生新值
+  const greeting = computed(() =&amp;gt; {
+    return isLoggedIn.value ? `欢迎回来，${nickname.value}！` : &apos;请先登录&apos;
+  })
+
+  // ③ 方法（action）：普通 function，用来修改状态
+  function login(name: string) {
+    nickname.value = name
+    isLoggedIn.value = true
+  }
+
+  // ④ 暴露出去：只有 return 的东西外部才能访问
+  return { nickname, isLoggedIn, greeting, login }
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;9.3 和组件写法的对照&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;组件写法&lt;/th&gt;
+&lt;th&gt;Store 写法&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;状态&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;const count = ref(0)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;const count = ref(0)&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;计算属性&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;const double = computed(...)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;const double = computed(...)&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;方法&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;function increment() {}&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;function increment() {}&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;暴露&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;defineExpose({ ... })&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;return { ... }&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;除了 &lt;code&gt;defineStore&lt;/code&gt; 外壳和 &lt;code&gt;return&lt;/code&gt;，写法和组件一模一样。&lt;/strong&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;十、在组件中使用 Store&lt;/h2&gt;
+&lt;h3&gt;10.1 方式一：直接使用（最常用）&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;script setup lang=&quot;ts&quot;&amp;gt;
+import { useCounterStore } from &apos;@/stores/counter&apos;
+const counterStore = useCounterStore()
+&amp;lt;/script&amp;gt;
+
+&amp;lt;template&amp;gt;
+  &amp;lt;!-- 直接 store.xxx 读取，模板里自动解包，不需要 .value --&amp;gt;
+  &amp;lt;p&amp;gt;{{ counterStore.count }}&amp;lt;/p&amp;gt;
+  &amp;lt;!-- 直接 store.xxx() 调用方法 --&amp;gt;
+  &amp;lt;button @click=&quot;counterStore.increment()&quot;&amp;gt;+1&amp;lt;/button&amp;gt;
+&amp;lt;/template&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;10.2 方式二：storeToRefs 解构&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;script setup lang=&quot;ts&quot;&amp;gt;
+import { storeToRefs } from &apos;pinia&apos;
+import { useCounterStore } from &apos;@/stores/counter&apos;
+
+const counterStore = useCounterStore()
+
+// 状态 → 用 storeToRefs 包一下再解构（保持响应式）
+const { count, doubleCount } = storeToRefs(counterStore)
+
+// 方法 → 直接解构（方法不需要响应式）
+const { increment } = counterStore
+&amp;lt;/script&amp;gt;
+
+&amp;lt;template&amp;gt;
+  &amp;lt;p&amp;gt;{{ count }}&amp;lt;/p&amp;gt;           &amp;lt;!-- 解构后可以直接用短名字 --&amp;gt;
+  &amp;lt;button @click=&quot;increment()&quot;&amp;gt;+1&amp;lt;/button&amp;gt;
+&amp;lt;/template&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;10.3 为什么需要 storeToRefs？（重点）&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;// ❌ 直接解构 → 响应式丢失！
+const { count } = counterStore
+// count 现在只是一个普通数字，store 里 count 变了它不会跟着变
+
+// ✅ storeToRefs 解构 → 响应式保留
+const { count } = storeToRefs(counterStore)
+// count 现在是一个 ref，store 里 count 变了它会自动更新
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;原理&lt;/strong&gt;：&lt;code&gt;storeToRefs&lt;/code&gt; 把 store 里的每个状态转成独立的 &lt;code&gt;ref&lt;/code&gt;，解构后每个 ref 仍然保持响应式连接。&lt;/p&gt;
+&lt;h3&gt;10.4 storeToRefs 只包状态和 getter&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;const { count, doubleCount } = storeToRefs(counterStore)  // ✅ 状态 + getter
+const { increment } = counterStore                        // ✅ 方法直接解构
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;方法不需要响应式（方法本身不会变），所以直接从 store 上解构就行。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;十一、难点速查&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;难点&lt;/th&gt;
+&lt;th&gt;一句话解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;params vs query&lt;/td&gt;
+&lt;td&gt;params 是路径的一部分（&lt;code&gt;/user/99&lt;/code&gt;），query 是问号尾巴（&lt;code&gt;/user?id=99&lt;/code&gt;）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;useRoute vs useRouter&lt;/td&gt;
+&lt;td&gt;Route = Read（读当前页信息），Router = Run（跳转到别处）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;push vs replace&lt;/td&gt;
+&lt;td&gt;push 留历史记录（可后退），replace 替换当前页（不可后退）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;嵌套路由&lt;/td&gt;
+&lt;td&gt;父组件里放 &lt;code&gt;&amp;lt;router-view /&amp;gt;&lt;/code&gt;，子路由的组件就渲染在那里&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;懒加载&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;() =&amp;gt; import(...)&lt;/code&gt; — 访问时才下载组件，首屏更快&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;component: HomeView&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;变量名 &lt;code&gt;HomeView&lt;/code&gt; 来自文件顶部的 &lt;code&gt;import HomeView from ...&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;storeToRefs&lt;/td&gt;
+&lt;td&gt;解构 store 时必须用它包一下，否则响应式丢失&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;params 必须用 name 跳转&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;router.push({ path: &apos;/user/99&apos; })&lt;/code&gt; 的 params 会被忽略，必须用 &lt;code&gt;name&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;!&lt;/code&gt; 取反&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;!undefined&lt;/code&gt; = &lt;code&gt;true&lt;/code&gt;，常用来判断&quot;参数不存在时显示提示&quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</content:encoded></item><item><title>Vue 组件与模板基础</title><link>https://yuzumoon82.github.io/personal-blog/posts/vue%E7%BB%84%E4%BB%B6%E4%B8%8E%E6%A8%A1%E6%9D%BF%E5%9F%BA%E7%A1%80/</link><guid isPermaLink="true">https://yuzumoon82.github.io/personal-blog/posts/vue%E7%BB%84%E4%BB%B6%E4%B8%8E%E6%A8%A1%E6%9D%BF%E5%9F%BA%E7%A1%80/</guid><description>Vue 3 组件开发入门：defineProps、defineEmits、插槽 Slots、模板语法，适合刚学完 HTML/JS 的小白</description><pubDate>Sat, 26 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;学习时间：2026.07.22 - 2026.07.26&lt;br /&gt;
+适用：前端小白，已了解基本的 HTML/JS&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2&gt;一、组件接收数据：defineProps&lt;/h2&gt;
+&lt;h3&gt;1.1 它是什么？&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;defineProps&lt;/code&gt; 是子组件用来**声明&quot;我能接收哪些数据&quot;**的。父组件通过属性（props）传数据进来，子组件用 &lt;code&gt;defineProps&lt;/code&gt; 接住。&lt;/p&gt;
+&lt;h3&gt;1.2 代码拆解&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- 父组件 --&amp;gt;
+&amp;lt;MessageDisplay text=&quot;你好，世界！&quot; /&amp;gt;
+
+&amp;lt;!-- 子组件 MessageDisplay.vue --&amp;gt;
+&amp;lt;script setup lang=&quot;ts&quot;&amp;gt;
+defineProps&amp;lt;{
+  text: string
+}&amp;gt;()
+&amp;lt;/script&amp;gt;
+
+&amp;lt;template&amp;gt;
+  &amp;lt;p&amp;gt;{{ text }}&amp;lt;/p&amp;gt;  &amp;lt;!-- 渲染：你好，世界！ --&amp;gt;
+&amp;lt;/template&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;逐词解释：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;defineProps&amp;lt;{
+  text: string
+}&amp;gt;()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;部分&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;defineProps&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Vue 的编译宏，&lt;strong&gt;不需要 import&lt;/strong&gt;，直接在 &lt;code&gt;&amp;lt;script setup&amp;gt;&lt;/code&gt; 里用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;{ ... }&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;TypeScript 泛型语法，定义 props 的&quot;形状&quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;text&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;prop 的名字，父组件传数据时用的属性名&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;: string&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;TypeScript 类型注解，表示 &lt;code&gt;text&lt;/code&gt; 必须是&lt;strong&gt;字符串类型&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;1.3 核心规则：单向数据流&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;父组件 → 通过 props 传数据 → 子组件
+子组件只能读，不能改
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;子组件修改 props 会报错。如果子组件需要改变数据，应该让父组件来改，或者子组件自己内部用 &lt;code&gt;ref&lt;/code&gt; 存一份副本。&lt;/p&gt;
+&lt;h3&gt;1.4 两种写法对比&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;// 运行时写法（纯 JS，没有类型检查）
+defineProps({ text: String })
+
+// TypeScript 泛型写法（推荐，编译时就能发现类型错误）
+defineProps&amp;lt;{ text: string }&amp;gt;()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;二、TypeScript 类型注解：&lt;code&gt;text: string&lt;/code&gt;&lt;/h2&gt;
+&lt;h3&gt;2.1 它是什么？&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;变量名: 类型&lt;/code&gt; 是 TypeScript 的核心语法，告诉编译器&quot;这个变量只能放这种类型的数据&quot;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let name: string = &apos;张三&apos;     // ✅ 正确
+let name: string = 123        // ❌ 报错：number 不能赋值给 string
+
+let age: number = 17          // ✅ 数字
+let isDone: boolean = false   // ✅ 布尔
+let items: string[] = [&apos;a&apos;]   // ✅ 字符串数组
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;2.2 常见类型速查&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;写法&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;th&gt;示例值&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;string&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;字符串&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&apos;hello&apos;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;number&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;数字&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;17&lt;/code&gt;、&lt;code&gt;3.14&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;boolean&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;布尔&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt; / &lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;string[]&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;字符串数组&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;[&apos;a&apos;, &apos;b&apos;]&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;number[]&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;数字数组&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;[1, 2, 3]&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;三、模板循环：v-for&lt;/h2&gt;
+&lt;h3&gt;3.1 基础用法&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;script setup&amp;gt;
+const users = [
+  { id: 1, name: &apos;张三&apos; },
+  { id: 2, name: &apos;李四&apos; },
+  { id: 3, name: &apos;王五&apos; },
+]
+&amp;lt;/script&amp;gt;
+
+&amp;lt;template&amp;gt;
+  &amp;lt;li v-for=&quot;user in users&quot; :key=&quot;user.id&quot;&amp;gt;
+    {{ user.name }}
+  &amp;lt;/li&amp;gt;
+&amp;lt;/template&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;3.2 逐词解释&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;v-for = &quot;user   in   users&quot;
+ ↑        ↑      ↑     ↑
+指令   临时变量   介词   数据源数组
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;v-for&lt;/code&gt;：Vue 的循环指令，把元素&lt;strong&gt;重复渲染 N 遍&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;user&lt;/code&gt;：随便起的名字，代表数组里的&lt;strong&gt;每一项&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;users&lt;/code&gt;：要被遍历的数组&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;3.3 执行过程（像复印机）&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;users 数组: [张三, 李四, 王五]
+
+第 1 轮：user = { id: 1, name: &apos;张三&apos; } → 渲染 &amp;lt;li&amp;gt;张三&amp;lt;/li&amp;gt;
+第 2 轮：user = { id: 2, name: &apos;李四&apos; } → 渲染 &amp;lt;li&amp;gt;李四&amp;lt;/li&amp;gt;
+第 3 轮：user = { id: 3, name: &apos;王五&apos; } → 渲染 &amp;lt;li&amp;gt;王五&amp;lt;/li&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;3.4 &lt;code&gt;:key&lt;/code&gt; 是什么？&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;必须写！&lt;/strong&gt; 给每个循环出来的元素一个&lt;strong&gt;唯一身份证号&lt;/strong&gt;，Vue 靠它来追踪谁是谁。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- ✅ 正确：用唯一 id --&amp;gt;
+&amp;lt;li v-for=&quot;user in users&quot; :key=&quot;user.id&quot;&amp;gt;{{ user.name }}&amp;lt;/li&amp;gt;
+
+&amp;lt;!-- ❌ 错误：不要用数组下标（index），数据顺序一变就乱了 --&amp;gt;
+&amp;lt;li v-for=&quot;(user, index) in users&quot; :key=&quot;index&quot;&amp;gt;{{ user.name }}&amp;lt;/li&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;3.5 其他写法&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- 顺便拿下标 --&amp;gt;
+&amp;lt;li v-for=&quot;(item, index) in list&quot; :key=&quot;item.id&quot;&amp;gt;{{ index }} - {{ item }}&amp;lt;/li&amp;gt;
+
+&amp;lt;!-- 遍历对象 --&amp;gt;
+&amp;lt;li v-for=&quot;(value, key) in obj&quot; :key=&quot;key&quot;&amp;gt;{{ key }}: {{ value }}&amp;lt;/li&amp;gt;
+
+&amp;lt;!-- 直接写次数 --&amp;gt;
+&amp;lt;li v-for=&quot;n in 5&quot; :key=&quot;n&quot;&amp;gt;{{ n }}&amp;lt;/li&amp;gt;  &amp;lt;!-- 1, 2, 3, 4, 5 --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;四、条件渲染：v-if 和 v-show&lt;/h2&gt;
+&lt;h3&gt;4.1 v-if — 条件为真才存在&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;p v-if=&quot;!route.params.id&quot;&amp;gt;👈 点击左侧用户查看详情&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;v-if  =  &quot;!&quot;    route.params.id
+ ↑        ↑          ↑
+条件指令  取反符号    当前 URL 里的 :id 参数值
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;规则&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;条件为 &lt;code&gt;true&lt;/code&gt; → 显示元素&lt;/li&gt;
+&lt;li&gt;条件为 &lt;code&gt;false&lt;/code&gt; → &lt;strong&gt;元素直接从 HTML 里删除&lt;/strong&gt;（不是隐藏，是没了）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;4.2 &lt;code&gt;!&lt;/code&gt; 取反运算&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;!true    → false
+!false   → true
+!&apos;hello&apos; → false  // 非空字符串是 truthy
+!&apos;&apos;      → true   // 空字符串是 falsy
+!0       → true   // 0 是 falsy
+!undefined → true // undefined 是 falsy
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;4.3 实际场景&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- 没选用户时显示提示，选了就消失 --&amp;gt;
+&amp;lt;p v-if=&quot;!route.params.id&quot;&amp;gt;请选择用户&amp;lt;/p&amp;gt;
+
+&amp;lt;!-- 等价写法 --&amp;gt;
+&amp;lt;p v-if=&quot;route.params.id === undefined&quot;&amp;gt;请选择用户&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;4.4 v-if vs v-show&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;v-if&lt;/code&gt;&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;v-show&lt;/code&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;条件为假时&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;移除 DOM 元素&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;隐藏&lt;/strong&gt;（加 &lt;code&gt;display: none&lt;/code&gt;）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;切换开销&lt;/td&gt;
+&lt;td&gt;大（要销毁/重建整个元素）&lt;/td&gt;
+&lt;td&gt;小（只改 CSS）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;初始渲染&lt;/td&gt;
+&lt;td&gt;条件为假就不渲染&lt;/td&gt;
+&lt;td&gt;无论条件都渲染&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;适合场景&lt;/td&gt;
+&lt;td&gt;不频繁切换（如是否已登录）&lt;/td&gt;
+&lt;td&gt;频繁切换（如 Tab 切换）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;五、HTML 标签&lt;/h2&gt;
+&lt;h3&gt;5.1 &lt;code&gt;&amp;lt;section&amp;gt;&lt;/code&gt; — 有主题的内容区块&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- ❌ 无语义，纯布局盒子 --&amp;gt;
+&amp;lt;div class=&quot;card&quot;&amp;gt;
+  &amp;lt;h2&amp;gt;标题&amp;lt;/h2&amp;gt;
+  &amp;lt;p&amp;gt;内容&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+
+&amp;lt;!-- ✅ 语义明确，表示一个独立内容区块 --&amp;gt;
+&amp;lt;section class=&quot;card&quot;&amp;gt;
+  &amp;lt;h2&amp;gt;标题&amp;lt;/h2&amp;gt;
+  &amp;lt;p&amp;gt;内容&amp;lt;/p&amp;gt;
+&amp;lt;/section&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;人眼看没区别&lt;/strong&gt;，但屏幕阅读器和搜索引擎会识别出 &lt;code&gt;&amp;lt;section&amp;gt;&lt;/code&gt; 是一个独立的内容区域。&lt;/p&gt;
+&lt;h3&gt;5.2 &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; — 行内代码&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;p&amp;gt;用 &amp;lt;code&amp;gt;console.log()&amp;lt;/code&amp;gt; 打印信息。&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;浏览器会用&lt;strong&gt;等宽字体&lt;/strong&gt;显示被 &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; 包裹的文字，表示&quot;这是代码&quot;。&lt;/p&gt;
+&lt;h3&gt;5.3 常见语义标签全家福&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;header&amp;gt;   &amp;lt;!-- 页头 --&amp;gt;
+&amp;lt;nav&amp;gt;      &amp;lt;!-- 导航栏 --&amp;gt;
+&amp;lt;main&amp;gt;     &amp;lt;!-- 页面主体 --&amp;gt;
+&amp;lt;section&amp;gt;  &amp;lt;!-- 独立内容区块 --&amp;gt;
+&amp;lt;article&amp;gt;  &amp;lt;!-- 独立完整内容（如文章） --&amp;gt;
+&amp;lt;aside&amp;gt;    &amp;lt;!-- 侧边栏 --&amp;gt;
+&amp;lt;footer&amp;gt;   &amp;lt;!-- 页脚 --&amp;gt;
+&amp;lt;div&amp;gt;      &amp;lt;!-- 无语义，纯布局容器 --&amp;gt;
+&amp;lt;span&amp;gt;     &amp;lt;!-- 无语义，行内容器 --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;六、CSS：把样式写到 &lt;code&gt;&amp;lt;style scoped&amp;gt;&lt;/code&gt; 里&lt;/h2&gt;
+&lt;h3&gt;6.1 不推荐：行内样式&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- 样式和结构混在一起，难维护 --&amp;gt;
+&amp;lt;nav style=&quot;display: flex; background: #333; padding: 12px;&quot;&amp;gt;
+  &amp;lt;a style=&quot;color: #ddd; text-decoration: none;&quot;&amp;gt;首页&amp;lt;/a&amp;gt;
+&amp;lt;/nav&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;6.2 推荐：CSS class + &lt;code&gt;&amp;lt;style scoped&amp;gt;&lt;/code&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;template&amp;gt;
+  &amp;lt;nav class=&quot;my-nav&quot;&amp;gt;
+    &amp;lt;a&amp;gt;首页&amp;lt;/a&amp;gt;
+  &amp;lt;/nav&amp;gt;
+&amp;lt;/template&amp;gt;
+
+&amp;lt;style scoped&amp;gt;
+.my-nav {
+  display: flex;
+  background: #333;
+  padding: 12px;
+}
+.my-nav a {
+  color: #ddd;
+  text-decoration: none;
+}
+.my-nav a:hover {  /* 行内样式写不了 hover！这也是优势 */
+  color: #fff;
+}
+&amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;优势&lt;/strong&gt;：结构（HTML）和样式（CSS）分离，可复用，能写伪类（&lt;code&gt;:hover&lt;/code&gt;）。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;七、项目启动流程&lt;/h2&gt;
+&lt;h3&gt;7.1 main.ts 四步走&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;main.ts （程序入口）
+  │
+  ├─ 第 1 步：const app = createApp(App)
+  │    创建 Vue 应用实例，指定 App.vue 为根组件
+  │
+  ├─ 第 2 步：app.use(router)
+  │    安装路由插件
+  │
+  ├─ 第 3 步：app.use(createPinia())
+  │    安装状态管理插件
+  │
+  └─ 第 4 步：app.mount(&apos;#app&apos;)
+       启动！接管 index.html 里 &amp;lt;div id=&quot;app&quot;&amp;gt; 这个节点
+       页面开始显示
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;7.2 核心 API 含义&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;代码&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;th&gt;比喻&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;createApp(App)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;以 App.vue 为根，创建应用&lt;/td&gt;
+&lt;td&gt;买一台新手机&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;app.use(xxx)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;装插件&lt;/td&gt;
+&lt;td&gt;在手机上装 App&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;app.mount(&apos;#app&apos;)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;启动，接管 HTML 节点&lt;/td&gt;
+&lt;td&gt;按下开机键&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;7.3 &lt;code&gt;export default&lt;/code&gt; 和 &lt;code&gt;import&lt;/code&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;// router/index.ts（定义 + 导出）
+const router = createRouter({ ... })
+export default router   // ← &quot;把路由器放到出货口&quot;
+
+// main.ts（导入 + 使用）
+import router from &apos;./router&apos;  // ← &quot;从出货口取走&quot;
+app.use(router)                 // ← &quot;装到应用上&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;export default&lt;/code&gt;：一个文件只能有一个，导出后别人用 &lt;code&gt;import&lt;/code&gt; 接住。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;八、难点速查&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;难点&lt;/th&gt;
+&lt;th&gt;一句话解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;defineProps&lt;/code&gt; vs 直接写变量&lt;/td&gt;
+&lt;td&gt;props 是父传子的数据通道，单向的&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;v-if&lt;/code&gt; vs &lt;code&gt;v-show&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;v-if 是移除/创建，v-show 是显示/隐藏&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;:key&lt;/code&gt; 为什么必须写&lt;/td&gt;
+&lt;td&gt;Vue 靠它区分循环出来的每个元素，没 key 更新会乱&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;!&lt;/code&gt; 取反&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;!undefined&lt;/code&gt; = &lt;code&gt;true&lt;/code&gt;，&lt;code&gt;!&quot;hello&quot;&lt;/code&gt; = &lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;section&amp;gt;&lt;/code&gt; vs &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;长得一样，但 section 有语义（告诉机器&quot;这是一块独立内容&quot;）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;TypeScript 类型&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;变量名: 类型&lt;/code&gt;，比如 &lt;code&gt;name: string&lt;/code&gt; 表示 name 只能是字符串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 </content:encoded></item><item><title>Mizuki Music Player 实现详解</title><link>https://yuzumoon82.github.io/personal-blog/posts/mizuki-musicplayer%E5%AE%9E%E7%8E%B0%E8%AF%A6%E8%A7%A3/</link><guid isPermaLink="true">https://yuzumoon82.github.io/personal-blog/posts/mizuki-musicplayer%E5%AE%9E%E7%8E%B0%E8%AF%A6%E8%A7%A3/</guid><description>从零拆解音乐播放器组件——Svelte 与 Vue 对照，面向新手</description><pubDate>Fri, 25 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Mizuki Music Player 实现详解&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;从零拆解一个完整的前端组件——音乐播放器。面向 Vue 新手，每一步都标注 Svelte 和 Vue 的对应写法。&lt;/p&gt;

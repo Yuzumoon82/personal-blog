@@ -5,387 +5,1222 @@
   <link href="https://yuzumoon82.github.io/personal-blog/" rel="alternate" type="text/html"/>
   <link href="https://yuzumoon82.github.io/personal-blog/atom.xml" rel="self" type="application/atom+xml"/>
   <id>https://yuzumoon82.github.io/personal-blog/</id>
-  <updated>2026-07-26T06:42:04.037Z</updated>
+  <updated>2026-07-27T13:51:55.751Z</updated>
   <language>zh_CN</language>
   <entry>
-    <title>Mizuki 项目学习计划</title>
+    <title>Mizuki 项目学习计划——从看懂到拥有自己的博客</title>
     <link href="https://yuzumoon82.github.io/personal-blog/posts/mizuki%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" rel="alternate" type="text/html"/>
     <id>https://yuzumoon82.github.io/personal-blog/posts/mizuki%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/</id>
-    <published>2025-07-26T00:00:00.000Z</published>
-    <updated>2025-07-26T00:00:00.000Z</updated>
-    <summary>从零到上线自己的博客——Mizuki 开源 Astro 静态博客模板学习路径</summary>
-    <content type="html"><![CDATA[<h1>Mizuki 项目学习计划 —— 从零到上线自己的博客</h1>
-<blockquote>
-<p>Mizuki 是一个开源的 Astro 静态博客模板。你的目标：看懂它 → 改它 → 把它变成你自己的博客。</p>
+    <published>2025-07-27T00:00:00.000Z</published>
+    <updated>2025-07-27T00:00:00.000Z</updated>
+    <summary>前端小白专属的 Mizuki 博客项目学习路径，分 10 阶段 24 天，从跑起来到部署上线</summary>
+    <content type="html"><![CDATA[<blockquote>
+<p><strong>适合人群</strong>：前端小白，已有基本的 HTML/CSS/JS 语法基础，还没做过完整项目。</p>
+<p><strong>目标</strong>：看懂 Mizuki → 会改 Mizuki → 把它变成你自己的博客并上线。</p>
+<p><strong>参考文档</strong>：配合 <code>Mizuki项目结构详解.md</code> 一起看，里面标注了每个文件的作用，看不懂某个文件时去查。</p>
 </blockquote>
 <hr />
-<h2>〇、先认识这个项目</h2>
-<h3>Mizuki 是什么</h3>
-<p>一个<strong>静态博客网站</strong>。写 Markdown 文章 → 自动生成 HTML 页面 → 部署到网上就能访问。</p>
-<h3>技术栈一览</h3>
+<h2>目录</h2>
+<ul>
+<li><a href="#0-%E5%AD%A6%E4%B9%8B%E5%89%8D%E9%9C%80%E8%A6%81%E4%BB%80%E4%B9%88%E5%9F%BA%E7%A1%80">0. 学之前需要什么基础</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%E8%B7%91%E8%B5%B7%E6%9D%A5%E5%BB%BA%E7%AB%8B%E6%89%8B%E6%84%9Fday-1-2">第一阶段：跑起来，建立手感（Day 1-2）</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%8D%E5%8A%A8%E4%BB%A3%E7%A0%81day-3-4">第二阶段：改配置文件，不动代码（Day 3-4）</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%E5%86%99%E6%96%87%E7%AB%A0%E7%90%86%E8%A7%A3%E5%86%85%E5%AE%B9%E7%B3%BB%E7%BB%9Fday-5-6">第三阶段：写文章，理解内容系统（Day 5-6）</a></li>
+<li><a href="#%E7%AC%AC%E5%9B%9B%E9%98%B6%E6%AE%B5%E8%AF%BB%E6%87%82-astro-%E7%BB%84%E4%BB%B6day-7-8">第四阶段：读懂 Astro 组件（Day 7-8）</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%94%E9%98%B6%E6%AE%B5%E6%94%B9%E6%A0%B7%E5%BC%8F%E7%90%86%E8%A7%A3-tailwind-cssday-9-10">第五阶段：改样式，理解 Tailwind CSS（Day 9-10）</a></li>
+<li><a href="#%E7%AC%AC%E5%85%AD%E9%98%B6%E6%AE%B5%E6%94%B9%E7%BB%84%E4%BB%B6%E7%9C%9F%E5%88%80%E7%9C%9F%E6%9E%AA%E5%8A%A8%E6%89%8Bday-11-13">第六阶段：改组件，真刀真枪动手（Day 11-13）</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%83%E9%98%B6%E6%AE%B5%E7%90%86%E8%A7%A3-svelte-%E4%BA%A4%E4%BA%92%E7%BB%84%E4%BB%B6day-14-15">第七阶段：理解 Svelte 交互组件（Day 14-15）</a></li>
+<li><a href="#%E7%AC%AC%E5%85%AB%E9%98%B6%E6%AE%B5%E5%8A%A0%E6%96%B0%E5%8A%9F%E8%83%BD%E4%BB%8E%E6%94%B9%E5%88%B0%E5%86%99day-16-18">第八阶段：加新功能，从改到写（Day 16-18）</a></li>
+<li><a href="#%E7%AC%AC%E4%B9%9D%E9%98%B6%E6%AE%B5%E6%8A%8A%E5%AE%83%E5%8F%98%E6%88%90%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2day-19-22">第九阶段：把它变成你的博客（Day 19-22）</a></li>
+<li><a href="#%E7%AC%AC%E5%8D%81%E9%98%B6%E6%AE%B5%E9%83%A8%E7%BD%B2%E4%B8%8A%E7%BA%BFday-23-24">第十阶段：部署上线（Day 23-24）</a></li>
+<li><a href="#%E9%99%84%E5%BD%95%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98%E6%80%8E%E4%B9%88%E8%87%AA%E6%95%91">附录：遇到问题怎么自救</a></li>
+</ul>
+<hr />
+<h2>0. 学之前需要什么基础</h2>
+<p>在开始学 Mizuki 之前，确保你已经会：</p>
 <table>
 <thead>
 <tr>
-<th>技术</th>
-<th>干什么的</th>
-<th>你需要学到什么程度</th>
+<th>基础</th>
+<th>程度要求</th>
+<th>怎么验证</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Astro</strong></td>
-<td>框架，把 Markdown + 组件 → HTML 页面</td>
-<td>会用 .astro 文件，理解 frontmatter 和 template</td>
+<td><strong>HTML</strong></td>
+<td>认识常用标签：<code>&lt;div&gt;</code>, <code>&lt;h1&gt;-&lt;h6&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;ul&gt;/&lt;li&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code></td>
+<td>打开任意 .astro 文件的模板区，能认出 80% 的标签</td>
 </tr>
 <tr>
-<td><strong>Tailwind CSS</strong></td>
-<td>写样式的，用 class 名控制外观</td>
-<td>会查文档，找到你想要的 class 名</td>
+<td><strong>CSS</strong></td>
+<td>理解盒模型、Flex、选择器、class 的概念</td>
+<td>能在浏览器开发者工具里改一个元素的样式</td>
 </tr>
 <tr>
-<td><strong>Svelte</strong></td>
-<td>做交互组件（音乐播放器、搜索等）</td>
-<td>先跳过，只看不改</td>
+<td><strong>JavaScript</strong></td>
+<td>变量、函数、数组、对象、<code>import/export</code></td>
+<td>能看懂 <code>const x = [1,2,3].map(n =&gt; n*2)</code></td>
 </tr>
 <tr>
-<td><strong>TypeScript</strong></td>
-<td>带类型的 JavaScript</td>
-<td>能读懂就行，不需要写</td>
+<td><strong>命令行</strong></td>
+<td><code>cd</code>、<code>ls</code>、<code>mkdir</code></td>
+<td>能在终端里进入项目目录</td>
 </tr>
 <tr>
-<td><strong>Markdown/MDX</strong></td>
-<td>写文章的格式</td>
-<td>会用 # 标题、列表、链接</td>
+<td><strong>Git</strong></td>
+<td><code>clone</code>、<code>add</code>、<code>commit</code>、<code>push</code></td>
+<td>能把代码推到 GitHub</td>
 </tr>
 </tbody>
 </table>
-<h3>目录结构速览</h3>
-<pre><code>Mizuki/
-├── astro.config.mjs          ← 网站配置（插件、域名、SEO）
-├── src/
-│   ├── pages/                ← ★ 页面：首页、关于、文章列表...
-│   ├── components/           ← ★ 组件：按钮、卡片、导航栏...
-│   │   ├── atoms/            ←   最小组件（Button, Icon, Badge）
-│   │   ├── widgets/          ←   大组件（音乐播放器、评论）
-│   │   └── layout/           ←   页面骨架（header, footer, sidebar）
-│   ├── layouts/Layout.astro  ← ★ 全局布局（所有页面都套这个壳）
-│   ├── config/               ← ★ 配置文件（改这个就能改网站内容）
-│   ├── content/posts/        ← ★ 博客文章（Markdown 文件）
-│   ├── styles/               ← 样式文件
-│   └── data/                 ← 数据文件（项目列表、朋友列表等）
-├── public/                   ← 静态资源（图片、字体）
-└── package.json              ← 项目依赖和脚本命令
-</code></pre>
+<blockquote>
+<p>如果以上还有不熟的，先看 <code>前端学习计划-零基础到实战.md</code> 的第一周内容，打基础。</p>
+</blockquote>
+<p><strong>不需要会的</strong>（会在学习过程中慢慢接触）：</p>
+<ul>
+<li>Astro 框架（这个学习计划会带你入门）</li>
+<li>Svelte（第七阶段才接触）</li>
+<li>TypeScript（看懂就行，不用写）</li>
+<li>Tailwind CSS（第五阶段会专门练）</li>
+</ul>
 <hr />
-<h2>第一阶段：跑起来（Day 1）</h2>
-<h3>目标：能在本地浏览器看到这个网站</h3>
-<p><strong>Step 1：安装依赖</strong></p>
-<pre><code>cd /Users/dduo/WebstormProjects/Mizuki
-
-# 如果没有 pnpm，先装它
+<h2>第一阶段：跑起来，建立手感（Day 1-2）</h2>
+<h3>Day 1：让项目在本地跑起来</h3>
+<p><strong>目标</strong>：在浏览器里看到这个博客网站。</p>
+<h4>Step 1：确认环境</h4>
+<p>打开终端，依次执行：</p>
+<pre><code>node -v    # 确认 Node.js 已安装（需要 v18+）
+npm -v     # 确认 npm 已安装
+</code></pre>
+<p>如果报错 "command not found"，先去 <a href="https://nodejs.org">nodejs.org</a> 下载安装 LTS 版本。</p>
+<h4>Step 2：安装 pnpm 和依赖</h4>
+<pre><code># 安装 pnpm 包管理器（比 npm 更快、更省磁盘）
 npm install -g pnpm
 
-# 装项目依赖
+# 进入项目目录
+cd /Users/gaoyaoqian/DevCode/webwork/Mizuki
+
+# 安装所有依赖（第一次需要几分钟）
 pnpm install
 </code></pre>
-<p><strong>Step 2：启动开发服务器</strong></p>
+<h4>Step 3：启动开发服务器</h4>
 <pre><code>pnpm dev
 </code></pre>
-<p>浏览器打开 <code>http://localhost:4321</code> —— 你应该能看到一个完整的博客网站。</p>
-<p><strong>Step 3：改一行字，验证热更新</strong></p>
-<p>打开 <code>src/config/site.ts</code>（或 <code>src/config/</code> 下的配置文件），找到网站标题，改一个字，保存。浏览器自动刷新——这说明<strong>热更新</strong>在工作。</p>
-<p><strong>今天学到什么</strong>：</p>
+<p>浏览器打开 <code>http://localhost:3000</code>，你应该能看到一个完整的博客网站。</p>
+<blockquote>
+<p><strong>端口说明</strong>：这个项目配置的是 3000 端口（在 <code>astro.config.mjs</code> 第 97-99 行的 <code>server.port</code>），不是默认的 4321。</p>
+</blockquote>
+<h4>Step 4：初体验 —— 改一个字看效果</h4>
+<p>打开 <code>src/config/siteConfig.ts</code>，找到第 7 行：</p>
+<pre><code>title: "Yuzumoon82",
+</code></pre>
+<p>改成你的名字，保存。浏览器自动刷新——标题变了。</p>
+<p>这就是<strong>热更新（HMR, Hot Module Replacement）</strong>：改代码 → 保存 → 浏览器自动刷新，不用手动 F5。</p>
+<h4>Step 5：随便点点</h4>
+<p>在浏览器里逛一逛这个网站，了解它有哪些页面：</p>
 <ul>
-<li>pnpm 是包管理器，<code>pnpm install</code> = 下载项目需要的所有代码</li>
-<li><code>pnpm dev</code> = 启动开发服务器，"dev" = development</li>
-<li>Astro 的热更新：改代码 → 保存 → 浏览器自动刷新，不用手动 F5</li>
+<li>首页（文章列表）</li>
+<li>点击任意文章 → 文章详情页</li>
+<li>归档页、关于页、友链页、番剧页……</li>
+<li>试试右上角的搜索按钮</li>
+<li>试试侧边栏的音乐播放器</li>
+<li>试试切换亮色/暗色主题</li>
+</ul>
+<p><strong>目的</strong>：建立感性认识——"这个博客长什么样、有哪些功能"。</p>
+<hr />
+<h3>Day 2：建立项目地图</h3>
+<p><strong>目标</strong>：知道"想改 XX 应该去哪个文件"。</p>
+<h4>任务 1：对比项目结构文档</h4>
+<p>打开 <code>Mizuki项目结构详解.md</code>，对着文件列表，用 VS Code 打开项目，按图索骥找到以下关键文件：</p>
+<table>
+<thead>
+<tr>
+<th>找这个文件</th>
+<th>它在哪</th>
+<th>它是干什么的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>首页</td>
+<td><code>src/pages/[...page].astro</code></td>
+<td>博客文章列表页</td>
+</tr>
+<tr>
+<td>文章详情页</td>
+<td><code>src/pages/posts/[...slug].astro</code></td>
+<td>单篇文章</td>
+</tr>
+<tr>
+<td>全局布局（壳）</td>
+<td><code>src/layouts/Layout.astro</code></td>
+<td>所有页面的 HTML 骨架</td>
+</tr>
+<tr>
+<td>主网格布局</td>
+<td><code>src/layouts/MainGridLayout.astro</code></td>
+<td>内容区布局（导航+侧栏+内容+Footer）</td>
+</tr>
+<tr>
+<td>主配置</td>
+<td><code>src/config/siteConfig.ts</code></td>
+<td>网站的几乎所有设置</td>
+</tr>
+<tr>
+<td>一篇文章</td>
+<td><code>src/content/posts/*.md</code></td>
+<td>随便打开一篇看 Markdown 格式</td>
+</tr>
+<tr>
+<td>导航栏</td>
+<td><code>src/components/organisms/navigation/Navbar.astro</code></td>
+<td>顶部导航</td>
+</tr>
+<tr>
+<td>音乐播放器</td>
+<td><code>src/components/widgets/music-player/MusicPlayer.svelte</code></td>
+<td>交互组件示例</td>
+</tr>
+</tbody>
+</table>
+<h4>任务 2：理解文件路由的对应关系</h4>
+<p>在浏览器里访问，然后找到对应的源文件：</p>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>源文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>http://localhost:3000/</code></td>
+<td><code>src/pages/[...page].astro</code></td>
+</tr>
+<tr>
+<td><code>http://localhost:3000/about/</code></td>
+<td><code>src/pages/about.astro</code></td>
+</tr>
+<tr>
+<td><code>http://localhost:3000/friends/</code></td>
+<td><code>src/pages/friends.astro</code></td>
+</tr>
+<tr>
+<td><code>http://localhost:3000/projects/</code></td>
+<td><code>src/pages/projects.astro</code></td>
+</tr>
+<tr>
+<td><code>http://localhost:3000/posts/xxx/</code></td>
+<td><code>src/pages/posts/[...slug].astro</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>规律</strong>：<code>src/pages/xxx.astro</code> → 自动映射到 <code>/xxx</code> 这个 URL。这就是 Astro 的<strong>文件路由</strong>。</p>
+<blockquote>
+<p><strong>关键理解</strong>：<code>[...page].astro</code> 和 <code>[...slug].astro</code> 中的 <code>[...]</code> 是 Astro 的<strong>动态路由</strong>语法。<code>[...page]</code> 匹配 <code>/</code>、<code>/2/</code>、<code>/3/</code>……<code>[...slug]</code> 匹配 <code>/posts/任意文章名/</code>。</p>
+</blockquote>
+<h4>任务 3：画一张自己的"项目地图"</h4>
+<p>在纸上或笔记软件里画一个简单的图：</p>
+<pre><code>我打开浏览器访问 /
+    ↓
+[...page].astro 处理请求
+    ↓
+用 MainGridLayout.astro 布局
+    ├── Navbar.astro（导航栏）
+    ├── Banner.astro（顶部横幅）
+    ├── SideBar.astro（左侧栏）
+    ├── PostPage.astro（文章列表）← 主要内容
+    ├── RightSideBar.astro（右侧栏）
+    └── Footer.astro（底部）
+</code></pre>
+<hr />
+<h2>第二阶段：改配置文件，不动代码（Day 3-4）</h2>
+<p><strong>核心理念</strong>：这个项目是<strong>配置驱动</strong>的。很多内容不需要动 .astro 文件，改配置就能改。配置文件在 <code>src/config/</code> 下，是最安全的修改入口——改不坏，改错了改回来就行。</p>
+<h3>Day 3：把网站信息改成你的</h3>
+<h4>任务 1：改站点基本信息</h4>
+<p>打开 <code>src/config/siteConfig.ts</code>，逐行看，改以下内容：</p>
+<table>
+<thead>
+<tr>
+<th>行</th>
+<th>改什么</th>
+<th>改成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 7 行 <code>title</code></td>
+<td>网站标题</td>
+<td>你的名字或昵称</td>
+</tr>
+<tr>
+<td>第 8 行 <code>subtitle</code></td>
+<td>网站副标题</td>
+<td>"XXX 的博客"</td>
+</tr>
+<tr>
+<td>第 9 行 <code>siteURL</code></td>
+<td>网站域名</td>
+<td>先不改，部署时再改</td>
+</tr>
+<tr>
+<td>第 14 行 <code>hue</code></td>
+<td>主题色相（0-360）</td>
+<td>挑一个你喜欢的颜色：红色=0，蓝色=240，绿色=120，紫色=270</td>
+</tr>
+</tbody>
+</table>
+<p>每改一处保存，看浏览器变化。</p>
+<h4>任务 2：改个人信息</h4>
+<p>打开 <code>src/config/profileConfig.ts</code>，修改：</p>
+<ul>
+<li>头像（先替换 <code>public/</code> 下的图片，再改路径）</li>
+<li>名字</li>
+<li>个人简介</li>
+<li>社交链接（GitHub、邮箱等）</li>
+</ul>
+<h4>任务 3：改导航栏菜单</h4>
+<p>打开 <code>src/config/navBarConfig.ts</code>，看看菜单项是怎么配置的。试着：</p>
+<ul>
+<li>改一个菜单名（比如 "关于" 改成 "关于我"）</li>
+<li>去掉一个你不想要的菜单项</li>
+<li>注意 <code>featurePages</code> 开关的影响（在 <code>siteConfig.ts</code> 里）</li>
+</ul>
+<h4>任务 4：理解"开关"模式</h4>
+<p>在 <code>siteConfig.ts</code> 第 19-30 行，找到 <code>featurePages</code>：</p>
+<pre><code>featurePages: {
+    anime: true,    // true = 显示番剧页面
+    diary: true,    // false = 隐藏日记页面
+    // ...
+}
+</code></pre>
+<p>试着把 <code>anime: true</code> 改成 <code>anime: false</code>，保存——番剧页面的入口在导航栏里消失了。</p>
+<p>这就是"配置开关"：<strong>不需要删代码，改一个 true/false 就能控制功能显隐</strong>。</p>
+<hr />
+<h3>Day 4：改外观配置</h3>
+<h4>任务 1：改 Banner</h4>
+<p>在 <code>siteConfig.ts</code> 里找到 <code>banner</code> 配置块（约第 108-180 行），理解以下配置：</p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>src.desktop</code></td>
+<td>桌面端 Banner 图片数组（多张 = 自动轮播）</td>
+</tr>
+<tr>
+<td><code>src.mobile</code></td>
+<td>移动端 Banner 图片</td>
+</tr>
+<tr>
+<td><code>carousel.interval</code></td>
+<td>轮播间隔（秒）</td>
+</tr>
+<tr>
+<td><code>homeText.title</code></td>
+<td>Banner 上的大标题</td>
+</tr>
+<tr>
+<td><code>homeText.subtitle</code></td>
+<td>Banner 上的副标题（数组 = 随机/轮播显示）</td>
+</tr>
+<tr>
+<td><code>typewriter.enable</code></td>
+<td>副标题打字机效果开关</td>
+</tr>
+<tr>
+<td><code>typewriter.speed</code></td>
+<td>打字速度</td>
+</tr>
+</tbody>
+</table>
+<h4>任务 2：替换 Banner 图片</h4>
+<ol>
+<li>找 4 张你喜欢的图片（建议 <code>.webp</code> 格式，桌面端宽度至少 1920px）</li>
+<li>放到 <code>public/assets/desktop-banner/</code> 下（替换原有的或新增）</li>
+<li>在 <code>siteConfig.ts</code> 里修改 <code>banner.src.desktop</code> 数组的路径</li>
+<li>同样操作移动端 Banner 到 <code>public/assets/mobile-banner/</code></li>
+</ol>
+<h4>任务 3：改页面布局</h4>
+<p>理解三种壁纸模式（<code>wallpaperMode.defaultMode</code>）：</p>
+<ul>
+<li><code>"banner"</code> — 顶部大横幅（默认）</li>
+<li><code>"fullscreen"</code> — 全屏壁纸</li>
+<li><code>"none"</code> — 无壁纸</li>
+</ul>
+<p>改成不同的值，观察页面变化。</p>
+<h4>任务 4：改文章列表布局</h4>
+<ul>
+<li><code>postListLayout.defaultMode</code>：<code>"list"</code> = 单列列表，<code>"grid"</code> = 双列网格</li>
+<li><code>postListLayout.allowSwitch</code>：是否允许访客切换布局</li>
+<li>把 <code>defaultMode</code> 改成 <code>"grid"</code>，看看效果</li>
 </ul>
 <hr />
-<h2>第二阶段：改内容，不动代码（Day 2-3）</h2>
-<h3>Day 2：改配置 —— 把网站变成你的</h3>
-<p><strong>目标</strong>：不用写一行 HTML/CSS，只改配置文件，让这个网站变成"你的"。</p>
-<p><strong>任务 1：改网站基本信息</strong></p>
-<p>打开 <code>src/config/</code> 目录，找到这些配置文件，逐行看，改掉能看懂的：</p>
-<ul>
-<li>网站标题、描述</li>
-<li>你的名字、头像链接</li>
-<li>导航栏菜单项</li>
-<li>社交链接（GitHub、邮箱）</li>
-</ul>
-<p>每改一处保存，看浏览器变化。这是最快建立信心的方式。</p>
-<p><strong>任务 2：改首页 Hero 区</strong></p>
-<p>找首页的配置（通常在 config 文件或 <code>src/pages/index.astro</code> 的 frontmatter），改：</p>
-<ul>
-<li>大标题</li>
-<li>副标题</li>
-<li>按钮文字</li>
-</ul>
-<p><strong>任务 3：理解 Tailwind CSS 的 class</strong></p>
-<p>打开 <code>src/pages/index.astro</code>，你会看到很多像 <code>class="text-2xl font-bold text-center"</code> 这样的代码。不用背，记住两个网站：</p>
-<ul>
-<li><a href="https://tailwindcss.com/docs">Tailwind CSS 文档</a> —— 查任何 class 的含义</li>
-<li>改一个 class，保存，看效果。比如把 <code>text-2xl</code> 改成 <code>text-4xl</code>，字体会变大</li>
-</ul>
-<p><strong>今天学到什么</strong>：</p>
-<ul>
-<li>配置驱动：这个项目的很多内容不用改代码，改配置就行</li>
-<li>Tailwind CSS：用 class 控制样式，不用写 CSS 文件</li>
-</ul>
-<hr />
-<h3>Day 3：写第一篇文章</h3>
-<p><strong>目标</strong>：在博客上发布一篇你自己的文章。</p>
-<p><strong>任务 1：找到文章目录</strong></p>
-<pre><code>ls src/content/posts/
-</code></pre>
-<p>你会看到一些 <code>.md</code> 或 <code>.mdx</code> 文件。这些就是博客文章。</p>
-<p><strong>任务 2：新建一篇文章</strong></p>
-<pre><code>pnpm new-post
-</code></pre>
-<p>按提示输入标题。会在 <code>src/content/posts/</code> 下生成一个新文件。</p>
-<p><strong>任务 3：写 Markdown</strong></p>
-<p>打开你新建的文件，顶部是 frontmatter（用 <code>---</code> 包起来的部分）：</p>
+<h2>第三阶段：写文章，理解内容系统（Day 5-6）</h2>
+<h3>Day 5：用 Markdown 写文章</h3>
+<h4>任务 1：理解 Markdown Frontmatter</h4>
+<p>打开 <code>src/content/posts/</code> 下的任意一篇文章（<code>.md</code> 文件），观察顶部：</p>
 <pre><code>---
-title: 我的第一篇文章
-date: 2026-07-25
-description: 这是我用 Mizuki 写的第一篇博客
+title: "文章标题"
+published: 2025-07-24
+description: "文章简介"
 tags: [前端, 学习]
+category: 学习笔记
+draft: false
+pinned: false
 ---
+</code></pre>
+<p>这就是 <strong>Frontmatter</strong>——文章元数据，用 <code>---</code> 包起来。它告诉 Astro：这篇文章的标题是什么、什么时候发布的、属于哪个分类。</p>
+<p>查阅 <code>src/content.config.ts</code>，这里面用 Zod 定义了所有支持的 frontmatter 字段及其类型。</p>
+<h4>任务 2：创建你的第一篇文章</h4>
+<pre><code>pnpm new-post 我的第一篇文章
+</code></pre>
+<p>这会在 <code>src/content/posts/</code> 下生成一个新文件。打开它：</p>
+<ol>
+<li>修改 frontmatter 里的 <code>description</code>、<code>tags</code>、<code>category</code></li>
+<li>在 <code>---</code> 下面的区域用 Markdown 写内容：</li>
+</ol>
+<pre><code>## 今天学了什么
 
-## 今天学到了什么
+今天我开始学习 Astro 静态博客框架……
 
-今天我开始学习 Astro...
+### 三个收获
 
-## 代码示例
+1. Astro 的 `.astro` 文件分为 frontmatter 区和模板区
+2. 文件路由：`src/pages/xxx.astro` → `/xxx`
+3. 热更新：改了代码不用手动刷新
+
+### 代码示例
 
 ​```javascript
-console.log('hello world');
+console.log('Hello, Mizuki!');
 ​```
 </code></pre>
-<p>保存 → 浏览器自动刷新 → 首页应该能看到你的新文章。</p>
-<p><strong>今天学到什么</strong>：</p>
+<p>保存，首页应能看到你的新文章。</p>
+<h4>任务 3：理解 Markdown → HTML 的渲染过程</h4>
+<p>Astro 处理文章的流程：</p>
+<pre><code>.md 文件
+  → frontmatter 被解析为元数据（标题、日期、标签...）
+  → Markdown 正文被 remark/rehype 插件处理
+    → 代码块 → Expressive Code 高亮
+    → 数学公式 → KaTeX 渲染
+    → Mermaid 图表 → 转为 SVG
+    → 图片 → 优化 + 响应式
+    → Admonition（提示框）→ 自定义组件
+  → 最终生成 HTML 页面
+</code></pre>
+<p>用到的插件都在 <code>src/plugins/</code> 下，在 <code>astro.config.mjs</code> 的 <code>markdown.processor</code> 中注册。<strong>现在不需要看懂插件代码，只要知道它们存在就行</strong>。</p>
+<hr />
+<h3>Day 6：理解内容与代码分离</h3>
+<h4>任务 1：理解内容同步机制</h4>
+<p>这个项目支持<strong>内容与代码分离</strong>——文章可以存放在另一个 Git 仓库里，构建时自动拉取。</p>
+<p>看这几个文件：</p>
 <ul>
-<li>Markdown frontmatter：文章标题、日期、标签在 <code>---</code> 之间</li>
-<li>Markdown 语法：<code>#</code> = 标题，<code>##</code> = 二级标题，``` 包起来 = 代码块</li>
-<li>Astro 的内容集合：<code>src/content/posts/</code> 下的 .md 文件自动变成博客文章</li>
+<li><code>scripts/sync-content.js</code> — 从远程仓库拉取文章</li>
+<li><code>scripts/init-content-repo.js</code> — 初始化内容仓库</li>
+<li><code>docs/CONTENT_SEPARATION.md</code> — 内容分离说明文档</li>
+</ul>
+<p><code>package.json</code> 里的 <code>predev</code> 和 <code>prebuild</code> 脚本会在启动/构建前自动执行同步：</p>
+<pre><code>"predev": "node scripts/sync-content.js || true",
+"prebuild": "node scripts/sync-content.js || true",
+</code></pre>
+<p><code>|| true</code> 的意思是：即使同步失败（比如没有配置内容仓库），也不影响启动。</p>
+<h4>任务 2：再写两篇文章</h4>
+<ol>
+<li><strong>"我是怎么开始学前端的"</strong> — 自我介绍，用上图片、链接、列表</li>
+<li><strong>"Mizuki 博客搭建记录"</strong> — 记录你学到现在的过程</li>
+</ol>
+<p>练习 Markdown 语法：</p>
+<ul>
+<li><code>#</code> <code>##</code> <code>###</code> 标题层级</li>
+<li><code>**粗体**</code> <code>*斜体*</code></li>
+<li><code>[链接文字](URL)</code></li>
+<li><code>![图片描述](图片路径)</code></li>
+<li><code>- 列表项</code></li>
+<li><code>1. 有序列表</code></li>
+<li><code>&gt; 引用文字</code></li>
+<li>​<code>语言 代码块 </code></li>
 </ul>
 <hr />
-<h2>第三阶段：改样式，理解组件（Day 4-6）</h2>
-<h3>Day 4：理解 Astro 组件</h3>
-<p><strong>目标</strong>：能看懂 <code>.astro</code> 文件的结构。</p>
-<p><strong>.astro 文件的两段式结构</strong>：</p>
+<h2>第四阶段：读懂 Astro 组件（Day 7-8）</h2>
+<h3>Day 7：.astro 文件的解剖</h3>
+<h4>核心概念：三段式结构</h4>
+<p>每一个 <code>.astro</code> 文件包含三个区域（后两个可选）：</p>
 <pre><code>---
-// ↑↑↑ 上面这段叫 frontmatter（脚本区）
-// 在这里写 JavaScript/TypeScript
-// 可以 import 其他组件、定义变量、获取数据
+// ╔══════════════════════════════╗
+// ║  ① Frontmatter（脚本区）      ║
+// ║  运行在服务器端（构建时）       ║
+// ║  写 JS/TS 逻辑、import、取数据  ║
+// ╚══════════════════════════════╝
 import Layout from '../layouts/Layout.astro';
 const title = '我的页面';
+const items = ['a', 'b', 'c'];
 ---
 
-&lt;!-- ↓↓↓ 下面这段叫 template（模板区） --&gt;
-&lt;!-- 在这里写 HTML --&gt;
+&lt;!-- ╔══════════════════════════════╗ --&gt;
+&lt;!-- ║  ② Template（模板区）         ║ --&gt;
+&lt;!-- ║  写 HTML/组件，可用 {变量}      ║ --&gt;
+&lt;!-- ╚══════════════════════════════╝ --&gt;
 &lt;Layout&gt;
   &lt;h1&gt;{title}&lt;/h1&gt;
-  &lt;p&gt;这是一个 Astro 组件&lt;/p&gt;
+  &lt;ul&gt;
+    {items.map(item =&gt; &lt;li&gt;{item}&lt;/li&gt;)}
+  &lt;/ul&gt;
 &lt;/Layout&gt;
 
 &lt;style&gt;
-  /* 样式只影响当前组件，不会泄露到其他组件 */
+  /* ╔══════════════════════════════╗ */
+  /* ║  ③ Style（样式区，可选）      ║ */
+  /* ║  默认 Scoped：只影响当前组件   ║ */
+  /* ╚══════════════════════════════╝ */
   h1 { color: red; }
 &lt;/style&gt;
 </code></pre>
-<p><strong>练习</strong>：打开 <code>src/pages/about.astro</code>，对照上面的结构看懂它。改一下 <code>&lt;h1&gt;</code> 里的文字，保存看效果。</p>
-<p><strong>任务</strong>：找一个 atom 组件（如 <code>src/components/atoms/Button/Button.astro</code>），逐行读完。原子组件通常很短（20-50 行），是最容易看懂的入口。</p>
+<h4>练习 1：从最简单的原子组件开始</h4>
+<p>打开 <code>src/components/atoms/Badge/Badge.svelte</code>（或 <code>Button/Button.astro</code>），逐行读完。</p>
+<ul>
+<li>这类原子组件通常很短（20-50 行），是最容易看懂的入口</li>
+<li>注意：它接受 <code>Props</code>（也叫属性/参数），父组件传入，组件内部使用</li>
+</ul>
+<h4>练习 2：读懂 about.astro</h4>
+<p>打开 <code>src/pages/about.astro</code>，对照上面的三段式结构理解它：</p>
+<ol>
+<li>Frontmatter 区导入了什么？</li>
+<li>模板区用了什么 HTML 标签和组件？</li>
+<li><code>&lt;Layout&gt;</code> 是怎么包裹它的？</li>
+</ol>
+<p>改一下 <code>&lt;h1&gt;</code> 里的文字，保存看效果。</p>
+<h4>练习 3：找 5 个 <code>.astro</code> 组件，标出"三段式"</h4>
+<p>随便打开 5 个 <code>.astro</code> 文件，每个都：</p>
+<ol>
+<li>找到 frontmatter 区（<code>---</code> 之间）</li>
+<li>找到模板区（HTML/组件部分）</li>
+<li>找到样式区（如果有的话）</li>
+</ol>
 <hr />
-<h3>Day 5：理解布局和插槽</h3>
-<p><strong>目标</strong>：理解"所有页面套同一个壳"是怎么实现的。</p>
-<p><strong>核心概念</strong>：<code>Layout.astro</code>（<code>src/layouts/Layout.astro</code>）。</p>
-<p>打开它，你会看到类似这样的结构：</p>
-<pre><code>&lt;html&gt;
+<h3>Day 8：理解布局和插槽（Slot）</h3>
+<h4>核心概念：Layout 模式</h4>
+<p>这是 Astro / 所有组件化框架最重要的模式之一：<strong>Layout 组件提供"壳"，每个页面填充自己的"肉"</strong>。</p>
+<p>打开 <code>src/layouts/Layout.astro</code>，找到 <code>&lt;slot /&gt;</code>。</p>
+<pre><code>&lt;!-- Layout.astro --&gt;
+&lt;html&gt;
   &lt;head&gt;...&lt;/head&gt;
   &lt;body&gt;
-    &lt;Header /&gt;         ← 导航栏，每个页面都一样
+    &lt;Header /&gt;            ← 每个页面都一样
     &lt;main&gt;
-      &lt;slot /&gt;         ← ★ 插槽：每个页面的不同内容放在这里
+      &lt;slot /&gt;            ← ★ 这里放每个页面自己的内容
     &lt;/main&gt;
-    &lt;Footer /&gt;         ← 底部，每个页面都一样
+    &lt;Footer /&gt;            ← 每个页面都一样
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<p><code>&lt;slot /&gt;</code> 是关键——它是一个占位符。当你在 <code>about.astro</code> 里写：</p>
+<p>当 <code>about.astro</code> 这样写：</p>
 <pre><code>&lt;Layout title="关于我"&gt;
-  &lt;h1&gt;这是关于页面&lt;/h1&gt;     ← 这段内容替换 &lt;slot /&gt;
+  &lt;h1&gt;这是关于页面&lt;/h1&gt;     ← 这段内容会替换 &lt;slot /&gt;
 &lt;/Layout&gt;
 </code></pre>
-<p><strong>练习</strong>：打开 <code>src/layouts/Layout.astro</code>，找到 <code>&lt;slot /&gt;</code> 的位置。然后打开 <code>src/pages/about.astro</code>，看看它怎么用 <code>&lt;Layout&gt;</code> 包裹自己的内容。</p>
+<p><strong>最终生成的 HTML</strong>：</p>
+<pre><code>&lt;html&gt;
+  &lt;head&gt;...&lt;/head&gt;
+  &lt;body&gt;
+    &lt;Header /&gt;
+    &lt;main&gt;
+      &lt;h1&gt;这是关于页面&lt;/h1&gt;   ← 替换了 &lt;slot /&gt; 的位置
+    &lt;/main&gt;
+    &lt;Footer /&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h4>练习：追踪 slot 的传递链</h4>
+<p>从 <code>about.astro</code> 开始追踪：</p>
+<pre><code>about.astro
+  → &lt;Layout&gt;...&lt;/Layout&gt;  ← 给 Layout 传了 title 和 slot 内容
+    → Layout.astro  ← 接收 title prop；&lt;slot /&gt; 放内容
+      → 在 &lt;head&gt; 里用 {title} 拼出 &lt;title&gt; 标签
+      → 在 &lt;body&gt; 里用 &lt;slot /&gt; 渲染子内容
+</code></pre>
+<p>再用同样的方法追踪首页 <code>[...page].astro</code>：</p>
+<pre><code>[...page].astro
+  → &lt;MainGridLayout&gt;...&lt;/MainGridLayout&gt;
+    → MainGridLayout.astro  ← 包装在 Layout 之上
+      → Layout.astro  ← 最终还是套这个壳
+</code></pre>
 <hr />
-<h3>Day 6：改一个组件 —— 把导航栏改成你自己的</h3>
-<p><strong>目标</strong>：找到导航栏组件，改菜单项。</p>
-<p><strong>定位导航栏</strong>：</p>
-<p>导航栏通常在 <code>src/components/layout/</code> 或 <code>src/components/organisms/</code> 下，找文件名含 <code>Header</code>、<code>Nav</code>、<code>Navbar</code> 的文件。</p>
-<p><strong>练习</strong>：</p>
-<ol>
-<li>打开导航栏组件</li>
-<li>找到菜单项（通常是 <code>&lt;a&gt;</code> 标签列表）</li>
-<li>改一个菜单名（比如 "关于" 改成 "关于我"）</li>
-<li>给"关于我"加一个高亮样式（加 <code>class="text-blue-500"</code> 或 <code>class="font-bold"</code>）</li>
-</ol>
-<p><strong>今天学到什么</strong>：</p>
-<ul>
-<li>组件的复用：导航栏写在 Header 组件里一次，所有页面都自动有</li>
-<li>Tailwind 的 class 命名规律：<code>text-</code> = 文字颜色，<code>font-</code> = 字体粗细，<code>bg-</code> = 背景色</li>
-</ul>
-<hr />
-<h2>第四阶段：加功能，真正动手（Day 7-8）</h2>
-<h3>Day 7：加一个新页面</h3>
-<p><strong>目标</strong>：从零新建一个页面，加到导航栏里。</p>
-<p><strong>Step 1：创建页面文件</strong></p>
-<p>在 <code>src/pages/</code> 下新建 <code>learning.astro</code>：</p>
-<pre><code>---
-import Layout from '../layouts/Layout.astro';
----
+<h2>第五阶段：改样式，理解 Tailwind CSS（Day 9-10）</h2>
+<h3>Day 9：Tailwind CSS 入门</h3>
+<h4>核心理念</h4>
+<p>Tailwind CSS 是<strong>原子化 CSS 框架</strong>。传统方式是你写 CSS 规则给 class 起名，Tailwind 是给你成千上万个预先定义好的、单一用途的 class，你直接在 HTML 里组合它们。</p>
+<pre><code>&lt;!-- 传统写法 --&gt;
+&lt;style&gt;
+  .my-button {
+    padding: 8px 16px;
+    background: blue;
+    color: white;
+    border-radius: 8px;
+  }
+&lt;/style&gt;
+&lt;button class="my-button"&gt;按钮&lt;/button&gt;
 
-&lt;Layout title="我的学习记录"&gt;
-  &lt;main class="max-w-2xl mx-auto py-20"&gt;
-    &lt;h1 class="text-3xl font-bold"&gt;📚 我的前端学习记录&lt;/h1&gt;
-    &lt;p class="mt-4 text-gray-600"&gt;这里记录我每天学到的东西。&lt;/p&gt;
-  &lt;/main&gt;
-&lt;/Layout&gt;
+&lt;!-- Tailwind 写法 --&gt;
+&lt;button class="px-4 py-2 bg-blue-500 text-white rounded-lg"&gt;按钮&lt;/button&gt;
 </code></pre>
-<p>保存，访问 <code>http://localhost:4321/learning</code> —— 你的新页面在。</p>
-<p><strong>Step 2：加到导航栏</strong></p>
-<p>找到导航栏组件，在菜单列表里加一个 <code>&lt;a href="/learning"&gt;学习记录&lt;/a&gt;</code>。</p>
-<p><strong>今天学到什么</strong>：</p>
-<ul>
-<li>Astro 的文件路由：<code>src/pages/xxx.astro</code> → 自动映射到 <code>/xxx</code> 这个 URL</li>
-<li>加页面只需要两步：建文件 + 加导航链接</li>
-</ul>
-<hr />
-<h3>Day 8：读懂一个 Svelte 交互组件（只读不改）</h3>
-<p><strong>目标</strong>：理解项目中 <code>.svelte</code> 文件是干什么的。</p>
-<p>Svelte 和 Astro 的区别：</p>
-<ul>
-<li><code>.astro</code> 文件：在<strong>服务器端</strong>运行，生成静态 HTML，没有交互</li>
-<li><code>.svelte</code> 文件：在<strong>浏览器端</strong>运行，可以做交互（点击、输入、动画）</li>
-</ul>
-<p><strong>练习</strong>：打开 <code>src/components/widgets/music-player/MusicPlayer.svelte</code>，不用全看懂，找到这三样东西：</p>
-<ol>
-<li><code>&lt;script&gt;</code> 标签里的 <code>let</code> 变量 —— 这就是组件的"状态"（比如 <code>let isPlaying = false</code>）</li>
-<li>模板里的 <code>{#if ...}</code> 和 <code>{变量}</code> —— Svelte 的模板语法</li>
-<li><code>on:click={...}</code> —— 事件监听</li>
-</ol>
-<p><strong>今天学到什么</strong>：</p>
-<ul>
-<li>.astro = 静态内容，构建时生成 HTML</li>
-<li>.svelte = 交互内容，用户在浏览器里点按钮时响应</li>
-<li>不需要现在就学会写 Svelte，知道它们在项目里的角色就够了</li>
-</ul>
-<hr />
-<h2>第五阶段：部署上线（Day 9-10）</h2>
-<h3>Day 9：构建 + 部署到 GitHub Pages</h3>
-<p><strong>目标</strong>：你的博客有一个人人可以访问的网址。</p>
-<p><strong>Step 1：构建</strong></p>
-<pre><code>pnpm build
-</code></pre>
-<p>构建产物在 <code>dist/</code> 目录下——这就是你的整个网站，纯 HTML+CSS+JS，可以部署到任何静态托管服务。</p>
-<p><strong>Step 2：推到自己新建的 GitHub 仓库</strong></p>
-<pre><code># 在 GitHub 上新建一个仓库，比如 mizuki-blog
-git remote add myblog https://github.com/你的用户名/mizuki-blog.git
-git push myblog main
-</code></pre>
-<p><strong>Step 3：用 Vercel 部署（比 GitHub Pages 更简单）</strong></p>
-<ol>
-<li>访问 <a href="https://vercel.com">vercel.com</a>，用 GitHub 登录</li>
-<li>点 "New Project" → 选择你的仓库</li>
-<li>不用改任何配置，点 Deploy</li>
-<li>等 2 分钟，拿到一个 <code>xxx.vercel.app</code> 的网址</li>
-</ol>
-<p><strong>今天学到什么</strong>：</p>
-<ul>
-<li><code>pnpm build</code> = 生产构建，把所有代码编译成浏览器能直接读的 HTML/CSS/JS</li>
-<li>Vercel 自动检测到 Astro 项目，零配置部署</li>
-</ul>
-<hr />
-<h3>Day 10：写 3 篇文章 + 完善博客</h3>
-<p><strong>目标</strong>：你的博客有内容可以给人看了。</p>
-<p><strong>写 3 篇文章</strong>：</p>
-<ol>
-<li>"我是怎么开始学前端的" —— 自我介绍</li>
-<li>"前端学习第一周总结" —— 记录你的学习过程</li>
-<li>"Mizuki 博客搭建记录" —— 记录你是怎么做这个博客的</li>
-</ol>
-<p><strong>完善细节</strong>：</p>
-<ul>
-<li>把默认的头像换成你自己的</li>
-<li>把默认的项目卡片换成你自己的项目链接</li>
-<li>把 README.md 改成你自己的项目介绍</li>
-</ul>
-<hr />
-<h2>学习方法</h2>
+<p><strong>优点</strong>：不用在 HTML 和 CSS 文件之间来回切换，不用给 class 起名字。
+<strong>缺点</strong>：HTML 会变得很长。习惯了就好。</p>
+<h4>最重要的记忆规律</h4>
+<p>Tailwind 的 class 命名非常有规律：</p>
 <table>
 <thead>
 <tr>
-<th>原则</th>
-<th>说明</th>
+<th>类别</th>
+<th>命名模式</th>
+<th>示例</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>先改配置文件，再动组件代码</strong></td>
-<td>配置文件是最安全的修改入口，改不坏</td>
+<td>颜色</td>
+<td><code>{color}-{depth}</code></td>
+<td><code>text-gray-500</code>, <code>bg-blue-100</code>, <code>border-red-300</code></td>
 </tr>
 <tr>
-<td><strong>改一个 class → 保存 → 看效果</strong></td>
-<td>Tailwind 的 class 不用背，试出来的记得最牢</td>
+<td>尺寸</td>
+<td><code>{property}-{size}</code></td>
+<td><code>p-4</code>（padding 16px）, <code>m-2</code>（margin 8px）, <code>w-64</code>（width 256px）</td>
 </tr>
 <tr>
-<td><strong>遇到看不懂的代码，先跳过</strong></td>
-<td>这个项目有几百个文件，不需要全看懂</td>
+<td>文字</td>
+<td><code>text-{size}</code></td>
+<td><code>text-sm</code>, <code>text-lg</code>, <code>text-2xl</code>, <code>text-4xl</code></td>
 </tr>
 <tr>
-<td><strong>每天只吃透一个文件</strong></td>
-<td>比如今天就看懂 Button.astro，明天看 Header.astro</td>
+<td>粗细</td>
+<td><code>font-{weight}</code></td>
+<td><code>font-normal</code>, <code>font-bold</code>, <code>font-black</code></td>
 </tr>
 <tr>
-<td><strong>不要怕改坏</strong></td>
-<td>改坏了 <code>git checkout -- .</code> 一键恢复</td>
+<td>圆角</td>
+<td><code>rounded-{size}</code></td>
+<td><code>rounded</code>, <code>rounded-lg</code>, <code>rounded-full</code></td>
+</tr>
+<tr>
+<td>阴影</td>
+<td><code>shadow-{size}</code></td>
+<td><code>shadow</code>, <code>shadow-md</code>, <code>shadow-xl</code></td>
+</tr>
+<tr>
+<td>显示</td>
+<td><code>flex</code>, <code>grid</code>, <code>hidden</code>, <code>block</code></td>
+<td>布局相关</td>
+</tr>
+<tr>
+<td>响应式</td>
+<td><code>{screen}:{class}</code></td>
+<td><code>md:flex</code>, <code>lg:hidden</code>, <code>xl:text-2xl</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>学习方法</strong>：不背。打开 <a href="https://tailwindcss.com/docs">Tailwind CSS 文档</a>，用到什么查什么。试 100 次就记住了。</p>
+</blockquote>
+<h4>练习 1：在浏览器里改 class</h4>
+<ol>
+<li>打开 <code>http://localhost:3000</code>，按 F12 打开开发者工具</li>
+<li>点击左上角的元素选择器（箭头图标）</li>
+<li>选中一个元素（比如文章标题）</li>
+<li>在右侧 Styles 面板里，找到它的 class</li>
+<li>双击一个 class 名，改成别的值，观察效果</li>
+</ol>
+<p>比如：</p>
+<ul>
+<li>把 <code>text-lg</code> 改成 <code>text-4xl</code> → 字变大</li>
+<li>把 <code>text-gray-500</code> 改成 <code>text-blue-500</code> → 颜色变蓝</li>
+<li>加一个 <code>bg-yellow-200</code> → 背景变黄</li>
+</ul>
+<h4>练习 2：改一个组件的样式</h4>
+<p>打开 <code>src/components/features/posts/PostCard.astro</code>，找到其中的 class：</p>
+<ul>
+<li>给卡片加一个 <code>hover:shadow-xl</code>（鼠标悬停大阴影）</li>
+<li>把标题颜色改成 <code>text-blue-600</code></li>
+</ul>
+<p>保存看效果。</p>
+<hr />
+<h3>Day 10：理解和修改全局样式</h3>
+<h4>任务 1：理解 main.css 的结构</h4>
+<p>打开 <code>src/styles/main.css</code>。这个文件导入了 Tailwind 并注册了项目中用到的自定义 CSS 变量。观察 <code>@theme</code> 块中定义的 CSS 变量（以 <code>--</code> 开头）。</p>
+<h4>任务 2：改主题色</h4>
+<p>主题色通过 CSS 变量控制，核心是 <code>--hue</code>（色相）。Mizuki 的主题色系统基于 OKLCH 色彩空间：</p>
+<ul>
+<li>用 <code>--hue</code> 设定色相（0-360）</li>
+<li>网站的所有主题色自动基于这个值计算出来</li>
+</ul>
+<p>你在 <code>siteConfig.ts</code> 里改的 <code>themeColor.hue</code> 就是在控制这个值。</p>
+<h4>任务 3：改暗色模式颜色</h4>
+<p>打开浏览器开发者工具，在 <code>&lt;html&gt;</code> 元素上找到 <code>class="dark"</code> 或类似的暗色模式标记。手动切换主题，观察哪些 CSS 变量变了。</p>
+<p>如果想自定义暗色模式的配色，搜 <code>@media (prefers-color-scheme: dark)</code> 和 <code>.dark</code> 相关的样式规则。</p>
+<h4>任务 4：改字体</h4>
+<p>在 <code>src/styles/main.css</code> 的 <code>@theme</code> 块里找到 <code>--font-sans</code> 变量。这控制了全站的默认字体。字体文件本身通过 <code>astro.config.mjs</code> 的 <code>fonts</code> 配置加载。</p>
+<p>如果想用系统默认字体（更快）：</p>
+<pre><code>--font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+</code></pre>
+<hr />
+<h2>第六阶段：改组件，真刀真枪动手（Day 11-13）</h2>
+<h3>Day 11：改导航栏</h3>
+<h4>目标：把导航栏改成你想要的样子</h4>
+<ol>
+<li>打开 <code>src/components/organisms/navigation/Navbar.astro</code></li>
+<li>找到菜单项渲染的部分</li>
+<li>改一个菜单名</li>
+<li>改菜单的样式（高亮当前页面的样式）</li>
+<li>给导航栏加一个背景模糊效果：<code>backdrop-blur-md</code></li>
+</ol>
+<p>同时看 <code>src/config/navBarConfig.ts</code>，理解配置如何驱动导航栏的渲染。</p>
+<hr />
+<h3>Day 12：改首页文章列表</h3>
+<h4>目标：调整首页文章卡片的展示</h4>
+<ol>
+<li>打开 <code>src/components/features/posts/PostCard.astro</code></li>
+<li>改卡片的布局（封面图位置、标题大小、描述截断行数）</li>
+<li>把日期格式改成你喜欢的样子（比如 "2025年7月26日"）</li>
+</ol>
+<p>相关工具函数在 <code>src/utils/date-utils.ts</code>。</p>
+<h4>理解 PostCard vs PostListItem</h4>
+<ul>
+<li><code>PostCard.astro</code>：网格模式的卡片</li>
+<li><code>PostListItem.astro</code>：列表模式的行</li>
+</ul>
+<p>两者的区别是布局，数据来源相同。在 <code>PostPage.astro</code> 中按当前布局模式决定用哪个。</p>
+<hr />
+<h3>Day 13：改 Footer</h3>
+<h4>目标：把页脚改成你自己的</h4>
+<ol>
+<li>打开 <code>src/components/organisms/footer/Footer.astro</code></li>
+<li>改版权信息、链接</li>
+<li>改 ICP 备案号（如果需要的话）</li>
+</ol>
+<p>相关配置：<code>src/config/footerConfig.ts</code>、<code>src/config/licenseConfig.ts</code></p>
+<hr />
+<h2>第七阶段：理解 Svelte 交互组件（Day 14-15）</h2>
+<h3>Day 14：Svelte 是什么，和 Astro 什么关系</h3>
+<h4>关键区别</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>.astro 组件</th>
+<th>.svelte 组件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>运行位置</strong></td>
+<td>服务器端（构建时）</td>
+<td>浏览器端（运行时）</td>
+</tr>
+<tr>
+<td><strong>生成什么</strong></td>
+<td>静态 HTML</td>
+<td>带交互的 HTML + JS</td>
+</tr>
+<tr>
+<td><strong>能做什么</strong></td>
+<td>渲染内容、接收 props</td>
+<td>响应用户点击、输入、动画、状态管理</td>
+</tr>
+<tr>
+<td><strong>什么时候用</strong></td>
+<td>页面、布局、纯展示组件</td>
+<td>音乐播放器、搜索、主题切换、表单</td>
+</tr>
+</tbody>
+</table>
+<h4>程序员的类比</h4>
+<ul>
+<li><code>.astro</code> = <strong>打印机</strong>：构建时跑一次，产出静态 HTML，和用户没有互动</li>
+<li><code>.svelte</code> = <strong>手机 App</strong>：跑在用户浏览器里，响应用户操作</li>
+</ul>
+<h4>Svelte 组件的基本结构</h4>
+<pre><code>&lt;script&gt;
+  // ① 脚本区：变量、函数、逻辑
+  let count = 0;
+  function increment() {
+    count += 1;
+  }
+&lt;/script&gt;
+
+&lt;!-- ② 模板区：HTML + Svelte 模板语法 --&gt;
+&lt;button on:click={increment}&gt;
+  点击了 {count} 次
+&lt;/button&gt;
+
+&lt;style&gt;
+  /* ③ 样式区：Scoped 样式 */
+  button {
+    background: blue;
+    color: white;
+  }
+&lt;/style&gt;
+</code></pre>
+<h4>练习：找到一个 Svelte 组件，认三样东西</h4>
+<p>打开 <code>src/components/control/ThemeSwitch.svelte</code>（主题切换按钮）：</p>
+<ol>
+<li>找到 <code>&lt;script&gt;</code> 里的 <code>let</code> 变量 —— 这是组件的<strong>状态</strong></li>
+<li>找到 <code>on:click={...}</code> —— 这是<strong>事件监听</strong></li>
+<li>找到模板里的 <code>{#if ...}</code> 和 <code>{变量}</code> —— 这是 Svelte 的<strong>模板语法</strong></li>
+</ol>
+<hr />
+<h3>Day 15：跟踪音乐播放器的数据流</h3>
+<h4>目标：理解一个复杂 Svelte 组件是怎么工作的</h4>
+<p>音乐播放器是这个项目里最复杂的 Svelte 组件，在 <code>src/components/widgets/music-player/</code>。</p>
+<p><strong>组件层级</strong>（从外到内）：</p>
+<pre><code>MusicPlayer.svelte          ← 顶层：控制播放器整体显示/隐藏
+  ├── FabMusicPanel.svelte  ← 悬浮按钮 + 弹出面板
+  └── PlayerBar.svelte      ← 底部播放条
+        ├── TrackDisplay     ← 当前曲目信息（封面、歌名、歌手）
+        ├── PlayerControls   ← 播放/暂停/上一首/下一首
+        ├── ProgressControl  ← 进度条
+        └── VolumeControl    ← 音量控制
+</code></pre>
+<p><strong>数据流</strong>：</p>
+<pre><code>musicPlayerStore.ts（全局状态仓库）
+  ↓ 订阅
+MusicPlayer.svelte
+  ↓ props 传递
+PlayerBar.svelte
+  ↓ props 传递
+TrackDisplay / PlayerControls / ProgressControl ...
+</code></pre>
+<p><code>musicPlayerStore.ts</code>（<code>src/stores/musicPlayerStore.ts</code>）是数据源——它存储了：</p>
+<ul>
+<li>当前播放的歌曲</li>
+<li>播放列表</li>
+<li>播放状态（播放中/暂停）</li>
+<li>音量</li>
+<li>播放模式（顺序/随机/单曲循环）</li>
+</ul>
+<p><strong>概念理解</strong>：</p>
+<ul>
+<li><strong>Store（状态仓库）</strong>：类似一个全局变量，任何组件都能读取/修改它</li>
+<li><strong>当 Store 更新时，所有读取它的组件自动更新</strong>——这就是"响应式"</li>
+</ul>
+<blockquote>
+<p><strong>不用现在就学会写 Svelte。这个阶段的目标只是：能认出 .svelte 文件、知道它是做交互的、理解数据从 store 流向组件。</strong></p>
+</blockquote>
+<hr />
+<h2>第八阶段：加新功能，从改到写（Day 16-18）</h2>
+<h3>Day 16：加一个新页面</h3>
+<h4>目标：从零新建一个页面，并加到导航栏里</h4>
+<p><strong>Step 1：创建页面文件</strong></p>
+<p>在 <code>src/pages/</code> 下新建 <code>reading.astro</code>：</p>
+<pre><code>---
+import MainGridLayout from '../layouts/MainGridLayout.astro';
+---
+
+&lt;MainGridLayout title="读书笔记"&gt;
+  &lt;main class="max-w-2xl mx-auto py-12 px-4"&gt;
+    &lt;h1 class="text-3xl font-bold mb-6"&gt;📚 读书笔记&lt;/h1&gt;
+    &lt;p class="text-gray-500"&gt;这里记录我读过的书和笔记。&lt;/p&gt;
+
+    &lt;div class="mt-8 space-y-4"&gt;
+      &lt;div class="p-4 border rounded-lg"&gt;
+        &lt;h3 class="font-bold"&gt;《书名》&lt;/h3&gt;
+        &lt;p class="text-sm text-gray-500"&gt;作者 · 2025 年 7 月读完&lt;/p&gt;
+        &lt;p class="mt-2"&gt;这本书讲了……&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/MainGridLayout&gt;
+</code></pre>
+<p>保存，访问 <code>http://localhost:3000/reading/</code>——你的新页面出现了！</p>
+<p><strong>Step 2：加到导航栏</strong></p>
+<p>打开 <code>src/config/navBarConfig.ts</code>，在菜单列表里加一项链接到 <code>/reading/</code>。</p>
+<hr />
+<h3>Day 17：添加一个新的侧边栏小部件</h3>
+<h4>目标：在侧边栏加一个自定义小部件</h4>
+<p><strong>Step 1：理解侧边栏的渲染机制</strong></p>
+<p>侧边栏的内容由 <code>widget-manager.ts</code>（<code>src/utils/widget-manager.ts</code>）管理。它在启动时读取 <code>sidebarConfig.ts</code>，决定哪些 widget 在什么条件下显示。</p>
+<p><strong>Step 2：创建一个小部件</strong></p>
+<p>在 <code>src/components/widgets/</code> 下新建 <code>my-quote/MyQuote.astro</code>：</p>
+<pre><code>---
+// 随机显示一句名言
+const quotes = [
+  { text: "代码是写给人看的，顺便能在机器上运行。", author: "Harold Abelson" },
+  { text: "简单是可靠的先决条件。", author: "Edsger Dijkstra" },
+  { text: "先让程序跑起来，再考虑优化。", author: "Kent Beck" },
+];
+const random = quotes[Math.floor(Math.random() * quotes.length)];
+---
+
+&lt;div class="my-quote p-4 rounded-xl bg-gray-50 dark:bg-gray-800"&gt;
+  &lt;p class="text-sm italic"&gt;"{random.text}"&lt;/p&gt;
+  &lt;p class="text-xs text-gray-500 mt-1"&gt;— {random.author}&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p><strong>Step 3：注册到侧边栏</strong></p>
+<p>在 <code>src/config/sidebarConfig.ts</code> 中配置这个新 widget。</p>
+<hr />
+<h3>Day 18：定制文章详情页</h3>
+<h4>目标：文章页面的展示由你掌控</h4>
+<ol>
+<li>打开 <code>src/pages/posts/[...slug].astro</code> — 理解它如何获取文章数据并传给布局</li>
+<li>打开 <code>src/components/features/posts/PostPage.astro</code> — 这是文章页面的核心组件</li>
+<li>试着改：
+<ul>
+<li>文章标题的字号</li>
+<li>文章元数据（日期、分类、字数、阅读时长）的显示顺序</li>
+<li>要不要显示文章封面</li>
+<li>相关文章推荐的数量</li>
+</ul>
+</li>
+</ol>
+<p>相关工具函数在：</p>
+<ul>
+<li><code>src/utils/content-utils.ts</code> — 内容处理</li>
+<li><code>src/utils/post-card-content.ts</code> — 卡片内容提取</li>
+<li><code>src/utils/reading-time</code> — 阅读时长计算（这是一个 npm 包）</li>
+</ul>
+<hr />
+<h2>第九阶段：把它变成你的博客（Day 19-22）</h2>
+<h3>Day 19：彻底改头换面</h3>
+<h4>目标：让博客在视觉上不再像原版 Mizuki</h4>
+<table>
+<thead>
+<tr>
+<th>要改的</th>
+<th>在哪改</th>
+<th>改成什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>网站标题</td>
+<td><code>siteConfig.ts</code></td>
+<td>你的名字</td>
+</tr>
+<tr>
+<td>Banner 图</td>
+<td>替换 <code>public/assets/desktop-banner/</code> 下的图</td>
+<td>你自己的图</td>
+</tr>
+<tr>
+<td>头像</td>
+<td>替换 <code>public/assets/</code> 或 <code>src/assets/images/</code></td>
+<td>你自己的头像</td>
+</tr>
+<tr>
+<td>主题色</td>
+<td><code>siteConfig.ts</code> 的 <code>themeColor.hue</code></td>
+<td>你喜欢的颜色</td>
+</tr>
+<tr>
+<td>字体</td>
+<td><code>astro.config.mjs</code> 的 <code>fonts</code> 配置</td>
+<td>你喜欢的字体（或用系统默认）</td>
+</tr>
+<tr>
+<td>首页介绍</td>
+<td><code>siteConfig.ts</code> 的 <code>banner.homeText</code></td>
+<td>你自己的欢迎语</td>
+</tr>
+<tr>
+<td>导航栏菜单</td>
+<td><code>navBarConfig.ts</code></td>
+<td>你想要的菜单</td>
+</tr>
+<tr>
+<td>音乐</td>
+<td><code>musicConfig.ts</code> + <code>public/assets/music/</code></td>
+<td>你喜欢的歌</td>
+</tr>
+<tr>
+<td>社交链接</td>
+<td><code>profileConfig.ts</code></td>
+<td>你自己的链接</td>
+</tr>
+<tr>
+<td>Footer 版权</td>
+<td><code>footerConfig.ts</code></td>
+<td>你的名字</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2>按照前端学习计划，这个项目对应什么水平</h2>
+<h3>Day 20：清理内容</h3>
+<ol>
+<li>删除 <code>src/content/posts/</code> 下原有的示例文章（或移到备份文件夹）</li>
+<li>保留你之前写的 3 篇文章</li>
+<li>再写至少 2 篇新文章，让你的博客有 5+ 篇文章</li>
+<li>删掉不想要的特色页面（在 <code>siteConfig.ts</code> 的 <code>featurePages</code> 里关掉）</li>
+</ol>
+<hr />
+<h3>Day 21：整理数据和图片</h3>
+<ol>
+<li><code>src/data/projects.ts</code> — 改成你自己的项目</li>
+<li><code>src/data/friends.ts</code> — 加你自己的友链（或清空）</li>
+<li><code>src/data/skills.ts</code> — 改成你会的技能</li>
+<li><code>src/data/timeline.ts</code> — 改成你的经历</li>
+<li>清理 <code>public/</code> 下的旧图片，换上你自己的</li>
+<li>把 <code>logo.png</code> 换成你自己的 logo</li>
+</ol>
+<hr />
+<h3>Day 22：打磨细节</h3>
+<ul>
+<li>改 404 页面（<code>src/pages/404.astro</code>）：写一句有趣的话</li>
+<li>改 RSS 配置（检查 <code>rss.xml.ts</code>）</li>
+<li>改 <code>README.md</code>：介绍你自己的博客</li>
+<li>检查所有中文文案，确保没有"Yuzumoon82"的痕迹</li>
+<li>打开所有页面（首页、文章、关于、友链……），确认都正常</li>
+<li>在手机浏览器上测试，确认移动端也正常</li>
+</ul>
+<hr />
+<h2>第十阶段：部署上线（Day 23-24）</h2>
+<h3>Day 23：构建 + GitHub Pages 部署</h3>
+<h4>Step 1：在 GitHub 上创建仓库</h4>
+<ol>
+<li>登录 GitHub → New Repository</li>
+<li>仓库名：<code>my-blog</code>（或任何你喜欢的名字）</li>
+<li>不要勾选 "Initialize this repository with a README"（因为已有代码）</li>
+</ol>
+<h4>Step 2：关联远程仓库</h4>
+<pre><code>cd /Users/gaoyaoqian/DevCode/webwork/Mizuki
+
+# 查看当前的远程仓库
+git remote -v
+
+# 添加你自己的远程仓库
+git remote add origin https://github.com/你的用户名/my-blog.git
+
+# 推送代码
+git push -u origin main
+</code></pre>
+<h4>Step 3：修改 siteURL</h4>
+<p>在 <code>src/config/siteConfig.ts</code> 里，把 <code>siteURL</code> 改成你的 GitHub Pages 地址：</p>
+<pre><code>siteURL: "https://你的用户名.github.io/my-blog/",
+</code></pre>
+<p>同时确认 <code>astro.config.mjs</code> 里的 <code>base</code> 路径正确：</p>
+<pre><code>base: process.env.NODE_ENV === "production" ? "/my-blog/" : "/",
+</code></pre>
+<h4>Step 4：本地构建测试</h4>
+<pre><code>pnpm build
+pnpm preview
+</code></pre>
+<p>打开 <code>http://localhost:4321</code> 检查构建结果。</p>
+<hr />
+<h3>Day 24：正式部署</h3>
+<h4>方案 A：Vercel 部署（推荐，最简单）</h4>
+<ol>
+<li>访问 <a href="https://vercel.com">vercel.com</a>，用 GitHub 登录</li>
+<li>点 "New Project" → 选择你的仓库</li>
+<li><strong>FrameWork Preset</strong> 会自动识别为 Astro</li>
+<li><strong>Build Command</strong>: <code>pnpm build</code></li>
+<li><strong>Output Directory</strong>: <code>dist</code></li>
+<li>点 Deploy</li>
+<li>等 2 分钟，拿到 <code>xxx.vercel.app</code> 网址</li>
+</ol>
+<p>Vercel 的优势：</p>
+<ul>
+<li>自动检测 Astro 项目，零配置</li>
+<li>每次 push 自动重新部署</li>
+<li>支持自定义域名</li>
+<li>免费额度足够个人博客使用</li>
+</ul>
+<h4>方案 B：GitHub Pages（用 Actions 自动部署）</h4>
+<p>项目已经有 <code>.github/workflows/deploy.yml</code>，但可能需要调整：</p>
+<ol>
+<li>在 GitHub 仓库 Settings → Pages → Source 选 "GitHub Actions"</li>
+<li>每次 push 到 main 分支，Actions 自动构建部署</li>
+</ol>
+<blockquote>
+<p><strong>注意</strong>：如果用 GitHub Pages，注意 <code>astro.config.mjs</code> 里的 <code>base</code> 配置和 <code>siteConfig.ts</code> 里的 <code>siteURL</code> 要匹配你的 GitHub Pages 地址。</p>
+</blockquote>
+<h4>✅ 部署成功标志</h4>
+<ul>
+<li>用手机/其他设备打开你的网址，能正常访问</li>
+<li>文章、图片、样式都正常显示</li>
+<li>RSS 订阅地址可以正常访问</li>
+</ul>
+<hr />
+<h2>🎯 完整里程碑速查</h2>
 <table>
 <thead>
 <tr>
-<th>前端学习计划的阶段</th>
-<th>Mizuki 中的对应</th>
+<th>天数</th>
+<th>阶段</th>
+<th>核心目标</th>
+<th>产出</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Day 1-2（CSS 实战）</td>
-<td>改 Tailwind class，观察效果</td>
+<td>Day 1-2</td>
+<td>跑起来</td>
+<td>项目在本地跑起来</td>
+<td>能访问 localhost:3000</td>
 </tr>
 <tr>
-<td>Day 3-4（JS 原生）</td>
-<td>看懂 .astro 的 frontmatter 脚本区</td>
+<td>Day 3-4</td>
+<td>改配置</td>
+<td>用配置文件改网站信息</td>
+<td>标题、个人信息变成你的</td>
 </tr>
 <tr>
-<td>Day 5-6（第一个项目）</td>
-<td><strong>Mizuki 就是你的第一个项目</strong></td>
+<td>Day 5-6</td>
+<td>写文章</td>
+<td>用 Markdown 写文章</td>
+<td>3 篇自己写的文章</td>
 </tr>
 <tr>
-<td>Day 9-10（Vue 入门）</td>
-<td>Svelte 和 Vue 概念相通：组件、响应式、插槽</td>
+<td>Day 7-8</td>
+<td>懂 Astro</td>
+<td>理解 .astro 文件结构</td>
+<td>能看懂任意 .astro 组件</td>
 </tr>
 <tr>
-<td>Week 3（组件库）</td>
-<td>Mizuki 的 atoms/ 就是一套组件库</td>
+<td>Day 9-10</td>
+<td>改样式</td>
+<td>能用 Tailwind CSS class</td>
+<td>改了 5+ 个组件的样式</td>
+</tr>
+<tr>
+<td>Day 11-13</td>
+<td>改组件</td>
+<td>改导航栏、文章卡片、Footer</td>
+<td>导航栏/Footer 是你的样式</td>
+</tr>
+<tr>
+<td>Day 14-15</td>
+<td>懂 Svelte</td>
+<td>理解 .svelte 交互组件</td>
+<td>能说出数据流怎么走</td>
+</tr>
+<tr>
+<td>Day 16-18</td>
+<td>加功能</td>
+<td>新建页面 + 侧边栏部件</td>
+<td>一个自定义页面 + widget</td>
+</tr>
+<tr>
+<td>Day 19-22</td>
+<td>变我的</td>
+<td>彻底个性化</td>
+<td>看起来完全是你的博客</td>
+</tr>
+<tr>
+<td>Day 23-24</td>
+<td>上线</td>
+<td>构建 + 部署</td>
+<td>人人都能访问的网址</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>📖 建议的阅读顺序（如果想系统学习源码）</h2>
+<p>当你想深入理解这个项目时，按以下顺序阅读关键文件：</p>
+<pre><code>第 1 层：入门
+  ├── src/config/siteConfig.ts        ← 先看配置，理解网站有哪些开关
+  ├── src/content.config.ts           ← 理解内容集合定义
+  └── src/pages/about.astro           ← 最简单的页面
+
+第 2 层：布局
+  ├── src/layouts/Layout.astro        ← 全局 HTML 骨架
+  ├── src/layouts/MainGridLayout.astro ← 内容区布局
+  └── src/pages/[...page].astro       ← 首页的文章列表渲染
+
+第 3 层：组件
+  ├── src/components/atoms/Icon/Icon.astro       ← 原子组件
+  ├── src/components/atoms/Button/Button.astro   ← 原子组件
+  ├── src/components/features/posts/PostCard.astro  ← 业务组件
+  ├── src/components/organisms/navigation/Navbar.astro ← 有机体
+  └── src/components/widgets/profile/Profile.astro    ← 侧边栏部件
+
+第 4 层：交互
+  ├── src/components/control/ThemeSwitch.svelte   ← 简单 Svelte 组件
+  ├── src/stores/musicPlayerStore.ts              ← 全局状态
+  └── src/components/widgets/music-player/        ← 复杂 Svelte 组件群
+
+第 5 层：工具和插件
+  ├── src/utils/content-utils.ts     ← 核心数据处理
+  ├── src/scripts/swup-manager.ts    ← 页面过渡管理器
+  ├── src/plugins/rehype-component-admonition.mjs  ← 自定义 Markdown 组件
+  └── astro.config.mjs               ← 总配置（最后看，因为包含所有插件）
+</code></pre>
+<hr />
+<h2>附录：遇到问题怎么自救</h2>
+<h3>1. 改坏了怎么办？</h3>
+<pre><code># 放弃所有修改，回到最后一次 commit 的状态
+git checkout -- .
+
+# 或者只恢复一个文件
+git checkout -- src/config/siteConfig.ts
+
+# 查看你改了哪些文件
+git status
+</code></pre>
+<p><strong>所以</strong>：改代码之前先 <code>git commit</code>！养成习惯：做一个小改动 → commit → 再做下一个。</p>
+<h3>2. 页面报错怎么办？</h3>
+<ol>
+<li>先看终端（运行 <code>pnpm dev</code> 的窗口），错误信息通常在那</li>
+<li>再看浏览器的开发者工具 Console（F12 → Console 标签）</li>
+<li>把错误信息复制到 Google 搜</li>
+<li>Astro 的错误提示通常非常清晰，<strong>认真读</strong>就能定位到具体文件和行号</li>
+</ol>
+<h3>3. 不知道怎么改某个东西？</h3>
+<p>查找法：</p>
+<ol>
+<li>在浏览器里右键 → 检查元素，看它的 class 名</li>
+<li>用 VS Code 的全局搜索（Cmd+Shift+F），搜这个 class 名</li>
+<li>找到对应的 <code>.astro</code> 或 <code>.svelte</code> 文件</li>
+</ol>
+<p>问 AI 法：</p>
+<ol>
+<li>打开 <code>Mizuki项目结构详解.md</code></li>
+<li>找到你想改的部分属于哪个目录</li>
+<li>打开对应的文件，把代码贴给 AI 问</li>
+</ol>
+<h3>4. "这个技术我不懂"怎么办？</h3>
+<table>
+<thead>
+<tr>
+<th>不懂的</th>
+<th>学哪个</th>
+<th>需要多深</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Astro</td>
+<td><a href="https://docs.astro.build/en/tutorial/0-introduction/">Astro 官方教程</a></td>
+<td>前三章就够了</td>
+</tr>
+<tr>
+<td>Tailwind CSS</td>
+<td><a href="https://tailwindcss.com/docs">Tailwind 文档</a></td>
+<td>会查 class 名就行</td>
+</tr>
+<tr>
+<td>Svelte</td>
+<td><a href="https://svelte.dev/tutorial/">Svelte 教程</a></td>
+<td>前 10 节，理解响应式概念</td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td>先跳过</td>
+<td>能看懂 <code>let x: string</code> 这种类型注解就行</td>
+</tr>
+<tr>
+<td>Markdown</td>
+<td><a href="https://www.markdownguide.org/">Markdown 指南</a></td>
+<td>10 分钟学会</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <blockquote>
-<p>10 天后，你应该有一个自己的博客、3 篇文章、一个可访问的网址。重要的是——你知道改哪里能改什么。</p>
+<p><strong>最后的话</strong>：这个项目有 600+ 个文件，你不需要全看懂。你的目标是让别人访问你的博客时，觉得"这是你的博客"，而不是"这是用 Mizuki 模板改的"。做到这一点，你就成功了。🎉</p>
 </blockquote>
 ]]></content>
     <author>
@@ -680,6 +1515,2205 @@ ___
     <category term="教程"></category>
   </entry>
   <entry>
+    <title>Mizuki 项目结构详解</title>
+    <link href="https://yuzumoon82.github.io/personal-blog/posts/mizuki%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/" rel="alternate" type="text/html"/>
+    <id>https://yuzumoon82.github.io/personal-blog/posts/mizuki%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/</id>
+    <published>2025-07-27T00:00:00.000Z</published>
+    <updated>2025-07-27T00:00:00.000Z</updated>
+    <summary>Mizuki Astro 静态博客项目的完整目录结构和文件说明，覆盖所有源码目录、配置文件、组件库的详细拆解</summary>
+    <content type="html"><![CDATA[<h2>项目概述</h2>
+<p>Mizuki 是一个基于 <strong>Astro 7</strong> 的静态博客站点生成器 (SSG)，源自 <a href="https://github.com/saicaca/fuwari">Fuwari</a> → <a href="https://github.com/LyraVoid/Mizuki">LyraVoid/Mizuki</a> 的演进。当前项目是 Yuzumoon82 的个人博客。</p>
+<h3>技术栈</h3>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Astro 7</strong></td>
+<td>静态站点框架，核心</td>
+</tr>
+<tr>
+<td><strong>Svelte 5</strong></td>
+<td>交互式组件（音乐播放器、搜索等）</td>
+</tr>
+<tr>
+<td><strong>Tailwind CSS 4</strong></td>
+<td>原子化 CSS 框架</td>
+</tr>
+<tr>
+<td><strong>TypeScript 6</strong></td>
+<td>类型检查</td>
+</tr>
+<tr>
+<td><strong>Pagefind</strong></td>
+<td>站内全文搜索</td>
+</tr>
+<tr>
+<td><strong>Expressive Code</strong></td>
+<td>代码块语法高亮</td>
+</tr>
+<tr>
+<td><strong>Swup</strong></td>
+<td>页面切换过渡动画</td>
+</tr>
+<tr>
+<td><strong>Iconify</strong></td>
+<td>图标系统</td>
+</tr>
+<tr>
+<td><strong>KaTeX</strong></td>
+<td>数学公式渲染</td>
+</tr>
+<tr>
+<td><strong>pnpm</strong></td>
+<td>包管理器</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>🏠 项目入口</h2>
+<p>入口有多个层次：</p>
+<ol>
+<li>
+<p><strong>构建入口</strong>: <code>astro.config.mjs</code> — Astro 框架的配置文件，定义了所有集成、Markdown 处理器、Vite 配置等，是整个构建流程的总控制文件。</p>
+</li>
+<li>
+<p><strong>页面路由入口</strong>: <code>src/pages/</code> 目录 — Astro 基于文件系统路由，每个 <code>.astro</code> 文件就是网站的一个页面路由。</p>
+</li>
+<li>
+<p><strong>主页面入口</strong>: <code>src/pages/[...page].astro</code> — 博客首页/文章列表的分页路由（<code>/</code>, <code>/2/</code>, <code>/3/</code>…）</p>
+</li>
+<li>
+<p><strong>文章详情入口</strong>: <code>src/pages/posts/[...slug].astro</code> — 单篇文章详情页</p>
+</li>
+<li>
+<p><strong>布局入口</strong>: <code>src/layouts/Layout.astro</code> — 全局 HTML 骨架（<code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code>）</p>
+</li>
+<li>
+<p><strong>内容入口</strong>: <code>src/content.config.ts</code> — Astro Content Collections 的内容定义，定义了 <code>posts</code> 和 <code>spec</code> 两个集合</p>
+</li>
+</ol>
+<hr />
+<h2>📁 根目录文件</h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>astro.config.mjs</code></td>
+<td><strong>Astro 核心配置</strong> — 集成插件、Markdown 渲染管线、Vite 配置、字体配置</td>
+</tr>
+<tr>
+<td><code>package.json</code></td>
+<td>项目依赖与脚本定义，使用 pnpm 作为包管理器</td>
+</tr>
+<tr>
+<td><code>tsconfig.json</code></td>
+<td>TypeScript 编译配置</td>
+</tr>
+<tr>
+<td><code>svelte.config.js</code></td>
+<td>Svelte 组件编译配置</td>
+</tr>
+<tr>
+<td><code>biome.json</code></td>
+<td>Biome 代码格式化和 Lint 配置</td>
+</tr>
+<tr>
+<td><code>postcss.config.mjs</code></td>
+<td>PostCSS 配置（Tailwind CSS 相关）</td>
+</tr>
+<tr>
+<td><code>pagefind.yml</code></td>
+<td>Pagefind 搜索索引配置</td>
+</tr>
+<tr>
+<td><code>pnpm-workspace.yaml</code></td>
+<td>pnpm monorepo 工作空间配置</td>
+</tr>
+<tr>
+<td><code>pnpm-lock.yaml</code></td>
+<td>依赖锁定文件</td>
+</tr>
+<tr>
+<td><code>vercel.json</code></td>
+<td>Vercel 部署配置</td>
+</tr>
+<tr>
+<td><code>.env.example</code></td>
+<td>环境变量模板（Bilibili SESSDATA 等）</td>
+</tr>
+<tr>
+<td><code>.npmrc</code></td>
+<td>npm 配置</td>
+</tr>
+<tr>
+<td><code>.gitignore</code> / <code>.gitattributes</code></td>
+<td>Git 配置</td>
+</tr>
+<tr>
+<td><code>README.md</code></td>
+<td>项目说明文档</td>
+</tr>
+<tr>
+<td><code>CLAUDE.md</code></td>
+<td>Claude Code AI 助手的项目行为指南</td>
+</tr>
+<tr>
+<td><code>LICENSE</code> / <code>LICENSE.MIT</code></td>
+<td>Apache 2.0 + MIT 双许可证</td>
+</tr>
+<tr>
+<td><code>logo.png</code></td>
+<td>项目 Logo</td>
+</tr>
+<tr>
+<td><code>_frontmatter.json</code></td>
+<td>Frontmatter 的 JSON 描述（可能与 CMS 集成相关）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>📁 <code>.github/</code> — CI/CD 与社区</h2>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>workflows/deploy.yml</code></td>
+<td>部署 GitHub Actions 工作流（构建并部署到 GitHub Pages）</td>
+</tr>
+<tr>
+<td><code>workflows/lint.yml</code></td>
+<td>代码检查 CI 工作流</td>
+</tr>
+<tr>
+<td><code>ISSUE_TEMPLATE/</code></td>
+<td>三种 Issue 模板（Bug报告、功能请求、自定义问题）</td>
+</tr>
+<tr>
+<td><code>dependabot.yml</code></td>
+<td>依赖自动更新配置</td>
+</tr>
+<tr>
+<td><code>pull_request_template.md</code></td>
+<td>PR 模板</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>📁 <code>.vscode/</code> — 编辑器配置</h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>extensions.json</code></td>
+<td>推荐安装的 VS Code 扩展</td>
+</tr>
+<tr>
+<td><code>settings.json</code></td>
+<td>工作区级别的 VS Code 设置</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>📁 <code>public/</code> — 静态资源</h2>
+<p>直接映射到网站根目录的静态文件，构建时原样复制到 <code>dist/</code>。</p>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_headers</code></td>
+<td>自定义 HTTP 响应头（Cloudflare Pages / Netlify）</td>
+</tr>
+<tr>
+<td><code>favicon/favicon.ico</code></td>
+<td>网站图标</td>
+</tr>
+<tr>
+<td><code>assets/anime/</code></td>
+<td>番剧页面封面图</td>
+</tr>
+<tr>
+<td><code>assets/desktop-banner/</code></td>
+<td>桌面端 Banner 横幅图（4张）</td>
+</tr>
+<tr>
+<td><code>assets/mobile-banner/</code></td>
+<td>移动端 Banner 横幅图（4张）</td>
+</tr>
+<tr>
+<td><code>assets/home/</code></td>
+<td>首页 Logo 和装饰图</td>
+</tr>
+<tr>
+<td><code>assets/music/cover/</code></td>
+<td>音乐播放器封面图</td>
+</tr>
+<tr>
+<td><code>assets/music/url/</code></td>
+<td>音乐播放器音频文件（<code>.mp3</code>）</td>
+</tr>
+<tr>
+<td><code>assets/projects/</code></td>
+<td>项目展示图片</td>
+</tr>
+<tr>
+<td><code>assets/css/</code></td>
+<td>外部 CSS（highlight.js 主题）</td>
+</tr>
+<tr>
+<td><code>assets/js/</code></td>
+<td>外部 JS（Twikoo 评论系统）</td>
+</tr>
+<tr>
+<td><code>images/albums/</code></td>
+<td>相册图片数据及 <code>info.json</code> 配置</td>
+</tr>
+<tr>
+<td><code>images/demos/image-grid-demo/</code></td>
+<td>图片网格组件的演示图片</td>
+</tr>
+<tr>
+<td><code>images/device/</code></td>
+<td>设备页面展示图</td>
+</tr>
+<tr>
+<td><code>images/diary/</code></td>
+<td>日记页面插图</td>
+</tr>
+<tr>
+<td><code>js/</code></td>
+<td>页面特定交互脚本（devices、friends、filter-tabs）</td>
+</tr>
+<tr>
+<td><code>pio/</code></td>
+<td><strong>Live2D 看板娘</strong> — <code>l2d-widget.min.js</code> 核心 + NOIR 模型文件（<code>.moc3</code>, <code>.model3.json</code>, <code>.physics3.json</code> 等）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>📁 <code>src/</code> — 源代码核心</h2>
+<p>这是整个项目的核心，所有源码都在这里。</p>
+<h3><code>src/pages/</code> — 页面路由（Astro 文件路由）</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>URL 路由</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[...page].astro</code></td>
+<td><code>/</code>, <code>/2/</code>, <code>/3/</code>...</td>
+<td><strong>博客首页/文章列表</strong>，分页显示</td>
+</tr>
+<tr>
+<td><code>posts/[...slug].astro</code></td>
+<td><code>/posts/xxx/</code></td>
+<td><strong>文章详情页</strong>，动态路由</td>
+</tr>
+<tr>
+<td><code>[...permalink].astro</code></td>
+<td><code>/自定义固定链接/</code></td>
+<td>自定义永久链接页（优先级高于 posts）</td>
+</tr>
+<tr>
+<td><code>about.astro</code></td>
+<td><code>/about/</code></td>
+<td>关于页面</td>
+</tr>
+<tr>
+<td><code>archive.astro</code></td>
+<td><code>/archive/</code></td>
+<td>文章归档页</td>
+</tr>
+<tr>
+<td><code>anime.astro</code></td>
+<td><code>/anime/</code></td>
+<td>番剧追踪页</td>
+</tr>
+<tr>
+<td><code>diary.astro</code></td>
+<td><code>/diary/</code></td>
+<td>日记/动态页</td>
+</tr>
+<tr>
+<td><code>friends.astro</code></td>
+<td><code>/friends/</code></td>
+<td>友链页面</td>
+</tr>
+<tr>
+<td><code>projects.astro</code></td>
+<td><code>/projects/</code></td>
+<td>项目展示页</td>
+</tr>
+<tr>
+<td><code>skills.astro</code></td>
+<td><code>/skills/</code></td>
+<td>技能展示页</td>
+</tr>
+<tr>
+<td><code>timeline.astro</code></td>
+<td><code>/timeline/</code></td>
+<td>时间线页面</td>
+</tr>
+<tr>
+<td><code>albums.astro</code></td>
+<td><code>/albums/</code></td>
+<td>相册列表页</td>
+</tr>
+<tr>
+<td><code>albums/[id]/index.astro</code></td>
+<td><code>/albums/:id/</code></td>
+<td>单个相册详情</td>
+</tr>
+<tr>
+<td><code>devices.astro</code></td>
+<td><code>/devices/</code></td>
+<td>设备展示页</td>
+</tr>
+<tr>
+<td><code>ai-tools.astro</code></td>
+<td><code>/ai-tools/</code></td>
+<td>AI 工具推荐页</td>
+</tr>
+<tr>
+<td><code>404.astro</code></td>
+<td>任意不存在的路径</td>
+<td>404 页面</td>
+</tr>
+<tr>
+<td><code>rss.astro</code> + <code>rss.xml.ts</code></td>
+<td><code>/rss/</code>, <code>/rss.xml</code></td>
+<td>RSS 订阅源</td>
+</tr>
+<tr>
+<td><code>atom.astro</code> + <code>atom.xml.ts</code></td>
+<td><code>/atom/</code>, <code>/atom.xml</code></td>
+<td>Atom 订阅源</td>
+</tr>
+<tr>
+<td><code>robots.txt.ts</code></td>
+<td><code>/robots.txt</code></td>
+<td>搜索引擎爬虫规则</td>
+</tr>
+<tr>
+<td><code>og/[...slug].ts</code></td>
+<td><code>/og/:slug.png</code></td>
+<td>Open Graph 社交分享图片动态生成</td>
+</tr>
+<tr>
+<td><code>api/allPostMeta.json.ts</code></td>
+<td><code>/api/allPostMeta.json</code></td>
+<td>所有文章元数据的 JSON API</td>
+</tr>
+<tr>
+<td><code>api/calendar-data.json.ts</code></td>
+<td><code>/api/calendar-data.json</code></td>
+<td>日历组件数据的 JSON API</td>
+</tr>
+</tbody>
+</table>
+<h3><code>src/layouts/</code> — 布局组件</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Layout.astro</code></td>
+<td><strong>根布局</strong> — HTML 骨架（<code>&lt;!doctype html&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code>），加载全局 CSS、字体、Analytics、Pio 看板娘、音乐播放器、Swup 过渡管理器</td>
+</tr>
+<tr>
+<td><code>MainGridLayout.astro</code></td>
+<td><strong>主内容网格布局</strong> — 包装在 Layout 之上，渲染 Navbar、Banner、侧边栏、主内容区、Footer、TOC、悬浮控件</td>
+</tr>
+<tr>
+<td><code>partials/AnalyticsScripts.astro</code></td>
+<td>第三方统计脚本（Google Tag Manager、Microsoft Clarity）</td>
+</tr>
+<tr>
+<td><code>partials/GridScripts.astro</code></td>
+<td>网格布局相关的客户端 JS 初始化（壁纸模式、Banner、Swup 等）</td>
+</tr>
+<tr>
+<td><code>partials/HeadTags.astro</code></td>
+<td>SEO 元标签（Open Graph、Twitter Card、favicon、主题色初始化脚本）</td>
+</tr>
+</tbody>
+</table>
+<h3><code>src/components/</code> — 组件库（按 Atomic Design 组织）</h3>
+<h4><code>atoms/</code> — 原子组件（最小可复用单元）</h4>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>技术</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Badge/</code></td>
+<td>Svelte</td>
+<td>徽标标签</td>
+</tr>
+<tr>
+<td><code>Button/</code></td>
+<td>Astro</td>
+<td>按钮</td>
+</tr>
+<tr>
+<td><code>Chip/</code></td>
+<td>Svelte</td>
+<td>小标签</td>
+</tr>
+<tr>
+<td><code>custom-scrollbar/</code></td>
+<td>Astro</td>
+<td>自定义滚动条</td>
+</tr>
+<tr>
+<td><code>filter-tabs/</code></td>
+<td>Astro</td>
+<td>筛选标签页</td>
+</tr>
+<tr>
+<td><code>Icon/</code></td>
+<td>Astro + Svelte</td>
+<td>图标组件（支持 Iconify 和本地图标）</td>
+</tr>
+<tr>
+<td><code>Image/</code></td>
+<td>Astro</td>
+<td>优化的图片组件</td>
+</tr>
+<tr>
+<td><code>Link/</code></td>
+<td>Astro</td>
+<td>链接组件</td>
+</tr>
+<tr>
+<td><code>Loader/</code></td>
+<td>Astro</td>
+<td>加载动画</td>
+</tr>
+<tr>
+<td><code>tag-chip/</code></td>
+<td>Svelte</td>
+<td>标签芯片</td>
+</tr>
+<tr>
+<td><code>typewriter-text/</code></td>
+<td>Astro</td>
+<td>打字机效果文本</td>
+</tr>
+</tbody>
+</table>
+<h4><code>features/</code> — 功能性/业务组件</h4>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ai-tools/</code></td>
+<td>AI 工具卡片</td>
+</tr>
+<tr>
+<td><code>albums/</code></td>
+<td>相册卡片、照片卡片</td>
+</tr>
+<tr>
+<td><code>anime/</code></td>
+<td>番剧卡片、筛选栏、排序栏</td>
+</tr>
+<tr>
+<td><code>archive/</code></td>
+<td>归档面板（Svelte 交互）</td>
+</tr>
+<tr>
+<td><code>auth/</code></td>
+<td>文章加密/密码保护组件</td>
+</tr>
+<tr>
+<td><code>devices/</code></td>
+<td>设备卡片</td>
+</tr>
+<tr>
+<td><code>diary/</code></td>
+<td>日记/动态卡片</td>
+</tr>
+<tr>
+<td><code>featured-projects/</code></td>
+<td>特色项目展示</td>
+</tr>
+<tr>
+<td><code>friends/</code></td>
+<td>友链卡片</td>
+</tr>
+<tr>
+<td><code>page-header/</code></td>
+<td>页面标题头部</td>
+</tr>
+<tr>
+<td><code>pio/</code></td>
+<td>Live2D 看板娘组件</td>
+</tr>
+<tr>
+<td><code>posts/</code></td>
+<td><strong>最核心的文章组件</strong> — PostCard、PostListItem、PostPage、PostMeta、PostNavigation、CategoryBar、JsonLd、RandomPosts、RelatedPosts、ShareCard、LastModified 等</td>
+</tr>
+<tr>
+<td><code>projects/</code></td>
+<td>项目卡片</td>
+</tr>
+<tr>
+<td><code>projects-category/</code></td>
+<td>项目分类组件</td>
+</tr>
+<tr>
+<td><code>section-title/</code></td>
+<td>区块标题</td>
+</tr>
+<tr>
+<td><code>settings/</code></td>
+<td>显示设置面板（Svelte 交互组件）</td>
+</tr>
+<tr>
+<td><code>skills/</code></td>
+<td>技能卡片</td>
+</tr>
+<tr>
+<td><code>stats/</code></td>
+<td>统计卡片</td>
+</tr>
+<tr>
+<td><code>stats-grid/</code></td>
+<td>统计网格</td>
+</tr>
+<tr>
+<td><code>tech-stack/</code></td>
+<td>技术栈展示</td>
+</tr>
+<tr>
+<td><code>timeline/</code></td>
+<td>时间线卡片</td>
+</tr>
+<tr>
+<td><code>toc/</code></td>
+<td><strong>目录系统</strong> — FloatingTOC、MobileTOC、SidebarTOC + hooks + utils</td>
+</tr>
+</tbody>
+</table>
+<h4><code>widgets/</code> — 侧边栏小部件</h4>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>announcement/</code></td>
+<td>公告栏</td>
+</tr>
+<tr>
+<td><code>calendar/</code></td>
+<td>日历小部件（复杂的 Svelte 组件，含子组件和 hooks）</td>
+</tr>
+<tr>
+<td><code>card-toc/</code></td>
+<td>卡片内目录</td>
+</tr>
+<tr>
+<td><code>categories/</code></td>
+<td>分类列表</td>
+</tr>
+<tr>
+<td><code>common/</code></td>
+<td>通用部件（AccordionDrawer、WidgetHeader、WidgetLayout）</td>
+</tr>
+<tr>
+<td><code>feed/</code></td>
+<td>RSS/Feed 信息</td>
+</tr>
+<tr>
+<td><code>music-player/</code></td>
+<td><strong>音乐播放器</strong>（最复杂的 Svelte 组件，atom/molecule/organism 分层）</td>
+</tr>
+<tr>
+<td><code>music-sidebar/</code></td>
+<td>侧边栏音乐播放器（独立的瘦身版本）</td>
+</tr>
+<tr>
+<td><code>profile/</code></td>
+<td>个人信息卡片</td>
+</tr>
+<tr>
+<td><code>sidebar/</code></td>
+<td>侧边栏容器</td>
+</tr>
+<tr>
+<td><code>site-stats/</code></td>
+<td>站点统计</td>
+</tr>
+<tr>
+<td><code>tags/</code></td>
+<td>标签云</td>
+</tr>
+<tr>
+<td><code>toc/</code></td>
+<td>目录小部件</td>
+</tr>
+</tbody>
+</table>
+<h4><code>layout/</code> — 布局组件</h4>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Banner.astro</code></td>
+<td>首页 Banner（含波浪动画、轮播）</td>
+</tr>
+<tr>
+<td><code>RightSideBar.astro</code></td>
+<td>右侧边栏容器</td>
+</tr>
+<tr>
+<td><code>SidebarColumn.astro</code></td>
+<td>侧边栏列</td>
+</tr>
+</tbody>
+</table>
+<h4><code>organisms/</code> — 有机体组件（组合多个 atom/feature）</h4>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>navigation/Navbar.astro</code></td>
+<td>顶部导航栏</td>
+</tr>
+<tr>
+<td><code>navigation/NavMenuPanel.astro</code></td>
+<td>导航菜单面板</td>
+</tr>
+<tr>
+<td><code>navigation/DropdownMenu.astro</code></td>
+<td>下拉菜单</td>
+</tr>
+<tr>
+<td><code>navigation/Search.svelte</code></td>
+<td>搜索组件（Svelte，使用 Pagefind）</td>
+</tr>
+<tr>
+<td><code>footer/Footer.astro</code></td>
+<td>页脚</td>
+</tr>
+</tbody>
+</table>
+<h4><code>misc/</code> — 杂项/工具组件</h4>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ConfigCarrier.astro</code></td>
+<td>将服务端配置传递给客户端</td>
+</tr>
+<tr>
+<td><code>FullscreenWallpaper.astro</code></td>
+<td>全屏壁纸</td>
+</tr>
+<tr>
+<td><code>IconifyLoader.astro</code></td>
+<td>Iconify 图标预加载器</td>
+</tr>
+<tr>
+<td><code>License.astro</code></td>
+<td>许可证信息</td>
+</tr>
+<tr>
+<td><code>ListContainer.astro</code></td>
+<td>列表容器</td>
+</tr>
+<tr>
+<td><code>ListDivider.astro</code></td>
+<td>列表分隔线</td>
+</tr>
+<tr>
+<td><code>Markdown.astro</code></td>
+<td>Markdown 渲染组件</td>
+</tr>
+<tr>
+<td><code>SharePoster.svelte</code></td>
+<td>分享海报生成</td>
+</tr>
+<tr>
+<td><code>poster/</code></td>
+<td>海报 Canvas 渲染逻辑</td>
+</tr>
+</tbody>
+</table>
+<h4><code>comment/</code> — 评论系统</h4>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Giscus.astro</code></td>
+<td>GitHub Discussions 评论</td>
+</tr>
+<tr>
+<td><code>Twikoo.astro</code></td>
+<td>Twikoo 评论系统</td>
+</tr>
+<tr>
+<td><code>index.astro</code></td>
+<td>评论系统统一入口（按配置切换）</td>
+</tr>
+</tbody>
+</table>
+<h4><code>control/</code> — 控制/浮动组件</h4>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BackToHome.astro</code></td>
+<td>返回首页按钮</td>
+</tr>
+<tr>
+<td><code>BackToTop.astro</code></td>
+<td>返回顶部按钮</td>
+</tr>
+<tr>
+<td><code>ButtonLink.astro</code></td>
+<td>链接按钮</td>
+</tr>
+<tr>
+<td><code>ButtonTag.astro</code></td>
+<td>标签按钮</td>
+</tr>
+<tr>
+<td><code>FloatingControls.astro</code></td>
+<td>浮动控件容器</td>
+</tr>
+<tr>
+<td><code>FloatingTOC.astro</code></td>
+<td>悬浮目录按钮</td>
+</tr>
+<tr>
+<td><code>LayoutSwitch.svelte</code></td>
+<td>布局切换（列表/网格）</td>
+</tr>
+<tr>
+<td><code>MusicFabButton.svelte</code></td>
+<td>悬浮音乐播放按钮</td>
+</tr>
+<tr>
+<td><code>Pagination.astro</code></td>
+<td>分页导航</td>
+</tr>
+<tr>
+<td><code>ThemeSwitch.svelte</code></td>
+<td>主题切换按钮</td>
+</tr>
+<tr>
+<td><code>PageProgressBar/</code></td>
+<td>页面顶部阅读进度条</td>
+</tr>
+</tbody>
+</table>
+<h3><code>src/config/</code> — 配置文件</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>siteConfig.ts</code></td>
+<td><strong>主站配置</strong>（约 230 行）— 站点标题、URL、主题色、Banner、TOC、各页面开关、壁纸模式、字体、SEO 等</td>
+</tr>
+<tr>
+<td><code>index.ts</code></td>
+<td>配置聚合导出</td>
+</tr>
+<tr>
+<td><code>navBarConfig.ts</code></td>
+<td>导航栏链接配置</td>
+</tr>
+<tr>
+<td><code>profileConfig.ts</code></td>
+<td>个人信息配置</td>
+</tr>
+<tr>
+<td><code>footerConfig.ts</code></td>
+<td>页脚配置</td>
+</tr>
+<tr>
+<td><code>sidebarConfig.ts</code></td>
+<td>侧边栏配置</td>
+</tr>
+<tr>
+<td><code>musicConfig.ts</code></td>
+<td>音乐播放器配置</td>
+</tr>
+<tr>
+<td><code>commentConfig.ts</code></td>
+<td>评论系统配置</td>
+</tr>
+<tr>
+<td><code>announcementConfig.ts</code></td>
+<td>公告配置</td>
+</tr>
+<tr>
+<td><code>backgroundWallpaper.ts</code></td>
+<td>背景壁纸配置</td>
+</tr>
+<tr>
+<td><code>effectsConfig.ts</code></td>
+<td>特效配置（樱花等）</td>
+</tr>
+<tr>
+<td><code>expressiveCodeConfig.ts</code></td>
+<td>代码高亮配置</td>
+</tr>
+<tr>
+<td><code>licenseConfig.ts</code></td>
+<td>许可证配置</td>
+</tr>
+<tr>
+<td><code>permalinkConfig.ts</code></td>
+<td>固定链接配置</td>
+</tr>
+<tr>
+<td><code>pioConfig.ts</code></td>
+<td>Live2D 看板娘配置</td>
+</tr>
+<tr>
+<td><code>randomPostsConfig.ts</code></td>
+<td>随机文章推荐配置</td>
+</tr>
+<tr>
+<td><code>relatedPostsConfig.ts</code></td>
+<td>相关文章配置</td>
+</tr>
+<tr>
+<td><code>shareConfig.ts</code></td>
+<td>分享按钮配置</td>
+</tr>
+</tbody>
+</table>
+<h3><code>src/content/</code> — 内容集合</h3>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>posts/*.md</code></td>
+<td><strong>博客文章</strong>（Markdown/MDX 格式），这是站点的核心内容，如 <code>markdown-tutorial.md</code>、<code>Mizuki项目学习计划.md</code> 等</td>
+</tr>
+<tr>
+<td><code>spec/*.md</code></td>
+<td>特殊页面内容（如 <code>about.md</code> 关于页、<code>friends.md</code> 友链页）</td>
+</tr>
+</tbody>
+</table>
+<h3><code>src/data/</code> — 静态数据</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>anime.ts</code></td>
+<td>番剧数据（本地模式）</td>
+</tr>
+<tr>
+<td><code>ai-tools.ts</code></td>
+<td>AI 工具列表</td>
+</tr>
+<tr>
+<td><code>devices.ts</code></td>
+<td>设备列表</td>
+</tr>
+<tr>
+<td><code>diary.ts</code></td>
+<td>日记/动态数据</td>
+</tr>
+<tr>
+<td><code>friends.ts</code></td>
+<td>友链数据</td>
+</tr>
+<tr>
+<td><code>projects.ts</code></td>
+<td>项目数据</td>
+</tr>
+<tr>
+<td><code>skills.ts</code></td>
+<td>技能数据</td>
+</tr>
+<tr>
+<td><code>timeline.ts</code></td>
+<td>时间线事件</td>
+</tr>
+</tbody>
+</table>
+<h3><code>src/i18n/</code> — 国际化</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>i18nKey.ts</code></td>
+<td>翻译 key 常量定义</td>
+</tr>
+<tr>
+<td><code>translation.ts</code></td>
+<td>翻译函数实现</td>
+</tr>
+<tr>
+<td><code>languages/en.ts</code></td>
+<td>英文翻译</td>
+</tr>
+<tr>
+<td><code>languages/ja.ts</code></td>
+<td>日文翻译</td>
+</tr>
+<tr>
+<td><code>languages/zh_CN.ts</code></td>
+<td>简体中文翻译</td>
+</tr>
+<tr>
+<td><code>languages/zh_TW.ts</code></td>
+<td>繁体中文翻译</td>
+</tr>
+</tbody>
+</table>
+<h3><code>src/styles/</code> — 样式文件</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>main.css</code></td>
+<td>主样式入口（导入所有其他 CSS）</td>
+</tr>
+<tr>
+<td><code>variables.styl</code></td>
+<td>Stylus 全局变量</td>
+</tr>
+<tr>
+<td><code>markdown.css</code></td>
+<td>Markdown 渲染样式</td>
+</tr>
+<tr>
+<td><code>markdown-extend.styl</code></td>
+<td>Markdown 扩展样式</td>
+</tr>
+<tr>
+<td><code>banner.css</code></td>
+<td>Banner 样式</td>
+</tr>
+<tr>
+<td><code>transition.css</code></td>
+<td>页面过渡动画</td>
+</tr>
+<tr>
+<td><code>animation-enhancements.css</code></td>
+<td>动画增强</td>
+</tr>
+<tr>
+<td><code>scrollbar.css</code></td>
+<td>自定义滚动条样式</td>
+</tr>
+<tr>
+<td><code>toc.css</code></td>
+<td>目录样式</td>
+</tr>
+<tr>
+<td><code>albums.css</code></td>
+<td>相册样式</td>
+</tr>
+<tr>
+<td><code>anime.css</code></td>
+<td>番剧页面样式</td>
+</tr>
+<tr>
+<td><code>encrypted-content.css</code></td>
+<td>加密内容样式</td>
+</tr>
+<tr>
+<td><code>expressive-code.css</code></td>
+<td>代码块样式</td>
+</tr>
+<tr>
+<td><code>fancybox-custom.css</code></td>
+<td>图片灯箱样式</td>
+</tr>
+<tr>
+<td><code>gradient-buttons.css</code></td>
+<td>渐变按钮样式</td>
+</tr>
+<tr>
+<td><code>mobile-navbar.css</code></td>
+<td>移动端导航栏样式</td>
+</tr>
+<tr>
+<td><code>mobile-post-list-fix.css</code></td>
+<td>移动端文章列表修复</td>
+</tr>
+<tr>
+<td><code>mobile-transition-fix.css</code></td>
+<td>移动端过渡修复</td>
+</tr>
+<tr>
+<td><code>panel-animations.css</code></td>
+<td>面板动画</td>
+</tr>
+<tr>
+<td><code>photoswipe.css</code></td>
+<td>图片查看器样式</td>
+</tr>
+<tr>
+<td><code>twikoo.css</code></td>
+<td>Twikoo 评论样式</td>
+</tr>
+<tr>
+<td><code>wallpaper-navbar-transparent.css</code></td>
+<td>壁纸模式下导航栏透明样式</td>
+</tr>
+<tr>
+<td><code>widget-responsive.css</code></td>
+<td>小部件响应式</td>
+</tr>
+<tr>
+<td><code>_transition-vars.css</code></td>
+<td>过渡 CSS 变量</td>
+</tr>
+</tbody>
+</table>
+<h3><code>src/plugins/</code> — Markdown/Remark/Rehype 插件</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>remark-content.mjs</code></td>
+<td>内容处理（提取摘要等）</td>
+</tr>
+<tr>
+<td><code>remark-mermaid.js</code></td>
+<td>Mermaid 图表语法支持</td>
+</tr>
+<tr>
+<td><code>remark-fix-github-admonitions.js</code></td>
+<td>修复 GitHub 风格的 Admonition 语法</td>
+</tr>
+<tr>
+<td><code>remark-directive-rehype.js</code></td>
+<td>将 Remark Directive 转为 Rehype 节点</td>
+</tr>
+<tr>
+<td><code>remark-escape-numeric-colons.mjs</code></td>
+<td>转义数字冒号（避免被解析为 URL）</td>
+</tr>
+<tr>
+<td><code>rehype-component-admonition.mjs</code></td>
+<td>自定义 Admonition 组件（note/tip/important/caution/warning）</td>
+</tr>
+<tr>
+<td><code>rehype-component-github-card.mjs</code></td>
+<td>GitHub 仓库卡片组件</td>
+</tr>
+<tr>
+<td><code>rehype-component-image-grid.mjs</code></td>
+<td>图片网格布局组件</td>
+</tr>
+<tr>
+<td><code>rehype-image-width.mjs</code></td>
+<td>自动设置图片宽高</td>
+</tr>
+<tr>
+<td><code>rehype-mermaid.mjs</code></td>
+<td>Rehype 层面的 Mermaid 处理</td>
+</tr>
+<tr>
+<td><code>rehype-wrap-table.mjs</code></td>
+<td>表格包裹（响应式滚动）</td>
+</tr>
+<tr>
+<td><code>astro-icon-include.mjs</code></td>
+<td>构建时确定需要打包的图标集合</td>
+</tr>
+<tr>
+<td><code>expressive-code/custom-copy-button.ts</code></td>
+<td>代码块自定义复制按钮</td>
+</tr>
+<tr>
+<td><code>expressive-code/language-badge.ts</code></td>
+<td>代码块语言标签</td>
+</tr>
+<tr>
+<td><code>mermaid-render-script.js</code></td>
+<td>Mermaid 客户端渲染脚本</td>
+</tr>
+</tbody>
+</table>
+<h3><code>src/scripts/</code> — 客户端 JS/TS</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>swup-manager.ts</code></td>
+<td><strong>Swup 页面过渡管理器入口</strong> — 统一注册所有 Swup hooks</td>
+</tr>
+<tr>
+<td><code>core/swup-config.ts</code></td>
+<td>Swup 核心配置</td>
+</tr>
+<tr>
+<td><code>core/swup-hooks.ts</code></td>
+<td>Swup 生命周期 hooks（页面进入/离开等）</td>
+</tr>
+<tr>
+<td><code>effects/sakura-effect.ts</code></td>
+<td>樱花飘落特效</td>
+</tr>
+<tr>
+<td><code>effects/transition-effect.ts</code></td>
+<td>页面过渡特效</td>
+</tr>
+<tr>
+<td><code>handlers/back-to-top-handler.ts</code></td>
+<td>返回顶部按钮逻辑</td>
+</tr>
+<tr>
+<td><code>handlers/fancybox-handler.ts</code></td>
+<td>图片灯箱逻辑</td>
+</tr>
+<tr>
+<td><code>handlers/panel-handler.ts</code></td>
+<td>面板管理逻辑</td>
+</tr>
+<tr>
+<td><code>handlers/scroll-handler.ts</code></td>
+<td>滚动处理逻辑</td>
+</tr>
+<tr>
+<td><code>anime-filter-handler.ts</code></td>
+<td>番剧筛选交互</td>
+</tr>
+<tr>
+<td><code>anime-layout-handler.ts</code></td>
+<td>番剧页面布局</td>
+</tr>
+<tr>
+<td><code>code-collapse.js</code></td>
+<td>代码块折叠功能</td>
+</tr>
+<tr>
+<td><code>post-lastmodified.ts</code></td>
+<td>文章最后修改时间更新</td>
+</tr>
+<tr>
+<td><code>right-sidebar-layout.js</code></td>
+<td>右侧边栏布局</td>
+</tr>
+<tr>
+<td><code>theme-optimizer.js</code></td>
+<td>主题切换性能优化</td>
+</tr>
+</tbody>
+</table>
+<h3><code>src/stores/</code> — Svelte 状态管理</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>musicPlayerStore.ts</code></td>
+<td>音乐播放器全局状态（当前曲目、播放列表、音量、播放模式等）</td>
+</tr>
+</tbody>
+</table>
+<h3><code>src/constants/</code> — 常量</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>constants.ts</code></td>
+<td>全局常量（BANNER_HEIGHT、PAGE_WIDTH 等）</td>
+</tr>
+<tr>
+<td><code>icon.ts</code></td>
+<td>图标名称常量</td>
+</tr>
+<tr>
+<td><code>link-presets.ts</code></td>
+<td>链接预设</td>
+</tr>
+</tbody>
+</table>
+<h3><code>src/utils/</code> — 工具函数（26个）</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>content-utils.ts</code></td>
+<td><strong>文章内容处理</strong> — 排序、筛选、分类、标签聚合</td>
+</tr>
+<tr>
+<td><code>crypto-utils.ts</code></td>
+<td>AES 加密工具（文章密码保护）</td>
+</tr>
+<tr>
+<td><code>date-utils.ts</code></td>
+<td>日期格式化</td>
+</tr>
+<tr>
+<td><code>image-utils.ts</code></td>
+<td>图片处理</td>
+</tr>
+<tr>
+<td><code>icon-loader.ts</code></td>
+<td>图标加载</td>
+</tr>
+<tr>
+<td><code>language-utils.ts</code></td>
+<td>语言工具</td>
+</tr>
+<tr>
+<td><code>navigation-utils.ts</code></td>
+<td>导航工具</td>
+</tr>
+<tr>
+<td><code>permalink-utils.ts</code></td>
+<td>固定链接解析</td>
+</tr>
+<tr>
+<td><code>post-url.ts</code></td>
+<td>文章 URL 生成</td>
+</tr>
+<tr>
+<td><code>post-card-content.ts</code></td>
+<td>文章卡片内容提取</td>
+</tr>
+<tr>
+<td><code>url-utils.ts</code></td>
+<td>URL 处理</td>
+</tr>
+<tr>
+<td><code>album-scanner.ts</code></td>
+<td>相册扫描</td>
+</tr>
+<tr>
+<td><code>anime-data.ts</code></td>
+<td>番剧数据处理</td>
+</tr>
+<tr>
+<td><code>feed-image-utils.ts</code></td>
+<td>Feed 图片处理</td>
+</tr>
+<tr>
+<td><code>grid-layout-utils.ts</code></td>
+<td>网格布局计算</td>
+</tr>
+<tr>
+<td><code>panel-manager.ts</code></td>
+<td>面板管理</td>
+</tr>
+<tr>
+<td><code>performance-observer.ts</code></td>
+<td>性能监控</td>
+</tr>
+<tr>
+<td><code>poster-image.ts</code></td>
+<td>海报图片生成</td>
+</tr>
+<tr>
+<td><code>sakura-manager.ts</code></td>
+<td>樱花效果管理</td>
+</tr>
+<tr>
+<td><code>setting-utils.ts</code></td>
+<td>设置工具</td>
+</tr>
+<tr>
+<td><code>tocManager.ts</code></td>
+<td>目录管理</td>
+</tr>
+<tr>
+<td><code>widget-manager.ts</code></td>
+<td>小部件管理</td>
+</tr>
+<tr>
+<td><code>widget-renderer.ts</code></td>
+<td>小部件渲染</td>
+</tr>
+<tr>
+<td><code>responsive-sidebar.ts</code></td>
+<td>响应式侧边栏</td>
+</tr>
+<tr>
+<td><code>animation-utils.ts</code> / <code>animation-test.js</code></td>
+<td>动画工具</td>
+</tr>
+</tbody>
+</table>
+<h3><code>src/types/</code> — TypeScript 类型定义</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>config.ts</code></td>
+<td>SiteConfig 等配置类型</td>
+</tr>
+<tr>
+<td><code>album.ts</code></td>
+<td>相册类型</td>
+</tr>
+<tr>
+<td><code>framework-components.d.ts</code></td>
+<td>框架组件类型声明</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>📁 <code>scripts/</code> — 构建与维护脚本</h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sync-content.js</code></td>
+<td><strong>内容同步</strong> — 从远程 Git 仓库拉取文章内容（内容与代码分离架构）</td>
+</tr>
+<tr>
+<td><code>init-content-repo.js</code></td>
+<td>初始化内容仓库</td>
+</tr>
+<tr>
+<td><code>new-post.js</code></td>
+<td>交互式创建新文章（模板生成）</td>
+</tr>
+<tr>
+<td><code>update-anime.mjs</code></td>
+<td>从 Bangumi/Bilibili API 更新番剧数据</td>
+</tr>
+<tr>
+<td><code>update-bangumi.mjs</code></td>
+<td>更新 Bangumi 数据</td>
+</tr>
+<tr>
+<td><code>update-bilibili.mjs</code></td>
+<td>更新 Bilibili 追番数据</td>
+</tr>
+<tr>
+<td><code>indexnow-submit.js</code></td>
+<td>向搜索引擎提交新内容索引</td>
+</tr>
+<tr>
+<td><code>convert-images.js</code></td>
+<td>图片格式转换</td>
+</tr>
+<tr>
+<td><code>load-env.js</code></td>
+<td>加载 <code>.env</code> 环境变量</td>
+</tr>
+<tr>
+<td><code>compress-fonts/</code></td>
+<td><strong>字体压缩工具链</strong> — <code>index.js</code>（入口）、<code>font-compressor.js</code>、<code>text-collector.js</code>、<code>css-rewriter.js</code>、<code>config-parser.js</code>、<code>utils.js</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>📁 <code>docs/</code> — 项目文档</h2>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rule/</code></td>
+<td>代码规范文档（组件架构、拆分指南、文件组织、CSS 风格、原子组件用法、侧边栏开发、图标规范）</td>
+</tr>
+<tr>
+<td><code>editor/</code></td>
+<td>编辑器预览 HTML/CSS/JS</td>
+</tr>
+<tr>
+<td><code>image/</code></td>
+<td>文档配图</td>
+</tr>
+<tr>
+<td><code>README.md</code></td>
+<td>文档索引</td>
+</tr>
+<tr>
+<td><code>AUTO_BUILD_TRIGGER.md</code></td>
+<td>自动构建触发说明</td>
+</tr>
+<tr>
+<td><code>CONTENT_REPOSITORY.md</code></td>
+<td>内容仓库分离架构说明</td>
+</tr>
+<tr>
+<td><code>CONTENT_SEPARATION.md</code></td>
+<td>内容分离机制</td>
+</tr>
+<tr>
+<td><code>DEPLOYMENT.md</code></td>
+<td>部署文档</td>
+</tr>
+<tr>
+<td><code>MIGRATION_GUIDE.md</code></td>
+<td>迁移指南</td>
+</tr>
+<tr>
+<td><code>PERFORMANCE_MONITORING.md</code></td>
+<td>性能监控说明</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>📁 <code>tests/</code> — 测试</h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>crypto.test.mjs</code></td>
+<td>加密功能单元测试</td>
+</tr>
+<tr>
+<td><code>feed-image-utils.test.ts</code></td>
+<td>Feed 图片工具测试</td>
+</tr>
+<tr>
+<td><code>post-card-content.test.ts</code></td>
+<td>文章卡片内容提取测试</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>📁 <code>.astro/</code> — Astro 框架生成的类型和缓存</h2>
+<p>这是 Astro 框架自动生成的目录，包含内容集合的类型定义 (<code>content.d.ts</code>, <code>types.d.ts</code>)、字体缓存、数据存储等，<strong>不需要手动修改</strong>。</p>
+<hr />
+<h2>🔄 页面渲染流程总结</h2>
+<pre><code>用户请求 URL
+    ↓
+Astro 路由匹配 (src/pages/)
+    ↓
+MainGridLayout.astro (包装 Layout.astro)
+    ├── Navbar.astro (导航栏)
+    ├── Banner.astro (横幅)
+    ├── SideBar.astro (左侧栏)
+    ├── &lt;main&gt; 内容区 ← slot (页面具体内容)
+    ├── RightSideBar.astro (右侧栏)
+    ├── Footer.astro (页脚)
+    └── FloatingControls (悬浮控件)
+    ↓
+Layout.astro (HTML 骨架)
+    ├── &lt;head&gt; SEO、字体、样式
+    ├── MusicPlayer.svelte (音乐播放器)
+    ├── Pio.astro (Live2D 看板娘)
+    └── Swup 页面过渡管理器
+</code></pre>
+<hr />
+<h2>🎯 关键设计特点</h2>
+<ol>
+<li><strong>内容与代码分离</strong>: 文章内容可以从远程 Git 仓库同步（<code>scripts/sync-content.js</code>），支持独立的内容管理</li>
+<li><strong>Atomic Design</strong>: 组件严格分层为 atoms → features → widgets → organisms → layouts</li>
+<li><strong>Astro + Svelte 混合</strong>: 静态内容用 Astro（服务端渲染），交互组件用 Svelte（客户端水合）</li>
+<li><strong>Swup 页面过渡</strong>: 实现了类似 SPA 的平滑页面切换体验，同时保持静态站点的优势</li>
+<li><strong>高度可配置</strong>: <code>src/config/</code> 下有 15+ 个独立配置文件，几乎所有 UI 行为都可以开关和定制</li>
+<li><strong>文章加密</strong>: 支持 AES 加密的文章密码保护（<code>crypto-utils.ts</code> + <code>auth/</code> 组件）</li>
+<li><strong>多语言</strong>: 支持简体中文、繁体中文、英文、日文四种语言</li>
+<li><strong>丰富的特殊页面</strong>: 番剧追踪、相册、日记/动态、时间线、设备展示、AI 工具推荐等</li>
+</ol>
+]]></content>
+    <author>
+      <name>Yuzumoon82</name>
+    </author>
+    <category term="学习笔记"></category>
+  </entry>
+  <entry>
+    <title>vue2-project 结构分析与知识点总结</title>
+    <link href="https://yuzumoon82.github.io/personal-blog/posts/vue2-project-%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90%E4%B8%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" rel="alternate" type="text/html"/>
+    <id>https://yuzumoon82.github.io/personal-blog/posts/vue2-project-%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90%E4%B8%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</id>
+    <published>2025-07-27T00:00:00.000Z</published>
+    <updated>2025-07-27T00:00:00.000Z</updated>
+    <summary>vue2-project（Vue 3 项目）的完整目录结构分析、组件关系图、Vue 知识点总结</summary>
+    <content type="html"><![CDATA[<blockquote>
+<p><strong>注意：</strong> 虽然项目命名为 <code>vue2-project</code>，但实际上它是一个完整的 <strong>Vue 3</strong> 项目，使用了 Vue 3 生态中的现代工具链。</p>
+</blockquote>
+<hr />
+<h2>一、项目目录结构</h2>
+<pre><code>vue2-project/
+├── .editorconfig                 # 编辑器统一配置
+├── .gitattributes                # Git 属性配置
+├── .gitignore                    # Git 忽略规则
+├── .oxlintrc.json                # Oxlint 规则配置
+├── .prettierrc.json              # Prettier 格式化配置
+├── .vscode/
+│   ├── extensions.json           # VS Code 推荐插件
+│   └── settings.json             # VS Code 工作区设置
+├── env.d.ts                      # 环境类型声明
+├── eslint.config.ts              # ESLint 扁平化配置
+├── index.html                    # Vite 入口 HTML
+├── package.json                  # 项目依赖与脚本
+├── public/
+│   └── favicon.ico               # 网站图标
+├── src/
+│   ├── App.vue                   # 根组件
+│   ├── Salary.vue                # ref + defineExpose 演示组件
+│   ├── assets/
+│   │   ├── base.css              # CSS 自定义属性（颜色变量等）
+│   │   ├── logo.svg              # 项目 Logo
+│   │   └── main.css              # 全局样式入口
+│   ├── components/
+│   │   ├── ChildCard.vue         # 子组件（ref 演示用）
+│   │   ├── HelloWorld.vue        # 经典入门组件
+│   │   ├── MessageDisplay.vue    # Props 演示组件
+│   │   ├── RefDemoParent.vue     # ref + defineExpose 父组件演示
+│   │   ├── TheWelcome.vue        # 欢迎页骨架组件
+│   │   ├── WelcomeItem.vue       # 欢迎页条目组件
+│   │   └── icons/                # SVG 图标组件
+│   │       ├── IconCommunity.vue
+│   │       ├── IconDocumentation.vue
+│   │       ├── IconEcosystem.vue
+│   │       ├── IconSupport.vue
+│   │       └── IconTooling.vue
+│   ├── main.ts                   # 应用入口文件
+│   ├── router/
+│   │   └── index.ts              # Vue Router 路由配置
+│   ├── stores/
+│   │   ├── counter.ts            # Pinia 计数器 Store（Options API 风格）
+│   │   └── user.ts               # Pinia 用户 Store（Setup / Composition API 风格）
+│   └── views/
+│       ├── AboutView.vue         # 关于页面
+│       ├── Date720View.vue       # Props 接收演示页
+│       ├── ElementPlusDemo.vue   # Element Plus 组件库演示
+│       ├── HomeView.vue          # 首页
+│       ├── PiniaDemo.vue         # Pinia 状态管理综合演示
+│       ├── RouterDemo.vue        # Vue Router 路由综合演示
+│       ├── UserDetail.vue        # 动态路由用户详情页
+│       └── UserList.vue          # 嵌套路由用户列表页
+├── tsconfig.json                 # TypeScript 项目引用配置
+├── tsconfig.app.json             # 应用代码 TS 配置
+├── tsconfig.node.json            # Node 端 TS 配置
+└── vite.config.ts                # Vite 构建配置
+</code></pre>
+<hr />
+<h2>二、技术栈总览</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>技术</th>
+<th>版本</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>框架</strong></td>
+<td>Vue 3</td>
+<td>3.5.38</td>
+<td>Composition API + <code>&lt;script setup&gt;</code></td>
+</tr>
+<tr>
+<td><strong>语言</strong></td>
+<td>TypeScript</td>
+<td>6.0</td>
+<td>全项目类型覆盖</td>
+</tr>
+<tr>
+<td><strong>构建工具</strong></td>
+<td>Vite</td>
+<td>8.0</td>
+<td>极速开发构建</td>
+</tr>
+<tr>
+<td><strong>路由</strong></td>
+<td>Vue Router</td>
+<td>4.6.4</td>
+<td>官方路由方案</td>
+</tr>
+<tr>
+<td><strong>状态管理</strong></td>
+<td>Pinia</td>
+<td>3.0.4</td>
+<td>Vue 3 官方状态管理（替代 Vuex）</td>
+</tr>
+<tr>
+<td><strong>UI 组件库</strong></td>
+<td>Element Plus</td>
+<td>2.14.3</td>
+<td>企业级 Vue 3 组件库</td>
+</tr>
+<tr>
+<td><strong>代码检查</strong></td>
+<td>Oxlint + ESLint</td>
+<td>1.69 / 10.5</td>
+<td>双引擎 Lint</td>
+</tr>
+<tr>
+<td><strong>代码格式化</strong></td>
+<td>Prettier</td>
+<td>3.8</td>
+<td>统一代码风格</td>
+</tr>
+<tr>
+<td><strong>类型检查</strong></td>
+<td>vue-tsc</td>
+<td>3.3</td>
+<td>Vue 感知的 TS 类型检查</td>
+</tr>
+<tr>
+<td><strong>Node 要求</strong></td>
+<td>Node.js</td>
+<td>^22.18 || &gt;=24.12</td>
+<td>运行时环境</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>三、配置文件详解</h2>
+<h3>3.1 package.json — npm 脚本</h3>
+<table>
+<thead>
+<tr>
+<th>脚本</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>npm run dev</code></td>
+<td>启动 Vite 开发服务器</td>
+</tr>
+<tr>
+<td><code>npm run build</code></td>
+<td>先跑 <code>vue-tsc</code> 类型检查，再 <code>vite build</code> 打包（并行执行）</td>
+</tr>
+<tr>
+<td><code>npm run preview</code></td>
+<td>本地预览生产构建</td>
+</tr>
+<tr>
+<td><code>npm run lint</code></td>
+<td>Oxlint + ESLint 双重检查并自动修复</td>
+</tr>
+<tr>
+<td><code>npm run format</code></td>
+<td>Prettier 格式化所有代码</td>
+</tr>
+</tbody>
+</table>
+<h3>3.2 Vite 配置 (<code>vite.config.ts</code>)</h3>
+<ul>
+<li>插件：<code>@vitejs/plugin-vue</code>（Vue 单文件组件支持）+ <code>vite-plugin-vue-devtools</code>（浏览器 DevTools 集成）</li>
+<li>路径别名：<code>@</code> → <code>./src</code></li>
+</ul>
+<h3>3.3 TypeScript 配置</h3>
+<p>采用 <strong>项目引用（Project References）</strong> 分层架构：</p>
+<ul>
+<li><strong><code>tsconfig.json</code></strong>：顶层引用两个子配置</li>
+<li><strong><code>tsconfig.app.json</code></strong>：面向 <code>src/</code> 中应用代码，映射 <code>@/*</code> → <code>./src/*</code></li>
+<li><strong><code>tsconfig.node.json</code></strong>：面向 Vite / ESLint 等 Node 端配置文件</li>
+</ul>
+<h3>3.4 ESLint 配置 (<code>eslint.config.ts</code>)</h3>
+<p>使用 ESLint <strong>扁平化配置</strong>（Flat Config），集成：</p>
+<ul>
+<li><code>pluginVue</code> Vue 基础规则</li>
+<li><code>vueTsConfigs.recommended</code> Vue + TS 推荐规则</li>
+<li><code>pluginOxlint</code> 联动 <code>.oxlintrc.json</code></li>
+<li><code>skipFormatting</code>（与 Prettier 避免冲突）</li>
+</ul>
+<h3>3.5 Prettier 配置 (<code>.prettierrc.json</code>)</h3>
+<ul>
+<li>无分号（<code>semi: false</code>）</li>
+<li>单引号（<code>singleQuote: true</code>）</li>
+<li>100 字符换行（<code>printWidth: 100</code>）</li>
+</ul>
+<h3>3.6 VS Code 配置</h3>
+<ul>
+<li><strong>推荐插件</strong>：Volar（Vue 官方）、ESLint、EditorConfig、Oxc、Prettier</li>
+<li><strong>保存时</strong>：自动格式化 + <code>source.fixAll</code> 自动修复</li>
+</ul>
+<hr />
+<h2>四、核心架构与知识点</h2>
+<h3>4.1 应用入口 (<code>main.ts</code>)</h3>
+<pre><code>// 初始化顺序
+createApp(App)
+  .use(createPinia())        // 1. 状态管理
+  .use(ElementPlus)          // 2. UI 组件库（全局注册）
+  .use(router)               // 3. 路由
+  .mount('#app')             // 4. 挂载
+</code></pre>
+<p><strong>知识点：</strong> Vue 3 插件安装链式调用，Pinia → Element Plus → Router → Mount</p>
+<h3>4.2 App.vue 根组件讲解</h3>
+<p>根组件同时展示了多种 Vue 3 通信模式：</p>
+<ol>
+<li><strong>模板 ref（Template Refs）</strong>：通过 <code>ref="fullmoon"</code> 获取 <code>Salary.vue</code> 组件的引用</li>
+<li><strong>Props 传递</strong>：向 <code>Date720View</code> 组件传递 <code>msg</code> 和 <code>age</code> 属性</li>
+<li><strong>Router 集成</strong>：<code>&lt;router-link&gt;</code> 导航 + <code>&lt;router-view&gt;</code> 出口</li>
+<li><strong>defineExpose 访问</strong>：读取子组件暴露的 <code>salary</code>、<code>userneme</code> 等数据</li>
+</ol>
+<hr />
+<h3>4.3 Vue Router 路由系统</h3>
+<h4>路由配置表</h4>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>名称</th>
+<th>组件</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/home</code></td>
+<td><code>home</code></td>
+<td><code>HomeView</code></td>
+<td>静态导入</td>
+</tr>
+<tr>
+<td><code>/about</code></td>
+<td><code>about</code></td>
+<td><code>AboutView</code></td>
+<td><strong>懒加载</strong>（<code>() =&gt; import()</code>）</td>
+</tr>
+<tr>
+<td><code>/Date720View</code></td>
+<td><code>Date720View</code></td>
+<td><code>Date720View</code></td>
+<td>静态导入</td>
+</tr>
+<tr>
+<td><code>/user/:id</code></td>
+<td><code>user-detail</code></td>
+<td><code>UserDetail</code></td>
+<td><strong>动态路由参数</strong> <code>:id</code></td>
+</tr>
+<tr>
+<td><code>/user-list</code></td>
+<td>-</td>
+<td><code>UserList</code></td>
+<td>懒加载，<strong>嵌套路由</strong>父级</td>
+</tr>
+<tr>
+<td><code>/user-list/:id</code></td>
+<td><code>user-list-detail</code></td>
+<td><code>UserDetail</code></td>
+<td>嵌套子路由</td>
+</tr>
+<tr>
+<td><code>/pinia-demo</code></td>
+<td><code>pinia-demo</code></td>
+<td><code>PiniaDemo</code></td>
+<td>懒加载</td>
+</tr>
+<tr>
+<td><code>/element-plus-demo</code></td>
+<td><code>element-plus-demo</code></td>
+<td><code>ElementPlusDemo</code></td>
+<td>静态导入</td>
+</tr>
+<tr>
+<td><code>/router-demo</code></td>
+<td><code>router-demo</code></td>
+<td><code>RouterDemo</code></td>
+<td>静态导入</td>
+</tr>
+</tbody>
+</table>
+<h4>涉及的路由知识点</h4>
+<ul>
+<li><strong>静态导入 vs 懒加载</strong>：<code>import HomeView from './views/HomeView.vue'</code> vs <code>() =&gt; import('./views/AboutView.vue')</code></li>
+<li><strong>动态路由</strong>：<code>/user/:id</code> —— 通过 <code>route.params.id</code> 获取参数</li>
+<li><strong>嵌套路由</strong>：<code>UserList</code> 作为父组件，<code>children</code> 配置子路由，父组件需包含 <code>&lt;router-view /&gt;</code></li>
+<li><strong>命名路由</strong>：使用 <code>name</code> 字段，导航时 <code>:to="{ name: 'home' }"</code></li>
+<li><strong>查询参数</strong>：<code>/router-demo?keyword=hello</code> → <code>route.query.keyword</code></li>
+<li><strong>HTML5 History 模式</strong>：<code>createWebHistory()</code>，URL 无 <code>#</code> 号</li>
+<li><strong>编程式导航</strong>：<code>router.push({ name: 'user-detail', params: { id: 2 } })</code>、<code>router.back()</code></li>
+<li><strong><code>useRouter()</code> / <code>useRoute()</code></strong>：Composition API 获取路由实例和当前路由信息</li>
+</ul>
+<hr />
+<h3>4.4 Pinia 状态管理</h3>
+<p>项目演示了 Pinia 两种 API 风格：</p>
+<h4>Options Store 风格 (<code>counter.ts</code>)</h4>
+<pre><code>export const useCounterStore = defineStore('counter', {
+  state: () =&gt; ({ count: 0 }),
+  getters: {
+    doubleCount: (state) =&gt; state.count * 2,
+  },
+  actions: {
+    increment(value: number) { this.count += value },
+    reset() { this.count = 0 },
+  },
+})
+</code></pre>
+<p>类似于 Vuex 的写法，使用 <code>state</code> / <code>getters</code> / <code>actions</code> 选项。</p>
+<h4>Setup Store 风格 (<code>user.ts</code>)</h4>
+<pre><code>export const useUserStore = defineStore('user', () =&gt; {
+  const nickname = ref('张三')
+  const isLoggedIn = ref(false)
+  const greeting = computed(() =&gt;
+    isLoggedIn.value ? `欢迎回来，${nickname.value}！` : '请先登录'
+  )
+  function login(name: string) { ... }
+  function logout() { ... }
+  return { nickname, isLoggedIn, greeting, login, logout }
+})
+</code></pre>
+<p>使用 Composition API 的 <code>ref</code> / <code>computed</code> / 普通函数定义，更灵活。</p>
+<h4><code>storeToRefs</code> 响应式解构</h4>
+<pre><code>// ❌ 直接解构会丢失响应式
+const { count, doubleCount } = counterStore
+
+// ✅ 使用 storeToRefs 保持响应式
+const { count, doubleCount } = storeToRefs(counterStore)
+</code></pre>
+<h4>涉及的知识点</h4>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>defineStore(id, options)</code></td>
+<td>定义 Store</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td>响应式数据（Options 风格）</td>
+</tr>
+<tr>
+<td><code>getters</code> / <code>computed</code></td>
+<td>派生状态</td>
+</tr>
+<tr>
+<td><code>actions</code> / 普通函数</td>
+<td>修改状态的方法</td>
+</tr>
+<tr>
+<td><code>storeToRefs</code></td>
+<td>解构时保持响应式</td>
+</tr>
+<tr>
+<td>跨组件共享</td>
+<td>Store 即全局单例，自动解决跨组件通信</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>4.5 Element Plus UI 组件库</h3>
+<p><code>ElementPlusDemo.vue</code> 演示了 6 种核心组件的用法：</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>用途</th>
+<th>关键知识点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>el-button</code></td>
+<td>按钮</td>
+<td><code>type</code> 属性：<code>primary</code> / <code>success</code> / <code>warning</code> / <code>danger</code></td>
+</tr>
+<tr>
+<td><code>el-input</code></td>
+<td>输入框</td>
+<td><code>v-model</code> 双向绑定</td>
+</tr>
+<tr>
+<td><code>el-select</code> / <code>el-option</code></td>
+<td>下拉选择</td>
+<td><code>v-model</code> + 选项列表</td>
+</tr>
+<tr>
+<td><code>el-table</code> / <code>el-table-column</code></td>
+<td>数据表格</td>
+<td><code>data</code> 属性绑定数据源，<strong>作用域插槽</strong>自定义操作列</td>
+</tr>
+<tr>
+<td><code>el-dialog</code></td>
+<td>对话框</td>
+<td><code>v-model</code> 控制显隐</td>
+</tr>
+<tr>
+<td><code>ElMessage</code></td>
+<td>消息提示</td>
+<td><strong>编程式调用</strong>：<code>ElMessage.success()</code> / <code>.warning()</code> / <code>.error()</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>4.6 组件通信机制</h3>
+<p>项目系统性地演示了 Vue 3 的父子组件通信：</p>
+<h4>Props（父传子）</h4>
+<ul>
+<li><code>Date720View</code>：接收 <code>msg</code> 和 <code>age</code></li>
+<li><code>MessageDisplay</code>：接收 <code>text</code></li>
+</ul>
+<pre><code>defineProps&lt;{ msg: string; age: string }&gt;()
+</code></pre>
+<h4>Template Refs + defineExpose（父取子）</h4>
+<ul>
+<li><code>Salary.vue</code>：通过 <code>defineExpose</code> 暴露 <code>userneme</code>、<code>salary</code>、<code>addSalary</code></li>
+<li><code>ChildCard.vue</code>：暴露 <code>count</code>、<code>username</code>、<code>addCount</code>、<code>resetCount</code>（<strong>注意：<code>secretKey</code> 未暴露，外部无法访问</strong>）</li>
+<li><code>RefDemoParent.vue</code>：通过 <code>ref</code> 获取子组件引用，调用暴露的数据和方法</li>
+</ul>
+<pre><code>// 子组件选择性暴露
+defineExpose({ count, username, addCount, resetCount })
+// secretKey 不会暴露给父组件
+
+// 父组件访问
+const childRef = ref()
+childRef.value.addCount()
+console.log(childRef.value.count)
+</code></pre>
+<h4>Props vs Refs 设计理念对比</h4>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>数据流</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Props</td>
+<td>父主动传给子</td>
+<td>数据向下流动，普通父子通信</td>
+</tr>
+<tr>
+<td>Refs + defineExpose</td>
+<td>父主动从子获取</td>
+<td>父组件需要调用子组件方法或读取其状态</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>4.7 组合式 API（Composition API）</h3>
+<p>项目全部使用 <code>&lt;script setup lang="ts"&gt;</code> 语法：</p>
+<ul>
+<li><code>ref</code> / <code>reactive</code>：响应式数据</li>
+<li><code>computed</code>：计算属性</li>
+<li><code>watch</code> / <code>watchEffect</code>：侦听器</li>
+<li><code>defineProps</code>：声明 Props</li>
+<li><code>defineExpose</code>：暴露给父组件</li>
+<li><code>useRouter()</code> / <code>useRoute()</code>：组合函数获取路由实例</li>
+</ul>
+<hr />
+<h3>4.8 TypeScript 集成</h3>
+<ul>
+<li>所有 <code>.vue</code> 文件均使用 <code>&lt;script setup lang="ts"&gt;</code></li>
+<li>Props 使用泛型约束：<code>defineProps&lt;{ msg: string }&gt;()</code></li>
+<li>Store 定义在 <code>.ts</code> 文件中，完整类型推断</li>
+<li>独立的类型检查工具链：<code>vue-tsc</code></li>
+</ul>
+<hr />
+<h3>4.9 代码质量工具链</h3>
+<pre><code>保存文件
+   │
+   ├──→ Prettier         格式化代码风格
+   ├──→ Oxlint           快速 Lint 检查（Rust 实现）
+   └──→ ESLint           深度规则检查 + 类型感知规则
+         ├── pluginVue         Vue 特定规则
+         ├── vueTsConfigs       TypeScript 感知规则
+         └── pluginOxlint      联动 Oxlint 配置
+</code></pre>
+<p><strong>构建时：</strong></p>
+<pre><code>npm run build
+   └──→ vue-tsc --build       完整类型检查（独立于 Vite 构建）
+   └──→ vite build            生产构建（并行执行）
+</code></pre>
+<hr />
+<h2>五、项目整体评价</h2>
+<h3>项目定位</h3>
+<p>这是一个 <strong>教学性质</strong> 的 Vue 3 全功能演示项目，系统覆盖了 Vue 3 生态的核心知识点。</p>
+<h3>学习路径建议</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>内容</th>
+<th>对应文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 入门</td>
+<td>Vue 3 基础语法、Composition API</td>
+<td><code>HelloWorld.vue</code>、<code>Date720View.vue</code></td>
+</tr>
+<tr>
+<td>2. 组件通信</td>
+<td>Props、Refs、defineExpose</td>
+<td><code>RefDemoParent.vue</code>、<code>ChildCard.vue</code>、<code>MessageDisplay.vue</code></td>
+</tr>
+<tr>
+<td>3. 路由</td>
+<td>导航、动态/嵌套路由、编程式导航</td>
+<td><code>RouterDemo.vue</code>、<code>UserList.vue</code>、<code>UserDetail.vue</code></td>
+</tr>
+<tr>
+<td>4. 状态管理</td>
+<td>Pinia Options / Setup Store</td>
+<td><code>PiniaDemo.vue</code>、<code>counter.ts</code>、<code>user.ts</code></td>
+</tr>
+<tr>
+<td>5. UI 框架</td>
+<td>Element Plus 组件使用</td>
+<td><code>ElementPlusDemo.vue</code></td>
+</tr>
+<tr>
+<td>6. 工程化</td>
+<td>Vite、TS、ESLint、Prettier</td>
+<td>各配置文件</td>
+</tr>
+</tbody>
+</table>
+<h3>技术亮点</h3>
+<ul>
+<li>✅ <strong>现代化工具链</strong>：Vite 8 + TypeScript 6 + ESLint 扁平化配置</li>
+<li>✅ <strong>双重 Lint 引擎</strong>：Oxlint 负责速度 + ESLint 负责深度</li>
+<li>✅ <strong>完整类型覆盖</strong>：应用代码 + 配置文件的 TypeScript 全覆盖</li>
+<li>✅ <strong>最佳实践</strong>：懒加载、嵌套路由、Composition API、storeToRefs 等</li>
+<li>✅ <strong>教学友好</strong>：每个特性都有独立的 Demo 页面，注释清晰</li>
+</ul>
+<hr />
+<p><em>文档生成日期：2026-07-27</em></p>
+]]></content>
+    <author>
+      <name>Yuzumoon82</name>
+    </author>
+    <category term="学习笔记"></category>
+  </entry>
+  <entry>
     <title>Mizuki 文章加密原理详解</title>
     <link href="https://yuzumoon82.github.io/personal-blog/posts/mizuki-encryption-principle/" rel="alternate" type="text/html"/>
     <id>https://yuzumoon82.github.io/personal-blog/posts/mizuki-encryption-principle/</id>
@@ -892,6 +3926,1460 @@ passwordHint: "密码提示（可选）"
       <name>Yuzumoon82</name>
     </author>
     <category term="技术文章"></category>
+  </entry>
+  <entry>
+    <title>Pinia 选项式 Store 与 Element Plus 组件库</title>
+    <link href="https://yuzumoon82.github.io/personal-blog/posts/pinia%E9%80%89%E9%A1%B9%E5%BC%8Fstore%E4%B8%8Eelementplus%E7%BB%84%E4%BB%B6%E5%BA%93/" rel="alternate" type="text/html"/>
+    <id>https://yuzumoon82.github.io/personal-blog/posts/pinia%E9%80%89%E9%A1%B9%E5%BC%8Fstore%E4%B8%8Eelementplus%E7%BB%84%E4%BB%B6%E5%BA%93/</id>
+    <published>2025-07-26T00:00:00.000Z</published>
+    <updated>2025-07-26T00:00:00.000Z</updated>
+    <summary>Pinia 选项式 Store 写法详解 + Element Plus 组件库的安装、配置和常用组件示例</summary>
+    <content type="html"><![CDATA[<blockquote>
+<p>学习时间：2026.07.26<br />
+适用：已了解 Vue 组件基础和 Router 基础</p>
+</blockquote>
+<hr />
+<h2>一、Pinia 选项式 Store 写法</h2>
+<h3>1.1 和混合式的区别</h3>
+<p>Pinia 有两种写法，效果一样，只是结构不同：</p>
+<pre><code>// 混合式（Setup 风格）—— 像组件 setup
+defineStore('counter', () =&gt; {
+  const count = ref(0)
+  const double = computed(() =&gt; count.value * 2)
+  function increment() { count.value++ }
+  return { count, double, increment }
+})
+
+// 选项式（Options API 风格）—— state/getters/actions 分门别类
+defineStore('counter', {
+  state: () =&gt; ({ count: 0 }),
+  getters: {
+    double: (state) =&gt; state.count * 2,
+  },
+  actions: {
+    increment() { this.count++ },
+  },
+})
+</code></pre>
+<h3>1.2 选项式结构详解</h3>
+<pre><code>defineStore('名字', {
+  state: () =&gt; ({ ... }),    // ① 数据，必须是一个函数返回对象
+  getters: { ... },          // ② 计算属性，由数据派生新值
+  actions: { ... },          // ③ 方法，用来修改数据
+})
+</code></pre>
+<h4>① state — 定义数据</h4>
+<pre><code>state: (): { count: number } =&gt; ({
+  count: 0,
+})
+</code></pre>
+<ul>
+<li><strong>必须是函数</strong>，返回一个对象</li>
+<li><code>(): { count: number }</code> 是 TypeScript 类型注解，声明 count 是 number 类型</li>
+</ul>
+<h4>② getters — 计算属性</h4>
+<pre><code>getters: {
+  doubleCount(): number {
+    return this.count * 2
+  },
+}
+</code></pre>
+<ul>
+<li>用 <code>this.xxx</code> 访问 state 里的数据（和 actions 一样）</li>
+<li>也可以用参数写法：<code>doubleCount: (state) =&gt; state.count * 2</code></li>
+</ul>
+<h4>③ actions — 修改数据的方法</h4>
+<pre><code>actions: {
+  increment(value: number): number {
+    if (typeof value === 'number' &amp;&amp; value &gt;= 0) {
+      this.count += value
+    }
+    return this.count
+  },
+  reset(): void {
+    this.count = 0
+  },
+}
+</code></pre>
+<ul>
+<li>用 <code>this.xxx</code> 访问和修改 state</li>
+<li>可以接受参数、返回值</li>
+</ul>
+<h3>1.3 TypeScript 类型注解</h3>
+<pre><code>increment(value: number): number
+//          ↑               ↑
+//     参数是 number     返回值是 number
+
+reset(): void
+//        ↑
+//   无返回值（void = "空的"）
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>string</code></td>
+<td>字符串</td>
+<td><code>'hello'</code></td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td>数字</td>
+<td><code>17</code>、<code>3.14</code></td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td>布尔</td>
+<td><code>true</code> / <code>false</code></td>
+</tr>
+<tr>
+<td><code>void</code></td>
+<td>无返回值</td>
+<td>方法里没有 return</td>
+</tr>
+<tr>
+<td><code>string[]</code></td>
+<td>字符串数组</td>
+<td><code>['a', 'b']</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>二、<code>this.count += value</code> 详解（重点）</h2>
+<h3>2.1 拆解</h3>
+<pre><code>this.count   +=   value
+    ↑         ↑      ↑
+  store里   加等于   传进来的参数
+  的数据
+</code></pre>
+<p><code>+=</code> 是 JavaScript 的简写运算符，等价于：</p>
+<pre><code>this.count += value
+// 完全等于 ↓
+this.count = this.count + value
+// 新值    =   旧值    +  加多少
+</code></pre>
+<h3>2.2 实际执行</h3>
+<pre><code>假设 count = 5，调用 increment(1)
+
+第 1 步：value = 1
+第 2 步：检查通过（1 是 number 且 &gt;= 0）
+第 3 步：this.count += 1
+         → this.count = 5 + 1
+         → this.count = 6
+第 4 步：return this.count  →  返回 6
+</code></pre>
+<h3>2.3 常见简写运算符</h3>
+<pre><code>this.count += value   // 加等于：count = count + value
+this.count -= value   // 减等于：count = count - value
+this.count++          // 自增 1：count = count + 1
+this.count--          // 自减 1：count = count - 1
+</code></pre>
+<hr />
+<h2>三、computed 计算属性（重点）</h2>
+<h3>3.1 它是什么？</h3>
+<p><strong><code>computed</code> 会自动追踪依赖的数据，数据一变，它自己重新算。</strong></p>
+<h3>3.2 对比普通函数</h3>
+<pre><code>const count = ref(5)
+
+// 普通函数：需要手动调用
+function getDouble() {
+  return count.value * 2
+}
+console.log(getDouble())  // 10，不调用就不会算
+
+// computed：自动追踪，count 一变它就重算
+const double = computed(() =&gt; count.value * 2)
+console.log(double.value)  // 10
+
+count.value = 10
+console.log(double.value)  // 20 ✅ 自动更新了！
+</code></pre>
+<h3>3.3 自动追踪原理</h3>
+<pre><code>computed(() =&gt; count.value * 2)
+              ↑
+      computed 发现这里读了 count
+              ↓
+      把 count 记在"依赖列表"里
+              ↓
+      count 一变 → 收到通知 → 自动重新执行 → 得到新值
+</code></pre>
+<h3>3.4 实际例子：user.ts 里的 greeting</h3>
+<pre><code>const isLoggedIn = ref(false)
+const nickname = ref('张三')
+
+const greeting = computed(() =&gt; {
+  if (isLoggedIn.value) {
+    return `欢迎回来，${nickname.value}！`
+  } else {
+    return '请先登录'
+  }
+})
+</code></pre>
+<p><code>greeting</code> 会自动盯着 <code>isLoggedIn</code> 和 <code>nickname</code>，任何一个变了它都会重新算，不需要手动更新。</p>
+<hr />
+<h2>四、三元表达式和模板字符串</h2>
+<h3>4.1 三元表达式</h3>
+<pre><code>条件 ? 为 true 时取这个 : 为 false 时取这个
+
+// 读作：isLoggedIn 是 true 吗？是 → 取前面的，否则 → 取后面的
+isLoggedIn.value ? `欢迎回来！` : '请先登录'
+</code></pre>
+<p><strong>等价于 if...else：</strong></p>
+<pre><code>// 三元表达式（一行）
+const msg = isLoggedIn.value ? '欢迎' : '请登录'
+
+// if...else（多行）
+let msg: string
+if (isLoggedIn.value) {
+  msg = '欢迎'
+} else {
+  msg = '请登录'
+}
+</code></pre>
+<h3>4.2 模板字符串 <code>`...${}...`</code></h3>
+<p>反引号 <code>`</code> 包裹的字符串里，<code>${变量}</code> 可以把变量嵌入文字：</p>
+<pre><code>const name = '张三'
+
+// 普通拼接
+'欢迎回来，' + name + '！'
+
+// 模板字符串（推荐，清晰直观）
+`欢迎回来，${name}！`
+</code></pre>
+<hr />
+<h2>五、<code>||</code> 运算符 — 备用值（重点）</h2>
+<h3>5.1 逻辑</h3>
+<pre><code>左边 || 右边
+</code></pre>
+<ul>
+<li>左边有值（truthy）→ 用左边</li>
+<li>左边没值（falsy）→ 用右边作为备用</li>
+</ul>
+<h3>5.2 实际例子</h3>
+<pre><code>&lt;p&gt;{{ inputText || '（还没输入）' }}&lt;/p&gt;
+</code></pre>
+<pre><code>用户没输入 → inputText = ''（空字符串，falsy）
+            → '' || '（还没输入）' → 显示"（还没输入）"
+
+用户输入了 → inputText = 'hello'（非空字符串，truthy）
+            → 'hello' || '（还没输入）' → 显示"hello"
+</code></pre>
+<h3>5.3 truthy 和 falsy</h3>
+<pre><code>// falsy（假值，|| 会跳过它）
+''        空字符串
+0         数字零
+false     布尔假
+null      空
+undefined 未定义
+
+// truthy（真值，|| 会用它）
+'hello'   非空字符串
+1         非零数字
+true      布尔真
+[]        空数组
+{}        空对象
+</code></pre>
+<hr />
+<h2>六、storeToRefs 解构规则（重点）</h2>
+<h3>6.1 核心规则</h3>
+<pre><code>// 状态和 getter → 必须用 storeToRefs（保持响应式）
+const { count, doubleCount } = storeToRefs(counterStore)
+
+// 方法（action）→ 直接解构就行（方法不会变，不需要响应式）
+const { increment } = counterStore
+</code></pre>
+<h3>6.2 为什么不能用 storeToRefs 包所有？</h3>
+<p><strong><code>storeToRefs</code> 刻意不提取方法。</strong> 它只返回状态和 getter，方法会被忽略。所以方法必须单独从 store 上解构。</p>
+<h3>6.3 为什么方法可以直接解构？</h3>
+<p>方法就是函数引用，它从始至终不变。只有"会变化的数据"才需要响应式，方法不需要。</p>
+<h3>6.4 解构赋值 <code>const { xxx } = 对象</code></h3>
+<pre><code>const { increment } = counterStore
+// 等价于
+const increment = counterStore.increment
+</code></pre>
+<p><code>{}</code> 就是把对象里的某个属性拆出来，变成一个独立的同名变量。</p>
+<hr />
+<h2>七、Element Plus 组件库基础</h2>
+<h3>7.1 注册（两件事）</h3>
+<pre><code>// main.ts
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'  // 别忘了引 CSS！
+
+app.use(ElementPlus)
+</code></pre>
+<h3>7.2 模板组件（写在 <code>&lt;template&gt;</code> 里）</h3>
+<h4>el-button — 按钮</h4>
+<pre><code>&lt;el-button&gt;默认&lt;/el-button&gt;
+&lt;el-button type="primary"&gt;主要&lt;/el-button&gt;
+&lt;el-button type="success"&gt;成功&lt;/el-button&gt;
+&lt;el-button type="warning"&gt;警告&lt;/el-button&gt;
+&lt;el-button type="danger"&gt;危险&lt;/el-button&gt;
+</code></pre>
+<p><code>type</code> 控制颜色，<code>@click</code> 绑定点击事件。</p>
+<h4>el-input — 输入框</h4>
+<pre><code>&lt;el-input v-model="text" placeholder="请输入" /&gt;
+</code></pre>
+<p><code>v-model</code> 双向绑定：输入框里的内容和 JS 变量 <code>text</code> 实时同步。</p>
+<h4>el-select — 下拉选择</h4>
+<pre><code>&lt;el-select v-model="selected" placeholder="请选择"&gt;
+  &lt;el-option label="北京" value="beijing" /&gt;
+  &lt;el-option label="上海" value="shanghai" /&gt;
+&lt;/el-select&gt;
+</code></pre>
+<ul>
+<li><code>v-model</code> 绑定选中的值（取到的就是 option 的 <code>value</code>）</li>
+<li><code>label</code> 是显示的文字，<code>value</code> 是实际值</li>
+</ul>
+<h4>el-table — 表格</h4>
+<pre><code>&lt;el-table :data="tableData" border&gt;
+  &lt;el-table-column prop="name" label="姓名" /&gt;
+  &lt;el-table-column prop="age" label="年龄" /&gt;
+&lt;/el-table&gt;
+</code></pre>
+<ul>
+<li><code>:data</code>：数据源数组，数组几个对象就渲染几行</li>
+<li><code>border</code>：加上竖线边框</li>
+<li><code>prop</code>：对应数据里的字段名（必须一致）</li>
+<li><code>label</code>：表头显示的文字（随便写）</li>
+</ul>
+<h3>7.3 函数式组件（写在 <code>&lt;script&gt;</code> 里）</h3>
+<p><code>ElMessage</code> 不需要在模板里写标签，直接在 JS 里调用：</p>
+<pre><code>import { ElMessage } from 'element-plus'
+
+ElMessage.success('操作成功！')   // 绿色
+ElMessage.warning('请注意！')     // 黄色
+ElMessage.error('出错了！')       // 红色
+ElMessage('普通消息')             // 默认
+</code></pre>
+<p>一行代码，弹出、显示、几秒后自动消失。</p>
+<h3>7.4 el-dialog — 对话框的显示/隐藏原理（重点）</h3>
+<pre><code>&lt;!-- 按钮：只负责改变量 --&gt;
+&lt;el-button @click="dialogVisible = true"&gt;打开对话框&lt;/el-button&gt;
+
+&lt;!-- 对话框：盯着变量，true 就显示，false 就隐藏 --&gt;
+&lt;el-dialog v-model="dialogVisible" title="对话框"&gt;
+  &lt;el-button @click="dialogVisible = false"&gt;取消&lt;/el-button&gt;
+&lt;/el-dialog&gt;
+
+&lt;script setup&gt;
+const dialogVisible = ref(false)  // 初始隐藏
+&lt;/script&gt;
+</code></pre>
+<p><strong>变量是按钮和对话框之间唯一的联系方式：</strong></p>
+<pre><code>初始：dialogVisible = false → 对话框隐藏
+  ↓ 用户点击按钮
+@click 把 dialogVisible 改为 true
+  ↓ el-dialog 通过 v-model 检测到 true
+对话框弹出
+  ↓ 用户点击取消
+@click 把 dialogVisible 改为 false
+  ↓ el-dialog 检测到 false
+对话框关闭
+</code></pre>
+<p><strong>为什么 <code>ref(false)</code> 不直接写 <code>true</code>？</strong> 因为对话框初始应该是隐藏的，用户点了才弹出来。直接写 <code>true</code> 会页面一打开就弹框，体验很差。</p>
+<hr />
+<h2>八、插槽 slot — 表格操作列（重点）</h2>
+<h3>8.1 什么是插槽？</h3>
+<p>插槽（slot）就是组件留的"填空位置"——组件留一个坑，你来填内容。</p>
+<h3>8.2 <code>#default="scope"</code> 详解</h3>
+<pre><code>&lt;el-table-column label="操作"&gt;
+  &lt;template #default="scope"&gt;
+    &lt;el-button @click="deleteRow(scope.$index)"&gt;删除&lt;/el-button&gt;
+  &lt;/template&gt;
+&lt;/el-table-column&gt;
+</code></pre>
+<p>逐词解释：</p>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;template&gt;</code></td>
+<td>定义一个模板片段</td>
+</tr>
+<tr>
+<td><code>#default</code></td>
+<td>默认插槽的名字（<code>#</code> 是 <code>v-slot:</code> 的简写）</td>
+</tr>
+<tr>
+<td><code>="scope"</code></td>
+<td>接收表格传过来的当前行信息，存到 <code>scope</code> 变量里</td>
+</tr>
+</tbody>
+</table>
+<h3>8.3 scope 对象的内容</h3>
+<pre><code>scope = {
+  row:    { name: '张三', age: 28, city: '北京' },  // 当前行的完整数据
+  $index: 0,                                         // 当前行号（从 0 开始）
+  // ... 还有其他属性
+}
+</code></pre>
+<p><strong><code>$</code> 只是一个命名习惯</strong>，表示"系统提供的元数据"，不是用户数据。<code>$index</code> 就是一个普通属性名。</p>
+<h3>8.4 scope.row vs scope.$index</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>scope.row</code></th>
+<th><code>scope.$index</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>值</td>
+<td>当前行的数据对象</td>
+<td>当前行号</td>
+</tr>
+<tr>
+<td>示例</td>
+<td><code>{ name: '张三', age: 28 }</code></td>
+<td><code>0</code>、<code>1</code>、<code>2</code></td>
+</tr>
+<tr>
+<td>删除用法</td>
+<td>需要先找位置</td>
+<td>直接 <code>splice(index, 1)</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>九、今日难点速查</h2>
+<table>
+<thead>
+<tr>
+<th>难点</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>+=</code> 运算符</td>
+<td><code>this.count += value</code> = <code>this.count = this.count + value</code></td>
+</tr>
+<tr>
+<td><code>computed</code></td>
+<td>会自动追踪依赖的数据，数据变它就自动重算，不需要手动调用</td>
+</tr>
+<tr>
+<td>三元表达式</td>
+<td><code>条件 ? 真 : 假</code>，简写的 if...else</td>
+</tr>
+<tr>
+<td>模板字符串</td>
+<td><code>`文字${变量}文字`</code>，用 <code>${}</code> 嵌入变量</td>
+</tr>
+<tr>
+<td><code>||</code> 备用值</td>
+<td><code>A || B</code>：A 有值用 A，没值用 B</td>
+</tr>
+<tr>
+<td>storeToRefs</td>
+<td>解构状态时用它保持响应式，方法直接解构</td>
+</tr>
+<tr>
+<td><code>const { x } = obj</code></td>
+<td>解构赋值：把对象的属性拆出来变成独立变量</td>
+</tr>
+<tr>
+<td>Element Plus 注册</td>
+<td><code>app.use(ElementPlus)</code> + 引入 CSS</td>
+</tr>
+<tr>
+<td><code>v-model</code></td>
+<td>双向绑定，输入框/下拉和数据实时同步</td>
+</tr>
+<tr>
+<td><code>el-table</code> prop vs label</td>
+<td>prop 对应数据字段，label 是表头文字</td>
+</tr>
+<tr>
+<td><code>ElMessage</code></td>
+<td>函数式组件，JS 里调用，不用写在模板</td>
+</tr>
+<tr>
+<td>对话框原理</td>
+<td>按钮改变量 → el-dialog 通过 v-model 盯变量 → true 就弹，false 就关</td>
+</tr>
+<tr>
+<td>插槽 <code>#default="scope"</code></td>
+<td>组件留的坑，scope 传给你当前行的信息</td>
+</tr>
+<tr>
+<td><code>scope.$index</code></td>
+<td>当前行号，用来定位删第几行</td>
+</tr>
+<tr>
+<td><code>scope.row</code></td>
+<td>当前行完整数据对象</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    <author>
+      <name>Yuzumoon82</name>
+    </author>
+    <category term="学习笔记"></category>
+  </entry>
+  <entry>
+    <title>Vue Router 与 Pinia 状态管理</title>
+    <link href="https://yuzumoon82.github.io/personal-blog/posts/vuerouter%E4%B8%8Epinia%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/" rel="alternate" type="text/html"/>
+    <id>https://yuzumoon82.github.io/personal-blog/posts/vuerouter%E4%B8%8Epinia%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/</id>
+    <published>2025-07-26T00:00:00.000Z</published>
+    <updated>2025-07-26T00:00:00.000Z</updated>
+    <summary>Vue Router 前端路由和 Pinia 全局状态管理的入门指南，含完整代码示例和项目实战</summary>
+    <content type="html"><![CDATA[<blockquote>
+<p>学习时间：2026.07.22 - 2026.07.26<br />
+适用：前端小白，已了解 Vue 组件基础</p>
+</blockquote>
+<hr />
+<h2>一、Vue Router 是什么？</h2>
+<p><strong>Vue Router 就是前端页面的"导航系统"</strong>。它让用户在多个页面之间切换，但<strong>不刷新浏览器</strong>。</p>
+<h3>1.1 没有 Router vs 有 Router</h3>
+<pre><code>没有 Router：
+  跳页面 = 浏览器重新加载整个 HTML → 慢、闪烁
+
+有 Router：
+  跳页面 = 只替换内容区域 → 快、顺滑（SPA 单页应用的核心体验）
+</code></pre>
+<hr />
+<h2>二、路由配置（router/index.ts）</h2>
+<h3>2.1 路由表结构</h3>
+<pre><code>// src/router/index.ts
+import { createRouter, createWebHistory } from 'vue-router'
+
+const router = createRouter({
+  history: createWebHistory(),  // URL 模式：干净的路径 /home，没有 #
+  routes: [                     // 路由表：一个数组，定义所有页面
+    {
+      path: '/home',            // ① URL 路径
+      name: 'home',             // ② 路由名字（跳转时可以用名字代替路径）
+      component: HomeView,      // ③ 匹配到这个路径时显示哪个组件
+    },
+  ],
+})
+
+export default router           // 导出，让 main.ts 用 import 接住
+</code></pre>
+<h3>2.2 <code>component</code> 的两种写法</h3>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>何时加载</th>
+<th>优缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>component: HomeView</code></td>
+<td>页面一开始就加载</td>
+<td>切换快，但首屏稍慢</td>
+</tr>
+<tr>
+<td><code>component: () =&gt; import('...')</code></td>
+<td>访问时才加载（懒加载）</td>
+<td>首屏快，推荐</td>
+</tr>
+</tbody>
+</table>
+<pre><code>// 直接加载（用于首页等高频页面）
+component: HomeView
+
+// 懒加载（用于不常访问的页面）
+component: () =&gt; import('../views/AboutView.vue')
+</code></pre>
+<hr />
+<h2>三、两个核心标签</h2>
+<h3>3.1 <code>&lt;router-link&gt;</code> — 导航链接</h3>
+<pre><code>&lt;!-- 代替 &lt;a href="/home"&gt;，点击不会刷新页面 --&gt;
+&lt;router-link to="/home"&gt;首页&lt;/router-link&gt;
+</code></pre>
+<p><strong>和 <code>&lt;a&gt;</code> 标签的区别</strong>：</p>
+<ul>
+<li><code>&lt;a href="/home"&gt;</code>：浏览器刷新整个页面</li>
+<li><code>&lt;router-link to="/home"&gt;</code>：只替换内容区域，不刷新</li>
+</ul>
+<h3>3.2 <code>&lt;router-view /&gt;</code> — 路由出口</h3>
+<pre><code>&lt;!-- 当前 URL 匹配到哪个路由，就把哪个组件渲染在这里 --&gt;
+&lt;router-view /&gt;
+</code></pre>
+<p><strong>它是整个路由系统的"舞台"</strong>，所有页面都在这个位置显示。</p>
+<h3>3.3 它们怎么配合？</h3>
+<pre><code>用户点击 &lt;router-link to="/about"&gt;
+          ↓
+URL 变成 /about
+          ↓
+路由表匹配到 { path: '/about', component: AboutView }
+          ↓
+&lt;router-view /&gt; 渲染 AboutView 组件
+          ↓
+用户看到 About 页面
+</code></pre>
+<hr />
+<h2>四、路由跳转的两种方式</h2>
+<h3>4.1 方式一：声明式（<code>&lt;router-link&gt;</code>）</h3>
+<p>写在模板里，生成链接。适合导航栏、菜单等。</p>
+<pre><code>&lt;!-- 写死路径 --&gt;
+&lt;router-link to="/home"&gt;首页&lt;/router-link&gt;
+
+&lt;!-- 用命名路由（推荐，路径变了也不用改代码） --&gt;
+&lt;router-link :to="{ name: 'home' }"&gt;首页&lt;/router-link&gt;
+</code></pre>
+<p>注意上面第二行有 <code>:</code> 冒号（<code>:to</code>），这表示 <code>to</code> 的值是 JavaScript 表达式，不是字符串。</p>
+<h3>4.2 方式二：编程式（JS 代码）</h3>
+<p>写在 <code>&lt;script&gt;</code> 里，用代码触发跳转。适合按钮点击、表单提交后跳转等场景。</p>
+<pre><code>import { useRouter } from 'vue-router'
+const router = useRouter()
+
+router.push({ name: 'home' })         // 跳转到首页
+router.push({ path: '/home' })        // 用路径跳转
+router.push('/home')                  // 直接写字符串也行
+</code></pre>
+<h3>4.3 导航方法全家福</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>效果</th>
+<th>比喻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>router.push('/a')</code></td>
+<td>跳转到新页面，留下历史记录</td>
+<td>翻开新的一页</td>
+</tr>
+<tr>
+<td><code>router.back()</code></td>
+<td>回到上一页</td>
+<td>翻回上一页</td>
+</tr>
+<tr>
+<td><code>router.forward()</code></td>
+<td>前进到下一页</td>
+<td>回到刚才翻过去的那页</td>
+</tr>
+<tr>
+<td><code>router.go(-2)</code></td>
+<td>后退 2 页</td>
+<td>一次性往回翻两页</td>
+</tr>
+<tr>
+<td><code>router.replace('/a')</code></td>
+<td>跳转但<strong>替换</strong>当前页（不留下历史记录）</td>
+<td>撕掉当前页，放上新页</td>
+</tr>
+</tbody>
+</table>
+<h3>4.4 push vs replace（重要！）</h3>
+<pre><code>push（压入）                     replace（替换）
+┌─────────┐                     ┌─────────┐
+│ 新页面   │ ← 新增加            │ 新页面   │ ← 覆盖掉当前页
+├─────────┤                     ├─────────┤
+│ 当前页   │                     │ 旧页面   │ ← 当前页已消失
+├─────────┤                     ├─────────┤
+│ 旧页面   │                     │ 更旧     │
+└─────────┘                     └─────────┘
+
+push 后点"后退"能回当前页        replace 后点"后退"回不到当前页
+</code></pre>
+<p><strong>什么时候用 replace？</strong> 登录成功后跳首页——不希望用户点"后退"又回到登录页。</p>
+<hr />
+<h2>五、useRoute() vs useRouter()</h2>
+<p>这是新手最容易搞混的两个 API，但它们职责完全不同。</p>
+<pre><code>import { useRoute, useRouter } from 'vue-router'
+
+const route = useRoute()    // ← 读：看当前页面的信息
+const router = useRouter()  // ← 做：跳转到别的地方
+</code></pre>
+<p><strong>记法</strong>：<strong>R</strong>oute 里有个 <strong>R</strong>ead（读），<strong>R</strong>outer 里有个 <strong>R</strong>un（跑/执行）。</p>
+<h3>5.1 useRoute() — 读取当前路由信息</h3>
+<pre><code>const route = useRoute()
+
+route.path       // 当前路径 → /user/99
+route.fullPath   // 完整路径（含 ? 和 #）→ /user/99?from=list
+route.params.id  // 动态路由参数 → "99"
+route.query.from // query 参数 → "list"
+route.name       // 当前路由名 → "user-detail"
+</code></pre>
+<p><strong>都是只读的，别去改它们！</strong></p>
+<h3>5.2 useRouter() — 操作导航</h3>
+<pre><code>const router = useRouter()
+
+router.push('/home')    // 跳转
+router.back()           // 后退
+router.replace('/xxx')  // 替换
+</code></pre>
+<h3>5.3 实际应用场景对照</h3>
+<table>
+<thead>
+<tr>
+<th>需求</th>
+<th>用什么</th>
+<th>代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>获取 URL 里的用户 ID</td>
+<td><code>useRoute()</code></td>
+<td><code>route.params.id</code></td>
+</tr>
+<tr>
+<td>获取搜索关键词 <code>?keyword=vue</code></td>
+<td><code>useRoute()</code></td>
+<td><code>route.query.keyword</code></td>
+</tr>
+<tr>
+<td>导航栏高亮当前页</td>
+<td><code>useRoute()</code></td>
+<td><code>route.name === 'home'</code></td>
+</tr>
+<tr>
+<td>点击按钮跳转</td>
+<td><code>useRouter()</code></td>
+<td><code>router.push(...)</code></td>
+</tr>
+<tr>
+<td>表单提交后跳列表</td>
+<td><code>useRouter()</code></td>
+<td><code>router.push(...)</code></td>
+</tr>
+<tr>
+<td>无权限跳 403</td>
+<td><code>useRouter()</code></td>
+<td><code>router.replace('/403')</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>六、路由传参：params 和 query</h2>
+<h3>6.1 对比总览</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>params</th>
+<th>query</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>URL 样子</strong></td>
+<td><code>/user/123</code></td>
+<td><code>/user?id=123&amp;name=张三</code></td>
+</tr>
+<tr>
+<td><strong>本质</strong></td>
+<td>参数是路径的一部分</td>
+<td>路径后面挂的问号尾巴</td>
+</tr>
+<tr>
+<td><strong>比喻</strong></td>
+<td>房间号</td>
+<td>门上的便利贴</td>
+</tr>
+<tr>
+<td><strong>路由定义</strong></td>
+<td><strong>必须</strong>提前声明 <code>:id</code></td>
+<td>不需要声明</td>
+</tr>
+<tr>
+<td><strong>跳转写法</strong></td>
+<td><strong>必须用 <code>name</code></strong>，不能用 <code>path</code></td>
+<td><code>name</code> 和 <code>path</code> 都可以</td>
+</tr>
+<tr>
+<td><strong>获取方式</strong></td>
+<td><code>route.params.xxx</code></td>
+<td><code>route.query.xxx</code></td>
+</tr>
+<tr>
+<td><strong>适合场景</strong></td>
+<td>资源 ID（用户ID、文章ID）</td>
+<td>搜索条件、来源追踪、分页</td>
+</tr>
+</tbody>
+</table>
+<h3>6.2 params 完整流程</h3>
+<pre><code>// 1. 路由定义：用 :id 占位
+{ path: '/user/:id', name: 'user-detail', component: UserDetail }
+
+// 2. 跳转：必须用 name
+router.push({ name: 'user-detail', params: { id: '99' } })
+// URL 变成：/user/99
+
+// 3. 在组件里接收
+const route = useRoute()
+console.log(route.params.id)  // "99"
+</code></pre>
+<h3>6.3 query 完整流程</h3>
+<pre><code>// 1. 路由定义：不需要额外声明
+{ path: '/search', name: 'search', component: SearchView }
+
+// 2. 跳转：name 和 path 都可以
+router.push({ name: 'search', query: { keyword: 'vue', page: '1' } })
+// URL 变成：/search?keyword=vue&amp;page=1
+
+// 3. 在组件里接收
+const route = useRoute()
+console.log(route.query.keyword)  // "vue"
+console.log(route.query.page)     // "1"
+</code></pre>
+<h3>6.4 混用</h3>
+<pre><code>router.push({
+  name: 'user-detail',
+  params: { id: '99' },          // → /user/99
+  query: { from: 'wechat' },     // → ?from=wechat
+})
+// 最终 URL：/user/99?from=wechat
+</code></pre>
+<hr />
+<h2>七、动态路由 — <code>:id</code> 占位符</h2>
+<h3>7.1 它是什么？</h3>
+<p>路由路径中的 <code>:xxx</code> 是一个<strong>占位符</strong>，可以匹配任意值。</p>
+<pre><code>定义：  /user/:id
+匹配：  /user/99     → route.params.id = "99"
+       /user/888    → route.params.id = "888"
+       /user/abc    → route.params.id = "abc"
+不匹配：/user        → 没有 id
+       /user/99/extra → 多了一层
+</code></pre>
+<p>同一个组件（<code>UserDetail.vue</code>），根据 URL 里不同的 <code>:id</code> 显示不同内容。</p>
+<h3>7.2 实现详情页的典型模式</h3>
+<pre><code>&lt;script setup lang="ts"&gt;
+import { useRoute } from 'vue-router'
+const route = useRoute()
+
+// 根据 URL 里的 id 去后端请求对应的用户数据
+const userId = route.params.id
+// axios.get(`/api/user/${userId}`)
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;p&gt;当前用户 ID：{{ route.params.id }}&lt;/p&gt;
+&lt;/template&gt;
+</code></pre>
+<hr />
+<h2>八、嵌套路由 — children</h2>
+<h3>8.1 它是什么？</h3>
+<p>父组件像一个"壳"，子路由的组件渲染在壳里面的 <code>&lt;router-view /&gt;</code> 中。</p>
+<h3>8.2 路由配置</h3>
+<pre><code>{
+  path: '/user-list',
+  component: UserList,       // 父组件（壳）
+  children: [
+    {
+      path: ':id',            // 子路由 path 不要以 / 开头
+      name: 'user-list-detail',
+      component: UserDetail,  // 子组件（渲染在壳里面）
+    },
+  ],
+}
+</code></pre>
+<h3>8.3 父组件（壳）的写法</h3>
+<pre><code>&lt;!-- UserList.vue --&gt;
+&lt;template&gt;
+  &lt;div class="layout"&gt;
+    &lt;div class="left"&gt;
+      &lt;!-- 左侧：用户列表 --&gt;
+      &lt;router-link to="/user-list/1"&gt;张三&lt;/router-link&gt;
+      &lt;router-link to="/user-list/2"&gt;李四&lt;/router-link&gt;
+    &lt;/div&gt;
+    &lt;div class="right"&gt;
+      &lt;!-- ⭐ 子路由出口！和 App.vue 里的 router-view 是同一个东西 --&gt;
+      &lt;router-view /&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<h3>8.4 访问效果</h3>
+<pre><code>访问 /user-list      → 只显示父组件壳，右侧为空（没有匹配的子路由）
+访问 /user-list/3    → 父组件壳 + 右侧渲染 UserDetail（id=3）
+</code></pre>
+<h3>8.5 理解要点</h3>
+<p><code>&lt;router-view /&gt;</code> 不止 App.vue 里可以有，任何组件里都可以有。子路由的组件渲染在<strong>最近的父级</strong> <code>&lt;router-view /&gt;</code> 里。</p>
+<pre><code>App.vue
+  └─ &lt;router-view /&gt;          ← 一级出口
+       └─ UserList.vue
+            └─ &lt;router-view /&gt; ← 二级出口（嵌套路由的关键）
+</code></pre>
+<hr />
+<h2>九、Pinia 状态管理</h2>
+<h3>9.1 它解决了什么问题？</h3>
+<p><strong>没有 Pinia 时，跨组件共享数据很麻烦：</strong></p>
+<pre><code>组件 A ←→ 父组件（中转）←→ 组件 B
+</code></pre>
+<p>兄弟组件传数据，必须通过父组件中转：A emit 给父，父再传 props 给 B。层级一深就成了"props 地狱"。</p>
+<p><strong>有了 Pinia，数据放在全局仓库里：</strong></p>
+<pre><code>组件 A → store（全局仓库）← 组件 B
+</code></pre>
+<p>任何组件直接从 store 读、往 store 写，不需要经过父组件。</p>
+<h3>9.2 Store 的混合式（Setup 风格）写法</h3>
+<p>这是 Vue 官方推荐的写法，结构和组件 setup 几乎一样：</p>
+<pre><code>// src/stores/user.ts
+import { ref, computed } from 'vue'
+import { defineStore } from 'pinia'
+
+export const useXxxStore = defineStore('store名字', () =&gt; {
+  // ① 状态（state）：用 ref / reactive 定义
+  const nickname = ref('张三')
+  const isLoggedIn = ref(false)
+
+  // ② 计算属性（getter）：用 computed 派生新值
+  const greeting = computed(() =&gt; {
+    return isLoggedIn.value ? `欢迎回来，${nickname.value}！` : '请先登录'
+  })
+
+  // ③ 方法（action）：普通 function，用来修改状态
+  function login(name: string) {
+    nickname.value = name
+    isLoggedIn.value = true
+  }
+
+  // ④ 暴露出去：只有 return 的东西外部才能访问
+  return { nickname, isLoggedIn, greeting, login }
+})
+</code></pre>
+<h3>9.3 和组件写法的对照</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>组件写法</th>
+<th>Store 写法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>状态</td>
+<td><code>const count = ref(0)</code></td>
+<td><code>const count = ref(0)</code></td>
+</tr>
+<tr>
+<td>计算属性</td>
+<td><code>const double = computed(...)</code></td>
+<td><code>const double = computed(...)</code></td>
+</tr>
+<tr>
+<td>方法</td>
+<td><code>function increment() {}</code></td>
+<td><code>function increment() {}</code></td>
+</tr>
+<tr>
+<td>暴露</td>
+<td><code>defineExpose({ ... })</code></td>
+<td><code>return { ... }</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>除了 <code>defineStore</code> 外壳和 <code>return</code>，写法和组件一模一样。</strong></p>
+<hr />
+<h2>十、在组件中使用 Store</h2>
+<h3>10.1 方式一：直接使用（最常用）</h3>
+<pre><code>&lt;script setup lang="ts"&gt;
+import { useCounterStore } from '@/stores/counter'
+const counterStore = useCounterStore()
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;!-- 直接 store.xxx 读取，模板里自动解包，不需要 .value --&gt;
+  &lt;p&gt;{{ counterStore.count }}&lt;/p&gt;
+  &lt;!-- 直接 store.xxx() 调用方法 --&gt;
+  &lt;button @click="counterStore.increment()"&gt;+1&lt;/button&gt;
+&lt;/template&gt;
+</code></pre>
+<h3>10.2 方式二：storeToRefs 解构</h3>
+<pre><code>&lt;script setup lang="ts"&gt;
+import { storeToRefs } from 'pinia'
+import { useCounterStore } from '@/stores/counter'
+
+const counterStore = useCounterStore()
+
+// 状态 → 用 storeToRefs 包一下再解构（保持响应式）
+const { count, doubleCount } = storeToRefs(counterStore)
+
+// 方法 → 直接解构（方法不需要响应式）
+const { increment } = counterStore
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;p&gt;{{ count }}&lt;/p&gt;           &lt;!-- 解构后可以直接用短名字 --&gt;
+  &lt;button @click="increment()"&gt;+1&lt;/button&gt;
+&lt;/template&gt;
+</code></pre>
+<h3>10.3 为什么需要 storeToRefs？（重点）</h3>
+<pre><code>// ❌ 直接解构 → 响应式丢失！
+const { count } = counterStore
+// count 现在只是一个普通数字，store 里 count 变了它不会跟着变
+
+// ✅ storeToRefs 解构 → 响应式保留
+const { count } = storeToRefs(counterStore)
+// count 现在是一个 ref，store 里 count 变了它会自动更新
+</code></pre>
+<p><strong>原理</strong>：<code>storeToRefs</code> 把 store 里的每个状态转成独立的 <code>ref</code>，解构后每个 ref 仍然保持响应式连接。</p>
+<h3>10.4 storeToRefs 只包状态和 getter</h3>
+<pre><code>const { count, doubleCount } = storeToRefs(counterStore)  // ✅ 状态 + getter
+const { increment } = counterStore                        // ✅ 方法直接解构
+</code></pre>
+<p>方法不需要响应式（方法本身不会变），所以直接从 store 上解构就行。</p>
+<hr />
+<h2>十一、难点速查</h2>
+<table>
+<thead>
+<tr>
+<th>难点</th>
+<th>一句话解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>params vs query</td>
+<td>params 是路径的一部分（<code>/user/99</code>），query 是问号尾巴（<code>/user?id=99</code>）</td>
+</tr>
+<tr>
+<td>useRoute vs useRouter</td>
+<td>Route = Read（读当前页信息），Router = Run（跳转到别处）</td>
+</tr>
+<tr>
+<td>push vs replace</td>
+<td>push 留历史记录（可后退），replace 替换当前页（不可后退）</td>
+</tr>
+<tr>
+<td>嵌套路由</td>
+<td>父组件里放 <code>&lt;router-view /&gt;</code>，子路由的组件就渲染在那里</td>
+</tr>
+<tr>
+<td>懒加载</td>
+<td><code>() =&gt; import(...)</code> — 访问时才下载组件，首屏更快</td>
+</tr>
+<tr>
+<td><code>component: HomeView</code></td>
+<td>变量名 <code>HomeView</code> 来自文件顶部的 <code>import HomeView from ...</code></td>
+</tr>
+<tr>
+<td>storeToRefs</td>
+<td>解构 store 时必须用它包一下，否则响应式丢失</td>
+</tr>
+<tr>
+<td>params 必须用 name 跳转</td>
+<td><code>router.push({ path: '/user/99' })</code> 的 params 会被忽略，必须用 <code>name</code></td>
+</tr>
+<tr>
+<td><code>!</code> 取反</td>
+<td><code>!undefined</code> = <code>true</code>，常用来判断"参数不存在时显示提示"</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    <author>
+      <name>Yuzumoon82</name>
+    </author>
+    <category term="学习笔记"></category>
+  </entry>
+  <entry>
+    <title>Vue 组件与模板基础</title>
+    <link href="https://yuzumoon82.github.io/personal-blog/posts/vue%E7%BB%84%E4%BB%B6%E4%B8%8E%E6%A8%A1%E6%9D%BF%E5%9F%BA%E7%A1%80/" rel="alternate" type="text/html"/>
+    <id>https://yuzumoon82.github.io/personal-blog/posts/vue%E7%BB%84%E4%BB%B6%E4%B8%8E%E6%A8%A1%E6%9D%BF%E5%9F%BA%E7%A1%80/</id>
+    <published>2025-07-26T00:00:00.000Z</published>
+    <updated>2025-07-26T00:00:00.000Z</updated>
+    <summary>Vue 3 组件开发入门：defineProps、defineEmits、插槽 Slots、模板语法，适合刚学完 HTML/JS 的小白</summary>
+    <content type="html"><![CDATA[<blockquote>
+<p>学习时间：2026.07.22 - 2026.07.26<br />
+适用：前端小白，已了解基本的 HTML/JS</p>
+</blockquote>
+<hr />
+<h2>一、组件接收数据：defineProps</h2>
+<h3>1.1 它是什么？</h3>
+<p><code>defineProps</code> 是子组件用来**声明"我能接收哪些数据"**的。父组件通过属性（props）传数据进来，子组件用 <code>defineProps</code> 接住。</p>
+<h3>1.2 代码拆解</h3>
+<pre><code>&lt;!-- 父组件 --&gt;
+&lt;MessageDisplay text="你好，世界！" /&gt;
+
+&lt;!-- 子组件 MessageDisplay.vue --&gt;
+&lt;script setup lang="ts"&gt;
+defineProps&lt;{
+  text: string
+}&gt;()
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;p&gt;{{ text }}&lt;/p&gt;  &lt;!-- 渲染：你好，世界！ --&gt;
+&lt;/template&gt;
+</code></pre>
+<p>逐词解释：</p>
+<pre><code>defineProps&lt;{
+  text: string
+}&gt;()
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>defineProps</code></td>
+<td>Vue 的编译宏，<strong>不需要 import</strong>，直接在 <code>&lt;script setup&gt;</code> 里用</td>
+</tr>
+<tr>
+<td><code>&lt;{ ... }&gt;</code></td>
+<td>TypeScript 泛型语法，定义 props 的"形状"</td>
+</tr>
+<tr>
+<td><code>text</code></td>
+<td>prop 的名字，父组件传数据时用的属性名</td>
+</tr>
+<tr>
+<td><code>: string</code></td>
+<td>TypeScript 类型注解，表示 <code>text</code> 必须是<strong>字符串类型</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>1.3 核心规则：单向数据流</h3>
+<pre><code>父组件 → 通过 props 传数据 → 子组件
+子组件只能读，不能改
+</code></pre>
+<p>子组件修改 props 会报错。如果子组件需要改变数据，应该让父组件来改，或者子组件自己内部用 <code>ref</code> 存一份副本。</p>
+<h3>1.4 两种写法对比</h3>
+<pre><code>// 运行时写法（纯 JS，没有类型检查）
+defineProps({ text: String })
+
+// TypeScript 泛型写法（推荐，编译时就能发现类型错误）
+defineProps&lt;{ text: string }&gt;()
+</code></pre>
+<hr />
+<h2>二、TypeScript 类型注解：<code>text: string</code></h2>
+<h3>2.1 它是什么？</h3>
+<p><code>变量名: 类型</code> 是 TypeScript 的核心语法，告诉编译器"这个变量只能放这种类型的数据"。</p>
+<pre><code>let name: string = '张三'     // ✅ 正确
+let name: string = 123        // ❌ 报错：number 不能赋值给 string
+
+let age: number = 17          // ✅ 数字
+let isDone: boolean = false   // ✅ 布尔
+let items: string[] = ['a']   // ✅ 字符串数组
+</code></pre>
+<h3>2.2 常见类型速查</h3>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>含义</th>
+<th>示例值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>string</code></td>
+<td>字符串</td>
+<td><code>'hello'</code></td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td>数字</td>
+<td><code>17</code>、<code>3.14</code></td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td>布尔</td>
+<td><code>true</code> / <code>false</code></td>
+</tr>
+<tr>
+<td><code>string[]</code></td>
+<td>字符串数组</td>
+<td><code>['a', 'b']</code></td>
+</tr>
+<tr>
+<td><code>number[]</code></td>
+<td>数字数组</td>
+<td><code>[1, 2, 3]</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>三、模板循环：v-for</h2>
+<h3>3.1 基础用法</h3>
+<pre><code>&lt;script setup&gt;
+const users = [
+  { id: 1, name: '张三' },
+  { id: 2, name: '李四' },
+  { id: 3, name: '王五' },
+]
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;li v-for="user in users" :key="user.id"&gt;
+    {{ user.name }}
+  &lt;/li&gt;
+&lt;/template&gt;
+</code></pre>
+<h3>3.2 逐词解释</h3>
+<pre><code>v-for = "user   in   users"
+ ↑        ↑      ↑     ↑
+指令   临时变量   介词   数据源数组
+</code></pre>
+<ul>
+<li><code>v-for</code>：Vue 的循环指令，把元素<strong>重复渲染 N 遍</strong></li>
+<li><code>user</code>：随便起的名字，代表数组里的<strong>每一项</strong></li>
+<li><code>users</code>：要被遍历的数组</li>
+</ul>
+<h3>3.3 执行过程（像复印机）</h3>
+<pre><code>users 数组: [张三, 李四, 王五]
+
+第 1 轮：user = { id: 1, name: '张三' } → 渲染 &lt;li&gt;张三&lt;/li&gt;
+第 2 轮：user = { id: 2, name: '李四' } → 渲染 &lt;li&gt;李四&lt;/li&gt;
+第 3 轮：user = { id: 3, name: '王五' } → 渲染 &lt;li&gt;王五&lt;/li&gt;
+</code></pre>
+<h3>3.4 <code>:key</code> 是什么？</h3>
+<p><strong>必须写！</strong> 给每个循环出来的元素一个<strong>唯一身份证号</strong>，Vue 靠它来追踪谁是谁。</p>
+<pre><code>&lt;!-- ✅ 正确：用唯一 id --&gt;
+&lt;li v-for="user in users" :key="user.id"&gt;{{ user.name }}&lt;/li&gt;
+
+&lt;!-- ❌ 错误：不要用数组下标（index），数据顺序一变就乱了 --&gt;
+&lt;li v-for="(user, index) in users" :key="index"&gt;{{ user.name }}&lt;/li&gt;
+</code></pre>
+<h3>3.5 其他写法</h3>
+<pre><code>&lt;!-- 顺便拿下标 --&gt;
+&lt;li v-for="(item, index) in list" :key="item.id"&gt;{{ index }} - {{ item }}&lt;/li&gt;
+
+&lt;!-- 遍历对象 --&gt;
+&lt;li v-for="(value, key) in obj" :key="key"&gt;{{ key }}: {{ value }}&lt;/li&gt;
+
+&lt;!-- 直接写次数 --&gt;
+&lt;li v-for="n in 5" :key="n"&gt;{{ n }}&lt;/li&gt;  &lt;!-- 1, 2, 3, 4, 5 --&gt;
+</code></pre>
+<hr />
+<h2>四、条件渲染：v-if 和 v-show</h2>
+<h3>4.1 v-if — 条件为真才存在</h3>
+<pre><code>&lt;p v-if="!route.params.id"&gt;👈 点击左侧用户查看详情&lt;/p&gt;
+</code></pre>
+<pre><code>v-if  =  "!"    route.params.id
+ ↑        ↑          ↑
+条件指令  取反符号    当前 URL 里的 :id 参数值
+</code></pre>
+<p><strong>规则</strong>：</p>
+<ul>
+<li>条件为 <code>true</code> → 显示元素</li>
+<li>条件为 <code>false</code> → <strong>元素直接从 HTML 里删除</strong>（不是隐藏，是没了）</li>
+</ul>
+<h3>4.2 <code>!</code> 取反运算</h3>
+<pre><code>!true    → false
+!false   → true
+!'hello' → false  // 非空字符串是 truthy
+!''      → true   // 空字符串是 falsy
+!0       → true   // 0 是 falsy
+!undefined → true // undefined 是 falsy
+</code></pre>
+<h3>4.3 实际场景</h3>
+<pre><code>&lt;!-- 没选用户时显示提示，选了就消失 --&gt;
+&lt;p v-if="!route.params.id"&gt;请选择用户&lt;/p&gt;
+
+&lt;!-- 等价写法 --&gt;
+&lt;p v-if="route.params.id === undefined"&gt;请选择用户&lt;/p&gt;
+</code></pre>
+<h3>4.4 v-if vs v-show</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>v-if</code></th>
+<th><code>v-show</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>条件为假时</td>
+<td><strong>移除 DOM 元素</strong></td>
+<td><strong>隐藏</strong>（加 <code>display: none</code>）</td>
+</tr>
+<tr>
+<td>切换开销</td>
+<td>大（要销毁/重建整个元素）</td>
+<td>小（只改 CSS）</td>
+</tr>
+<tr>
+<td>初始渲染</td>
+<td>条件为假就不渲染</td>
+<td>无论条件都渲染</td>
+</tr>
+<tr>
+<td>适合场景</td>
+<td>不频繁切换（如是否已登录）</td>
+<td>频繁切换（如 Tab 切换）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>五、HTML 标签</h2>
+<h3>5.1 <code>&lt;section&gt;</code> — 有主题的内容区块</h3>
+<pre><code>&lt;!-- ❌ 无语义，纯布局盒子 --&gt;
+&lt;div class="card"&gt;
+  &lt;h2&gt;标题&lt;/h2&gt;
+  &lt;p&gt;内容&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- ✅ 语义明确，表示一个独立内容区块 --&gt;
+&lt;section class="card"&gt;
+  &lt;h2&gt;标题&lt;/h2&gt;
+  &lt;p&gt;内容&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+<p><strong>人眼看没区别</strong>，但屏幕阅读器和搜索引擎会识别出 <code>&lt;section&gt;</code> 是一个独立的内容区域。</p>
+<h3>5.2 <code>&lt;code&gt;</code> — 行内代码</h3>
+<pre><code>&lt;p&gt;用 &lt;code&gt;console.log()&lt;/code&gt; 打印信息。&lt;/p&gt;
+</code></pre>
+<p>浏览器会用<strong>等宽字体</strong>显示被 <code>&lt;code&gt;</code> 包裹的文字，表示"这是代码"。</p>
+<h3>5.3 常见语义标签全家福</h3>
+<pre><code>&lt;header&gt;   &lt;!-- 页头 --&gt;
+&lt;nav&gt;      &lt;!-- 导航栏 --&gt;
+&lt;main&gt;     &lt;!-- 页面主体 --&gt;
+&lt;section&gt;  &lt;!-- 独立内容区块 --&gt;
+&lt;article&gt;  &lt;!-- 独立完整内容（如文章） --&gt;
+&lt;aside&gt;    &lt;!-- 侧边栏 --&gt;
+&lt;footer&gt;   &lt;!-- 页脚 --&gt;
+&lt;div&gt;      &lt;!-- 无语义，纯布局容器 --&gt;
+&lt;span&gt;     &lt;!-- 无语义，行内容器 --&gt;
+</code></pre>
+<hr />
+<h2>六、CSS：把样式写到 <code>&lt;style scoped&gt;</code> 里</h2>
+<h3>6.1 不推荐：行内样式</h3>
+<pre><code>&lt;!-- 样式和结构混在一起，难维护 --&gt;
+&lt;nav style="display: flex; background: #333; padding: 12px;"&gt;
+  &lt;a style="color: #ddd; text-decoration: none;"&gt;首页&lt;/a&gt;
+&lt;/nav&gt;
+</code></pre>
+<h3>6.2 推荐：CSS class + <code>&lt;style scoped&gt;</code></h3>
+<pre><code>&lt;template&gt;
+  &lt;nav class="my-nav"&gt;
+    &lt;a&gt;首页&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.my-nav {
+  display: flex;
+  background: #333;
+  padding: 12px;
+}
+.my-nav a {
+  color: #ddd;
+  text-decoration: none;
+}
+.my-nav a:hover {  /* 行内样式写不了 hover！这也是优势 */
+  color: #fff;
+}
+&lt;/style&gt;
+</code></pre>
+<p><strong>优势</strong>：结构（HTML）和样式（CSS）分离，可复用，能写伪类（<code>:hover</code>）。</p>
+<hr />
+<h2>七、项目启动流程</h2>
+<h3>7.1 main.ts 四步走</h3>
+<pre><code>main.ts （程序入口）
+  │
+  ├─ 第 1 步：const app = createApp(App)
+  │    创建 Vue 应用实例，指定 App.vue 为根组件
+  │
+  ├─ 第 2 步：app.use(router)
+  │    安装路由插件
+  │
+  ├─ 第 3 步：app.use(createPinia())
+  │    安装状态管理插件
+  │
+  └─ 第 4 步：app.mount('#app')
+       启动！接管 index.html 里 &lt;div id="app"&gt; 这个节点
+       页面开始显示
+</code></pre>
+<h3>7.2 核心 API 含义</h3>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>含义</th>
+<th>比喻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>createApp(App)</code></td>
+<td>以 App.vue 为根，创建应用</td>
+<td>买一台新手机</td>
+</tr>
+<tr>
+<td><code>app.use(xxx)</code></td>
+<td>装插件</td>
+<td>在手机上装 App</td>
+</tr>
+<tr>
+<td><code>app.mount('#app')</code></td>
+<td>启动，接管 HTML 节点</td>
+<td>按下开机键</td>
+</tr>
+</tbody>
+</table>
+<h3>7.3 <code>export default</code> 和 <code>import</code></h3>
+<pre><code>// router/index.ts（定义 + 导出）
+const router = createRouter({ ... })
+export default router   // ← "把路由器放到出货口"
+
+// main.ts（导入 + 使用）
+import router from './router'  // ← "从出货口取走"
+app.use(router)                 // ← "装到应用上"
+</code></pre>
+<p><code>export default</code>：一个文件只能有一个，导出后别人用 <code>import</code> 接住。</p>
+<hr />
+<h2>八、难点速查</h2>
+<table>
+<thead>
+<tr>
+<th>难点</th>
+<th>一句话解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>defineProps</code> vs 直接写变量</td>
+<td>props 是父传子的数据通道，单向的</td>
+</tr>
+<tr>
+<td><code>v-if</code> vs <code>v-show</code></td>
+<td>v-if 是移除/创建，v-show 是显示/隐藏</td>
+</tr>
+<tr>
+<td><code>:key</code> 为什么必须写</td>
+<td>Vue 靠它区分循环出来的每个元素，没 key 更新会乱</td>
+</tr>
+<tr>
+<td><code>!</code> 取反</td>
+<td><code>!undefined</code> = <code>true</code>，<code>!"hello"</code> = <code>false</code></td>
+</tr>
+<tr>
+<td><code>&lt;section&gt;</code> vs <code>&lt;div&gt;</code></td>
+<td>长得一样，但 section 有语义（告诉机器"这是一块独立内容"）</td>
+</tr>
+<tr>
+<td>TypeScript 类型</td>
+<td><code>变量名: 类型</code>，比如 <code>name: string</code> 表示 name 只能是字符串</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    <author>
+      <name>Yuzumoon82</name>
+    </author>
+    <category term="学习笔记"></category>
   </entry>
   <entry>
     <title>Mizuki Music Player 实现详解</title>
