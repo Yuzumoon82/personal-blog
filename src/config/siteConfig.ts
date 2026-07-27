@@ -109,16 +109,15 @@ export const siteConfig: SiteConfig = {
 		// 支持单张图片或图片数组，当数组长度 > 1 时自动启用轮播
 		src: {
 			desktop: [
-				"/assets/desktop-banner/1.webp",
+				"/assets/desktop-banner/1.jpeg",
 				"/assets/desktop-banner/2.webp",
 				"/assets/desktop-banner/3.webp",
-				"/assets/desktop-banner/4.webp",
 			], // 桌面横幅图片
 			mobile: [
 				"/assets/mobile-banner/1.webp",
 				"/assets/mobile-banner/2.webp",
 				"/assets/mobile-banner/3.webp",
-				"/assets/mobile-banner/4.webp",
+					"/assets/mobile-banner/4.webp",
 			], // 移动横幅图片
 		}, // 使用本地横幅图片
 
@@ -148,15 +147,14 @@ export const siteConfig: SiteConfig = {
 
 		homeText: {
 				enable: true,
-				title: "欢迎光临",
+				title: "Welcome My Blog",
 				switchable: true,
 
 				subtitle: [
-					"没有什么特别的，但只要有你在就足够了",
-					"直到现在你依然是我的光",
-					"不知不觉中，你已经成了我的每一天",
-					"和你聊天，总觉得每天都会变得开心一点",
-					"今天也是平凡的一天。但是，稍微有点美好",
+					"我喜欢我望向别处时，他的目光正落在我身上",
+					"在意你在意的，坚持你坚持的，热爱你热爱的",
+					"去没人的岛，摸鲨鱼的角",
+					"不要贪念过去，也不要忧患未来",
 				],
 			typewriter: {
 				enable: true, // 启用副标题打字机效果
