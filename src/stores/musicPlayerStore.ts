@@ -45,6 +45,191 @@ function getAssetPath(path: string): string {
 	return `${base}${path}`;
 }
 
+/**
+ * QQ 音乐 JSONP fallback URL 解析。
+ * 参考 @xizeyoupan/meting 实现：用 songmid 构建 QQ 音乐 getplaysongvkey 请求，
+ * 通过 JSONP（带浏览器 cookie）获取真实 MP3 地址。
+ */
+
+interface QQMusicVkeyResponse {
+	req_0?: {
+		data?: {
+			sip?: string[];
+			midurlinfo?: Array<{
+				songmid?: string;
+				purl?: string;
+				result?: number;
+			}>;
+		};
+	};
+}
+
+/** 构建 QQ 音乐 getplaysongvkey 请求 URL */
+function buildQQMusicVkeyUrl(songmids: string[]): string {
+	const guid = String(Math.floor(Math.random() * 1e7));
+	const data = {
+		req_0: {
+			module: "vkey.GetVkeyServer",
+			method: "CgiGetVkey",
+			param: {
+				guid,
+				songmid: songmids,
+				songtype: [0],
+				uin: "",
+				loginflag: 1,
+				platform: "20",
+			},
+		},
+		comm: { uin: "", format: "json", ct: 19, cv: 0, authst: "" },
+	};
+
+	const params = new URLSearchParams({
+		"-": "getplaysongvkey",
+		g_tk: "5381",
+		loginUin: "",
+		hostUin: "0",
+		format: "json",
+		inCharset: "utf8",
+		outCharset: "utf-8",
+		platform: "yqq.json",
+		needNewCode: "0",
+		data: JSON.stringify(data),
+	});
+
+	return `https://u.y.qq.com/cgi-bin/musicu.fcg?${params.toString()}`;
+}
+
+/** JSONP 请求：注入 <script> 标签，回调名为 qq_get_url_from_json */
+function jsonpFetch(url: string, timeout = 10000): Promise<QQMusicVkeyResponse> {
+	return new Promise((resolve, reject) => {
+		const callbackName = "qq_get_url_from_json";
+		const script = document.createElement("script");
+		let settled = false;
+
+		const cleanup = () => {
+			if (timer) clearTimeout(timer);
+			if (script.parentNode) script.parentNode.removeChild(script);
+			delete (window as any)[callbackName];
+		};
+
+		const timer = setTimeout(() => {
+			if (settled) return;
+			settled = true;
+			cleanup();
+			reject(new Error("JSONP timeout"));
+		}, timeout);
+
+		(window as any)[callbackName] = (resp: QQMusicVkeyResponse) => {
+			if (settled) return;
+			settled = true;
+			cleanup();
+			resolve(resp);
+		};
+
+		const sep = url.includes("?") ? "&" : "?";
+		script.src = `${url}${sep}callback=${callbackName}`;
+		script.onerror = () => {
+			if (settled) return;
+			settled = true;
+			cleanup();
+			reject(new Error("JSONP request failed"));
+		};
+		document.head.appendChild(script);
+	});
+}
+
+/** 根据 QQ 音乐 vkey 响应，构建每首歌的 MP3 地址 */
+function resolveMp3UrlFromVkey(
+	resp: QQMusicVkeyResponse,
+): Map<string, string> {
+	const result = new Map<string, string>();
+	const data = resp.req_0?.data;
+	if (!data) return result;
+
+	const sip =
+		(data.sip || []).find((s) => !s.startsWith("http://ws")) ||
+		data.sip?.[0];
+	if (!sip) return result;
+
+	for (const info of data.midurlinfo || []) {
+		if (info.songmid && info.purl) {
+			result.set(info.songmid, sip + info.purl);
+		}
+	}
+	return result;
+}
+
+/** 解析歌单中所有 @ 前缀的 QQ 音乐 JSONP fallback URL */
+async function resolveMetingJsonpUrls(playlist: Song[]): Promise<void> {
+	// 筛选需要 JSONP 解析的歌曲：
+	// - url 以 @ 开头（OVERSEAS fallback）
+	// - url 为空（Meting API 无法解析）
+	const pending = playlist.filter((s) => s.songmid && (!s.url || s.url.startsWith("@")));
+	console.log(`[MusicPlayer] Playlist loaded: ${playlist.length} songs`);
+	console.log(`[MusicPlayer] Songs needing JSONP: ${pending.length} (@prefix: ${playlist.filter(s => s.url.startsWith("@")).length}, empty: ${playlist.filter(s => !s.url).length})`);
+
+	if (pending.length === 0) {
+		console.log("[MusicPlayer] URL samples:", playlist.slice(0, 3).map(s => ({ title: s.title, songmid: s.songmid, url: s.url?.substring(0, 80) })));
+		return;
+	}
+
+	const songmids = pending.map((s) => s.songmid!);
+	const vkeyUrl = buildQQMusicVkeyUrl(songmids);
+	console.log(`[MusicPlayer] Built vkey URL for ${songmids.length} songmids:`, songmids.slice(0, 3));
+
+	try {
+		const resp = await jsonpFetch(vkeyUrl);
+		const midurlinfo = resp?.req_0?.data?.midurlinfo || [];
+		console.log("[MusicPlayer] JSONP midurlinfo:", midurlinfo.map((m: any) => ({ songmid: m.songmid, purl: m.purl?.substring(0, 50) || "", result: m.result })));
+		const mp3Map = resolveMp3UrlFromVkey(resp);
+
+		// 收集 result: 104003 的 songmid，需要从歌单中移除
+		const blockedSongmids = new Set<string>();
+		for (const info of midurlinfo) {
+			if (info.result === 104003 && info.songmid) {
+				blockedSongmids.add(info.songmid);
+			}
+		}
+
+		let okCount = 0;
+		let blockedCount = 0;
+		for (const song of pending) {
+			const mp3Url = mp3Map.get(song.songmid!);
+			song.url = mp3Url || "";
+			if (mp3Url) {
+				okCount++;
+				console.log(`[MusicPlayer]   OK: ${song.title}`);
+			} else if (blockedSongmids.has(song.songmid!)) {
+				blockedCount++;
+			} else {
+				console.log(`[MusicPlayer]   FAILED: ${song.title}`);
+			}
+		}
+
+		// 从歌单移除 result: 104003 + 解析失败的歌曲（url 为空）
+		const removed = playlist.filter(
+			(s) => s.songmid && blockedSongmids.has(s.songmid) && !mp3Map.has(s.songmid)
+		);
+		// 用 splice 原地移除（从后往前删除，避免索引偏移）
+		for (let i = playlist.length - 1; i >= 0; i--) {
+			const s = playlist[i];
+			if (s.songmid && blockedSongmids.has(s.songmid)) {
+				playlist.splice(i, 1);
+			}
+		}
+		// 同时清理 jsonp 解析失败但没有被 104003 标记的歌（如其他错误码）
+		// 这些歌保留在列表但 url 为空，loadSong 时会跳过
+
+		console.log(`[MusicPlayer] Result: ${okCount} OK, ${blockedCount} removed (104003), kept ${playlist.length} songs total`);
+	} catch (e) {
+		console.error("[MusicPlayer] JSONP failed:", e);
+		// JSONP 失败，清空所有待解析歌曲的 url
+		for (const song of pending) {
+			song.url = "";
+		}
+	}
+}
+
 class MusicPlayerStore {
 	private audio: HTMLAudioElement | null = null;
 	private state: MusicPlayerState;
@@ -176,6 +361,12 @@ class MusicPlayerStore {
 	}
 
 	private handleAudioError(): void {
+		const src = this.audio?.src || "(no audio)";
+		console.error(
+			`[MusicPlayer] Audio error: "${this.state.currentSong.title}"`,
+			`\n  src: ${src.substring(0, 200)}`,
+			`\n  audio.error.code: ${this.audio?.error?.code ?? "N/A"} (1=ABORTED, 2=NETWORK, 3=DECODE, 4=SRC_NOT_SUPPORTED)`,
+		);
 		this.state.isLoading = false;
 		this.showError(i18n(Key.musicPlayerErrorSong));
 
@@ -295,6 +486,10 @@ class MusicPlayerStore {
 			}
 			const list: Record<string, unknown>[] = await res.json();
 			this.state.playlist = list.map((song) => this.convertMetingSong(song));
+
+			// 解析 QQ 音乐 @ 前缀 JSONP fallback URL（OVERSEAS 模式）
+			await resolveMetingJsonpUrls(this.state.playlist);
+
 			this.state.isLoading = false;
 
 			if (this.state.playlist.length > 0) {
@@ -336,6 +531,7 @@ class MusicPlayerStore {
 			cover: (song.pic as string | undefined) ?? "",
 			url: (song.url as string | undefined) ?? "",
 			duration: dur,
+			songmid: (song.songmid as string | undefined),
 		};
 	}
 
@@ -350,8 +546,10 @@ class MusicPlayerStore {
 
 	private loadSong(song: Song, autoPlay = true): void {
 		if (!song || !song.url) {
+			console.warn(`[MusicPlayer] loadSong skipped - no url: "${song?.title ?? "unknown"}"`);
 			return;
 		}
+		console.log(`[MusicPlayer] loadSong: "${song.title}" url=${song.url.substring(0, 100)}`);
 		if (song.url !== this.state.currentSong.url) {
 			this.state.currentSong = { ...song };
 			if (song.url) {

@@ -1,43 +1,46 @@
 <script lang="ts">
-import Icon from "@iconify/svelte";
+	import Icon from "@iconify/svelte";
 
-import Key from "../../../../i18n/i18nKey";
-import { i18n } from "../../../../i18n/translation";
+	import Key from "../../../../i18n/i18nKey";
+	import { i18n } from "../../../../i18n/translation";
 
-interface Props {
-	cover: string;
-	isPlaying: boolean;
-	isLoading: boolean;
-	size?: "mini" | "expanded" | "orb";
-	onclick?: () => void;
-	interactive?: boolean;
-}
-
-const {
-	cover,
-	isPlaying,
-	isLoading,
-	size = "mini",
-	onclick,
-	interactive = false,
-}: Props = $props();
-
-function getAssetPath(path: string): string {
-	if (path.startsWith("http://") || path.startsWith("https://")) {
-		return path;
+	interface Props {
+		cover: string;
+		isPlaying: boolean;
+		isLoading: boolean;
+		size?: "mini" | "expanded" | "orb";
+		onclick?: () => void;
+		interactive?: boolean;
 	}
-	const base = import.meta.env.BASE_URL;
-	if (path.startsWith("/")) {
-		return `${base}${path.slice(1)}`;
-	}
-	return `${base}${path}`;
-}
 
-const containerClasses = {
-	mini: "cover-container relative w-12 h-12 rounded-full overflow-hidden",
-	expanded:
-		"cover-container relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0",
-};
+	const {
+		cover,
+		isPlaying,
+		isLoading,
+		size = "mini",
+		onclick,
+		interactive = false,
+	}: Props = $props();
+
+	function getAssetPath(path: string): string {
+		if (path.startsWith("http://") || path.startsWith("https://")) {
+			return path;
+		}
+		const base = import.meta.env.BASE_URL;
+		if (path.startsWith("/")) {
+			return `${base}${path.slice(1)}`;
+		}
+		return `${base}${path}`;
+	}
+
+	/** 加载失败的封面 URL，同 URL 时显示兜底图标，换歌后自动重置 */
+	let failedCover = $state("");
+
+	const containerClasses = {
+		mini: "cover-container relative w-12 h-12 rounded-full overflow-hidden",
+		expanded:
+			"cover-container relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0",
+	};
 </script>
 
 {#if size === "orb"}
@@ -93,15 +96,22 @@ const containerClasses = {
 			? i18n(Key.musicPlayerPause)
 			: i18n(Key.musicPlayerPlay)}
 	>
-		<img
-			src={getAssetPath(cover)}
-			alt={i18n(Key.musicPlayerCover)}
-			loading="eager"
-			fetchpriority="high"
-			class="w-full h-full object-cover transition-transform duration-300"
-			class:spinning={isPlaying && !isLoading}
-			class:animate-pulse={isLoading}
-		/>
+		{#if failedCover === cover}
+			<div class="w-full h-full bg-(--primary) flex items-center justify-center">
+				<Icon icon="material-symbols:music-note" class="text-white/60 text-2xl" />
+			</div>
+		{:else}
+			<img
+				src={getAssetPath(cover)}
+				alt={i18n(Key.musicPlayerCover)}
+				loading="eager"
+				fetchpriority="high"
+				class="w-full h-full object-cover transition-transform duration-300"
+				class:spinning={isPlaying && !isLoading}
+				class:animate-pulse={isLoading}
+				onerror={() => (failedCover = cover)}
+			/>
+		{/if}
 		<div
 			class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity"
 		>
@@ -122,15 +132,22 @@ const containerClasses = {
 	</div>
 {:else}
 	<div class={containerClasses[size]}>
-		<img
-			src={getAssetPath(cover)}
-			alt={i18n(Key.musicPlayerCover)}
-			loading="eager"
-			fetchpriority="high"
-			class="w-full h-full object-cover transition-transform duration-300"
-			class:spinning={isPlaying && !isLoading}
-			class:animate-pulse={isLoading}
-		/>
+		{#if failedCover === cover}
+			<div class="w-full h-full bg-(--primary) flex items-center justify-center">
+				<Icon icon="material-symbols:music-note" class="text-white/60 text-2xl" />
+			</div>
+		{:else}
+			<img
+				src={getAssetPath(cover)}
+				alt={i18n(Key.musicPlayerCover)}
+				loading="eager"
+				fetchpriority="high"
+				class="w-full h-full object-cover transition-transform duration-300"
+				class:spinning={isPlaying && !isLoading}
+				class:animate-pulse={isLoading}
+				onerror={() => (failedCover = cover)}
+			/>
+		{/if}
 	</div>
 {/if}
 

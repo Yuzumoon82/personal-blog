@@ -5,6 +5,8 @@ export interface Song {
 	cover: string;
 	url: string;
 	duration: number;
+	/** QQ 音乐 songmid，用于 JSONP 解析 @ 前缀的 fallback URL */
+	songmid?: string;
 }
 
 export type PlayerMode = "local" | "meting";
