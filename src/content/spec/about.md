@@ -1,49 +1,59 @@
-
-This website is built with the **Astro** framework using the [Mizuki](https://github.com/LyraVoid/Mizuki) theme.
+本网站基于 Astro 框架构建，并使用 [Mizuki](https://github.com/LyraVoid/Mizuki) 主题。
 
 ::github{repo="LyraVoid/Mizuki"}
 
-## 🌟 Theme Features
-
-### 🎨 Design & User Experience
-- **Modern & Elegant Design** - Clean, minimalist interface with beautiful typography
-- **Fully Responsive** - Optimized for all devices from mobile to desktop
-- **Dark/Light Mode** - Automatic theme switching with smooth transitions
-- **Beautiful Typography** - Enhanced readability with JetBrains Mono font
-- **Smooth Animations** - Fluid page transitions and interactive elements
-
-### 🔍 Content & Search
-- **Advanced Search** - Powered by [Pagefind](https://pagefind.app/) for fast, accurate results
-- **Enhanced Markdown** - Extended syntax with code highlighting and math support
-- **Interactive Table of Contents** - Auto-scroll navigation for long articles
-- **RSS Feed Generation** - Stay updated with automatic feed generation
-- **Reading Time Estimation** - Know how long articles take to read
-- **Post Categorization** - Organize content with tags and categories
-
-
-
-### 📱 Special Pages
-- **Anime Tracking Page** - Track your anime watching progress with ratings
-- **Friends Links Page** - Showcase friend websites with beautiful cards
-- **Diary/Moments Page** - Share life moments like social media posts
-- **Archive Page** - Organized timeline view of all posts
-- **About Page** - Customizable personal introduction (this page!)
-
-### 🛠 Technical Features
-- **Enhanced Code Blocks** - Powered by [Expressive Code](https://expressive-code.com/)
-- **Math Support** - LaTeX rendering with KaTeX for mathematical expressions
-- **Image Optimization** - PhotoSwipe gallery with lazy loading
-- **SEO Optimized** - Built-in sitemap and meta tags for better search visibility
-- **Performance Optimized** - Fast loading with caching and optimization
-- **Comment System Ready** - Integration support for Twikoo comments
-
-### 🎯 Advanced Markdown Features
-- **Callouts & Admonitions** - Beautiful info boxes with `> [!NOTE]`, `> [!TIP]`, `> [!WARNING]`
-- **Mathematical Equations** - Write LaTeX math with `$inline$` and `$$block$$` syntax
-- **GitHub Cards** - Embed repository cards with `::github{repo="user/repo"}`
-- **Syntax Highlighting** - Advanced code highlighting with line numbers
-- **Copy Code Buttons** - Easy code copying functionality
 
 ---
 
-*Built with ❤️ using Astro and inspired by modern web design principles.*
+> 🌟 **高钥芊 / Sun Moon**
+>
+> 🎓 北华大学 · 计算机科学与技术 · Web 前端方向
+>
+> 🏆 计设省二 &nbsp;&nbsp; 🚀 大创国家级立项 &nbsp;&nbsp; 💃 中国舞十级
+
+---
+
+## 👩‍💻 我是谁
+
+- **身份**：2007 年生，吉林德惠人，目前大一在读
+- **MBTI**：ISFJ — 安静生长，默默发光
+- **性格**：认真执着型，认准的事会一直做下去；看起来安静，熟了之后话很多
+- **做事风格**：要么不做，要做就做到位；细节控，容易在小事上较真
+- **生活态度**：慢慢来比较快，相信积累的力量
+
+---
+
+## 🛠️ 我在学什么
+
+- **前端开发**：Vue 生态是当前主战场
+- **Java**：后端方向的入门选手
+- **学习风格**：喜欢把一件事学透了再往下走，不贪多求快
+
+---
+
+## 🏆 做过的一些事
+
+- **中国大学生计算机设计大赛** — 省级二等奖
+- **大学生创新创业训练计划** — 国家级立项
+- **平遥岁影** — 数字文旅方向的三屏数据可视化项目
+
+---
+
+## 💃 闲下来的时候
+
+- **跳舞**：中国舞十级是从小坚持的成果，爵士是长大后解锁的新快乐
+- **研究各种玄学**：星座、塔罗、八字、奇门遁甲……不全信，但觉得很有意思
+- **发呆和胡思乱想**：脑子里经常有很多奇奇怪怪的想法
+
+---
+
+## 🌱 我的小信念
+
+- 认真对待每一件小事，哪怕没人看见
+- 对身边的人好一点，温暖是可以传递的
+- 生活不止有代码和远方，还有好好吃饭、好好睡觉
+
+---
+
+
+> *"安静生长，默默发光。"*

@@ -1,10 +1,10 @@
 {
-	"title": "Some lovely pictures",
+	"title": "Cat",
 	"hidden": false,
-	"description": "The world is vast, and you have to go explore it.",
-	"date": "2025-08-01",
-	"location": "Bilibili",
-	"tags": ["Kawai", "Cute", "Moe"],
+	"description": "小猫治愈全世界",
+	"date": "2026-07-28",
+	"location": "BHU",
+	"tags": ["Cat", "Cute"],
 	"layout": "masonry",
 	"columns": 3
 }
