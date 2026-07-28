@@ -5,7 +5,7 @@
   <link href="https://yuzumoon82.github.io/personal-blog/" rel="alternate" type="text/html"/>
   <link href="https://yuzumoon82.github.io/personal-blog/atom.xml" rel="self" type="application/atom+xml"/>
   <id>https://yuzumoon82.github.io/personal-blog/</id>
-  <updated>2026-07-27T15:51:04.908Z</updated>
+  <updated>2026-07-28T13:17:03.830Z</updated>
   <language>zh_CN</language>
   <entry>
     <title>Mizuki 项目学习计划——从看懂到拥有自己的博客</title>
@@ -5540,7 +5540,7 @@ export const DEFAULT_SONG: Song = {
 export const LOCAL_PLAYLIST: Song[] = [
     // 你可以把mp3文件放public目录下，然后在这里写路径
     { id: 1, title: "示例歌曲", artist: "示例歌手",
-      cover: "/assets/music/cover.jpg",
+      cover: "/assets/music/7858.jpg",
       url: "/assets/music/song.mp3",
       duration: 0 },
 ];

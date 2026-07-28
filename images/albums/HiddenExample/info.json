@@ -1,10 +1,8 @@
 {
-	"hidden": true,
-	"title": "隐藏的相册",
-	"description": "这个相册被设置为隐藏(hidden属性)，不会在相册列表中显示",
-	"date": "2025-08-28",
-	"location": "测试",
-	"tags": ["隐藏", "测试"],
-	"layout": "grid",
-	"columns": 3
+    "title": "唐山",
+    "description": "隐藏相册，不会在相册列表中显示",
+    "hidden": false,
+    "date": "2026-07-02",
+    "location": "唐山",
+    "tags": ["生活","风景"]
 }
