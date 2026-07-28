@@ -7,7 +7,7 @@ export const siteConfig: SiteConfig = {
 	title: "Yuzumoon82",
 	subtitle: "Yuzumoon82 的博客",
 	siteURL: "https://yuzumoon82.github.io/personal-blog/", // 请替换为你的站点URL，以斜杠结尾
-	siteStartDate: "2025-01-01", // 站点开始运行日期，用于站点统计组件计算运行天数
+	siteStartDate: "2026-07-26", // 站点开始运行日期，用于站点统计组件计算运行天数
 
 	lang: SITE_LANG,
 
@@ -114,10 +114,9 @@ export const siteConfig: SiteConfig = {
 				"/assets/desktop-banner/3.webp",
 			], // 桌面横幅图片
 			mobile: [
-				"/assets/mobile-banner/1.webp",
-				"/assets/mobile-banner/2.webp",
-				"/assets/mobile-banner/3.webp",
-					"/assets/mobile-banner/4.webp",
+				"/assets/desktop-banner/1.jpeg",
+				"/assets/desktop-banner/2.webp",
+				"/assets/desktop-banner/3.webp",
 			], // 移动横幅图片
 		}, // 使用本地横幅图片
 

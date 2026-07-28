@@ -124,7 +124,7 @@ export const DEFAULT_SONG: Song = {
 export const LOCAL_PLAYLIST: Song[] = [
     // 你可以把mp3文件放public目录下，然后在这里写路径
     { id: 1, title: "示例歌曲", artist: "示例歌手",
-      cover: "/assets/music/cover.jpg",
+      cover: "/assets/music/7858.jpg",
       url: "/assets/music/song.mp3",
       duration: 0 },
 ];
