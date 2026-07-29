@@ -96,8 +96,8 @@ async function processAlbumFolder(
 		}
 
 		cover = hasWebpCover
-			? `/images/albums/${folderName}/cover.webp`
-			: `/images/albums/${folderName}/cover.jpg`;
+			? `${import.meta.env.BASE_URL}images/albums/${folderName}/cover.webp`
+			: `${import.meta.env.BASE_URL}images/albums/${folderName}/cover.jpg`;
 		photos = scanPhotos(folderPath, folderName);
 	}
 
@@ -166,8 +166,8 @@ function scanPhotos(folderPath: string, albumId: string): Photo[] {
 		const { baseName, tags } = parseFileName(file);
 
 		const src = fileWebpMap.has(file)
-			? `/images/albums/${albumId}/${fileWebpMap.get(file)}`
-			: `/images/albums/${albumId}/${file}`;
+			? `${import.meta.env.BASE_URL}images/albums/${albumId}/${fileWebpMap.get(file)}`
+			: `${import.meta.env.BASE_URL}images/albums/${albumId}/${file}`;
 
 		photos.push({
 			id: `${albumId}-photo-${index}`,
