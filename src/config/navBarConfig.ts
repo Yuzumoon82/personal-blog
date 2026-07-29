@@ -26,7 +26,7 @@ export const navBarConfig: NavBarConfig = {
 			icon: "material-symbols:person",
 			children: [
 				{
-					name: "番剧",
+					name: "电视剧/综艺",
 					url: "/anime/",
 					icon: "material-symbols:movie",
 				},

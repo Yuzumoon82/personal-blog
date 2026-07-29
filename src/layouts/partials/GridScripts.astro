@@ -45,6 +45,7 @@ const {
 		bannerTitleEnabled,
 		wallpaperEnabled,
 		postListLayoutEnabled,
+		BASE_URL: import.meta.env.BASE_URL,
 	}}
 >
 	function getCarrierNumber(key, fallback) {
@@ -71,7 +72,7 @@ const {
 
 		const isMobile = window.innerWidth < 1280;
 		const isHomePage =
-			window.location.pathname === "/" || window.location.pathname === "";
+			window.location.pathname === "/" || window.location.pathname === "" || window.location.pathname === BASE_URL;
 
 		mainContent.classList.remove("mobile-main-no-banner", "no-banner-layout");
 		mainContent.style.removeProperty("min-height");
