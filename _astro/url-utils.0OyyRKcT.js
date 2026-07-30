@@ -1,1 +1,0 @@
-import"./translation.CXBT-bpB.js";import"./config.DqFh2zO6.js";function a(r,e){return r.replace(/^\/|\/$/g,"").toLowerCase()===e.replace(/^\/|\/$/g,"").toLowerCase()}function o(...r){return r.join("/").replace(/\/+/g,"/")}function l(r){return o("","/personal-blog/",r)}export{l as n,a as t};
