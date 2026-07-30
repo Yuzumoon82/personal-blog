@@ -25,7 +25,7 @@ export const projectsData: Project[] = [
 		title: "Personal-Blog",
 		description:
 			"这是 Yuzumoon82 的个人博客站点，基于 Mizuki 主题搭建，用于记录学习笔记、技术随笔和生活点滴。",
-		image: "/assets/projects/mizuki.jpg",
+		image: `${import.meta.env.BASE_URL}assets/projects/mizuki.jpg`,
 		category: "web",
 		techStack: ["Astro", "TypeScript", "Tailwind CSS", "Svelte"],
 		status: "in-progress",
@@ -41,7 +41,7 @@ export const projectsData: Project[] = [
 		title: "Learn-Vue",
 		description:
 			"基于 Vue 3 + Vite + TypeScript 的前端学习练习项目。",
-		image: "/assets/projects/folkpatch.jpg",
+		image: `${import.meta.env.BASE_URL}assets/projects/folkpatch.jpg`,
 		category: "web",
 		techStack: ["vue", "html", "css", "Typescript"],
 		status: "completed",

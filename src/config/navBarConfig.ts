@@ -59,7 +59,7 @@ export const navBarConfig: NavBarConfig = {
 					icon: "material-symbols:person",
 				},
 				{
-					name: "友链",
+					name: "常用网站",
 					url: "/friends/",
 					icon: "material-symbols:group",
 				},
