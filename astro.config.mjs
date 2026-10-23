@@ -26,6 +26,7 @@ import { pluginLanguageBadge } from "./src/plugins/expressive-code/language-badg
 import { AdmonitionComponent } from "./src/plugins/rehype-component-admonition.mjs";
 import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.mjs";
 import { ImageGridComponent } from "./src/plugins/rehype-component-image-grid.mjs";
+import { rehypeImageBase } from "./src/plugins/rehype-image-base.mjs";
 import { rehypeImageWidth } from "./src/plugins/rehype-image-width.mjs";
 import { rehypeMermaid } from "./src/plugins/rehype-mermaid.mjs";
 import { rehypeWrapTable } from "./src/plugins/rehype-wrap-table.mjs";
@@ -36,6 +37,8 @@ import { remarkFixGithubAdmonitions } from "./src/plugins/remark-fix-github-admo
 import { remarkMermaid } from "./src/plugins/remark-mermaid.js";
 
 // https://astro.build/config
+const PROD_BASE = "/personal-blog/";
+
 export default defineConfig({
 	fonts: [
 		{
@@ -84,7 +87,7 @@ export default defineConfig({
 	],
 
 	site: siteConfig.siteURL,
-	base: process.env.NODE_ENV === "production" ? "/personal-blog/" : "/",
+	base: process.env.NODE_ENV === "production" ? PROD_BASE : "/",
 	trailingSlash: "always",
 	compressHTML: true,
 
@@ -239,6 +242,10 @@ export default defineConfig({
 							children: [{ type: "text", value: "#" }],
 						},
 					},
+				],
+				[
+					rehypeImageBase,
+					process.env.NODE_ENV === "production" ? PROD_BASE : "/",
 				],
 				rehypeImageWidth,
 			],
