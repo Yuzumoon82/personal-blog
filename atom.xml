@@ -5,7 +5,7 @@
   <link href="https://yuzumoon82.github.io/personal-blog/" rel="alternate" type="text/html"/>
   <link href="https://yuzumoon82.github.io/personal-blog/atom.xml" rel="self" type="application/atom+xml"/>
   <id>https://yuzumoon82.github.io/personal-blog/</id>
-  <updated>2026-07-30T12:13:58.094Z</updated>
+  <updated>2026-10-23T05:55:01.825Z</updated>
   <language>zh_CN</language>
   <entry>
     <title>Mizuki 项目学习计划——从看懂到拥有自己的博客</title>
@@ -1508,6 +1508,68 @@ ___
 &lt;tr&gt;&lt;td&gt;表格内容&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;</p>
 <p>这是另一个段落。</p>
+]]></content>
+    <author>
+      <name>Yuzumoon82</name>
+    </author>
+    <category term="教程"></category>
+  </entry>
+  <entry>
+    <title>VJudge 使用指南:配置洛谷 / Codeforces / 牛客账号</title>
+    <link href="https://yuzumoon82.github.io/personal-blog/posts/vjudge%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" rel="alternate" type="text/html"/>
+    <id>https://yuzumoon82.github.io/personal-blog/posts/vjudge%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</id>
+    <published>2026-10-23T00:00:00.000Z</published>
+    <updated>2026-10-23T00:00:00.000Z</updated>
+    <summary>在 VJudge 上绑定洛谷、Codeforces、牛客账号的设置方法,以及 1 Unrated 等常见问题的处理。</summary>
+    <content type="html"><![CDATA[<h1>VJudge 使用指南</h1>
+<h2>设置洛谷账号</h2>
+<p><img src="https://yuzumoon82.github.io/images/posts/vjudge/01.png" alt="" /></p>
+<p><img src="https://yuzumoon82.github.io/images/posts/vjudge/03.png" alt="" /></p>
+<p>要填入这两个 key 的 value</p>
+<p><img src="https://yuzumoon82.github.io/images/posts/vjudge/04.png" alt="" /></p>
+<p>创建一个洛谷账号后登陆</p>
+<p>在网页里面右键检查</p>
+<p><img src="https://yuzumoon82.github.io/images/posts/vjudge/05.png" alt="" /></p>
+<p>然后找到 Application,再找到 Cookies,里面就有两个 key 的值</p>
+<p><img src="https://yuzumoon82.github.io/images/posts/vjudge/06.png" alt="" /></p>
+<h2>设置 Codeforces 账号</h2>
+<p><img src="https://yuzumoon82.github.io/images/posts/vjudge/07.png" alt="" /></p>
+<p>设置 codeforces 账号方法:</p>
+<p>填入一个名字叫 JSESSIONID 的 COOKIE</p>
+<p><img src="https://yuzumoon82.github.io/images/posts/vjudge/08.png" alt="" /></p>
+<p>进入 codeforces 个人主页</p>
+<p><a href="https://codeforces.com/">https://codeforces.com/</a></p>
+<p>右键点检查</p>
+<p><img src="https://yuzumoon82.github.io/images/posts/vjudge/09.png" alt="" /></p>
+<p>接下来三步</p>
+<p>到 COOKIE 里面复制粘贴 JSESSIONID 即可</p>
+<p><img src="https://yuzumoon82.github.io/images/posts/vjudge/10.png" alt="" /></p>
+<p>细节</p>
+<p><img src="https://yuzumoon82.github.io/images/posts/vjudge/11.png" alt="" /></p>
+<p><img src="https://yuzumoon82.github.io/images/posts/vjudge/12.png" alt="" /></p>
+<h2>牛客(与洛谷同理)</h2>
+<p>无非就是进入个人主页</p>
+<p>找到浏览器检查</p>
+<p>拿到指定名称的 cookie</p>
+<p>这边以牛客举例</p>
+<ul>
+<li>Type:类型</li>
+<li>Domain:域</li>
+<li>Name:名称</li>
+</ul>
+<p><img src="https://yuzumoon82.github.io/images/posts/vjudge/13.png" alt="" /></p>
+<p>进入牛客主页</p>
+<p><img src="https://yuzumoon82.github.io/images/posts/vjudge/14.png" alt="" /></p>
+<p>复制粘贴即可</p>
+<h2>出现其他情况:1 Unrated</h2>
+<p>去原地方交题就行</p>
+<p><img src="https://yuzumoon82.github.io/images/posts/vjudge/15.png" alt="" /></p>
+<p>去对应平台交</p>
+<p><img src="https://yuzumoon82.github.io/images/posts/vjudge/16.png" alt="" /></p>
+<p>根本原因是:只有在 codeforces 上参加了比赛,才能远程交题</p>
+<p>我可以共享我的账号,完全没有问题</p>
+<p>即可以登陆我的账号,拿我的 token 去交题</p>
+<p><img src="https://yuzumoon82.github.io/images/posts/vjudge/17.png" alt="" /></p>
 ]]></content>
     <author>
       <name>Yuzumoon82</name>
